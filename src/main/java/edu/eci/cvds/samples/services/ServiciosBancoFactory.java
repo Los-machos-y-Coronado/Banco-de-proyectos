@@ -7,6 +7,9 @@ package edu.eci.cvds.samples.services;
 
 import static com.google.inject.Guice.createInjector;
 import com.google.inject.Injector;
+import edu.eci.cvds.samples.persistence.DaoUsuario;
+import edu.eci.cvds.samples.persistence.mybatisimpl.MyBatisDAOUsuario;
+import edu.eci.cvds.samples.services.impl.ServiciosBancoImpl;
 import org.mybatis.guice.XMLMyBatisModule;
 import org.mybatis.guice.datasource.helper.JdbcHelper;
 
@@ -25,6 +28,8 @@ public class ServiciosBancoFactory {
             protected void initialize(){
                 install(JdbcHelper.PostgreSQL);
                 setClassPathResource("mybatis-config.xml");
+                bind(ServiciosBanco.class).to(ServiciosBancoImpl.class);
+                bind(DaoUsuario.class).to(MyBatisDAOUsuario.class);
             }
         }
         );
