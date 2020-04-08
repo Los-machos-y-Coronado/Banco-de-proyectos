@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title></title>
+    </h:head>
+    <h:body>
+        
+        <center>
+            <h1>Autenticación</h1>
+        <h:form id="formUsuario">
+            <br><p:outputLabel value="#{AutenticacionBean.estado}"/></br>
+            <br><p:inputText id="correo_usuario" binding="#{corr}"></p:inputText></br>
+            <br><p:inputText id="clave_usuario" binding="#{clus}"></p:inputText></br>
+            
+            <p:commandButton update="formUsuario" value="Ingresar" actionListener="#{AutenticacionBean.autenticar(corr.value, clus.value)}" ></p:commandButton>
+            
+            
+           
+        </h:form>
+        </center>
+    </h:body>
+</html>
+

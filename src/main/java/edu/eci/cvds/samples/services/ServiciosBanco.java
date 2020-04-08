@@ -21,5 +21,4 @@ public interface ServiciosBanco {
      */
     public abstract Usuario consultarUsuario(String correo, String clave) throws ExcepcionServiciosBanco;
     
-    public abstract void registrarUsuario(String nombre, String clave) throws ExcepcionServiciosBanco;
 }

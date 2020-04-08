@@ -30,9 +30,6 @@ public class ServiciosBancoImpl implements ServiciosBanco {
         }
     }
 
-    @Override
-    public void registrarUsuario(String nombre, String clave) throws ExcepcionServiciosBanco {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
     
 }
