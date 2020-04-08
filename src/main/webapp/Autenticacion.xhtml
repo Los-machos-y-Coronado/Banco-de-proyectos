@@ -14,7 +14,7 @@
         <h:form id="formUsuario">
             <br><p:outputLabel value="#{AutenticacionBean.estado}"/></br>
             <br><p:inputText id="correo_usuario" binding="#{corr}"></p:inputText></br>
-            <br><p:inputText id="clave_usuario" binding="#{clus}"></p:inputText></br>
+            <br><p:inputText type="password" id="clave_usuario" binding="#{clus}"></p:inputText></br>
             
             <p:commandButton update="formUsuario" value="Ingresar" actionListener="#{AutenticacionBean.autenticar(corr.value, clus.value)}" ></p:commandButton>
             
