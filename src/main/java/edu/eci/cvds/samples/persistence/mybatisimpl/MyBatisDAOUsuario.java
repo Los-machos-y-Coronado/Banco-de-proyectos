@@ -21,9 +21,9 @@ public class MyBatisDAOUsuario implements DaoUsuario{
     UsuarioMapper usuarioMapper;
 
     @Override
-    public Usuario consultarUsuario(String nombre, String clave) throws PersistenceException {
+    public Usuario consultarUsuario(String correo, String clave) throws PersistenceException {
         try{
-            return usuarioMapper.consultarUsuario(nombre,clave);
+            return usuarioMapper.consultarUsuario(correo,clave);
         }catch(Exception e){
             throw new PersistenceException("Error al consultar el usuario:"+e.getLocalizedMessage(), e);
             

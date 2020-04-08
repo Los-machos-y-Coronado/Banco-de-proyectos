@@ -14,6 +14,6 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface UsuarioMapper {
 
-    public Usuario consultarUsuario(@Param("nusu")String nombre, @Param("clusu")String clave);
+    public Usuario consultarUsuario(@Param("corr")String correo, @Param("clusu")String clave);
     
 }

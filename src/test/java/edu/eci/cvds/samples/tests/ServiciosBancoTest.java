@@ -28,12 +28,42 @@ public class ServiciosBancoTest {
         serviciosBanco = ServiciosBancoFactory.getInstance().getServiciosBanco();
        
     }
-    
+    /**
+     * Si existe el usuario
+     */
     @Test
-    public void consultarCliente(){
+    public void consultarUsuario(){
         try {
-            Usuario usu = serviciosBanco.consultarUsuario("anfegoca", "1234");
-            assertEquals("anfegoca", usu.getNombre());
+            Usuario usu = serviciosBanco.consultarUsuario("anfegoca@gmail.com", "1234");
+            assertEquals("anfegoca@gmail.com", usu.getCorreo());
+        } catch (ExcepcionServiciosBanco ex) {
+            Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
+            assertTrue(false);
+        }
+        
+    }
+    /**
+     * No existe el usuario
+     */
+    @Test
+    public void consultarUsuario2(){
+        try {
+            Usuario usu = serviciosBanco.consultarUsuario("juanito@gmail.com", "1234");
+            assertEquals(null, usu);
+        } catch (ExcepcionServiciosBanco ex) {
+            Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
+            assertTrue(false);
+        }
+        
+    }
+    /**
+     * Clave incorrecta
+     */
+    @Test
+    public void consultarUsuario3(){
+        try {
+            Usuario usu = serviciosBanco.consultarUsuario("anfegoca@gmail.com", "123455");
+            assertEquals(null, usu);
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
             assertTrue(false);

@@ -10,12 +10,42 @@ package edu.eci.cvds.samples.entities;
  * @author Andres Gonzalez
  */
 public class Usuario {
+    private String correo;
+    private String nombreUsuario;
     private String nombre;
+    private String apellido;
     private Rol rol;
     
-    public Usuario(String nombre, Rol rol){
+    public Usuario(String correo,String nombreUsuario, String nombre,String apellido, Rol rol){
+        this.correo=correo;
+        this.nombreUsuario=nombreUsuario;
         this.nombre=nombre;
+        this.apellido=apellido;
         this.rol=rol;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getNombre() {
@@ -36,7 +66,7 @@ public class Usuario {
     
     @Override
     public String toString() {
-        return "Usuario{" + "nombre=" + nombre + ", rol=" + rol + '}';
+        return "Usuario{" + "correo"+correo +", nombre Usuario "+nombreUsuario + ", nombre=" + nombre + ", apellido "+apellido +", rol " + rol + '}';
     }
    
 }

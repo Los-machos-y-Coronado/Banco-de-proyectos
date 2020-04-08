@@ -22,12 +22,17 @@ public class ServiciosBancoImpl implements ServiciosBanco {
     private DaoUsuario daoUsuario;
 
     @Override
-    public Usuario consultarUsuario(String nombre, String clave) throws ExcepcionServiciosBanco {
+    public Usuario consultarUsuario(String correo, String clave) throws ExcepcionServiciosBanco {
         try{
-            return daoUsuario.consultarUsuario(nombre,clave);
+            return daoUsuario.consultarUsuario(correo,clave);
         }catch(PersistenceException ex){
-            throw new ExcepcionServiciosBanco("No se pudo consultar el usuario "+nombre,ex);
+            throw new ExcepcionServiciosBanco("No se pudo consultar el usuario "+correo,ex);
         }
+    }
+
+    @Override
+    public void registrarUsuario(String nombre, String clave) throws ExcepcionServiciosBanco {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

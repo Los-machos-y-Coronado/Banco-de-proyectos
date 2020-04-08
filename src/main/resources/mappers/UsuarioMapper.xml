@@ -6,17 +6,22 @@
 <mapper namespace="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.UsuarioMapper">
 
     <resultMap type='Usuario' id='UsuarioResult'>
-        <id property='id' column='id'/>
-        <result property='nombre' column='nombre'/>        
+        <id property='correo' column='correo'/>
+        <result property='nombreUsuario' column='nombre_usuario'/> 
+        <result property='nombre' column='nombre'/>
+        <result property='apellido' column='apellido'/>        
         <result property='rol' column='rol' typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
     </resultMap>
 
     <select parameterType="map" id="consultarUsuario" resultMap="UsuarioResult">
         SELECT
+            u.correo,
+            u.nombre_usuario,
             u.nombre,
+            u.apellido,
             u.rol
-        FROM USUARIO AS u
-        WHERE u.nombre=#{nusu} and u.contrasena=#{clusu};
+        FROM USUARIOS AS u
+        WHERE u.correo=#{corr} and u.clave=#{clusu};
     </select>
     
 </mapper>

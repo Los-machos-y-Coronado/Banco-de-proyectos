@@ -12,5 +12,5 @@ import edu.eci.cvds.samples.entities.Usuario;
  * @author Andres Gonzalez
  */
 public interface DaoUsuario {
-    public Usuario consultarUsuario(String nombre, String clave) throws PersistenceException;
+    public Usuario consultarUsuario(String correo, String clave) throws PersistenceException;
 }

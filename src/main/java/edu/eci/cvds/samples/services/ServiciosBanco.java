@@ -14,10 +14,12 @@ import edu.eci.cvds.samples.entities.Usuario;
 public interface ServiciosBanco {
     /**
      * Retorna el usuario segun sus credenciales
-     * @param nombre String nombre del usuario
+     * @param nombre String correo del usuario
      * @param clave String contraseña del usuario
      * @return Usuario usuario
      * @throws edu.eci.cvds.samples.services.ExcepcionServiciosBanco
      */
-    public abstract Usuario consultarUsuario(String nombre, String clave) throws ExcepcionServiciosBanco;
+    public abstract Usuario consultarUsuario(String correo, String clave) throws ExcepcionServiciosBanco;
+    
+    public abstract void registrarUsuario(String nombre, String clave) throws ExcepcionServiciosBanco;
 }
