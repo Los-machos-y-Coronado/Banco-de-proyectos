@@ -38,6 +38,8 @@ public class AutenticacionBean {
         }
         if(usu==null){
             estado="Correo o Clave incorrecta";
+        }else{
+            estado="Autenticado";
         }
         
     }
