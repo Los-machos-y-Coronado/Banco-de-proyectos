@@ -10,11 +10,11 @@ package edu.eci.cvds.samples.entities;
  * @author Andres Gonzalez
  */
 public class Usuario {
-    private String correo;
-    private String nombreUsuario;
-    private String nombre;
-    private String apellido;
-    private Rol rol;
+    protected String correo;
+    protected String nombreUsuario;
+    protected String nombre;
+    protected String apellido;
+    protected Rol rol;
     
     public Usuario(String correo,String nombreUsuario, String nombre,String apellido, Rol rol){
         this.correo=correo;

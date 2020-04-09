@@ -13,7 +13,6 @@ import org.apache.ibatis.annotations.Param;
  * @author Andres Gonzalez
  */
 public interface UsuarioMapper {
-
     public Usuario consultarUsuario(@Param("corr")String correo, @Param("clusu")String clave);
     
 }

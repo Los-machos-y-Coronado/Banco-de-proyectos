@@ -5,6 +5,7 @@
  */
 package edu.eci.cvds.samples.manegedbeans;
 
+import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
@@ -23,14 +24,16 @@ public class AutenticacionBean {
     
     private ServiciosBanco serviciosBanco;
     private String estado;
+    private String rol;
     private Usuario usu;
     
     public AutenticacionBean(){
         serviciosBanco=ServiciosBancoFactory.getInstance().getServiciosBanco();
         estado = "Iniciar sesión";
+        rol="Administrador";
     }
     
-    public void autenticar(String correo,String clave){
+    public void autenticar(String correo,String clave,String rol){
         try{
             usu=serviciosBanco.consultarUsuario(correo, clave);
         }catch(ExcepcionServiciosBanco ex){
@@ -46,6 +49,14 @@ public class AutenticacionBean {
 
     public String getEstado() {
         return estado;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
     public void setEstado(String estado) {

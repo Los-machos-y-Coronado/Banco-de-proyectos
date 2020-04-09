@@ -6,6 +6,7 @@
 package edu.eci.cvds.samples.services.impl;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.persistence.DaoUsuario;
 import edu.eci.cvds.samples.persistence.PersistenceException;
