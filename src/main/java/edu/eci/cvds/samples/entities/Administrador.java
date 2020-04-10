@@ -11,9 +11,10 @@ package edu.eci.cvds.samples.entities;
  */
 
 public class Administrador  extends Usuario {
-    private static final Rol rol=Rol.Administrador;
-    public Administrador(String correo, String nombreUsuario, String nombre, String apellido) {
-        super(correo, nombreUsuario, nombre, apellido,rol);
+    
+    public Administrador(String correo,String nombreUsuario, String nombre,String apellido,boolean estado) {
+        super(correo, nombreUsuario, nombre, apellido,estado);
+        
     }
     
 }

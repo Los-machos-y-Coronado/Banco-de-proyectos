@@ -5,7 +5,6 @@
  */
 package edu.eci.cvds.samples.manegedbeans;
 
-import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
@@ -42,7 +41,7 @@ public class AutenticacionBean {
         if(usu==null){
             estado="Correo o Clave incorrecta";
         }else{
-            estado="Autenticado";
+            estado="Autenticado "+usu.getNombreUsuario();
         }
         
     }

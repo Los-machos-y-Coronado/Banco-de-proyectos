@@ -6,6 +6,8 @@
 package edu.eci.cvds.samples.tests;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.samples.entities.Administrador;
+import edu.eci.cvds.samples.entities.Proponente;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
@@ -35,7 +37,7 @@ public class ServiciosBancoTest {
     public void consultarUsuario(){
         try {
             Usuario usu = serviciosBanco.consultarUsuario("anfegoca@gmail.com", "1234");
-            assertEquals("anfegoca@gmail.com", usu.getCorreo());
+            assertEquals("anfegoca@gmail.com", ((Administrador)usu).getCorreo());
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
             assertTrue(false);
@@ -69,5 +71,15 @@ public class ServiciosBancoTest {
             assertTrue(false);
         }
         
+    }
+    @Test
+    public void AutenticacionProponente(){
+        try {
+            Usuario usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
+            assertEquals("juan@gmail.com", ((Proponente)usu).getCorreo());
+        } catch (ExcepcionServiciosBanco ex) {
+            Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
+            assertTrue(false);
+        }
     }
 }
