@@ -15,13 +15,6 @@
             <br><p:outputLabel value="#{AutenticacionBean.estado}"/></br>
             <br><p:inputText id="correo_usuario" binding="#{corr}"></p:inputText></br>
             <br><p:inputText type="password" id="clave_usuario" binding="#{clus}"></p:inputText></br>
-             <h:selectOneMenu value="#{AutenticacionBean.rol }" binding="#{crol}">
-                 <f:selectItem itemValue="Administrador" itemLabel="Administrador" />
-                 <f:selectItem itemValue="Publico" itemLabel="Publico" />
-                 <f:selectItem itemValue="Proponente" itemLabel="Proponente" />
-                 <f:selectItem itemValue="Personal" itemLabel="Proponente PMO-ODI" />    
-            </h:selectOneMenu>
-            <br></br>
             <p:commandButton update="formUsuario" value="Ingresar" actionListener="#{AutenticacionBean.autenticar(corr.value, clus.value,crol.value)}" ></p:commandButton>    
         </h:form>
         </center>

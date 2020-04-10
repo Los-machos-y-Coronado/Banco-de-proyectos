@@ -5,7 +5,6 @@
  */
 package edu.eci.cvds.samples.services;
 
-import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
 
 /**

@@ -5,7 +5,6 @@
  */
 package edu.eci.cvds.samples.manegedbeans;
 
-import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;

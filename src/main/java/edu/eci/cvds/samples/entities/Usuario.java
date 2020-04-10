@@ -14,14 +14,17 @@ public class Usuario {
     protected String nombreUsuario;
     protected String nombre;
     protected String apellido;
-    protected Rol rol;
+    protected boolean estado;
+
     
-    public Usuario(String correo,String nombreUsuario, String nombre,String apellido, Rol rol){
+    public Usuario(String correo,String nombreUsuario, String nombre,String apellido,boolean estado){
         this.correo=correo;
         this.nombreUsuario=nombreUsuario;
         this.nombre=nombre;
         this.apellido=apellido;
-        this.rol=rol;
+        this.estado=estado;
+       
+        
     }
 
     public String getCorreo() {
@@ -56,17 +59,19 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public Rol getRol() {
-        return rol;
+    public boolean isEstado() {
+        return estado;
     }
 
-    public void setRol(Rol rol) {
-        this.rol = rol;
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
+
+
     
     @Override
     public String toString() {
-        return "Usuario{" + "correo"+correo +", nombre Usuario "+nombreUsuario + ", nombre=" + nombre + ", apellido "+apellido +", rol " + rol + '}';
+        return "Usuario{" + "correo"+correo +", nombre Usuario "+nombreUsuario + ", nombre=" + nombre + ", apellido "+apellido +", estado " + estado + '}';
     }
    
 }

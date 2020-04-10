@@ -10,9 +10,9 @@ package edu.eci.cvds.samples.entities;
  * @author Jairo Gomez
  */
 public class Publico  extends Usuario {
-    private static final Rol rol = Rol.Publico;
-    public Publico(String correo, String nombreUsuario, String nombre, String apellido, Rol rol) {
-        super(correo, nombreUsuario, nombre, apellido, rol);
+    
+    public Publico(String correo,String nombreUsuario, String nombre,String apellido,boolean estado) {
+        super(correo, nombreUsuario, nombre, apellido, estado);
     }
     
 }
