@@ -7,17 +7,21 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title></title>
+        <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
     </h:head>
     <h:body>      
-        <center>
-            <h1>Autenticación</h1>
-        <h:form id="formUsuario">
-            <br><p:outputLabel value="#{AutenticacionBean.estado}"/></br>
-            <br><p:inputText id="correo_usuario" binding="#{corr}"></p:inputText></br>
-            <br><p:inputText type="password" id="clave_usuario" binding="#{clus}"></p:inputText></br>
-            <p:commandButton update="formUsuario" value="Ingresar" actionListener="#{AutenticacionBean.autenticar(corr.value, clus.value,crol.value)}" ></p:commandButton>    
-        </h:form>
-        </center>
+        <div class="login-box">
+            <img src="img/logo.png" class="avatar" alt="Avatar Image"/>
+            <h:form id="formUsuario">
+                <br><p:outputLabel value="#{AutenticacionBean.estado}"/></br>
+                <label for="username"> Correo </label>
+                <br><p:inputText type="text" id="correo_usuario" binding="#{corr}"></p:inputText></br>
+                <label for="password"> Contraseña </label>
+                <br><p:inputText type="password" id="clave_usuario" binding="#{clus}"></p:inputText></br>
+                <p:commandButton update="formUsuario" value="Ingresar" actionListener="#{AutenticacionBean.autenticar(corr.value, clus.value,crol.value)}" styleClass="Button"></p:commandButton>    
+            </h:form>
+        </div>
+        
     </h:body>
 </html>
 
