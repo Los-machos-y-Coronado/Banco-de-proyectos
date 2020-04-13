@@ -6,11 +6,14 @@
 package edu.eci.cvds.samples.services.impl;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.persistence.DaoUsuario;
+import edu.eci.cvds.samples.persistence.DaoIniciativa;
 import edu.eci.cvds.samples.persistence.PersistenceException;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
+import java.util.List;
 
 /**
  *
@@ -20,6 +23,10 @@ public class ServiciosBancoImpl implements ServiciosBanco {
     
     @Inject
     private DaoUsuario daoUsuario;
+    
+    @Inject
+    private DaoIniciativa daoIniciativa;
+    
 
     @Override
     public Usuario consultarUsuario(String correo, String clave) throws ExcepcionServiciosBanco {
@@ -27,6 +34,15 @@ public class ServiciosBancoImpl implements ServiciosBanco {
             return daoUsuario.consultarUsuario(correo,clave);
         }catch(PersistenceException ex){
             throw new ExcepcionServiciosBanco("No se pudo consultar el usuario "+correo,ex);
+        }
+    }
+    @Override
+    public  List<Iniciativa> consultarIniciativas(String palabrasclave)throws ExcepcionServiciosBanco{
+        try{
+            return daoIniciativa.consultarIniciativas(palabrasclave);
+        }
+        catch(PersistenceException ex){
+            throw new ExcepcionServiciosBanco("Error al consultar las iniciativas con las palabras clave"+palabrasclave,ex);
         }
     }
 

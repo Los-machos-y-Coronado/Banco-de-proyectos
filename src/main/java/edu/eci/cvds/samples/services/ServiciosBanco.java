@@ -6,7 +6,8 @@
 package edu.eci.cvds.samples.services;
 
 import edu.eci.cvds.samples.entities.Usuario;
-
+import edu.eci.cvds.samples.entities.Iniciativa;
+import java.util.List;
 /**
  *
  * @author Andres Gonzalez
@@ -14,11 +15,23 @@ import edu.eci.cvds.samples.entities.Usuario;
 public interface ServiciosBanco {
     /**
      * Retorna el usuario segun sus credenciales
-     * @param nombre String correo del usuario
+     * @param correo String  correo del usuario
      * @param clave String contraseña del usuario
      * @return Usuario usuario
      * @throws edu.eci.cvds.samples.services.ExcepcionServiciosBanco
      */
     public abstract Usuario consultarUsuario(String correo, String clave) throws ExcepcionServiciosBanco;
+    
+       /**
+     * Retorna iniciativas que contenga palabras clave dadas
+     * @param palabrasClave String  palabras clave 
+
+     * @return un listado del detalle de las iniciativas que contengan las palabras clave
+     * @throws edu.eci.cvds.samples.services.ExcepcionServiciosBanco
+     */
+    
+    
+    public abstract List<Iniciativa> consultarIniciativas(String palabrasClave)throws ExcepcionServiciosBanco;
+    
     
 }

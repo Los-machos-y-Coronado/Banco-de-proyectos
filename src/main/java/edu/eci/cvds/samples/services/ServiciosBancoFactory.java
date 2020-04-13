@@ -30,6 +30,7 @@ public class ServiciosBancoFactory {
                 setClassPathResource("mybatis-config.xml");
                 bind(ServiciosBanco.class).to(ServiciosBancoImpl.class);
                 bind(DaoUsuario.class).to(MyBatisDAOUsuario.class);
+                
             }
         }
         );
