@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<mapper namespace="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.IniciativaMapper">
+    <resultMap type='Iniciativa' id='IniciativaResult'>
+        <id  property='id' column='id' />
+        <result property='descripcion' column='descripcion'/>
+        <result property='fecha' column='fecha'/>
+        <result property='area' column='area'/>
+        <collection property='palabrasClave' ofType='String'/>
+    </resultMap>  
+    
+    <select  parameterType="map" id="consultarIniciativa" resultMap="IniciativaResult">
+        SELECT
+            ini.id,
+            ini.descripcion,
+            ini.fecha,
+            ini.area,
+        FROM USUARIOS AS ini
+        WHERE ini.id=#{inid};   
+    </select>
+    
+    <select  parameterType="map" id="consultarIniciativas" resultMap="IniciativaResult">
+        SELECT
+        ini.id,
+        ini.descripcion,
+        ini.fecha,
+        ini.area,
+        FROM USUARIOS AS ini; 
+    </select>
+        
+</mapper>
+
