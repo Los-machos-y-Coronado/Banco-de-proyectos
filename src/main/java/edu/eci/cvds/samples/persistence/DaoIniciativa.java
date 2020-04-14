@@ -6,6 +6,7 @@
 package edu.eci.cvds.samples.persistence;
 
 import edu.eci.cvds.samples.entities.Iniciativa;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,5 +14,5 @@ import java.util.List;
  * @author David Coronado
  */
 public interface DaoIniciativa {
-    public List<Iniciativa> consultarIniciativas(String palabrasclave) throws PersistenceException;
+    public List<Iniciativa> consultarIniciativas(ArrayList<String> palabrasclave) throws PersistenceException;
 }

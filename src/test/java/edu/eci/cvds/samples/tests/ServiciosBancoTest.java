@@ -7,11 +7,14 @@ package edu.eci.cvds.samples.tests;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.samples.entities.Administrador;
+import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.entities.Proponente;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBancoFactory;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static org.junit.Assert.assertEquals;
@@ -25,10 +28,11 @@ import org.junit.Test;
 public class ServiciosBancoTest {
     
     @Inject
-    private ServiciosBanco serviciosBanco;
+    private final  ServiciosBanco serviciosBanco;
     public ServiciosBancoTest() {
+
         serviciosBanco = ServiciosBancoFactory.getInstance().getServiciosBanco();
-       
+        
     }
     /**
      * Si existe el usuario
@@ -77,6 +81,20 @@ public class ServiciosBancoTest {
         try {
             Usuario usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
             assertEquals("juan@gmail.com", ((Proponente)usu).getCorreo());
+        } catch (ExcepcionServiciosBanco ex) {
+            Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
+            assertTrue(false);
+        }
+    }
+    @Test
+     public void ConsultarProponenteIniciativa(){
+        try {
+            ArrayList<String> palabras = new ArrayList<>();
+            palabras.add("Cemento");
+
+            ArrayList<Iniciativa> ini = (ArrayList)serviciosBanco.consultarIniciativas(palabras);
+            
+            assertEquals(ini.get(0).getId(),2);
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
             assertTrue(false);

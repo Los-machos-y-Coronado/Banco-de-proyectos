@@ -13,6 +13,7 @@ import edu.eci.cvds.samples.persistence.DaoIniciativa;
 import edu.eci.cvds.samples.persistence.PersistenceException;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,8 +37,9 @@ public class ServiciosBancoImpl implements ServiciosBanco {
             throw new ExcepcionServiciosBanco("No se pudo consultar el usuario "+correo,ex);
         }
     }
+    
     @Override
-    public  List<Iniciativa> consultarIniciativas(String palabrasclave)throws ExcepcionServiciosBanco{
+    public  List<Iniciativa> consultarIniciativas(ArrayList<String> palabrasclave)throws ExcepcionServiciosBanco{
         try{
             return daoIniciativa.consultarIniciativas(palabrasclave);
         }
@@ -45,7 +47,7 @@ public class ServiciosBancoImpl implements ServiciosBanco {
             throw new ExcepcionServiciosBanco("Error al consultar las iniciativas con las palabras clave"+palabrasclave,ex);
         }
     }
-
+    
 
     
 }

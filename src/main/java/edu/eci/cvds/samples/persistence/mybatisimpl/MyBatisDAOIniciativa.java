@@ -10,6 +10,7 @@ import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.persistence.DaoIniciativa;
 import edu.eci.cvds.samples.persistence.PersistenceException;
 import edu.eci.cvds.samples.persistence.mybatisimpl.mappers.IniciativaMapper;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,8 +23,10 @@ public class MyBatisDAOIniciativa implements DaoIniciativa {
     @Inject
     IniciativaMapper iniciativaMapper;
     @Override
-    public List<Iniciativa> consultarIniciativas(String palabrasclave) throws PersistenceException {
+    public List<Iniciativa> consultarIniciativas(ArrayList<String> palabrasclave) throws PersistenceException {
+        
         try {
+            
             return iniciativaMapper.consultarIniciativas(palabrasclave);
         }
         catch(org.apache.ibatis.exceptions.PersistenceException e){

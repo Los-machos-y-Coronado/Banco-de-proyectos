@@ -7,6 +7,7 @@ package edu.eci.cvds.samples.services;
 
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.entities.Iniciativa;
+import java.util.ArrayList;
 import java.util.List;
 /**
  *
@@ -24,14 +25,14 @@ public interface ServiciosBanco {
     
        /**
      * Retorna iniciativas que contenga palabras clave dadas
-     * @param palabrasClave String  palabras clave 
+     * @param palabrasClave ArrayList  palabras clave 
 
      * @return un listado del detalle de las iniciativas que contengan las palabras clave
      * @throws edu.eci.cvds.samples.services.ExcepcionServiciosBanco
      */
     
     
-    public abstract List<Iniciativa> consultarIniciativas(String palabrasClave)throws ExcepcionServiciosBanco;
+    public abstract List<Iniciativa> consultarIniciativas(ArrayList<String> palabrasClave)throws ExcepcionServiciosBanco;
     
     
 }

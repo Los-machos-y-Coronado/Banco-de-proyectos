@@ -6,6 +6,7 @@
 package edu.eci.cvds.samples.persistence.mybatisimpl.mappers;
 
 import edu.eci.cvds.samples.entities.Iniciativa;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -14,5 +15,5 @@ import org.apache.ibatis.annotations.Param;
  * @author David Coronado
  */
 public interface IniciativaMapper {
-    public List<Iniciativa>  consultarIniciativas(@Param("pala")String palabras);
+    public List<Iniciativa>  consultarIniciativas(@Param("pala")ArrayList<String> palabras);
 }
