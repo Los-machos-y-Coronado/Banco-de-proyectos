@@ -9,8 +9,8 @@
         <result property='descripcion' column='descripcion'/> 
         <result property='fecha' column='fecha'/>
         <result property='estado' column='estado'/>      
-        <association property="proponente" javaType="Proponente" columnPrefix="pr_"
-                resultMap="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.ProponenteMapper.ProponenteResult"></association>       
+        <association property="proponente" javaType="Usuario" columnPrefix="pr_"
+                resultMap="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.UsuarioMapper.UsuarioResult"></association>       
     </resultMap>
     
     <select parameterType="map"  id="consultarIniciativas"  resultMap="IniciativaResult">
@@ -20,13 +20,13 @@
             i.fecha,
             i.estado,
 
-            pr.correo,
-	    pr.nombre_usuario,
-	    pr.nombre,
-	    pr.apellido,
-	    pr.estado,
-	    pr.area,
-	    pr.rol         		
+            pr.correo as pr_correo,
+	    pr.nombre_usuario as  pr_nombre_usuario,
+	    pr.nombre as  pr_nombre, 
+	    pr.apellido as pr_apellido,
+	    pr.estado as pr_estado, 
+	    pr.area as pr_area,
+	    pr.rol as pr_rol           		
         FROM iniciativas as i  JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas 
         JOIN usuarios as pr ON i.proponentes_usuarios_correo=pr.correo
         WHERE palabra IN
@@ -35,4 +35,4 @@
             #{item}
         </foreach>
     </select>
-</mapper>     
+</mapper>      

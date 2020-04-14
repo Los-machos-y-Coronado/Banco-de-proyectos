@@ -91,10 +91,12 @@ public class ServiciosBancoTest {
         try {
             ArrayList<String> palabras = new ArrayList<>();
             palabras.add("Cemento");
-
-            ArrayList<Iniciativa> ini = (ArrayList)serviciosBanco.consultarIniciativas(palabras);
+            palabras.add("Desarrollo");
             
-            assertEquals(ini.get(0).getId(),2);
+            List<Iniciativa> ini = serviciosBanco.consultarIniciativas(palabras);
+            System.out.println(ini.get(0).getId());
+            System.out.println(ini.get(1).getId());
+            assertEquals(ini.get(0).getId(),1);
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
             assertTrue(false);
