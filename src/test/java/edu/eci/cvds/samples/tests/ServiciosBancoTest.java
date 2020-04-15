@@ -14,7 +14,6 @@ import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBancoFactory;
 import java.sql.Date;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -133,12 +132,9 @@ public class ServiciosBancoTest {
             ArrayList<String> palabras = new ArrayList<>();
             palabras.add("Sostebinilidad");
             palabras.add("Humanistica");
-           
- 
-            
-            
+
             List<Iniciativa> ini = serviciosBanco.consultarIniciativas(palabras);
-            System.out.println(ini.size());
+ 
             assertEquals(0,ini.size());
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
