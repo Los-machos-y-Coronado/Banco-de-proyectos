@@ -33,7 +33,7 @@ public class ServiciosBancoTest {
     /**
      * Si existe el usuario
      */
-    @Test
+    /*@Test
     public void consultarUsuario(){
         try {
             Usuario usu = serviciosBanco.consultarUsuario("anfegoca@gmail.com", "1234");
@@ -47,7 +47,7 @@ public class ServiciosBancoTest {
     /**
      * No existe el usuario
      */
-    @Test
+    /*@Test
     public void consultarUsuario2(){
         try {
             Usuario usu = serviciosBanco.consultarUsuario("juanito@gmail.com", "1234");
@@ -61,7 +61,7 @@ public class ServiciosBancoTest {
     /**
      * Clave incorrecta
      */
-    @Test
+   /* @Test
     public void consultarUsuario3(){
         try {
             Usuario usu = serviciosBanco.consultarUsuario("anfegoca@gmail.com", "123455");
@@ -72,7 +72,7 @@ public class ServiciosBancoTest {
         }
         
     }
-    @Test
+  /*  @Test
     public void AutenticacionProponente(){
         try {
             Usuario usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
@@ -81,5 +81,5 @@ public class ServiciosBancoTest {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
             assertTrue(false);
         }
-    }
+    } */
 }
