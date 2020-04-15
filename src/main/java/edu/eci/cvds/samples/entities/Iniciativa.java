@@ -19,14 +19,14 @@ public class Iniciativa {
     private Date fecha;
     private String estado;
     private Proponente proponente;
-    private String correo;
+    
 
-    public Iniciativa(int id, String descripcion, Date fecha, String estado, Usuario proponente) {
+    public Iniciativa(int id, String descripcion, Date fecha, String estado) {
         this.id = id;
         this.descripcion = descripcion;
         this.fecha = fecha;
         this.estado = estado;
-        this.proponente=(Proponente)proponente;
+        
     }
     
     
@@ -71,5 +71,10 @@ public class Iniciativa {
 
     public void setProponente(Proponente proponente) {
         this.proponente = proponente;
+    }
+    
+    @Override
+    public String toString() {
+        return "Iniciativa{" + "id "+id +", descripcion "+descripcion + "fecha " + fecha +  "estado " + estado + '}';
     }
 }

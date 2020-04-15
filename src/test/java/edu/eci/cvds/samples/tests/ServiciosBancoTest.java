@@ -13,6 +13,8 @@ import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBancoFactory;
+import java.sql.Date;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -86,20 +88,62 @@ public class ServiciosBancoTest {
             assertTrue(false);
         }
     }
+    /**
+     * 
+     * Existen iniciativas dadas palabras clave
+     */
     @Test
-     public void ConsultarProponenteIniciativa(){
+     public void ConsultarIniciativas() {
         try {
             ArrayList<String> palabras = new ArrayList<>();
             palabras.add("Cemento");
             palabras.add("Desarrollo");
+           
+            String fecha = "2000-10-20";
+            String fecha2 = "2019-10-20";
+            
+            Date d1 = Date.valueOf(fecha2);
+            Date d2 = Date.valueOf(fecha);
+            
+            Iniciativa a= new Iniciativa(2,"Construcción del bloque Z", d1,"En espera");
+            Iniciativa b= new Iniciativa(1,"Optimizacion de Osiris", d2,"En espera");
+            
+            ArrayList<Iniciativa> ini2 = new ArrayList<>();
+            
+            ini2.add(b);
+            ini2.add(a);
+            
             
             List<Iniciativa> ini = serviciosBanco.consultarIniciativas(palabras);
-            System.out.println(ini.get(0).getId());
-            System.out.println(ini.get(1).getId());
-            assertEquals(ini.get(0).getId(),1);
+
+            assertEquals(ini.toString(),ini2.toString());
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
             assertTrue(false);
         }
+        
+    }
+        /**
+     * 
+     * No existen iniciativas dadas palabras clave
+     */
+    @Test
+     public void ConsultarIniciativas2() {
+        try {
+            ArrayList<String> palabras = new ArrayList<>();
+            palabras.add("Sostebinilidad");
+            palabras.add("Humanistica");
+           
+ 
+            
+            
+            List<Iniciativa> ini = serviciosBanco.consultarIniciativas(palabras);
+            System.out.println(ini.size());
+            assertEquals(0,ini.size());
+        } catch (ExcepcionServiciosBanco ex) {
+            Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
+            assertTrue(false);
+        }
+        
     }
 }
