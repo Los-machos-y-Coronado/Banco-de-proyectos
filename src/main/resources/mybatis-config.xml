@@ -13,6 +13,7 @@
         <typeAlias type="edu.eci.cvds.samples.entities.PersonalPMO" alias="PersonalPMO"/>
         <typeAlias type="edu.eci.cvds.samples.entities.Proponente" alias="Proponente"/>
         <typeAlias type="edu.eci.cvds.samples.entities.Publico" alias="Publico"/>
+        <typeAlias type="edu.eci.cvds.samples.entities.Iniciativa" alias="Iniciativa"/>
 
     </typeAliases>	
 
@@ -34,6 +35,7 @@
         <mapper resource="mappers/PersonalPMOMapper.xml"></mapper>
         <mapper resource="mappers/ProponenteMapper.xml"></mapper>
         <mapper resource="mappers/PublicoMapper.xml"></mapper>
+        <mapper resource="mappers/IniciativaMapper.xml"></mapper>
     </mappers> 
         
         

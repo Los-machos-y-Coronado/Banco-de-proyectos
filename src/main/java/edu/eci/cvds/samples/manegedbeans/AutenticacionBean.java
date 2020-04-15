@@ -17,7 +17,7 @@ import javax.faces.bean.SessionScoped;
  * @author Andres Gonzalez
  */
 
-@ManagedBean(name = "AutenticacionBean")
+@ManagedBean (name = "AutenticacionBean")
 @SessionScoped
 public class AutenticacionBean {
     
