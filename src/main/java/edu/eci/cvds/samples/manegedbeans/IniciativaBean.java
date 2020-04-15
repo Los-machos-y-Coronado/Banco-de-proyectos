@@ -18,7 +18,8 @@ import javax.faces.bean.*;
  * @author Jairo Gomez
  */
 
-@ManagedBean (name = "AutenticacionBean")
+
+@ManagedBean(name = "AutenticacionBean")
 @SessionScoped
 public class IniciativaBean {
     

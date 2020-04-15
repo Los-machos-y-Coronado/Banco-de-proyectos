@@ -7,7 +7,8 @@ package edu.eci.cvds.samples.services;
 
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.entities.Iniciativa;
-
+import edu.eci.cvds.samples.entities.Iniciativa;
+import edu.eci.cvds.samples.entities.Usuario;
 import java.util.List;
 
 /**
@@ -19,10 +20,11 @@ public interface ServiciosBanco {
      * Retorna el usuario segun sus credenciales
      * @param nombre String correo del usuario
      * @param clave String contraseña del usuario
-     * @return Usuario usuario
+     * @return Usuario usuario 
      * @throws edu.eci.cvds.samples.services.ExcepcionServiciosBanco
      */
     public abstract Usuario consultarUsuario(String correo, String clave) throws ExcepcionServiciosBanco;
     public  Iniciativa consultarIniciativa(int id) throws ExcepcionServiciosBanco;
     public List<Iniciativa> consultarIniciativas() throws ExcepcionServiciosBanco;
+
 }

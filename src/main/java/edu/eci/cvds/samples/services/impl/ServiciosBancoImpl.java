@@ -13,6 +13,7 @@ import edu.eci.cvds.samples.persistence.DaoUsuario;
 import edu.eci.cvds.samples.persistence.PersistenceException;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
+import java.util.List;
 
 import java.util.List;
 
@@ -57,7 +58,4 @@ public class ServiciosBancoImpl implements ServiciosBanco {
             throw new ExcepcionServiciosBanco("No hay Iniciativas ", ex);
         }
     }
-
-
-    
 }

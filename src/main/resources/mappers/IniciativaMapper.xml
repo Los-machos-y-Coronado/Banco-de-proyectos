@@ -23,6 +23,7 @@ and open the template in the editor.
         WHERE ini.id=#{inid};
     </select>
 
+
     <select  parameterType="map" id="consultarIniciativas" resultMap="IniciativaResult">
         SELECT
         ini.id,
@@ -30,6 +31,7 @@ and open the template in the editor.
         ini.fecha,
         ini.area,
         FROM USUARIOS AS ini;
+
     </select>
         
 </mapper>
