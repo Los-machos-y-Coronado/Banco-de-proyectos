@@ -58,4 +58,12 @@ public class ServiciosBancoImpl implements ServiciosBanco {
             throw new ExcepcionServiciosBanco("No hay Iniciativas ", ex);
         }
     }
+
+    public void registrarIniciativa (Iniciativa in) throws ExcepcionServiciosBanco{
+        try{
+            daoIniciativa.registrarIniciativa(in);
+        }catch (PersistenceException ex){
+            throw new ExcepcionServiciosBanco("no se pudo registrar ",ex);
+        }
+    }
 }

@@ -6,12 +6,13 @@ and open the template in the editor.
 -->
 <mapper namespace="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.IniciativaMapper">
     <resultMap type='Iniciativa' id='IniciativaResult'>
-        <id  property='id' column='id' />
+        <id property='id' column='id_iniciativas'/>
         <result property='descripcion' column='descripcion'/>
         <result property='fecha' column='fecha'/>
-        <result property='area' column='area'/>
-        <collection property='palabrasClave' ofType='String'/>
-    </resultMap>  
+        <result property='estado' column='estado'/>
+        <association property="proponente" javaType="Proponente" columnPrefix="pr_"
+                     resultMap="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.ProponenteMapper.ProponenteResult"></association>
+    </resultMap>
 
     <select  parameterType="map" id="consultarIniciativa" resultMap="IniciativaResult">
         SELECT
@@ -33,6 +34,10 @@ and open the template in the editor.
         FROM USUARIOS AS ini;
 
     </select>
+    <insert id="registrarIniciativa" parameterType="map">
+        insert into iniciativas values(#{in.id},#{in.descripcion},#{in.fecha},#{in.proponente.getCorreo()},#{in.estado});
+    </insert>
+
         
 </mapper>
 

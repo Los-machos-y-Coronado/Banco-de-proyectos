@@ -1,8 +1,9 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+         * To change this license header, choose License Headers in Project Properties.
+         * To change this template file, choose Tools | Templates
+         * and open the template in the editor.
+*/
 package edu.eci.cvds.samples.manegedbeans;
 
 import edu.eci.cvds.samples.entities.Usuario;
@@ -17,21 +18,21 @@ import javax.faces.bean.SessionScoped;
  * @author Andres Gonzalez
  */
 
-@ManagedBean (name = "AutenticacionBean")
+@ManagedBean(name = "AutenticacionBean")
 @SessionScoped
 public class AutenticacionBean {
-    
+
     private ServiciosBanco serviciosBanco;
     private String estado;
     private String rol;
     private Usuario usu;
-    
+
     public AutenticacionBean(){
         serviciosBanco=ServiciosBancoFactory.getInstance().getServiciosBanco();
         estado = "Iniciar sesión";
         rol="Administrador";
     }
-    
+
     public void autenticar(String correo,String clave,String rol){
         try{
             usu=serviciosBanco.consultarUsuario(correo, clave);
@@ -41,9 +42,10 @@ public class AutenticacionBean {
         if(usu==null){
             estado="Correo o Clave incorrecta";
         }else{
+
             estado="Autenticado "+usu.getNombreUsuario();
         }
-        
+
     }
 
     public String getEstado() {
@@ -69,5 +71,5 @@ public class AutenticacionBean {
     public void setUsu(Usuario usu) {
         this.usu = usu;
     }
-    
+
 }

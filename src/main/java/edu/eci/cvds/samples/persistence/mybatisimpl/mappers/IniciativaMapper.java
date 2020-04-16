@@ -16,4 +16,6 @@ import org.apache.ibatis.annotations.Param;
 public interface IniciativaMapper {
     public Iniciativa consultarIniciativa(@Param("idin") int id);
     public List<Iniciativa> consultarIniciativas();
+
+    public void registrarIniciativa(@Param("in") Iniciativa in);
 }

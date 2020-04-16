@@ -13,7 +13,8 @@ import java.util.List;
 
 /**
  *
- * @author Andres Gonzalez
+ * @author Jair Gomez
+ * @version  2.0
  */
 public interface ServiciosBanco {
     /**
@@ -26,5 +27,5 @@ public interface ServiciosBanco {
     public abstract Usuario consultarUsuario(String correo, String clave) throws ExcepcionServiciosBanco;
     public  Iniciativa consultarIniciativa(int id) throws ExcepcionServiciosBanco;
     public List<Iniciativa> consultarIniciativas() throws ExcepcionServiciosBanco;
-
+    public void registrarIniciativa (Iniciativa in)throws ExcepcionServiciosBanco;
 }
