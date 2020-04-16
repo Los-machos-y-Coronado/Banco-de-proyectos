@@ -19,16 +19,35 @@ public class Iniciativa {
     private int id;
     private String descripcion;
     private Date fecha;
-    private String area;
+    private String correo;
+    private String estado;
     private List palabrasClave;
     
-    public Iniciativa (int id, String descripcion,Date fecha, String area,List palabrasClave){
+    public Iniciativa (int id, String descripcion,Date fecha, String correo,List palabrasClave){
         this.id=id;
         this.descripcion=descripcion;
         this.fecha=fecha;
-        this.area=area;
+        this.correo=correo;
+        this.estado="en espera de revision";
         this.palabrasClave = palabrasClave;
             
+    }
+    public Iniciativa (int id, String descripcion,Date fecha, String correo,String estado){
+        this.id=id;
+        this.descripcion=descripcion;
+        this.fecha=fecha;
+        this.correo=correo;
+        this.estado=estado;
+        this.palabrasClave = new ArrayList<String>();
+
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public int getId() {
@@ -55,12 +74,13 @@ public class Iniciativa {
         this.fecha = fecha;
     }
 
-    public String getArea() {
-        return area;
+
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public List getPalabrasClave() {

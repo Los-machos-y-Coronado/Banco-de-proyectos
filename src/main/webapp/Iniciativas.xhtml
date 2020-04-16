@@ -42,7 +42,7 @@ and open the template in the editor.
                 <tr align="left">
                     <td>Fecha:<br/>
                         <p:inputText type="text" id="fecha" binding="#{infech}">
-                            <f:convertDateTime pattern = "dd-mm-yyyy" />
+                            <f:convertDateTime pattern = "dd/mm/yyyy" />
                         </p:inputText>
                     </td>
                     <td> Descripcion:<br/>
@@ -58,8 +58,10 @@ and open the template in the editor.
             <p:inputTextarea rows="10" cols="80" />
         </div>
         <center>
-            <p:commandButton update="formRegistro" value="Registrar" actionListener="#{inBean.registrarIniciativa(inid.value, indesc.value,infech.value)}" styleClass="Button" align="center" ></p:commandButton>
-            <p:commandButton update="formRegistro" value="cancelar"  actionListener="#{inBean.home()}" styleClass="Button" align="center" ></p:commandButton>
+            <p:commandButton update="formRegistro" value="Registrar" actionListener="#{inBean.registrarIniciativa(inid.value, indesc.value)}" styleClass="Button"  ></p:commandButton>
+            <p:commandButton update="formRegistro" value="cancelar"  actionListener="#{inBean.home()}" styleClass="Button"  ></p:commandButton>
+            <br><p:outputLabel value="#{inBean.screenEstado}"/></br>
+
         </center>
     </h:form>
 

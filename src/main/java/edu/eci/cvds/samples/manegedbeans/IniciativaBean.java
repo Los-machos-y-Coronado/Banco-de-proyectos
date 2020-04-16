@@ -30,31 +30,37 @@ import java.util.Date;
 @SessionScoped
 
 public class IniciativaBean implements Serializable{
-    @Inject
+
     private ServiciosBanco serviciosBanco;
     private String estado = "En espera de revisión";
     private String screenEstado = "";
-    private Proponente proponente = new Proponente("luis@mail.com", "luisja", "luis", "jaramillo", true, "planeacion");
+    private Proponente proponente;
     private Iniciativa nuevoRegistro;
 
+    public IniciativaBean(){
+        serviciosBanco=ServiciosBancoFactory.getInstance().getServiciosBanco();
+        proponente = new Proponente("alex.garci@yahoo.com", "alex22", "alex", "gordillo", true, "civl");
 
+    }
     public void home(){
         System.out.println("estoy en home, conexion exitosa");
+        screenEstado="reinicio";
     }
-    public void registrarIniciativa (String id,String descripcion, Date fecha) throws ParseException {
-        System.out.println(id + descripcion  + fecha);
-        Iniciativa nuevoRegistro = new Iniciativa(Integer.parseInt(id), descripcion, fecha, proponente.getArea(), new ArrayList<String>());
+    public void registrarIniciativa (String id,String descripcion) throws ParseException {
+        Date utilDate = new Date();
+        Iniciativa nuevoRegistro = new Iniciativa(Integer.parseInt(id), descripcion, new java.sql.Date(utilDate.getTime()), proponente.getCorreo(),estado);
+        System.out.println(serviciosBanco);
         try {
-
             serviciosBanco.registrarIniciativa(nuevoRegistro);
+            screenEstado="registro exitoso";
 
         } catch (Exception e) {
-            screenEstado="Por favor revisar todos los campos";
+            e.printStackTrace();
 
         }
     }
 
-    public ServiciosBanco getServiciosBanco() {
+    public ServiciosBanco geterviciosBanco() {
         return serviciosBanco;
     }
 

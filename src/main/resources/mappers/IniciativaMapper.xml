@@ -1,17 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.IniciativaMapper">
     <resultMap type='Iniciativa' id='IniciativaResult'>
         <id property='id' column='id_iniciativas'/>
         <result property='descripcion' column='descripcion'/>
         <result property='fecha' column='fecha'/>
+        <result property='proponente' column='proponentes_usuarios_correo'/>
         <result property='estado' column='estado'/>
-        <association property="proponente" javaType="Proponente" columnPrefix="pr_"
-                     resultMap="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.ProponenteMapper.ProponenteResult"></association>
+
     </resultMap>
 
     <select  parameterType="map" id="consultarIniciativa" resultMap="IniciativaResult">
@@ -34,8 +33,9 @@ and open the template in the editor.
         FROM USUARIOS AS ini;
 
     </select>
+
     <insert id="registrarIniciativa" parameterType="map">
-        insert into iniciativas values(#{in.id},#{in.descripcion},#{in.fecha},#{in.proponente.getCorreo()},#{in.estado});
+        insert into iniciativas values(#{in.id},#{in.descripcion},#{in.fecha},#{in.correo},#{in.estado});
     </insert>
 
         

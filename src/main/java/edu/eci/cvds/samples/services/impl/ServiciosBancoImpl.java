@@ -15,8 +15,6 @@ import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
 import java.util.List;
 
-import java.util.List;
-
 /**
  *
  * @author Andres Gonzalez
@@ -59,10 +57,12 @@ public class ServiciosBancoImpl implements ServiciosBanco {
         }
     }
 
-    public void registrarIniciativa (Iniciativa in) throws ExcepcionServiciosBanco{
+    public void registrarIniciativa(Iniciativa in) throws ExcepcionServiciosBanco{
         try{
+
             daoIniciativa.registrarIniciativa(in);
         }catch (PersistenceException ex){
+            System.out.println("Servicios Servicio Imp");
             throw new ExcepcionServiciosBanco("no se pudo registrar ",ex);
         }
     }
