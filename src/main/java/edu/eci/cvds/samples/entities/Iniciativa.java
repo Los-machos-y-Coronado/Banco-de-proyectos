@@ -41,7 +41,13 @@ public class Iniciativa {
         this.palabrasClave = new ArrayList<String>();
 
     }
-
+    public Iniciativa (int id, String descripcion,java.sql.Date fecha,String estado) {
+        this.id =id;
+        this.descripcion = descripcion;
+        this.fecha = fecha;
+        this.estado = estado;
+        this.palabrasClave = new ArrayList<String>();
+    }
     public String getEstado() {
         return estado;
     }

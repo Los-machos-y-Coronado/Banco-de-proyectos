@@ -65,4 +65,14 @@ public class ServiciosBancoImpl implements ServiciosBanco {
             throw new ExcepcionServiciosBanco("no se pudo registrar ",ex);
         }
     }
+
+    @Override
+    public void UpdateEstado (int id,String estado) throws ExcepcionServiciosBanco {
+        try{
+            daoIniciativa.UpdateEstado(id,estado);
+        }catch (PersistenceException ex){
+            throw new ExcepcionServiciosBanco("no se pudo actualizar DAO ",ex);
+        }
+
+    }
 }

@@ -22,4 +22,5 @@ public interface DaoIniciativa {
     public Iniciativa consultarIniciativa(int id) throws PersistenceException;
     public List<Iniciativa> consultarIniciativas() throws PersistenceException;
     public void registrarIniciativa(Iniciativa in) throws  PersistenceException;
+    public void UpdateEstado(int id,String estado) throws  PersistenceException;
 }

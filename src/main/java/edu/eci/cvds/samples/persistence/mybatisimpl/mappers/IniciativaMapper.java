@@ -18,4 +18,6 @@ public interface IniciativaMapper {
     public List<Iniciativa> consultarIniciativas();
 
     public void registrarIniciativa(@Param("in") Iniciativa in);
+
+    public void updateEstado(@Param("inid") int id,@Param("inest") String estado);
 }

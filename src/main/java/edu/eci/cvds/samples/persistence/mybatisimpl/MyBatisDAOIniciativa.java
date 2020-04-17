@@ -10,6 +10,8 @@ import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.persistence.DaoIniciativa;
 import edu.eci.cvds.samples.persistence.PersistenceException;
 import edu.eci.cvds.samples.persistence.mybatisimpl.mappers.IniciativaMapper;
+import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,22 +38,32 @@ public class MyBatisDAOIniciativa implements DaoIniciativa{
 
     @Override
     public List<Iniciativa> consultarIniciativas() throws PersistenceException {
-         List<Iniciativa> consultas= new  ArrayList<Iniciativa> (); ;
          try{
-            consultas= iniciativaMapper.consultarIniciativas();
+             //System.out.println(iniciativaMapper.consultarIniciativas());
+            return iniciativaMapper.consultarIniciativas();
         }catch(Exception e){
             throw new PersistenceException("Error al consultar el usuario:"+e.getLocalizedMessage(), e);   
         }
-        return consultas;
       
     }
 
     @Override
     public void registrarIniciativa(Iniciativa in) throws PersistenceException {
         try{
+
             iniciativaMapper.registrarIniciativa(in);
         }catch (Exception e){
             throw new PersistenceException("error al registrar idea/Iniciativa",e);
         }
+    }
+
+    @Override
+    public void UpdateEstado(int id,String estado) throws PersistenceException {
+        try{
+            iniciativaMapper.updateEstado( id , estado);
+        }catch (Exception e){
+            throw new PersistenceException ("error al actualizar estado de idea/Iniciativa",e);
+        }
+
     }
 }

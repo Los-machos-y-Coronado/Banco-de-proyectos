@@ -27,4 +27,5 @@ public interface ServiciosBanco {
     public  Iniciativa consultarIniciativa(int id) throws ExcepcionServiciosBanco;
     public List<Iniciativa> consultarIniciativas() throws ExcepcionServiciosBanco;
     public void registrarIniciativa(Iniciativa in)throws ExcepcionServiciosBanco;
+    public void UpdateEstado(int id,String estado) throws ExcepcionServiciosBanco;
 }

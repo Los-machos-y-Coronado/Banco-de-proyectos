@@ -19,18 +19,18 @@
             ini.descripcion,
             ini.fecha,
             ini.area,
-        FROM USUARIOS AS ini
+        FROM INICIATIVAS AS ini
         WHERE ini.id=#{inid};
     </select>
 
 
     <select  parameterType="map" id="consultarIniciativas" resultMap="IniciativaResult">
         SELECT
-        ini.id,
+        ini.id_iniciativas,
         ini.descripcion,
         ini.fecha,
-        ini.area,
-        FROM USUARIOS AS ini;
+        ini.estado
+        FROM INICIATIVAS AS ini;
 
     </select>
 
@@ -38,6 +38,11 @@
         insert into iniciativas values(#{in.id},#{in.descripcion},#{in.fecha},#{in.correo},#{in.estado});
     </insert>
 
+    <update id="updateEstado" parameterType="map">
+        update INICIATIVAS set
+        estado = #{inest}
+        where id_iniciativas= #{inid}
+    </update>
         
 </mapper>
 
