@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title> Iniciativas</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
+</h:head>
+
+<h:form id="formRegistro2" >
+    <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
+    <br/>
+    <center>
+        <h2>Bienvenido A registro De iniciativa </h2>
+    </center>
+
+    <hr />
+    <p:panel id="Basic" header="Informacion Proponente"  style="margin-bottom:20px">
+        <p:panelGrid columns="4" layout="grid" >
+            <p:outputLabel for="correo" value="Correo :"/>
+            <p:outputLabel id="correo" value="#{inBean.proponente.getCorreo()}"/>
+
+            <p:outputLabel for="area" value="Area :" />
+            <p:outputLabel id="area" value="#{inBean.proponente.getArea()}"/>
+
+            <p:outputLabel for="nombre" value="Nombre :" />
+            <p:outputLabel id="nombre" value="#{inBean.proponente.getNombre()}"/>
+
+            <p:outputLabel for="apellido" value="Apellido :" />
+            <p:outputLabel id="apellido"  value="#{inBean.proponente.getApellido()}"/>
+        </p:panelGrid>
+    </p:panel>
+
+    <p:panel id="Consulta" header="Informacion Iniciativa"  footer="Con este ID consultara su iniciativa" style="margin-bottom:20px">
+        <p:panelGrid columns="4" layout="grid" >
+            <p:outputLabel for="id" value="Id (no modificable ):"/>
+            <p:inputText type="text" id="id"  binding="#{inid}">
+                 <f:convertNumber type="number"/>
+            </p:inputText>
+
+            <p:outputLabel for="fecha" value="fecha :"/>
+            <p:outputLabel id="fecha" value=""/>
+
+            <p:outputLabel for="estado" value="estado :"/>
+            <p:selectOneMenu id="estado"  value="#{inBean.estado}">
+                <f:selectItem itemLabel="Select One" itemValue="" />
+                <f:selectItem itemLabel="En espera de revisión" itemValue="En espera" />
+                <f:selectItem itemLabel="En revisión" itemValue="En revisión" />
+                <f:selectItem itemLabel="propuesta" itemValue="propuesta" />
+                <f:selectItem itemLabel="Solucionado" itemValue="Solucionado" />
+            </p:selectOneMenu>
+
+            <p:outputLabel for="palabrasC" value="Descripcion de la iniciativa :"/>
+            <p:inputTextarea id ="palabrasC" rows="5" cols="40"  binding="#{indesc}" />
+
+        </p:panelGrid>
+    </p:panel>
+    <center>
+        <p:commandButton update="formRegistro2" value="Registrar" actionListener="#{inBean.registrarIniciativa(inid.value, indesc.value)}" styleClass="Button"></p:commandButton>
+        <p:commandButton update="formRegistro2" value="cancelar"  actionListener="#{inBean.home()}" styleClass="Button"  ></p:commandButton>
+    <br><p:outputLabel value="#{inBean.screenEstado}"/></br>
+    </center>
+</h:form>
+</html>
