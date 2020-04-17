@@ -62,7 +62,6 @@ public class ServiciosBancoImpl implements ServiciosBanco {
 
             daoIniciativa.registrarIniciativa(in);
         }catch (PersistenceException ex){
-            System.out.println("Servicios Servicio Imp");
             throw new ExcepcionServiciosBanco("no se pudo registrar ",ex);
         }
     }

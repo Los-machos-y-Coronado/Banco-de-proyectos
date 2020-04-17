@@ -51,7 +51,6 @@ public class MyBatisDAOIniciativa implements DaoIniciativa{
         try{
             iniciativaMapper.registrarIniciativa(in);
         }catch (Exception e){
-            System.out.println("Servicios my batis dao ");
             throw new PersistenceException("error al registrar idea/Iniciativa",e);
         }
     }

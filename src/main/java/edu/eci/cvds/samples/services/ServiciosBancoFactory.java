@@ -49,17 +49,15 @@ public class ServiciosBancoFactory {
         if (!optInjector.isPresent()) {
             optInjector = Optional.of(myBatisInjector("development","mybatis-config.xml"));
         }
-
         return optInjector.get().getInstance(ServiciosBanco.class);
     }
 
 
-    public ServiciosBancoFactory getServiciosBancoTesting(){
+    public ServiciosBanco getServiciosBancoTesting(){
         if (!optInjector.isPresent()) {
             optInjector = Optional.of(myBatisInjector("test","mybatis-config-h2.xml"));
         }
-
-        return optInjector.get().getInstance(ServiciosBancoFactory.class);
+        return optInjector.get().getInstance(ServiciosBanco.class);
     }
 
 
