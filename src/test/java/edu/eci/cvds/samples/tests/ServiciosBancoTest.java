@@ -10,6 +10,7 @@ import edu.eci.cvds.samples.entities.Administrador;
 import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.entities.Proponente;
 import edu.eci.cvds.samples.entities.Usuario;
+import edu.eci.cvds.samples.services.Convertidor;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBancoFactory;
@@ -43,6 +44,7 @@ public class ServiciosBancoTest {
         try {
             Usuario usu = serviciosBanco.consultarUsuario("anfegoca@gmail.com", "1234");
             assertEquals("anfegoca@gmail.com", ((Administrador)usu).getCorreo());
+                   
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
             assertTrue(false);
@@ -94,9 +96,12 @@ public class ServiciosBancoTest {
     @Test
      public void ConsultarIniciativas() {
         try {
-            ArrayList<String> palabras = new ArrayList<>();
-            palabras.add("Cemento");
-            palabras.add("Desarrollo");
+            Convertidor convertidor=new Convertidor();
+            String palabrasini="Cemento,Desarrollo";
+            
+              
+            ArrayList<String> palabras = convertidor.convertirPalabras(palabrasini);
+
            
             String fecha = "2000-10-20";
             String fecha2 = "2019-10-20";
@@ -104,8 +109,13 @@ public class ServiciosBancoTest {
             Date d1 = Date.valueOf(fecha2);
             Date d2 = Date.valueOf(fecha);
             
+            Proponente proponente1= new Proponente("juan@gmail.com","Juanito","Juan","Perez",true,"Proponente");
+            Proponente proponente2= new Proponente("alex.garci@yahoo.com","Alex22","Alex","Gordillo",true,"Proponente");
+            
             Iniciativa a= new Iniciativa(2,"Construcción del bloque Z", d1,"En espera");
             Iniciativa b= new Iniciativa(1,"Optimizacion de Osiris", d2,"En espera");
+            
+
             
             ArrayList<Iniciativa> ini2 = new ArrayList<>();
             
@@ -114,7 +124,7 @@ public class ServiciosBancoTest {
             
             
             List<Iniciativa> ini = serviciosBanco.consultarIniciativas(palabras);
-
+            
             assertEquals(ini.toString(),ini2.toString());
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
@@ -129,6 +139,9 @@ public class ServiciosBancoTest {
     @Test
      public void ConsultarIniciativas2() {
         try {
+            Convertidor convertidor=new Convertidor();
+            String palabrasini="Sostebinilidad,Humanistica";
+            
             ArrayList<String> palabras = new ArrayList<>();
             palabras.add("Sostebinilidad");
             palabras.add("Humanistica");
@@ -142,4 +155,5 @@ public class ServiciosBancoTest {
         }
         
     }
+
 }

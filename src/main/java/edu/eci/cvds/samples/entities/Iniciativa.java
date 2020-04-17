@@ -6,6 +6,7 @@
 package edu.eci.cvds.samples.entities;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 
 /**
@@ -19,13 +20,16 @@ public class Iniciativa {
     private Date fecha;
     private String estado;
     private Proponente proponente;
-    
+    private ArrayList<String> palabras;
 
     public Iniciativa(int id, String descripcion, Date fecha, String estado) {
         this.id = id;
         this.descripcion = descripcion;
         this.fecha = fecha;
         this.estado = estado;
+        
+        
+        
         
     }
     
@@ -71,6 +75,14 @@ public class Iniciativa {
 
     public void setProponente(Proponente proponente) {
         this.proponente = proponente;
+    }
+
+    public ArrayList<String> getPalabras() {
+        return palabras;
+    }
+
+    public void setPalabras(ArrayList<String> palabras) {
+        this.palabras = palabras;
     }
     
     @Override
