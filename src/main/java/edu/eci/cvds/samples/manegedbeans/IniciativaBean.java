@@ -29,37 +29,45 @@ import java.util.Date;
 @ManagedBean (name = "inBean")
 @SessionScoped
 
-public class IniciativaBean implements Serializable{
+public class IniciativaBean implements Serializable {
 
     private ServiciosBanco serviciosBanco;
     private String estado = "En espera de revisión";
     private String screenEstado = "";
     private Proponente proponente;
     private Iniciativa nuevoRegistro;
+    private java.sql.Date fecha;
 
-    public IniciativaBean(){
-        serviciosBanco=ServiciosBancoFactory.getInstance().getServiciosBanco();
+    public IniciativaBean() {
+        serviciosBanco = ServiciosBancoFactory.getInstance().getServiciosBanco();
         proponente = new Proponente("alex.garci@yahoo.com", "alex22", "alex", "gordillo", true, "civl");
 
     }
-    public void home(){
+
+    public void home() {
         System.out.println("estoy en home, conexion exitosa");
-        screenEstado="reinicio";
+        screenEstado = "reinicio";
     }
-    public void registrarIniciativa (String id,String descripcion) throws ParseException {
+
+    public void registrarIniciativa(String id, String descripcion) throws ParseException {
         Date utilDate = new Date();
-        Iniciativa nuevoRegistro = new Iniciativa(Integer.parseInt(id), descripcion, new java.sql.Date(utilDate.getTime()), proponente.getCorreo(),estado);
+        Iniciativa nuevoRegistro = new Iniciativa(Integer.parseInt(id), descripcion, new java.sql.Date(utilDate.getTime()), proponente.getCorreo(), estado);
         System.out.println(serviciosBanco);
         try {
             serviciosBanco.registrarIniciativa(nuevoRegistro);
-            screenEstado="registro exitoso";
+            screenEstado = "registro exitoso";
 
         } catch (Exception e) {
             e.printStackTrace();
 
         }
     }
-
+    public String justNow() {
+        Date now =new Date();
+        fecha=new java.sql.Date(now.getTime());
+        String justnow=fecha.toString();
+        return  justnow;
+    }
     public ServiciosBanco geterviciosBanco() {
         return serviciosBanco;
     }

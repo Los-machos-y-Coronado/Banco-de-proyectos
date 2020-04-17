@@ -3,41 +3,13 @@
 body {
     margin: 0;
     padding: 0;
-    background: gray ;
+    background: url(../img/bg.jpg) no-repeat center top;
+    background-size: cover;
     font-size: 16pt;
 }
 
 h2 {
     background-color: #b80f22;
-}
-
-.informacion {
-  margin: 45px;
-  width: 80%;
-  border: 5px solid #b80f22 ;
-  padding: 100px;
-  
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-gap: 10px;
-  grid-auto-rows: 100px;
-  grid-template-areas: 
-    "a a a a b b b b"
-    "c c c c d d d d"
-    "c c c c d d d d";
-  align-items: start;
-}
-.item1 {
-  grid-area: a;
-}
-.item2 {
-  grid-area: b;
-}
-.item3 {
-  grid-area: c;
-}
-.item4 {
-  grid-area: d;
 }
 
 .Registro{
