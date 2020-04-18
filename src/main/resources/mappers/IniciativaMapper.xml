@@ -8,7 +8,7 @@
         <id property='id' column='id_iniciativas'/>
         <result property='descripcion' column='descripcion'/>
         <result property='fecha' column='fecha'/>
-        <result property='proponente' column='proponentes_usuarios_correo'/>
+        <result property='correo' column='proponentes_usuarios_correo'/>
         <result property='estado' column='estado'/>
 
     </resultMap>
@@ -45,11 +45,12 @@
     </update>
         
     
-    <select parameterType="map"  id="consultarIniciativas"  resultMap="IniciativaResult">
+    <select parameterType="map"  id="consultarIniciativasPalabra"  resultMap="IniciativaResult">
         SELECT  
             i.id_iniciativas,
             i.descripcion,
             i.fecha,
+            i.proponentes_usuarios_correo,
             i.estado
                   		
         FROM iniciativas as i  JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas 

@@ -19,18 +19,16 @@
 	<p:menu>
 		<p:submenu label="Administrador">
                     <p:menuitem value="Asignar perfiles" action="#{navigationController.paginAsignacionPerfiles()}" />
-                        
-                    <p:menuitem value="Cambiar estado iniciativas" />
-                        
+                    <p:menuitem value="Cambiar estado iniciativas " action="#{navigationController.estadoIniciativa()}"/>
 		</p:submenu>
 		<p:submenu label="Proponente">
-                    <p:menuitem value="Registrar iniciativa" />
+                    <p:menuitem value="Registrar iniciativa" action="#{navigationController.iniciativas()}"/>
 		</p:submenu>
                 <p:submenu label="Publico">
-                    <p:menuitem value="Consultar por palabras clave" />
+                    <p:menuitem value="Consultar por palabras clave" action="#{navigationController.publico()}" />
                 </p:submenu>
 	</p:menu>
-</h:form>
+        </h:form>
     </h:body>
 </html>
 

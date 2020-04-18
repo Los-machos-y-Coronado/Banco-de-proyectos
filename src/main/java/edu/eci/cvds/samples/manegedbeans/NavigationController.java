@@ -21,4 +21,13 @@ public class NavigationController implements Serializable {
     public String paginaPerfil(){
         return "Perfil";
     }
+    public String estadoIniciativa(){
+        return "EstadoIniciativa";
+    }
+    public String iniciativas(){
+        return "Riniciativas";
+    }
+    public String publico(){
+        return "Publico";
+    }
 }

@@ -15,7 +15,6 @@ import edu.eci.cvds.samples.services.Convertidor;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBancoFactory;
-import java.util.Date;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,9 +32,11 @@ public class ServiciosBancoTest {
     
     @Inject
     private final  ServiciosBanco serviciosBanco;
+    Proponente proponente;
     public ServiciosBancoTest() {
 
         serviciosBanco = ServiciosBancoFactory.getInstance().getServiciosBanco();
+        
         
     }
     /**
@@ -53,7 +54,50 @@ public class ServiciosBancoTest {
         }
         
     }
-   
+     @Test
+    public void AutenticacionProponente(){	    
+        try {
+            Usuario usu = serviciosBanco.consultarUsuario("alex.garci@yahoo.com", "1911");
+            assertEquals(Rol.Proponente.toString(), usu.getClass().getSimpleName());
+        } catch (ExcepcionServiciosBanco ex) {
+            Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
+            assertTrue(false);
+        }
+    }
+    @Test
+    public void consultarUsuarios(){
+        try {
+            List<Usuario> usu = serviciosBanco.consultarUsuarios();
+        } catch (ExcepcionServiciosBanco ex) {
+            Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
+            assertTrue(false);
+        }
+    }
+    @Test
+    public void cambiarRol(){
+        try {
+            Usuario usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
+            serviciosBanco.cambiarRol(usu, Rol.Publico);
+            usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
+            assertEquals(Rol.Publico.toString(),usu.getClass().getSimpleName());
+        } catch (ExcepcionServiciosBanco ex) {
+            Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
+            assertTrue(false);
+        }
+    }
+    @Test
+    public void cambiarRol2(){
+        try {
+            Usuario usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
+            serviciosBanco.cambiarRol(usu, Rol.Proponente);
+            usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
+            assertEquals(Rol.Proponente.toString(),usu.getClass().getSimpleName());
+        } catch (ExcepcionServiciosBanco ex) {
+            Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
+            assertTrue(false);
+        }
+    }	    
+    /*
     @Test
     public void DebeRegistrarIniciativa(){
         proponente = new Proponente("alex.garci@yahoo.com", "alex22", "alex", "gordillo", true, "civl");
@@ -66,7 +110,7 @@ public class ServiciosBancoTest {
             assertTrue(false);
         }
     }
-
+    /*
     @Test
     public void NoDebeRegistrarIniciativa(){
         proponente = new Proponente("david@mail.com", "david21", "david", "cardona", true, "proyectos");
@@ -74,6 +118,9 @@ public class ServiciosBancoTest {
         try {
             serviciosBanco.registrarIniciativa(nuevoRegistro);
             assertTrue(true);
+        }catch(Exception e){
+            
+        }
     /**
      * 
      * Existen iniciativas dadas palabras clave
@@ -97,8 +144,8 @@ public class ServiciosBancoTest {
             Proponente proponente1= new Proponente("juan@gmail.com","Juanito","Juan","Perez",true,"Proponente");
             Proponente proponente2= new Proponente("alex.garci@yahoo.com","Alex22","Alex","Gordillo",true,"Proponente");
             
-            Iniciativa a= new Iniciativa(2,"Construcción del bloque Z", d1,"En espera");
-            Iniciativa b= new Iniciativa(1,"Optimizacion de Osiris", d2,"En espera");
+            Iniciativa a= new Iniciativa(2,"Construcción del bloque Z", d1,null,"En espera");
+            Iniciativa b= new Iniciativa(1,"Optimizacion de Osiris", d2,null,"En espera");
             
 
             

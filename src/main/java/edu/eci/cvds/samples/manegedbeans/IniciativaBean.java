@@ -36,16 +36,15 @@ public class IniciativaBean implements Serializable {
     private ServiciosBanco serviciosBanco;
     private String estado = "En espera de revisión";
     private String screenEstado = "";
-    private Proponente proponente;
-    private Administrador administrador;
+    private Proponente proponente = new Proponente("alex.garci@yahoo.com", "alex22", "alex", "gordillo", true, "civl");
+    private Administrador administrador = new Administrador("danipipe1703@gmail.com","DanielG","Daniel","Gomez",true);
     private Iniciativa nuevoRegistro;
     private java.sql.Date fecha;
     private List<Iniciativa> iniciativas;
 
     public IniciativaBean() {
         serviciosBanco = ServiciosBancoFactory.getInstance().getServiciosBanco();
-        proponente = new Proponente("alex.garci@yahoo.com", "alex22", "alex", "gordillo", true, "civl");
-        administrador = new Administrador("danipipe1703@gmail.com","DanielG","Daniel","Gomez",true);
+   
         try {
             iniciativas = serviciosBanco.consultarIniciativas();
         }catch (ExcepcionServiciosBanco ex){
@@ -84,9 +83,7 @@ public class IniciativaBean implements Serializable {
     }
 
 
-    public ServiciosBanco getServiciosBanco() {
-        return serviciosBanco;
-    }
+
 
     public Administrador getAdministrador() {
         return administrador;
@@ -117,13 +114,6 @@ public class IniciativaBean implements Serializable {
         fecha=new java.sql.Date(now.getTime());
         String justnow=fecha.toString();
         return  justnow;
-    }
-    public ServiciosBanco geterviciosBanco() {
-        return serviciosBanco;
-    }
-
-    public void setServiciosBanco(ServiciosBanco serviciosBanco) {
-        this.serviciosBanco = serviciosBanco;
     }
 
     public String getEstado() {

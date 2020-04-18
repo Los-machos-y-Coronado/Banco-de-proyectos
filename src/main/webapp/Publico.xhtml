@@ -25,6 +25,9 @@
                 <br><p:inputText type="palabrasclave" id="palabras_clave" binding="#{pala}" placeholder="Ingrese sus palabras separadas por coma"></p:inputText></br>           
                 <p:commandButton update="formConsultarIni" value="Enviar" actionListener="#{ConsultarIniciativasBean.consultarIniciativas(pala.value)}" styleClass="Button"></p:commandButton>    
                 <p:dataTable var="Iniciativa"  value="#{ConsultarIniciativasBean.ini}" style="width:250px;" styleClass = "Table">
+                    <p:column headerText="Correo"  >
+                        <h:outputText value= "#{Iniciativa.correo}" />
+                    </p:column>
                     <p:column headerText="Descripcion"  >
                         <h:outputText value= "#{Iniciativa.descripcion}" />
                     </p:column>
@@ -38,7 +41,9 @@
                     
                 
                 </p:dataTable>
+                
             </h:form>
+            <center><p:commandButton  value="Volver" action="#{navigationController.paginaPerfil()}"/></center>
             
         
     </h:body>

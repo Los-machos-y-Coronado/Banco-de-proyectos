@@ -9,7 +9,7 @@ function verificar(mensaje) {
     console.log(mensaje);
     console.log("JOHAN ES RE GURRERO");
     if(mensaje!==""){
-        location.href='Perfil.xhtml';
+        location.href='faces/Perfil.xhtml';
         
     }
 
@@ -22,7 +22,6 @@ function mostrarMenu(mensaje){
         console.log("HOLA");
         document.getElementById('admin').style.display="none";
     }
-    
 }
 
 

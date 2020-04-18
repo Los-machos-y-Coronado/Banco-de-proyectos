@@ -14,6 +14,7 @@ import edu.eci.cvds.samples.persistence.DaoUsuario;
 import edu.eci.cvds.samples.persistence.DaoIniciativa;
 import edu.eci.cvds.samples.persistence.PersistenceException;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
+import edu.eci.cvds.samples.services.ServiciosBanco;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,13 +59,15 @@ public class ServiciosBancoImpl implements ServiciosBanco {
             throw new ExcepcionServiciosBanco("No hay Iniciativas ", ex);
         }
     }
-
+    @Override
     public void registrarIniciativa(Iniciativa in) throws ExcepcionServiciosBanco{
         try{
 
             daoIniciativa.registrarIniciativa(in);
         }catch (PersistenceException ex){
             throw new ExcepcionServiciosBanco("no se pudo registrar ",ex);
+        }
+    }
           
     @Override
     public  List<Iniciativa> consultarIniciativas(ArrayList<String> palabrasclave)throws ExcepcionServiciosBanco{
@@ -84,6 +87,8 @@ public class ServiciosBancoImpl implements ServiciosBanco {
             return daoUsuario.consultarUsuarios();
         }catch(PersistenceException ex){
             throw new ExcepcionServiciosBanco("No se pudo consultar los usuarios ",ex);
+        }
+    }
 
 
     @Override
@@ -104,4 +109,5 @@ public class ServiciosBancoImpl implements ServiciosBanco {
         }    
     }
 
+        
 }

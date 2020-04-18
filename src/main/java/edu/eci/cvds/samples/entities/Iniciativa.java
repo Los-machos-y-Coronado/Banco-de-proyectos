@@ -7,6 +7,7 @@ package edu.eci.cvds.samples.entities;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -19,24 +20,28 @@ public class Iniciativa {
     private String descripcion;
     private Date fecha;
     private String estado;
-    private Proponente proponente;
+    
     private String correo;
    
-    private ArrayList<String> palabras;
+    private List<String> palabrasClave;
 
-    {
-        this.id = id;
-        this.descripcion = descripcion;
-        this.fecha = fecha;
-        this.estado = estado;
-      }
+
+    public Iniciativa (int id, String descripcion,Date fecha, String correo,List palabrasClave){
+        this.id=id;
+        this.descripcion=descripcion;
+        this.fecha=fecha;
+        this.correo=correo;
+        this.estado="en espera de revision";
+        this.palabrasClave = palabrasClave;
+
+    }
     public Iniciativa (int id, String descripcion,Date fecha, String correo,String estado){
         this.id=id;
         this.descripcion=descripcion;
         this.fecha=fecha;
         this.correo=correo;
         this.estado=estado;
-        this.palabras = new ArrayList<String>();
+        this.palabrasClave = new ArrayList<String>();
 
     }
     public Iniciativa (int id, String descripcion,java.sql.Date fecha,String estado) {
@@ -44,8 +49,9 @@ public class Iniciativa {
         this.descripcion = descripcion;
         this.fecha = fecha;
         this.estado = estado;
-        this.palabras = new ArrayList<String>();
-     }   
+        this.palabrasClave = new ArrayList<String>();
+    }
+  
 
         public int getId() {
             return id;
@@ -79,21 +85,23 @@ public class Iniciativa {
             this.estado = estado;
         }
 
-        public Proponente getProponente() {
-            return proponente;
+
+
+        public List<String> getPalabras() {
+            return palabrasClave;
         }
 
-        public void setProponente(Proponente proponente) {
-            this.proponente = proponente;
+        public void setPalabras(List<String> palabras) {
+            this.palabrasClave = palabras;
         }
 
-        public ArrayList<String> getPalabras() {
-            return palabras;
-        }
+    public String getCorreo() {
+        return correo;
+    }
 
-        public void setPalabras(ArrayList<String> palabras) {
-            this.palabras = palabras;
-        }
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
     
     
 
