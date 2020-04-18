@@ -20,73 +20,86 @@ public class Iniciativa {
     private Date fecha;
     private String estado;
     private Proponente proponente;
+    private String correo;
+   
     private ArrayList<String> palabras;
 
-    public Iniciativa(int id, String descripcion, Date fecha, String estado) {
+    {
         this.id = id;
         this.descripcion = descripcion;
         this.fecha = fecha;
         this.estado = estado;
-        
-        
-        
-        
-    }
-    
-    
+      }
+    public Iniciativa (int id, String descripcion,Date fecha, String correo,String estado){
+        this.id=id;
+        this.descripcion=descripcion;
+        this.fecha=fecha;
+        this.correo=correo;
+        this.estado=estado;
+        this.palabras = new ArrayList<String>();
 
-    public void setId(int id) {
-        this.id = id;
     }
-
-    public void setDescripcion(String descripcion) {
+    public Iniciativa (int id, String descripcion,java.sql.Date fecha,String estado) {
+        this.id =id;
         this.descripcion = descripcion;
-    }
-
-    public void setFecha(Date fecha) {
         this.fecha = fecha;
-    }
-
-
-    public void setEstado(String estado) {
         this.estado = estado;
-    }
+        this.palabras = new ArrayList<String>();
+     }   
 
-    public int getId() {
-        return id;
-    }
+        public int getId() {
+            return id;
+        }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+        public void setId(int id) {
+            this.id = id;
+        }
 
-    public Date getFecha() {
-        return fecha;
-    }
+        public String getDescripcion() {
+            return descripcion;
+        }
 
+        public void setDescripcion(String descripcion) {
+            this.descripcion = descripcion;
+        }
 
-    public String getEstado() {
-        return estado;
-    }
+        public Date getFecha() {
+            return fecha;
+        }
 
-    public Proponente getProponente() {
-        return proponente;
-    }
+        public void setFecha(Date fecha) {
+            this.fecha = fecha;
+        }
 
-    public void setProponente(Proponente proponente) {
-        this.proponente = proponente;
-    }
+        public String getEstado() {
+            return estado;
+        }
 
-    public ArrayList<String> getPalabras() {
-        return palabras;
-    }
+        public void setEstado(String estado) {
+            this.estado = estado;
+        }
 
-    public void setPalabras(ArrayList<String> palabras) {
-        this.palabras = palabras;
-    }
+        public Proponente getProponente() {
+            return proponente;
+        }
+
+        public void setProponente(Proponente proponente) {
+            this.proponente = proponente;
+        }
+
+        public ArrayList<String> getPalabras() {
+            return palabras;
+        }
+
+        public void setPalabras(ArrayList<String> palabras) {
+            this.palabras = palabras;
+        }
     
+    
+
+
     @Override
     public String toString() {
         return "Iniciativa{" + "id "+id +", descripcion "+descripcion + "fecha " + fecha +  "estado " + estado + '}';
     }
-}
+   }

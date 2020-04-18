@@ -15,10 +15,9 @@ import edu.eci.cvds.samples.services.Convertidor;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBancoFactory;
-
+import java.util.Date;
 import java.sql.Date;
 import java.util.ArrayList;
-
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -54,78 +53,27 @@ public class ServiciosBancoTest {
         }
         
     }
-    /**
-     * No existe el usuario
-     */
+   
     @Test
-    public void consultarUsuario2(){
+    public void DebeRegistrarIniciativa(){
+        proponente = new Proponente("alex.garci@yahoo.com", "alex22", "alex", "gordillo", true, "civl");
+        Iniciativa nuevoRegistro = new Iniciativa(100, "test insercion", new java.sql.Date(new Date().getTime()), proponente.getCorreo(), "en espera de revision");
         try {
-            Usuario usu = serviciosBanco.consultarUsuario("juanito@gmail.com", "1234");
-            assertEquals(null, usu);
-        } catch (ExcepcionServiciosBanco ex) {
-            Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
-            assertTrue(false);
-        }
-        
-    }
-    /**
-     * Clave incorrecta
-     */
-    @Test
-    public void consultarUsuario3(){
-        try {
-            Usuario usu = serviciosBanco.consultarUsuario("anfegoca@gmail.com", "123455");
-            assertEquals(null, usu);
-        } catch (ExcepcionServiciosBanco ex) {
-            Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
-            assertTrue(false);
-        }
-        
-    }
-    @Test
-    public void AutenticacionProponente(){
-        try {
-            Usuario usu = serviciosBanco.consultarUsuario("alex.garci@yahoo.com", "1911");
-            assertEquals(Rol.Proponente.toString(), usu.getClass().getSimpleName());
-        } catch (ExcepcionServiciosBanco ex) {
-            Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
-            assertTrue(false);
-        }
-    }
-    @Test
-    public void consultarUsuarios(){
-        try {
-            List<Usuario> usu = serviciosBanco.consultarUsuarios();
-        } catch (ExcepcionServiciosBanco ex) {
-            Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
-            assertTrue(false);
-        }
-    }
-    @Test
-    public void cambiarRol(){
-        try {
-            Usuario usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
-            serviciosBanco.cambiarRol(usu, Rol.Publico);
-            usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
-            assertEquals(Rol.Publico.toString(),usu.getClass().getSimpleName());
-        } catch (ExcepcionServiciosBanco ex) {
-            Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
-            assertTrue(false);
-        }
-    }
-    @Test
-    public void cambiarRol2(){
-        try {
-            Usuario usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
-            serviciosBanco.cambiarRol(usu, Rol.Proponente);
-            usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
-            assertEquals(Rol.Proponente.toString(),usu.getClass().getSimpleName());
+            serviciosBanco.registrarIniciativa(nuevoRegistro);
+            assertTrue(true);
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
             assertTrue(false);
         }
     }
 
+    @Test
+    public void NoDebeRegistrarIniciativa(){
+        proponente = new Proponente("david@mail.com", "david21", "david", "cardona", true, "proyectos");
+        Iniciativa nuevoRegistro = new Iniciativa(150, "test insercion", new java.sql.Date(new Date().getTime()), proponente.getCorreo(), "en espera de revision");
+        try {
+            serviciosBanco.registrarIniciativa(nuevoRegistro);
+            assertTrue(true);
     /**
      * 
      * Existen iniciativas dadas palabras clave

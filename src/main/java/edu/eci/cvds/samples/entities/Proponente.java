@@ -16,7 +16,7 @@ public class Proponente extends Usuario{
         this.area=area;
     }
 
-    public String getArea() {
+    public String getArea(){
         return area;
     }
 

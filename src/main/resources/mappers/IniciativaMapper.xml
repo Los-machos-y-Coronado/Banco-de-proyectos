@@ -1,16 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.IniciativaMapper">
     <resultMap type='Iniciativa' id='IniciativaResult'>
         <id property='id' column='id_iniciativas'/>
-        <result property='descripcion' column='descripcion'/> 
+        <result property='descripcion' column='descripcion'/>
         <result property='fecha' column='fecha'/>
-        <result property='estado' column='estado'/>      
-               
+        <result property='proponente' column='proponentes_usuarios_correo'/>
+        <result property='estado' column='estado'/>
+
     </resultMap>
+
+    <select  parameterType="map" id="consultarIniciativa" resultMap="IniciativaResult">
+        SELECT
+            ini.id,
+            ini.descripcion,
+            ini.fecha,
+            ini.area,
+        FROM INICIATIVAS AS ini
+        WHERE ini.id=#{inid};
+    </select>
+
+
+    <select  parameterType="map" id="consultarIniciativas" resultMap="IniciativaResult">
+        SELECT
+        ini.id_iniciativas,
+        ini.descripcion,
+        ini.fecha,
+        ini.estado
+        FROM INICIATIVAS AS ini;
+
+    </select>
+
+    <insert id="registrarIniciativa" parameterType="map">
+        insert into iniciativas values(#{in.id},#{in.descripcion},#{in.fecha},#{in.correo},#{in.estado});
+    </insert>
+
+    <update id="updateEstado" parameterType="map">
+        update INICIATIVAS set
+        estado = #{inest}
+        where id_iniciativas= #{inid}
+    </update>
+        
     
     <select parameterType="map"  id="consultarIniciativas"  resultMap="IniciativaResult">
         SELECT  

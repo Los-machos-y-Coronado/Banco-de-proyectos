@@ -21,7 +21,6 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean(name = "AutenticacionBean")
 @SessionScoped
 public class AutenticacionBean {
-    
     private final ServiciosBanco serviciosBanco;
     private String estado;
     private String rol;
@@ -45,12 +44,13 @@ public class AutenticacionBean {
             estado="Correo o Clave incorrecta";
             
         }else{
+
             estado="Autenticado "+usu.getNombreUsuario();
             rol=usu.getClass().getSimpleName();
             
 
         }
-        
+
         
     }
     
@@ -77,5 +77,7 @@ public class AutenticacionBean {
     public void setUsu(Usuario usu) {
         this.usu = usu;
     }
-  
+
+
 }
+
