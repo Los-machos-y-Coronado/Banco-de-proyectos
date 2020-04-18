@@ -30,9 +30,9 @@ public interface ServiciosBanco {
     public abstract List<Usuario> consultarUsuarios() throws ExcepcionServiciosBanco;
     /**
      * Cambia el rol del usuario
-     * @param correo correo del usuario
+     * @param usuario Usuario
      * @param rol nuevo rol
      * @throws ExcepcionServiciosBanco 
      */
-    public abstract void cambiarRol(String correo,Rol rol) throws ExcepcionServiciosBanco;
+    public abstract void cambiarRol(Usuario usuario,Rol rol) throws ExcepcionServiciosBanco;
 }

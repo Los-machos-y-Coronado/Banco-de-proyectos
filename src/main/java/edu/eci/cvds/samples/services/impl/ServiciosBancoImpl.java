@@ -42,11 +42,11 @@ public class ServiciosBancoImpl implements ServiciosBanco {
     }
 
     @Override
-    public void cambiarRol(String correo, Rol rol) throws ExcepcionServiciosBanco {
+    public void cambiarRol(Usuario usuario, Rol rol) throws ExcepcionServiciosBanco {
         try{
-            daoUsuario.cambiarRol(correo,rol);
+            daoUsuario.cambiarRol(usuario,rol);
         }catch(PersistenceException ex){
-            throw new ExcepcionServiciosBanco("No se pudo cambiar el rol del usuario "+correo,ex);
+            throw new ExcepcionServiciosBanco("No se pudo cambiar el rol del usuario "+usuario.getCorreo(),ex);
         }    
     }
 

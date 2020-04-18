@@ -32,9 +32,9 @@ public interface DaoUsuario {
     
     /**
      * Cambia el rol del usuario
-     * @param correo correo del usuario
+     * @param usuario usuario
      * @param rol rol nuevo
      * @throws PersistenceException 
      */
-    public void cambiarRol(String correo,Rol rol) throws PersistenceException;
+    public void cambiarRol(Usuario usuario,Rol rol) throws PersistenceException;
 }

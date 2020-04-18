@@ -96,8 +96,9 @@ public class ServiciosBancoTest {
     @Test
     public void cambiarRol(){
         try {
-            serviciosBanco.cambiarRol("juan@gmail.com", Rol.Publico);
             Usuario usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
+            serviciosBanco.cambiarRol(usu, Rol.Publico);
+            usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
             assertEquals(Rol.Publico.toString(),usu.getClass().getSimpleName());
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
@@ -107,8 +108,9 @@ public class ServiciosBancoTest {
     @Test
     public void cambiarRol2(){
         try {
-            serviciosBanco.cambiarRol("juan@gmail.com", Rol.Proponente);
             Usuario usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
+            serviciosBanco.cambiarRol(usu, Rol.Proponente);
+            usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
             assertEquals(Rol.Proponente.toString(),usu.getClass().getSimpleName());
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);

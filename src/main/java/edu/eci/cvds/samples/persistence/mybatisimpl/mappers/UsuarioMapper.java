@@ -30,8 +30,8 @@ public interface UsuarioMapper {
     public List<Usuario> consultarUsuarios();
     /**
      * Cambia el rol del usuario determinado
-     * @param correo Correo del usuario
+     * @param usuario usuario
      * @param rol Nuevo rol
      */
-    public void cambiarRol(@Param("corr")String correo,@Param("rol")Rol rol);
+    public void cambiarRol(@Param("usu")Usuario usuario,@Param("rol")Rol rol);
 }

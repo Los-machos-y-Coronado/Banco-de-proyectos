@@ -47,7 +47,7 @@
         UPDATE USUARIOS
         SET rol = #{rol}
         WHERE
-	correo=#{corr};
+	correo=#{usu.correo};
     </update>
     
         

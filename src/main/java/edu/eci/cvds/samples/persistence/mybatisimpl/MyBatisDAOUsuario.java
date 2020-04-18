@@ -43,11 +43,11 @@ public class MyBatisDAOUsuario implements DaoUsuario{
     }
 
     @Override
-    public void cambiarRol(String correo, Rol rol) throws PersistenceException {
+    public void cambiarRol(Usuario usuario, Rol rol) throws PersistenceException {
         try{
-            usuarioMapper.cambiarRol(correo,rol);
+            usuarioMapper.cambiarRol(usuario,rol);
         }catch(Exception e){
-            throw new PersistenceException("Error al cambiar el rol del usuario:"+correo+e.getLocalizedMessage(), e);
+            throw new PersistenceException("Error al cambiar el rol del usuario:"+usuario.getCorreo()+e.getLocalizedMessage(), e);
             
         }
     }
