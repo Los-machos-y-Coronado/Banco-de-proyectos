@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="/css/Publico.css" media="screen"/>
+    </h:head>
+    <style>
+        ::placeholder {  
+            font-size: 0.7em; 
+        }  
+    </style>
+    <h:body>   
+    
+            
+            <img src="img/logo.png" class="avatar" alt="Avatar Image"/>
+            <h1>Consultar iniciativas</h1>
+            <h:form id="formConsultarIni">
+                <br><p:outputLabel value="#{ConsultarIniciativasBean.estado}"/></br>
+                <label for="palabras"> Palabras </label>
+                <br><p:inputText type="palabrasclave" id="palabras_clave" binding="#{pala}" placeholder="Ingrese sus palabras separadas por coma"></p:inputText></br>           
+                <p:commandButton update="formConsultarIni" value="Enviar" actionListener="#{ConsultarIniciativasBean.consultarIniciativas(pala.value)}" styleClass="Button"></p:commandButton>    
+                <p:dataTable var="Iniciativa"  value="#{ConsultarIniciativasBean.ini}" style="width:250px;" styleClass = "Table">
+                    <p:column headerText="Correo"  >
+                        <h:outputText value= "#{Iniciativa.correo}" />
+                    </p:column>
+                    <p:column headerText="Descripcion"  >
+                        <h:outputText value= "#{Iniciativa.descripcion}" />
+                    </p:column>
+                    <p:column headerText="Fecha"  >
+                        <h:outputText value= "#{Iniciativa.fecha}" />
+                    </p:column>
+                    <p:column headerText="Estado"  >
+                        <h:outputText value= "#{Iniciativa.estado}" />
+                    </p:column>
+                    
+                    
+                
+                </p:dataTable>
+                
+            </h:form>
+            <center><p:commandButton  value="Volver" action="#{navigationController.paginaPerfil()}"/></center>
+            
+        
+    </h:body>
+</html>
