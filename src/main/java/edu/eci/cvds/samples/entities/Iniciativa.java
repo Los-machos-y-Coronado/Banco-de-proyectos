@@ -5,72 +5,101 @@
  */
 package edu.eci.cvds.samples.entities;
 
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+
 
 /**
  *
- * @author Jairo Gomez
+ * @author David Coronado
  */
-
- 
 public class Iniciativa {
+    
     private int id;
     private String descripcion;
     private Date fecha;
-    private String area;
-    private List palabrasClave;
-    
-    public Iniciativa (int id, String descripcion,Date fecha, String area,List palabrasClave){
+    private String estado;
+    private Proponente proponente;
+    private String correo;
+   
+    private ArrayList<String> palabras;
+
+    {
+        this.id = id;
+        this.descripcion = descripcion;
+        this.fecha = fecha;
+        this.estado = estado;
+      }
+    public Iniciativa (int id, String descripcion,Date fecha, String correo,String estado){
         this.id=id;
         this.descripcion=descripcion;
         this.fecha=fecha;
-        this.area=area;
-        this.palabrasClave = palabrasClave;
-            
-    }
+        this.correo=correo;
+        this.estado=estado;
+        this.palabras = new ArrayList<String>();
 
-    public int getId() {
-        return id;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
+    public Iniciativa (int id, String descripcion,java.sql.Date fecha,String estado) {
+        this.id =id;
         this.descripcion = descripcion;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
         this.fecha = fecha;
-    }
+        this.estado = estado;
+        this.palabras = new ArrayList<String>();
+     }   
 
-    public String getArea() {
-        return area;
-    }
+        public int getId() {
+            return id;
+        }
 
-    public void setArea(String area) {
-        this.area = area;
-    }
+        public void setId(int id) {
+            this.id = id;
+        }
 
-    public List getPalabrasClave() {
-        return palabrasClave;
-    }
+        public String getDescripcion() {
+            return descripcion;
+        }
 
-    public void setPalabrasClave(List palabrasClave) {
-        this.palabrasClave = palabrasClave;
-    }
+        public void setDescripcion(String descripcion) {
+            this.descripcion = descripcion;
+        }
+
+        public Date getFecha() {
+            return fecha;
+        }
+
+        public void setFecha(Date fecha) {
+            this.fecha = fecha;
+        }
+
+        public String getEstado() {
+            return estado;
+        }
+
+        public void setEstado(String estado) {
+            this.estado = estado;
+        }
+
+        public Proponente getProponente() {
+            return proponente;
+        }
+
+        public void setProponente(Proponente proponente) {
+            this.proponente = proponente;
+        }
+
+        public ArrayList<String> getPalabras() {
+            return palabras;
+        }
+
+        public void setPalabras(ArrayList<String> palabras) {
+            this.palabras = palabras;
+        }
     
     
-    
-}
+
+
+    @Override
+    public String toString() {
+        return "Iniciativa{" + "id "+id +", descripcion "+descripcion + "fecha " + fecha +  "estado " + estado + '}';
+    }
+   }

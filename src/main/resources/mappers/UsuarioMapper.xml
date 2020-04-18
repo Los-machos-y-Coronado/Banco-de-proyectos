@@ -9,9 +9,16 @@
         <id property='correo' column='correo'/>
         <result property='nombreUsuario' column='nombre_usuario'/> 
         <result property='nombre' column='nombre'/>
-        <result property='apellido' column='apellido'/>        
-        <result property='rol' column='rol' typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+        <result property='apellido' column='apellido'/>
+        <result property='estado' column='estado'/>       
+        <discriminator javaType="String" column="rol">
+            <case value="Administrador" resultMap="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.AdministradorMapper.AdministradorResult"/>
+            <case value="PersonalPMO" resultMap="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.PersonalPMOMapper.PersonalPMOResult"/>
+            <case value="Proponente" resultMap="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.ProponenteMapper.ProponenteResult"/>
+            <case value="Publico" resultMap="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.PublicoMapper.PublicoResult"/>
+        </discriminator>
     </resultMap>
+    
 
     <select parameterType="map" id="consultarUsuario" resultMap="UsuarioResult">
         SELECT
@@ -19,9 +26,31 @@
             u.nombre_usuario,
             u.nombre,
             u.apellido,
+            u.estado,
+            u.area,
             u.rol
         FROM USUARIOS AS u
         WHERE u.correo=#{corr} and u.clave=#{clusu};
     </select>
+    <select parameterType="map" id="consultarUsuarios" resultMap="UsuarioResult">
+        SELECT
+            u.correo,
+            u.nombre_usuario,
+            u.nombre,
+            u.apellido,
+            u.estado,
+            u.area,
+            u.rol
+        FROM USUARIOS AS u;
+    </select>
+    <update id="cambiarRol" parameterType="map">
+        UPDATE USUARIOS
+        SET rol = #{rol}
+        WHERE
+	correo=#{usu.correo};
+    </update>
+    
+        
+    
     
 </mapper>

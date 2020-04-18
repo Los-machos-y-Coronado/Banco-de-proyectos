@@ -9,6 +9,11 @@
     </properties>
     <typeAliases>
         <typeAlias type="edu.eci.cvds.samples.entities.Usuario" alias="Usuario"/>
+        <typeAlias type="edu.eci.cvds.samples.entities.Administrador" alias="Administrador"/>
+        <typeAlias type="edu.eci.cvds.samples.entities.PersonalPMO" alias="PersonalPMO"/>
+        <typeAlias type="edu.eci.cvds.samples.entities.Proponente" alias="Proponente"/>
+        <typeAlias type="edu.eci.cvds.samples.entities.Publico" alias="Publico"/>
+        <typeAlias type="edu.eci.cvds.samples.entities.Iniciativa" alias="Iniciativa"/>
 
     </typeAliases>	
 
@@ -26,6 +31,11 @@
         
     <mappers>
         <mapper resource="mappers/UsuarioMapper.xml"></mapper>
+        <mapper resource="mappers/AdministradorMapper.xml"></mapper>
+        <mapper resource="mappers/PersonalPMOMapper.xml"></mapper>
+        <mapper resource="mappers/ProponenteMapper.xml"></mapper>
+        <mapper resource="mappers/PublicoMapper.xml"></mapper>
+        <mapper resource="mappers/IniciativaMapper.xml"></mapper>
     </mappers> 
         
         
