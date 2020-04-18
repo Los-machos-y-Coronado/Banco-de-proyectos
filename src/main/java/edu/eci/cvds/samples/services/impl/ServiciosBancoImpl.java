@@ -6,7 +6,11 @@
 package edu.eci.cvds.samples.services.impl;
 
 import com.google.inject.Inject;
+
 import edu.eci.cvds.samples.entities.Iniciativa;
+
+import edu.eci.cvds.samples.entities.Rol;
+
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.persistence.DaoUsuario;
 import edu.eci.cvds.samples.persistence.DaoIniciativa;
@@ -37,6 +41,7 @@ public class ServiciosBancoImpl implements ServiciosBanco {
             throw new ExcepcionServiciosBanco("No se pudo consultar el usuario "+correo,ex);
         }
     }
+
     
     @Override
     public  List<Iniciativa> consultarIniciativas(ArrayList<String> palabrasclave)throws ExcepcionServiciosBanco{
@@ -49,5 +54,25 @@ public class ServiciosBancoImpl implements ServiciosBanco {
     }
     
 
-    
+
+    @Override
+    public List<Usuario> consultarUsuarios() throws ExcepcionServiciosBanco {
+        try{
+            return daoUsuario.consultarUsuarios();
+        }catch(PersistenceException ex){
+            throw new ExcepcionServiciosBanco("No se pudo consultar los usuarios ",ex);
+        }
+    }
+
+    @Override
+    public void cambiarRol(Usuario usuario, Rol rol) throws ExcepcionServiciosBanco {
+        try{
+            daoUsuario.cambiarRol(usuario,rol);
+        }catch(PersistenceException ex){
+            throw new ExcepcionServiciosBanco("No se pudo cambiar el rol del usuario "+usuario.getCorreo(),ex);
+        }    
+    }
+
+
+
 }

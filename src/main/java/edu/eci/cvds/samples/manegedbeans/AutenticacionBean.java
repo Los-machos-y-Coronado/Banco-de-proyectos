@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package edu.eci.cvds.samples.manegedbeans;
-
-import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.Convertidor;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
@@ -33,10 +31,11 @@ public class AutenticacionBean {
     public AutenticacionBean(){
         serviciosBanco=ServiciosBancoFactory.getInstance().getServiciosBanco();
         estado = "Iniciar sesión";
-        rol="Administrador";
+        
     }
     
-    public void autenticar(String correo,String clave,String rol){
+    public void autenticar(String correo,String clave){
+        
         try{
             usu=serviciosBanco.consultarUsuario(correo, clave);
         }catch(ExcepcionServiciosBanco ex){
@@ -47,7 +46,11 @@ public class AutenticacionBean {
             
         }else{
             estado="Autenticado "+usu.getNombreUsuario();
+            rol=usu.getClass().getSimpleName();
+            
+
         }
+        
         
     }
     

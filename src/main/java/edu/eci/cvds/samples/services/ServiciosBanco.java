@@ -5,10 +5,16 @@
  */
 package edu.eci.cvds.samples.services;
 
+import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
+
 import edu.eci.cvds.samples.entities.Iniciativa;
 import java.util.ArrayList;
 import java.util.List;
+
+
+
+
 /**
  *
  * @author Andres Gonzalez
@@ -22,6 +28,7 @@ public interface ServiciosBanco {
      * @throws edu.eci.cvds.samples.services.ExcepcionServiciosBanco
      */
     public abstract Usuario consultarUsuario(String correo, String clave) throws ExcepcionServiciosBanco;
+
     
        /**
      * Retorna iniciativas que contenga palabras clave dadas
@@ -35,4 +42,18 @@ public interface ServiciosBanco {
     public abstract List<Iniciativa> consultarIniciativas(ArrayList<String> palabrasClave)throws ExcepcionServiciosBanco;
     
     
+    /**
+     * 
+     * @return Lista de usuarios
+     * @throws ExcepcionServiciosBanco 
+     */
+    public abstract List<Usuario> consultarUsuarios() throws ExcepcionServiciosBanco;
+    /**
+     * Cambia el rol del usuario
+     * @param usuario Usuario
+     * @param rol nuevo rol
+     * @throws ExcepcionServiciosBanco 
+     */
+    public abstract void cambiarRol(Usuario usuario,Rol rol) throws ExcepcionServiciosBanco;
+
 }
