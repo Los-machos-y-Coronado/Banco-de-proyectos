@@ -7,12 +7,18 @@ package edu.eci.cvds.samples.tests;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.samples.entities.Administrador;
+import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.entities.Proponente;
 import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
+import edu.eci.cvds.samples.services.Convertidor;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBancoFactory;
+
+import java.sql.Date;
+import java.util.ArrayList;
+
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,10 +33,11 @@ import org.junit.Test;
 public class ServiciosBancoTest {
     
     @Inject
-    private ServiciosBanco serviciosBanco;
+    private final  ServiciosBanco serviciosBanco;
     public ServiciosBancoTest() {
+
         serviciosBanco = ServiciosBancoFactory.getInstance().getServiciosBanco();
-       
+        
     }
     /**
      * Si existe el usuario
@@ -40,6 +47,7 @@ public class ServiciosBancoTest {
         try {
             Usuario usu = serviciosBanco.consultarUsuario("anfegoca@gmail.com", "1234");
             assertEquals(Rol.Administrador.toString(), usu.getClass().getSimpleName());
+
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
             assertTrue(false);
@@ -117,6 +125,74 @@ public class ServiciosBancoTest {
             assertTrue(false);
         }
     }
+
+    /**
+     * 
+     * Existen iniciativas dadas palabras clave
+     */
+    @Test
+     public void ConsultarIniciativas() {
+        try {
+            Convertidor convertidor=new Convertidor();
+            String palabrasini="Cemento,Desarrollo";
+            
+              
+            ArrayList<String> palabras = convertidor.convertirPalabras(palabrasini);
+
+           
+            String fecha = "2000-10-20";
+            String fecha2 = "2019-10-20";
+            
+            Date d1 = Date.valueOf(fecha2);
+            Date d2 = Date.valueOf(fecha);
+            
+            Proponente proponente1= new Proponente("juan@gmail.com","Juanito","Juan","Perez",true,"Proponente");
+            Proponente proponente2= new Proponente("alex.garci@yahoo.com","Alex22","Alex","Gordillo",true,"Proponente");
+            
+            Iniciativa a= new Iniciativa(2,"Construcción del bloque Z", d1,"En espera");
+            Iniciativa b= new Iniciativa(1,"Optimizacion de Osiris", d2,"En espera");
+            
+
+            
+            ArrayList<Iniciativa> ini2 = new ArrayList<>();
+            
+            ini2.add(b);
+            ini2.add(a);
+            
+            
+            List<Iniciativa> ini = serviciosBanco.consultarIniciativas(palabras);
+            
+            assertEquals(ini.toString(),ini2.toString());
+        } catch (ExcepcionServiciosBanco ex) {
+            Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
+            assertTrue(false);
+        }
+        
+    }
+        /**
+     * 
+     * No existen iniciativas dadas palabras clave
+     */
+    @Test
+     public void ConsultarIniciativas2() {
+        try {
+            Convertidor convertidor=new Convertidor();
+            String palabrasini="Sostebinilidad,Humanistica";
+            
+            ArrayList<String> palabras = new ArrayList<>();
+            palabras.add("Sostebinilidad");
+            palabras.add("Humanistica");
+
+            List<Iniciativa> ini = serviciosBanco.consultarIniciativas(palabras);
+ 
+            assertEquals(0,ini.size());
+        } catch (ExcepcionServiciosBanco ex) {
+            Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
+            assertTrue(false);
+        }
+        
+    }
+
     
-    
+
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.IniciativaMapper">
+    <resultMap type='Iniciativa' id='IniciativaResult'>
+        <id property='id' column='id_iniciativas'/>
+        <result property='descripcion' column='descripcion'/> 
+        <result property='fecha' column='fecha'/>
+        <result property='estado' column='estado'/>      
+               
+    </resultMap>
+    
+    <select parameterType="map"  id="consultarIniciativas"  resultMap="IniciativaResult">
+        SELECT  
+            i.id_iniciativas,
+            i.descripcion,
+            i.fecha,
+            i.estado
+                  		
+        FROM iniciativas as i  JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas 
+        JOIN usuarios as pr ON i.proponentes_usuarios_correo=pr.correo
+        WHERE palabra IN
+        <foreach item="item" index="index" collection="pala"
+            open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        GROUP BY(i.id_iniciativas);
+    </select>
+</mapper>      

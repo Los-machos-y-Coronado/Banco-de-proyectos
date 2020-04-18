@@ -1,0 +1,146 @@
+cd C:\Users\Administrador\Desktop\Banco-de-proyectos; "JAVA_HOME=C:\\Program Files\\Java\\jdk1.8.0_221" cmd /c "\"\"C:\\Program Files\\NetBeans 8.2\\java\\maven\\bin\\mvn.bat\" -Dmaven.ext.class.path=\"C:\\Program Files\\NetBeans 8.2\\java\\maven-nblib\\netbeans-eventspy.jar\" -Dfile.encoding=UTF-8 test\""
+Scanning for projects...
+                                                                        
+------------------------------------------------------------------------
+Building BancoDeProyectos Maven Webapp 1.0-SNAPSHOT
+------------------------------------------------------------------------
+
+--- maven-resources-plugin:3.0.2:resources (default-resources) @ BancoDeProyectos ---
+Using 'UTF-8' encoding to copy filtered resources.
+Copying 8 resources
+
+--- maven-compiler-plugin:3.8.0:compile (default-compile) @ BancoDeProyectos ---
+Nothing to compile - all classes are up to date
+
+--- maven-resources-plugin:3.0.2:testResources (default-testResources) @ BancoDeProyectos ---
+Using 'UTF-8' encoding to copy filtered resources.
+skip non existing resourceDirectory C:\Users\Administrador\Desktop\Banco-de-proyectos\src\test\resources
+
+--- maven-compiler-plugin:3.8.0:testCompile (default-testCompile) @ BancoDeProyectos ---
+Nothing to compile - all classes are up to date
+
+--- maven-surefire-plugin:2.22.1:test (default-test) @ BancoDeProyectos ---
+file.encoding cannot be set as system property, use <argLine>-Dfile.encoding=...</argLine> instead
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running edu.eci.cvds.samples.tests.ServiciosBancoTest
+abr 15, 2020 11:51:52 AM edu.eci.cvds.samples.tests.ServiciosBancoTest ConsultarIniciativas
+GRAVE: null
+edu.eci.cvds.samples.services.ExcepcionServiciosBanco: Error al consultar las iniciativas con las palabras clave[Cemento, Desarrollo]
+	at edu.eci.cvds.samples.services.impl.ServiciosBancoImpl.consultarIniciativas(ServiciosBancoImpl.java:47)
+	at edu.eci.cvds.samples.tests.ServiciosBancoTest.ConsultarIniciativas(ServiciosBancoTest.java:122)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:365)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:273)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:159)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418)
+Caused by: edu.eci.cvds.samples.persistence.PersistenceException: Error al consultar los items con las palabras clave[Cemento, Desarrollo]
+	at edu.eci.cvds.samples.persistence.mybatisimpl.MyBatisDAOIniciativa.consultarIniciativas(MyBatisDAOIniciativa.java:33)
+	at edu.eci.cvds.samples.services.impl.ServiciosBancoImpl.consultarIniciativas(ServiciosBancoImpl.java:44)
+	... 26 more
+Caused by: org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.apache.ibatis.reflection.ReflectionException: Error instantiating class edu.eci.cvds.samples.entities.Iniciativa with invalid types (int,String,Date,String,Usuario) or values (1,Optimizacion de Osiris,2000-10-20,En espera,juan@gmail.com). Cause: java.lang.IllegalArgumentException: argument type mismatch
+### The error may exist in mappers/IniciativaMapper.xml
+### The error may involve edu.eci.cvds.samples.persistence.mybatisimpl.mappers.IniciativaMapper.consultarIniciativas
+### The error occurred while handling results
+### SQL: SELECT               i.id_iniciativas  as id_iniciativas,             i.descripcion as descripcion,             i.fecha as fecha,              i.estado as estado,                                                    pr.correo as pro_correo,             pr.nombre_usuario as pro_nombre_usuario,             pr.nombre as pro_nombre,             pr.apellido as pro_apellido,             pr.estado as pro_estado,             pr.area as pro_area,             pr.rol as pro_rol                                   FROM iniciativas as i  JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas          JOIN usuarios as pr ON i.proponentes_usuarios_correo=pr.correo         WHERE palabra IN          (               ?          ,              ?          )
+### Cause: org.apache.ibatis.reflection.ReflectionException: Error instantiating class edu.eci.cvds.samples.entities.Iniciativa with invalid types (int,String,Date,String,Usuario) or values (1,Optimizacion de Osiris,2000-10-20,En espera,juan@gmail.com). Cause: java.lang.IllegalArgumentException: argument type mismatch
+	at org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:30)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:149)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:140)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.session.SqlSessionManager$SqlSessionInterceptor.invoke(SqlSessionManager.java:357)
+	at com.sun.proxy.$Proxy12.selectList(Unknown Source)
+	at org.apache.ibatis.session.SqlSessionManager.selectList(SqlSessionManager.java:206)
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:147)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:80)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:144)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy14.consultarIniciativas(Unknown Source)
+	at edu.eci.cvds.samples.persistence.mybatisimpl.MyBatisDAOIniciativa.consultarIniciativas(MyBatisDAOIniciativa.java:30)
+	... 27 more
+Caused by: org.apache.ibatis.reflection.ReflectionException: Error instantiating class edu.eci.cvds.samples.entities.Iniciativa with invalid types (int,String,Date,String,Usuario) or values (1,Optimizacion de Osiris,2000-10-20,En espera,juan@gmail.com). Cause: java.lang.IllegalArgumentException: argument type mismatch
+	at org.apache.ibatis.reflection.factory.DefaultObjectFactory.instantiateClass(DefaultObjectFactory.java:88)
+	at org.apache.ibatis.reflection.factory.DefaultObjectFactory.create(DefaultObjectFactory.java:53)
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.createUsingConstructor(DefaultResultSetHandler.java:676)
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.createByConstructorSignature(DefaultResultSetHandler.java:654)
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.createResultObject(DefaultResultSetHandler.java:618)
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.createResultObject(DefaultResultSetHandler.java:591)
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.getRowValue(DefaultResultSetHandler.java:898)
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.handleRowValuesForNestedResultMap(DefaultResultSetHandler.java:870)
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.handleRowValues(DefaultResultSetHandler.java:326)
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.handleResultSet(DefaultResultSetHandler.java:301)
+	at org.apache.ibatis.executor.resultset.DefaultResultSetHandler.handleResultSets(DefaultResultSetHandler.java:194)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:65)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:324)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:83)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147)
+	... 41 more
+Caused by: java.lang.IllegalArgumentException: argument type mismatch
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.apache.ibatis.reflection.factory.DefaultObjectFactory.instantiateClass(DefaultObjectFactory.java:74)
+	... 59 more
+
+Tests run: 6, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 7.863 s <<< FAILURE! - in edu.eci.cvds.samples.tests.ServiciosBancoTest
+ConsultarIniciativas(edu.eci.cvds.samples.tests.ServiciosBancoTest)  Time elapsed: 0.51 s  <<< FAILURE!
+java.lang.AssertionError
+	at edu.eci.cvds.samples.tests.ServiciosBancoTest.ConsultarIniciativas(ServiciosBancoTest.java:127)
+
+
+Results:
+
+Failures: 
+  ServiciosBancoTest.ConsultarIniciativas:127
+
+Tests run: 6, Failures: 1, Errors: 0, Skipped: 0
+
+------------------------------------------------------------------------
+BUILD FAILURE
+------------------------------------------------------------------------
+Total time: 10.532s
+Finished at: Wed Apr 15 11:51:53 COT 2020
+Final Memory: 8M/20M
+------------------------------------------------------------------------
+Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.22.1:test (default-test) on project BancoDeProyectos: There are test failures.
+
+Please refer to C:\Users\Administrador\Desktop\Banco-de-proyectos\target\surefire-reports for the individual test results.
+Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+-> [Help 1]
+
+To see the full stack trace of the errors, re-run Maven with the -e switch.
+Re-run Maven using the -X switch to enable full debug logging.
+
+For more information about the errors and possible solutions, please read the following articles:
+[Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

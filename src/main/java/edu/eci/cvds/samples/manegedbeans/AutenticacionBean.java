@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 package edu.eci.cvds.samples.manegedbeans;
-
-
 import edu.eci.cvds.samples.entities.Usuario;
+import edu.eci.cvds.samples.services.Convertidor;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBancoFactory;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -22,10 +22,11 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class AutenticacionBean {
     
-    private ServiciosBanco serviciosBanco;
+    private final ServiciosBanco serviciosBanco;
     private String estado;
     private String rol;
     private Usuario usu;
+    
     
     public AutenticacionBean(){
         serviciosBanco=ServiciosBancoFactory.getInstance().getServiciosBanco();
@@ -42,6 +43,7 @@ public class AutenticacionBean {
         }
         if(usu==null){
             estado="Correo o Clave incorrecta";
+            
         }else{
             estado="Autenticado "+usu.getNombreUsuario();
             rol=usu.getClass().getSimpleName();
@@ -51,7 +53,7 @@ public class AutenticacionBean {
         
         
     }
-
+    
     public String getEstado() {
         return estado;
     }
@@ -75,5 +77,5 @@ public class AutenticacionBean {
     public void setUsu(Usuario usu) {
         this.usu = usu;
     }
-    
+  
 }

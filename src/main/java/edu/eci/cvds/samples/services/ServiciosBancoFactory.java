@@ -7,7 +7,9 @@ package edu.eci.cvds.samples.services;
 
 import static com.google.inject.Guice.createInjector;
 import com.google.inject.Injector;
+import edu.eci.cvds.samples.persistence.DaoIniciativa;
 import edu.eci.cvds.samples.persistence.DaoUsuario;
+import edu.eci.cvds.samples.persistence.mybatisimpl.MyBatisDAOIniciativa;
 import edu.eci.cvds.samples.persistence.mybatisimpl.MyBatisDAOUsuario;
 import edu.eci.cvds.samples.services.impl.ServiciosBancoImpl;
 import org.mybatis.guice.XMLMyBatisModule;
@@ -30,6 +32,7 @@ public class ServiciosBancoFactory {
                 setClassPathResource("mybatis-config.xml");
                 bind(ServiciosBanco.class).to(ServiciosBancoImpl.class);
                 bind(DaoUsuario.class).to(MyBatisDAOUsuario.class);
+                bind(DaoIniciativa.class).to(MyBatisDAOIniciativa.class);
             }
         }
         );
