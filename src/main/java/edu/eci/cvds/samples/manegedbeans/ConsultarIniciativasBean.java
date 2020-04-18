@@ -28,7 +28,7 @@ public class ConsultarIniciativasBean {
         
     public ConsultarIniciativasBean(){
         serviciosBanco=ServiciosBancoFactory.getInstance().getServiciosBanco();
-        estado="Consultar";
+        
     }       
         
         
@@ -47,7 +47,7 @@ public class ConsultarIniciativasBean {
             }
             else{
 
-                estado="Si se encontraron iniciativas";
+                estado=null;
             }
 
         }
