@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:head>
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
+        <script type="text/javascript" src="js/ControladorPerfil.js"/>
+    </h:head>
+    <h:body>      
+        <div class="login-box">
+            <img src="img/logo.png" class="avatar" alt="Avatar Image"/>
+            <h:form id="formUsuario" >
+                <br><p:outputLabel  id="estado" value="#{AutenticacionBean.estado}"/></br>
+                <label for="username"> Correo </label>
+                <br><p:inputText type="text" id="correo_usuario" binding="#{corr}"></p:inputText></br>
+                <label for="password"> Contraseña </label>
+                <br><p:inputText type="password" id="clave_usuario" binding="#{clus}"></p:inputText></br>
+                <p:commandButton type="submit" update="formUsuario" value="Ingresar" action="#{AutenticacionBean.autenticar(corr.value, clus.value)}" oncomplete="verificar('#{AutenticacionBean.rol}');"  styleClass="Button"/>
+                   
+ 
+            </h:form>
+        </div>
+        
+    </h:body>
+</html>
+

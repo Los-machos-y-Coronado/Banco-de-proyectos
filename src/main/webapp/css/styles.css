@@ -1,0 +1,18 @@
+* {box-sizing: border-box;}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: url(../img/bg.jpg) no-repeat center top;
+    background-size: cover;
+    font-size: 16pt;
+}
+
+h2 {
+    background-color: #b80f22;
+}
+
+.Registro{
+ margin: 45px; 
+  
+}
