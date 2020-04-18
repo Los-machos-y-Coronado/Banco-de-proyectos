@@ -28,7 +28,7 @@ public class AutenticacionBean {
     private String estado;
     private String rol;
     private Usuario usu;
-    private List<Iniciativa> ini;
+    
     
     public AutenticacionBean(){
         serviciosBanco=ServiciosBancoFactory.getInstance().getServiciosBanco();
@@ -51,24 +51,6 @@ public class AutenticacionBean {
         
     }
     
-    public void consultarIniciativas(String palabras){
-
-        try{
-            Convertidor convertidor = new Convertidor();
-            ini=serviciosBanco.consultarIniciativas(convertidor.convertirPalabras(palabras));
-            
-        }catch(ExcepcionServiciosBanco ex){
-            estado="Error al consultar las iniciativas";
-        }   
-        if (ini.isEmpty()){
-            estado="No se encontro ninguna iniciativa con esas palabras";
-        }
-        else{
-            
-            estado="Si se encontraron iniciativas";
-        }
-        
-    }
     public String getEstado() {
         return estado;
     }
@@ -92,13 +74,5 @@ public class AutenticacionBean {
     public void setUsu(Usuario usu) {
         this.usu = usu;
     }
-
-    public List<Iniciativa> getIni() {
-        return ini;
-    }
-
-    public void setIni(List<Iniciativa> ini) {
-        this.ini = ini;
-    }
-    
+  
 }

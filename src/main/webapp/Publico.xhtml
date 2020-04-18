@@ -20,11 +20,11 @@
             <img src="img/logo.png" class="avatar" alt="Avatar Image"/>
             <h1>Consultar iniciativas</h1>
             <h:form id="formConsultarIni">
-                <br><p:outputLabel value="#{AutenticacionBean.estado}"/></br>
+                <br><p:outputLabel value="#{ConsultarIniciativasBean.estado}"/></br>
                 <label for="palabras"> Palabras </label>
                 <br><p:inputText type="palabrasclave" id="palabras_clave" binding="#{pala}" placeholder="Ingrese sus palabras separadas por coma"></p:inputText></br>           
-                <p:commandButton update="formConsultarIni" value="Enviar" actionListener="#{AutenticacionBean.consultarIniciativas(pala.value)}" styleClass="Button"></p:commandButton>    
-                <p:dataTable var="Iniciativa"  value="#{AutenticacionBean.ini}" style="width:250px;" styleClass = "Table">
+                <p:commandButton update="formConsultarIni" value="Enviar" actionListener="#{ConsultarIniciativasBean.consultarIniciativas(pala.value)}" styleClass="Button"></p:commandButton>    
+                <p:dataTable var="Iniciativa"  value="#{ConsultarIniciativasBean.ini}" style="width:250px;" styleClass = "Table">
                     <p:column headerText="Descripcion"  >
                         <h:outputText value= "#{Iniciativa.descripcion}" />
                     </p:column>
