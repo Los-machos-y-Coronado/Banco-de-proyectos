@@ -10,9 +10,15 @@ import javax.faces.bean.RequestScoped;
 
 public class NavigationController implements Serializable {
     public String paginaAtenticacion() {
-        return "autenticacion";
+        return "Autenticacion";
     }
     public String paginaInicio(){
         return "index";
+    }
+    public String paginAsignacionPerfiles(){
+        return "AsignacionPerfiles";
+    }
+    public String paginaPerfil(){
+        return "Perfil";
     }
 }

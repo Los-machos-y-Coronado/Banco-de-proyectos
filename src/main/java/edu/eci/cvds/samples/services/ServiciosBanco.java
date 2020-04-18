@@ -5,7 +5,9 @@
  */
 package edu.eci.cvds.samples.services;
 
+import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
+import java.util.List;
 
 /**
  *
@@ -14,11 +16,23 @@ import edu.eci.cvds.samples.entities.Usuario;
 public interface ServiciosBanco {
     /**
      * Retorna el usuario segun sus credenciales
-     * @param nombre String correo del usuario
+     * @param correo String correo del usuario
      * @param clave String contraseña del usuario
      * @return Usuario usuario
      * @throws edu.eci.cvds.samples.services.ExcepcionServiciosBanco
      */
     public abstract Usuario consultarUsuario(String correo, String clave) throws ExcepcionServiciosBanco;
-    
+    /**
+     * 
+     * @return Lista de usuarios
+     * @throws ExcepcionServiciosBanco 
+     */
+    public abstract List<Usuario> consultarUsuarios() throws ExcepcionServiciosBanco;
+    /**
+     * Cambia el rol del usuario
+     * @param usuario Usuario
+     * @param rol nuevo rol
+     * @throws ExcepcionServiciosBanco 
+     */
+    public abstract void cambiarRol(Usuario usuario,Rol rol) throws ExcepcionServiciosBanco;
 }

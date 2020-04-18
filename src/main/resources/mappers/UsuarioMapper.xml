@@ -32,5 +32,25 @@
         FROM USUARIOS AS u
         WHERE u.correo=#{corr} and u.clave=#{clusu};
     </select>
+    <select parameterType="map" id="consultarUsuarios" resultMap="UsuarioResult">
+        SELECT
+            u.correo,
+            u.nombre_usuario,
+            u.nombre,
+            u.apellido,
+            u.estado,
+            u.area,
+            u.rol
+        FROM USUARIOS AS u;
+    </select>
+    <update id="cambiarRol" parameterType="map">
+        UPDATE USUARIOS
+        SET rol = #{rol}
+        WHERE
+	correo=#{usu.correo};
+    </update>
+    
+        
+    
     
 </mapper>

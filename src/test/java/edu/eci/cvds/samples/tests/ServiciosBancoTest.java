@@ -8,10 +8,12 @@ package edu.eci.cvds.samples.tests;
 import com.google.inject.Inject;
 import edu.eci.cvds.samples.entities.Administrador;
 import edu.eci.cvds.samples.entities.Proponente;
+import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBancoFactory;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static org.junit.Assert.assertEquals;
@@ -37,7 +39,7 @@ public class ServiciosBancoTest {
     public void consultarUsuario(){
         try {
             Usuario usu = serviciosBanco.consultarUsuario("anfegoca@gmail.com", "1234");
-            assertEquals("anfegoca@gmail.com", ((Administrador)usu).getCorreo());
+            assertEquals(Rol.Administrador.toString(), usu.getClass().getSimpleName());
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
             assertTrue(false);
@@ -75,11 +77,46 @@ public class ServiciosBancoTest {
     @Test
     public void AutenticacionProponente(){
         try {
-            Usuario usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
-            assertEquals("juan@gmail.com", ((Proponente)usu).getCorreo());
+            Usuario usu = serviciosBanco.consultarUsuario("alex.garci@yahoo.com", "1911");
+            assertEquals(Rol.Proponente.toString(), usu.getClass().getSimpleName());
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
             assertTrue(false);
         }
     }
+    @Test
+    public void consultarUsuarios(){
+        try {
+            List<Usuario> usu = serviciosBanco.consultarUsuarios();
+        } catch (ExcepcionServiciosBanco ex) {
+            Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
+            assertTrue(false);
+        }
+    }
+    @Test
+    public void cambiarRol(){
+        try {
+            Usuario usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
+            serviciosBanco.cambiarRol(usu, Rol.Publico);
+            usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
+            assertEquals(Rol.Publico.toString(),usu.getClass().getSimpleName());
+        } catch (ExcepcionServiciosBanco ex) {
+            Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
+            assertTrue(false);
+        }
+    }
+    @Test
+    public void cambiarRol2(){
+        try {
+            Usuario usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
+            serviciosBanco.cambiarRol(usu, Rol.Proponente);
+            usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
+            assertEquals(Rol.Proponente.toString(),usu.getClass().getSimpleName());
+        } catch (ExcepcionServiciosBanco ex) {
+            Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
+            assertTrue(false);
+        }
+    }
+    
+    
 }

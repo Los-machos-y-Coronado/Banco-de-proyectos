@@ -26,7 +26,7 @@ public class Proponente extends Usuario{
     
     @Override
     public String toString() {
-        return "Usuario{" + "correo"+correo +", nombre Usuario "+nombreUsuario + ", nombre=" + nombre + ", apellido "+apellido +", estado " + estado + ", area: "+area+ '}';
+        return "Usuario{ " + "correo= "+correo +", nombre Usuario= "+nombreUsuario + ", nombre= " + nombre + ", apellido= "+apellido +", estado= " + estado +", area: "+area+ '}';
     }
     
 }
