@@ -20,7 +20,7 @@ import java.util.Optional;
 
 /**
  *
- * @author Jairo Gomez
+ * @author Daniel Gomez
  */
 public class ServiciosBancoFactory {
 
@@ -40,6 +40,7 @@ public class ServiciosBancoFactory {
 
                 }
             });
+
         }
     private ServiciosBancoFactory(){
         optInjector = Optional.empty();

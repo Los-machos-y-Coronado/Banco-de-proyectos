@@ -4,11 +4,12 @@
  * and open the template in the editor.
  */
 package edu.eci.cvds.samples.manegedbeans;
-
 import edu.eci.cvds.samples.entities.Usuario;
+import edu.eci.cvds.samples.services.Convertidor;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBancoFactory;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -20,19 +21,20 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean(name = "AutenticacionBean")
 @SessionScoped
 public class AutenticacionBean {
-
-    private ServiciosBanco serviciosBanco;
+    private final ServiciosBanco serviciosBanco;
     private String estado;
     private String rol;
     private Usuario usu;
-
+    
+    
     public AutenticacionBean(){
         serviciosBanco=ServiciosBancoFactory.getInstance().getServiciosBanco();
         estado = "Iniciar sesión";
-        rol="Administrador";
+        
     }
-
-    public void autenticar(String correo,String clave,String rol){
+    
+    public void autenticar(String correo,String clave){
+        
         try{
             usu=serviciosBanco.consultarUsuario(correo, clave);
         }catch(ExcepcionServiciosBanco ex){
@@ -40,13 +42,18 @@ public class AutenticacionBean {
         }
         if(usu==null){
             estado="Correo o Clave incorrecta";
+            
         }else{
 
             estado="Autenticado "+usu.getNombreUsuario();
+            rol=usu.getClass().getSimpleName();
+            
+
         }
 
+        
     }
-
+    
     public String getEstado() {
         return estado;
     }
@@ -71,4 +78,6 @@ public class AutenticacionBean {
         this.usu = usu;
     }
 
+
 }
+

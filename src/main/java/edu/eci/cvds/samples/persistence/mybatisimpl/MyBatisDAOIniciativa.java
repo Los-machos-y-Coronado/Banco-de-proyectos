@@ -12,12 +12,13 @@ import edu.eci.cvds.samples.persistence.PersistenceException;
 import edu.eci.cvds.samples.persistence.mybatisimpl.mappers.IniciativaMapper;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
- * @author Jairo Gomez
+ * @author Daniel Gomez
  */
 public class MyBatisDAOIniciativa implements DaoIniciativa{
 
@@ -64,6 +65,17 @@ public class MyBatisDAOIniciativa implements DaoIniciativa{
         }catch (Exception e){
             throw new PersistenceException ("error al actualizar estado de idea/Iniciativa",e);
         }
-
+      
+    @Override
+    public List<Iniciativa> consultarIniciativas(ArrayList<String> palabrasclave) throws PersistenceException {
+        
+        try {
+            
+            return iniciativaMapper.consultarIniciativas(palabrasclave);
+        }
+        catch(org.apache.ibatis.exceptions.PersistenceException e){
+            throw new PersistenceException("Error al consultar los items con las palabras clave"+palabrasclave,e);
+        }
     }
+
 }

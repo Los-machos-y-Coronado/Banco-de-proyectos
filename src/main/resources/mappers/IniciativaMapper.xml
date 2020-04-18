@@ -44,5 +44,21 @@
         where id_iniciativas= #{inid}
     </update>
         
-</mapper>
-
+    
+    <select parameterType="map"  id="consultarIniciativas"  resultMap="IniciativaResult">
+        SELECT  
+            i.id_iniciativas,
+            i.descripcion,
+            i.fecha,
+            i.estado
+                  		
+        FROM iniciativas as i  JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas 
+        JOIN usuarios as pr ON i.proponentes_usuarios_correo=pr.correo
+        WHERE palabra IN
+        <foreach item="item" index="index" collection="pala"
+            open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        GROUP BY(i.id_iniciativas);
+    </select>
+</mapper>      

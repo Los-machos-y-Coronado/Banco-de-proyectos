@@ -19,7 +19,7 @@ body {
 }
 
 .login-box {
-  width: 320px;
+  width: 420px;
   height: 420px;
   background: #000;
   color: #fff;
@@ -89,5 +89,14 @@ body {
   font-size: 18px;
   border-radius: 20px;
 }
+#menu{}
 
+#menu ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
 
+#menu ul li{
+    display: inline-block;
+}
