@@ -45,14 +45,9 @@ form label{
 }
 
 form{
-    width: 300px;
+    
     text-align: center;
     border:10px;
     background-color:#000000;
 }
 
-.Table{
-    position:absolute;
-    right: 20px;
-    top: 50px;    
-}

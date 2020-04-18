@@ -51,7 +51,6 @@ public class MyBatisDAOIniciativa implements DaoIniciativa{
     @Override
     public void registrarIniciativa(Iniciativa in) throws PersistenceException {
         try{
-
             iniciativaMapper.registrarIniciativa(in);
         }catch (Exception e){
             throw new PersistenceException("error al registrar idea/Iniciativa",e);

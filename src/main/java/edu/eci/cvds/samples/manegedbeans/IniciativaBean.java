@@ -53,18 +53,17 @@ public class IniciativaBean implements Serializable {
     }
 
     public void home() {
-        System.out.println("estoy en home, conexion exitosa");
+        
         screenEstado = "reinicio";
     }
 
     public void registrarIniciativa(String id, String descripcion) throws ParseException {
-        Date utilDate = new Date();
-        Iniciativa nuevoRegistro = new Iniciativa(Integer.parseInt(id), descripcion, new java.sql.Date(utilDate.getTime()), proponente.getCorreo(), estado);
-        System.out.println(serviciosBanco);
         try {
+            Date utilDate = new Date();
+            nuevoRegistro = new Iniciativa(Integer.parseInt(id), descripcion, new java.sql.Date(utilDate.getTime()), proponente.getCorreo(), estado);
             serviciosBanco.registrarIniciativa(nuevoRegistro);
+            iniciativas = serviciosBanco.consultarIniciativas();
             screenEstado = "registro exitoso";
-
         } catch (Exception e) {
             e.printStackTrace();
 

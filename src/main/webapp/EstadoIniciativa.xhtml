@@ -67,12 +67,11 @@ and open the template in the editor.
                 <center>
                     <p:commandButton update="formEdit" value="Actualizar" actionListener="#{inBean.UpdateEstado(inid.value)}" styleClass="Button"></p:commandButton>
 
-                    <p:commandButton update="formEdit" value="cancelar"  actionListener="#{inBean.home()}" styleClass="Button"  ></p:commandButton>
-                    <br><p:outputLabel value="#{inBean.screenEstado}"/></br>
+                    <p:commandButton update="formEdit" value="cancelar"  actionListener="#{inBean.home()}" action="#{navigationController.paginaPerfil()}" styleClass="Button"  ></p:commandButton>
                 </center>
             </p:panel>
         </h:form>
-        <center><p:commandButton  value="Volver" action="#{navigationController.paginaPerfil()}"/></center>
+        
         </h:body>
 
 

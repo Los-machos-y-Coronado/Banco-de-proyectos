@@ -47,6 +47,7 @@ public class AsignacionPerfilesBean {
         Rol nuevo= Rol.valueOf(rol);
         try {
             serviciosBanco.cambiarRol(usu,nuevo);
+            usuarios=serviciosBanco.consultarUsuarios();
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(AsignacionPerfilesBean.class.getName()).log(Level.SEVERE, null, ex);
         }
