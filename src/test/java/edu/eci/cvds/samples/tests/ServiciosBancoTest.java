@@ -6,9 +6,7 @@
 package edu.eci.cvds.samples.tests;
 
 import com.google.inject.Inject;
-import edu.eci.cvds.samples.entities.Administrador;
 import edu.eci.cvds.samples.entities.Iniciativa;
-import edu.eci.cvds.samples.entities.Proponente;
 import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.Convertidor;
@@ -32,7 +30,7 @@ public class ServiciosBancoTest {
     
     @Inject
     private final  ServiciosBanco serviciosBanco;
-    Proponente proponente;
+    private Usuario proponente;
     public ServiciosBancoTest() {
 
         serviciosBanco = ServiciosBancoFactory.getInstance().getServiciosBanco();
@@ -42,11 +40,14 @@ public class ServiciosBancoTest {
     /**
      * Si existe el usuario
      */
+    /*
     @Test
+
     public void consultarUsuario(){
         try {
             Usuario usu = serviciosBanco.consultarUsuario("anfegoca@gmail.com", "1234");
-            assertEquals(Rol.Administrador.toString(), usu.getClass().getSimpleName());
+
+            assertEquals(Rol.Administrador, usu.getRol());
 
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
@@ -58,12 +59,14 @@ public class ServiciosBancoTest {
     public void AutenticacionProponente(){	    
         try {
             Usuario usu = serviciosBanco.consultarUsuario("alex.garci@yahoo.com", "1911");
-            assertEquals(Rol.Proponente.toString(), usu.getClass().getSimpleName());
+            System.out.println(usu);
+            assertEquals(Rol.Proponente, usu.getRol());
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
             assertTrue(false);
         }
     }
+    /*
     @Test
     public void consultarUsuarios(){
         try {
@@ -79,7 +82,7 @@ public class ServiciosBancoTest {
             Usuario usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
             serviciosBanco.cambiarRol(usu, Rol.Publico);
             usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
-            assertEquals(Rol.Publico.toString(),usu.getClass().getSimpleName());
+            assertEquals(Rol.Publico,usu.getRol());
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
             assertTrue(false);
@@ -91,7 +94,7 @@ public class ServiciosBancoTest {
             Usuario usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
             serviciosBanco.cambiarRol(usu, Rol.Proponente);
             usu = serviciosBanco.consultarUsuario("juan@gmail.com", "12345");
-            assertEquals(Rol.Proponente.toString(),usu.getClass().getSimpleName());
+            assertEquals(Rol.Proponente,usu.getRol());
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
             assertTrue(false);
@@ -126,6 +129,17 @@ public class ServiciosBancoTest {
      * Existen iniciativas dadas palabras clave
      */
     @Test
+    public void consultarIniciativa(){
+
+        try {
+            Iniciativa ini = serviciosBanco.consultarIniciativa(2);
+        } catch (ExcepcionServiciosBanco excepcionServiciosBanco) {
+            excepcionServiciosBanco.printStackTrace();
+        }
+
+    }
+    /*
+    @Test
      public void ConsultarIniciativas() {
         try {
             Convertidor convertidor=new Convertidor();
@@ -141,8 +155,8 @@ public class ServiciosBancoTest {
             Date d1 = Date.valueOf(fecha2);
             Date d2 = Date.valueOf(fecha);
             
-            Proponente proponente1= new Proponente("juan@gmail.com","Juanito","Juan","Perez",true,"Proponente");
-            Proponente proponente2= new Proponente("alex.garci@yahoo.com","Alex22","Alex","Gordillo",true,"Proponente");
+            Usuario proponente1= new Usuario("juan@gmail.com","Juanito","Juan","Perez",Rol.Proponente,true,"Sistemas");
+            Usuario proponente2= new Usuario("alex.garci@yahoo.com","Alex22","Alex","Gordillo",Rol.Proponente,true,"civil");
             
             Iniciativa a= new Iniciativa(2,"Construcción del bloque Z", d1,null,"En espera");
             Iniciativa b= new Iniciativa(1,"Optimizacion de Osiris", d2,null,"En espera");

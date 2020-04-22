@@ -20,7 +20,7 @@ import javax.faces.bean.SessionScoped;
 
 @ManagedBean(name = "AutenticacionBean")
 @SessionScoped
-public class AutenticacionBean {
+public class AutenticacionBean{
     private final ServiciosBanco serviciosBanco;
     private String estado;
     private String rol;

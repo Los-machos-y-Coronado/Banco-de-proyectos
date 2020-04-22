@@ -1,6 +1,5 @@
 package edu.eci.cvds.samples.manegedbeans;
 
-import edu.eci.cvds.samples.entities.Administrador;
 import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
@@ -27,9 +26,9 @@ import javax.faces.bean.SessionScoped;
 
 @ManagedBean(name = "AsignacionPerfilBean")
 @SessionScoped
-public class AsignacionPerfilesBean {
+public class AsignacionPerfilesBean{
     private ServiciosBanco serviciosBanco;
-    private Administrador admin;
+    private Usuario admin;
     private List<Usuario> usuarios;
     private Rol[] roles;
     

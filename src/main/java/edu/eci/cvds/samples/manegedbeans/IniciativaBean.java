@@ -4,20 +4,16 @@
  * and open the template in the editor.
  */
 package edu.eci.cvds.samples.manegedbeans;
-import com.google.inject.Inject;
-import edu.eci.cvds.samples.entities.Administrador;
 import edu.eci.cvds.samples.entities.Iniciativa;
-import edu.eci.cvds.samples.entities.Proponente;
+import edu.eci.cvds.samples.entities.Rol;
+import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBancoFactory;
-import javax.faces.bean.ApplicationScoped;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import java.io.Serializable;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,13 +27,13 @@ import java.util.List;
 @ManagedBean (name = "inBean")
 @SessionScoped
 
-public class IniciativaBean implements Serializable {
+public class IniciativaBean{
 
     private ServiciosBanco serviciosBanco;
     private String estado = "En espera de revisión";
     private String screenEstado = "";
-    private Proponente proponente = new Proponente("alex.garci@yahoo.com", "alex22", "alex", "gordillo", true, "civl");
-    private Administrador administrador = new Administrador("danipipe1703@gmail.com","DanielG","Daniel","Gomez",true);
+    private Usuario proponente = new Usuario("alex.garci@yahoo.com", "alex22", "alex", "gordillo", Rol.Proponente,true, "civl");
+    private Usuario administrador = new Usuario("danipipe1703@gmail.com","DanielG","Daniel","Gomez",Rol.Administrador,true,null);
     private Iniciativa nuevoRegistro;
     private java.sql.Date fecha;
     private List<Iniciativa> iniciativas;
@@ -59,7 +55,7 @@ public class IniciativaBean implements Serializable {
 
     public void registrarIniciativa(String id, String descripcion) throws ParseException {
         Date utilDate = new Date();
-        Iniciativa nuevoRegistro = new Iniciativa(Integer.parseInt(id), descripcion, new java.sql.Date(utilDate.getTime()), proponente.getCorreo(), estado);
+        //Iniciativa nuevoRegistro = new Iniciativa(Integer.parseInt(id), descripcion, new java.sql.Date(utilDate.getTime()), proponente.getCorreo(), estado);
         System.out.println(serviciosBanco);
         try {
             serviciosBanco.registrarIniciativa(nuevoRegistro);
@@ -85,11 +81,11 @@ public class IniciativaBean implements Serializable {
 
 
 
-    public Administrador getAdministrador() {
+    public Usuario getAdministrador() {
         return administrador;
     }
 
-    public void setAdministrador(Administrador administrador) {
+    public void setAdministrador(Usuario administrador) {
         this.administrador = administrador;
     }
 
@@ -132,11 +128,11 @@ public class IniciativaBean implements Serializable {
         this.screenEstado = screenEstado;
     }
 
-    public Proponente getProponente() {
+    public Usuario getProponente() {
         return proponente;
     }
 
-    public void setProponente(Proponente proponente) {
+    public void setProponente(Usuario proponente) {
         this.proponente = proponente;
     }
 

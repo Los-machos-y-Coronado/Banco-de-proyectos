@@ -20,7 +20,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean(name = "ConsultarIniciativasBean")
 @SessionScoped
-public class ConsultarIniciativasBean {
+public class ConsultarIniciativasBean{
         private final ServiciosBanco serviciosBanco;
         private String estado;
         private List<Iniciativa> ini;
