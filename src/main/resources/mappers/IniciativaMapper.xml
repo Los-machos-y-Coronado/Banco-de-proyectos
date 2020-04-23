@@ -4,33 +4,65 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.IniciativaMapper">
-    <resultMap type='Iniciativa' id='IniciativaResult'>
+    <resultMap type="Iniciativa" id='IniciativaResult'>
         <id property='id' column='id_iniciativas'/>
         <result property='descripcion' column='descripcion'/>
         <result property='fecha' column='fecha'/>
-        <result property='correo' column='proponentes_usuarios_correo'/>
         <result property='estado' column='estado'/>
-
+        <association property='proponente' column="u_correo" select="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.UsuarioMapper" javaType="Usuario" columnPrefix='us_'> </association>
+        <collection property='palabrasClave' column='palabra'  ofType="java.lang.String" javaType='list' columnPrefix='pa_'></collection>
     </resultMap>
+
+    <resultMap type='Usuario' id='UsuarioResult'>
+        <id property='correo' column='correo'/>
+        <result property='nombreUsuario' column='nombre_usuario'/>
+        <result property='nombre' column='nombre'/>
+        <result property='apellido' column='apellido'/>
+        <result property="rol" column="rol" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+        <result property='estado' column='estado'/>
+        <result property="area" column="area"/>
+    </resultMap>
+
+
 
     <select  parameterType="map" id="consultarIniciativa" resultMap="IniciativaResult">
         SELECT
-            ini.id,
-            ini.descripcion,
-            ini.fecha,
-            ini.area,
-        FROM INICIATIVAS AS ini
-        WHERE ini.id=#{inid};
+            i.id_iniciativas,
+            i.descripcion,
+            i.fecha,
+            i.estado,
+
+            u.correo as us_correo,
+
+            pa.palabra as pa_palabra
+
+
+        FROM iniciativas as i  LEFT JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas
+        LEFT JOIN usuarios as u ON i.proponentes_usuarios_correo=u.correo
+        WHERE i.id_iniciativas=#{idin};
     </select>
 
 
     <select  parameterType="map" id="consultarIniciativas" resultMap="IniciativaResult">
         SELECT
-        ini.id_iniciativas,
-        ini.descripcion,
-        ini.fecha,
-        ini.estado
-        FROM INICIATIVAS AS ini;
+            i.id_iniciativas,
+            i.descripcion,
+            i.fecha,
+            i.estado,
+
+            u.correo as u_correo,
+            u.nombre_usuario as u_nombre_usuario,
+            u.nombre as u_nombre,
+            u.apellido as u_apellido,
+            u.rol as u_rol,
+            u.estado as u_estado,
+            u.area as u_area,
+
+            pa.palabra as u_palabra
+
+
+        FROM iniciativas as i  JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas
+        JOIN usuarios as u ON i.proponentes_usuarios_correo=u.correo
 
     </select>
 
@@ -46,14 +78,14 @@
         
     
     <select parameterType="map"  id="consultarIniciativasPalabra"  resultMap="IniciativaResult">
-        SELECT  
+        SELECT
             i.id_iniciativas,
             i.descripcion,
             i.fecha,
             i.proponentes_usuarios_correo,
             i.estado
-                  		
-        FROM iniciativas as i  JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas 
+
+        FROM iniciativas as i  JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas
         JOIN usuarios as pr ON i.proponentes_usuarios_correo=pr.correo
         WHERE palabra IN
         <foreach item="item" index="index" collection="pala"

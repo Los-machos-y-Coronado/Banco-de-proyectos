@@ -20,40 +20,37 @@ public class Iniciativa {
     private String descripcion;
     private Date fecha;
     private String estado;
-    
-    private String correo;
-   
+    private Usuario proponente;
     private List<String> palabrasClave;
 
 
-    public Iniciativa (int id, String descripcion,Date fecha, String correo,List palabrasClave){
+    public Iniciativa (int id, String descripcion,Date fecha, String estado,Usuario proponente, List palabrasClave){
         this.id=id;
         this.descripcion=descripcion;
         this.fecha=fecha;
-        this.correo=correo;
+        this.proponente=proponente;
         this.estado="en espera de revision";
         this.palabrasClave = palabrasClave;
 
     }
-    public Iniciativa (int id, String descripcion,Date fecha, String correo,String estado){
-        this.id=id;
-        this.descripcion=descripcion;
-        this.fecha=fecha;
-        this.correo=correo;
-        this.estado=estado;
-        this.palabrasClave = new ArrayList<String>();
 
+    public Usuario getProponente() {
+        return proponente;
     }
-    public Iniciativa (int id, String descripcion,java.sql.Date fecha,String estado) {
-        this.id =id;
-        this.descripcion = descripcion;
-        this.fecha = fecha;
-        this.estado = estado;
-        this.palabrasClave = new ArrayList<String>();
-    }
-  
 
-        public int getId() {
+    public void setProponente(Usuario proponente) {
+        this.proponente = proponente;
+    }
+
+    public List<String> getPalabrasClave() {
+        return palabrasClave;
+    }
+
+    public void setPalabrasClave(List<String> palabrasClave) {
+        this.palabrasClave = palabrasClave;
+    }
+
+    public int getId() {
             return id;
         }
 
@@ -95,12 +92,12 @@ public class Iniciativa {
             this.palabrasClave = palabras;
         }
 
-    public String getCorreo() {
-        return correo;
+    public Usuario getCorreo() {
+        return proponente;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setCorreo(Usuario correo) {
+        this.proponente = correo;
     }
     
     

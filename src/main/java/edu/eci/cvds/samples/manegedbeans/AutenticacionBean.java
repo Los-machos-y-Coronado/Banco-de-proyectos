@@ -9,6 +9,8 @@ import edu.eci.cvds.samples.services.Convertidor;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBancoFactory;
+
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -20,14 +22,14 @@ import javax.faces.bean.SessionScoped;
 
 @ManagedBean(name = "AutenticacionBean")
 @SessionScoped
-public class AutenticacionBean {
+public class AutenticacionBean implements Serializable {
     private final ServiciosBanco serviciosBanco;
     private String estado;
     private String rol;
     private Usuario usu;
     
     
-    public AutenticacionBean(){
+    public AutenticacionBean() {
         serviciosBanco=ServiciosBancoFactory.getInstance().getServiciosBanco();
         estado = "Iniciar sesión";
         

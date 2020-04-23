@@ -1,12 +1,13 @@
 package edu.eci.cvds.samples.manegedbeans;
 
-import edu.eci.cvds.samples.entities.Administrador;
 import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 
 import edu.eci.cvds.samples.services.ServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBancoFactory;
+
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,9 +28,9 @@ import javax.faces.bean.SessionScoped;
 
 @ManagedBean(name = "AsignacionPerfilBean")
 @SessionScoped
-public class AsignacionPerfilesBean {
+public class AsignacionPerfilesBean implements Serializable {
     private ServiciosBanco serviciosBanco;
-    private Administrador admin;
+    private Usuario admin;
     private List<Usuario> usuarios;
     private Rol[] roles;
     
