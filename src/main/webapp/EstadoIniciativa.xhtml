@@ -29,16 +29,16 @@ and open the template in the editor.
            <p:panel id="Basic" header="Informacion Administrador"  style="margin-bottom:20px">
                <p:panelGrid columns="4" layout="grid" >
                    <p:outputLabel for="correo" value="Correo :"/>
-                   <p:outputLabel id="correo" value="#{inBean.administrador.getCorreo()}"/>
+                   <p:outputLabel id="correo" value="#{inBean.actual.getCorreo()}"/>
 
                    <p:outputLabel for="area" value="Area :" />
                    <p:outputLabel id="area" value="General"/>
 
                    <p:outputLabel for="nombre" value="Nombre :" />
-                   <p:outputLabel id="nombre" value="#{inBean.administrador.getNombre()}"/>
+                   <p:outputLabel id="nombre" value="#{inBean.actual.getNombre()}"/>
 
                    <p:outputLabel for="apellido" value="Apellido :" />
-                   <p:outputLabel id="apellido"  value="#{inBean.administrador.getApellido()}"/>
+                   <p:outputLabel id="apellido"  value="#{inBean.actual.getApellido()}"/>
                </p:panelGrid>
            </p:panel>
 

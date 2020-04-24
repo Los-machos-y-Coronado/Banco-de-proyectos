@@ -11,6 +11,8 @@ import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.apache.shiro.subject.Subject;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @SuppressWarnings("deprecation")
 @ManagedBean(name="shBean")
@@ -64,15 +66,8 @@ public class shiroBean  implements Serializable{
             Subject currentUser = SecurityUtils.getSubject();
             UsernamePasswordToken token = new UsernamePasswordToken(userName, userPassword, true);
             currentUser.login(token);
-            currentUser.getSession().setAttribute("Correo",userName);
-
-            if(currentUser.hasRole("Proponente")){
-                pagina="faces/Perfilproponente.xhtml";
-            }else if (currentUser.hasRole("Administrador")){
-                pagina="faces/Perfiladmin.xhtml";
-            }else{
-                pagina="faces/PerfilPublico.xhtml";
-            }
+            navegacion();
+            System.out.println(pagina);
             FacesContext.getCurrentInstance().getExternalContext().redirect(pagina);
 
         } catch (UnknownAccountException e) {
@@ -84,6 +79,17 @@ public class shiroBean  implements Serializable{
         }
 
     }
+    public void navegacion(){
+        Subject currentUser = SecurityUtils.getSubject();
+        if(currentUser.hasRole("Proponente")){
+                pagina="faces/Perfilproponente.xhtml";
+        }else if (currentUser.hasRole("Administrador")){
+                pagina="faces/Perfiladmin.xhtml";
+        }else if (currentUser.hasRole("Publico")){
+                pagina="faces/PerfilPublico.xhtml";
+        }
+        
+    }
 
     /**
      * Metodo que verifica si el usuario está en sesión
@@ -92,18 +98,14 @@ public class shiroBean  implements Serializable{
         Subject subject = SecurityUtils.getSubject();
         if (subject.getSession().getAttribute("Correo") != null){
             try{
-                if(subject.hasRole("Proponente")){
-                    pagina="Perfilproponente.xhtml";
-                }else if (subject.hasRole("Administrador")){
-                    pagina="Perfiladmin.xhtml";
-                }else{
-                    pagina="PerfilPublico.xhtml";
-                }
+                navegacion();
                 FacesContext.getCurrentInstance().getExternalContext().redirect(pagina);
             }catch (IOException e){
                 FacesContext.getCurrentInstance().addMessage("shiro", new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error al redireccionar","Ocurrio un error en el servidor"));
             }
         }
+      
+        
 
     }
 
