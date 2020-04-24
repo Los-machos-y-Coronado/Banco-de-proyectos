@@ -79,14 +79,21 @@ public class shiroBean  implements Serializable{
         }
 
     }
+    public void logOut() {
+        SecurityUtils.getSubject().logout();
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/index.xhtml");
+        } catch (IOException ex) {
+        }
+    }
     public void navegacion(){
         
         if(currentUser.hasRole("Proponente")){
-                pagina="faces/Perfilproponente.xhtml";
+                pagina="Perfilproponente.xhtml";
         }else if (currentUser.hasRole("Administrador")){
-                pagina="faces/Perfiladmin.xhtml";
+                pagina="Perfiladmin.xhtml";
         }else if (currentUser.hasRole("Publico")){
-                pagina="faces/PerfilPublico.xhtml";
+                pagina="PerfilPublico.xhtml";
         }
         
     }

@@ -15,6 +15,9 @@ function cambiarPagina(pag) {
     else if(pag === "Consult"){
         location.href="/faces/frontConsult.xhtml";
     }
+    else if(pag === "Autenticar"){
+        location.href="/faces/Autenticacion.xhtml";
+    }
 
 }
 
