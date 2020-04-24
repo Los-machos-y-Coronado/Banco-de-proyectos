@@ -29,7 +29,7 @@ public class Iniciativa {
         this.descripcion=descripcion;
         this.fecha=fecha;
         this.proponente=proponente;
-        this.estado="en espera de revision";
+        this.estado="En espera";
         this.palabrasClave = palabrasClave;
 
     }
