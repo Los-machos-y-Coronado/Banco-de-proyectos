@@ -132,6 +132,7 @@ public class ServiciosBancoTest {
     public void consultarIniciativa(){
         try {
             Iniciativa ini = serviciosBanco.consultarIniciativa(2);
+            System.out.println(ini);
         } catch (ExcepcionServiciosBanco excepcionServiciosBanco) {
             excepcionServiciosBanco.printStackTrace();
         }
@@ -192,7 +193,7 @@ public class ServiciosBancoTest {
             palabras.add("Humanistica");
 
             List<Iniciativa> ini = serviciosBanco.consultarIniciativas(palabras);
- 
+            System.out.println(ini);
             assertEquals(0,ini.size());
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);

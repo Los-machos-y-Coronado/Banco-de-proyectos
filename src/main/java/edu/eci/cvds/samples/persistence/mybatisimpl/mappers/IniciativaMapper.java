@@ -27,4 +27,5 @@ public interface IniciativaMapper {
 
     public List<Iniciativa> consultarIniciativasPalabra(@Param("pala")ArrayList<String> palabras);
 
+    public void   registrarPalabraClave(@Param("inid") int id,@Param("pala") String palabra);
 }

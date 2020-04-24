@@ -9,6 +9,7 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 
 public class NavigationController implements Serializable {
+
     public String paginaAtenticacion() {
         return "Autenticacion";
     }
@@ -30,4 +31,7 @@ public class NavigationController implements Serializable {
     public String publico(){
         return "Publico";
     }
+    public String getPageAdmin(){return "Perfiladmin";}
+    public String getPageProp(){return "Perfilproponente";}
+    public String getPagePublic(){return "PerfilPublico";}
 }

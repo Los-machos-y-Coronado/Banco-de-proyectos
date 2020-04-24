@@ -31,11 +31,12 @@ public interface ServiciosBanco {
      * @return Usuario usuario 
      * @throws edu.eci.cvds.samples.services.ExcepcionServiciosBanco
      */
-    public abstract Usuario consultarUsuario(String correo, String clave) throws ExcepcionServiciosBanco;
+    public abstract Usuario consultarUsuario(String correo) throws ExcepcionServiciosBanco;
     public abstract Iniciativa consultarIniciativa(int id) throws ExcepcionServiciosBanco;
     public abstract List<Iniciativa> consultarIniciativas() throws ExcepcionServiciosBanco;
     public abstract void registrarIniciativa(Iniciativa in)throws ExcepcionServiciosBanco;
     public abstract void UpdateEstado(int id,String estado) throws ExcepcionServiciosBanco;
+
 
 
     

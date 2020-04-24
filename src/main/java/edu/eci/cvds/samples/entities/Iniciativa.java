@@ -34,6 +34,8 @@ public class Iniciativa {
 
     }
 
+    public Iniciativa(){}
+
     public Usuario getProponente() {
         return proponente;
     }
@@ -99,12 +101,12 @@ public class Iniciativa {
     public void setCorreo(Usuario correo) {
         this.proponente = correo;
     }
-    
-    
+
+
 
 
     @Override
     public String toString() {
-        return "Iniciativa{" + "id "+id +", descripcion "+descripcion + "fecha " + fecha +  "estado " + estado + '}';
+        return "Iniciativa{" + "id= "+id +", descripcion= "+descripcion + ", fecha= " + fecha +  ", estado= " + estado + ", Proponente= " + proponente + ", Palabras= " + palabrasClave + "}";
     }
    }

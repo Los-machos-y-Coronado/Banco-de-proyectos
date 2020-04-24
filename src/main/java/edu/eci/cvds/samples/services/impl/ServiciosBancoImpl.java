@@ -30,9 +30,9 @@ public class ServiciosBancoImpl implements ServiciosBanco {
     private DaoIniciativa daoIniciativa;
 
     @Override
-    public Usuario consultarUsuario(String correo, String clave) throws ExcepcionServiciosBanco {
+    public Usuario consultarUsuario(String correo ) throws ExcepcionServiciosBanco {
         try{
-            return daoUsuario.consultarUsuario(correo,clave);
+            return daoUsuario.consultarUsuario(correo);
         }catch(PersistenceException ex){
             throw new ExcepcionServiciosBanco("No se pudo consultar el usuario "+correo,ex);
         }
@@ -62,8 +62,9 @@ public class ServiciosBancoImpl implements ServiciosBanco {
     @Override
     public void registrarIniciativa(Iniciativa in) throws ExcepcionServiciosBanco{
         try{
-
             daoIniciativa.registrarIniciativa(in);
+            ArrayList<String> palabras = (ArrayList<String>) in.getPalabras();
+            daoIniciativa.registrarPalabrasClave(in.getId(),palabras);
         }catch (PersistenceException ex){
             throw new ExcepcionServiciosBanco("no se pudo registrar ",ex);
         }
@@ -108,6 +109,8 @@ public class ServiciosBancoImpl implements ServiciosBanco {
             throw new ExcepcionServiciosBanco("No se pudo cambiar el rol del usuario "+usuario.getCorreo(),ex);
         }    
     }
+
+
 
         
 }

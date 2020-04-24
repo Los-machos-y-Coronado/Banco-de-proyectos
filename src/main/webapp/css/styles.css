@@ -6,6 +6,7 @@ body {
     background: url(../img/bg.jpg) no-repeat center top;
     background-size: cover;
     font-size: 16pt;
+    font-color: white;
 }
 
 h2 {
@@ -13,6 +14,10 @@ h2 {
 }
 
 .Registro{
- margin: 45px; 
+ margin: 45px;
+
+::placeholder {
+            font-size: 0.7em;
+        }
   
 }

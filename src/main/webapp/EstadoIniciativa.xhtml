@@ -13,9 +13,12 @@ and open the template in the editor.
     <h:head>
         <title> Editar estado</title>
         <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
+
     </h:head>
     <h:body>
         <h:form id="formEdit" >
+            <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
            <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
            <br/>
            <center>
@@ -41,14 +44,18 @@ and open the template in the editor.
 
             <p:panel id="Pestado" header="Cambio de Estado"  style="margin-bottom:20px">
                 <p:dataTable value="#{inBean.iniciativas}" var="iniciativa">
-                    <p:column headerText="Id">
-                        <p:outputLabel value="#{iniciativa.id}"/>
-                    </p:column>
                     <p:column headerText="Descripcion">
                         <p:outputLabel value="#{iniciativa.descripcion}"/>
                     </p:column>
                     <p:column headerText="Estado">
                         <p:outputLabel value="#{iniciativa.estado}"/>
+                    </p:column>
+                    <p:column >
+                        <center>
+                        <p:commandButton update="formEdit" value="actualizar" title="View" >
+                            <f:setPropertyActionListener value="#{iniciativa}" target="#{dtSelectionView.selectedIniciativa}" />
+                        </p:commandButton>
+                        </center>
                     </p:column>
                 </p:dataTable>
                 <p:panelGrid columns="4" layout="grid">
@@ -64,12 +71,12 @@ and open the template in the editor.
                         <f:selectItem itemLabel="Solucionado" itemValue="Solucionado" />
                     </p:selectOneMenu>
                 </p:panelGrid>
-                <center>
-                    <p:commandButton update="formEdit" value="Actualizar" actionListener="#{inBean.UpdateEstado(inid.value)}" styleClass="Button"></p:commandButton>
 
-                    <p:commandButton update="formEdit" value="cancelar"  actionListener="#{inBean.home()}" action="#{navigationController.paginaPerfil()}" styleClass="Button"  ></p:commandButton>
-                </center>
             </p:panel>
+            <center>
+                <p:commandButton update="formEdit" value="Actualizar" actionListener="#{inBean.UpdateEstado(inid.value)}" styleClass="Button"></p:commandButton>
+                <p:commandButton update="formEdit" value="cancelar"  actionListener="#{inBean.home()}" action="#{navigationController.paginaPerfil()}" styleClass="Button"  ></p:commandButton>
+            </center>
         </h:form>
         
         </h:body>

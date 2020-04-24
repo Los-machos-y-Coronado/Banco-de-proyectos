@@ -10,12 +10,16 @@ import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBancoFactory;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -34,16 +38,26 @@ public class IniciativaBean implements Serializable {
     private ServiciosBanco serviciosBanco;
     private String estado = "En espera de revisión";
     private String screenEstado = "";
-    private Usuario proponente = new Usuario("alex.garci@yahoo.com", "alex22", "alex", "gordillo", Rol.Proponente,true, "civl");
+    private Usuario proponente ;
     private Usuario administrador = new Usuario("danipipe1703@gmail.com","DanielG","Daniel","Gomez",Rol.Administrador,true,null);
+
     private Iniciativa nuevoRegistro;
     private java.sql.Date fecha;
     private List<Iniciativa> iniciativas;
+    private String palabrasClave="";
+    private int id;
+    private Subject cor;
 
     public IniciativaBean() {
         serviciosBanco = ServiciosBancoFactory.getInstance().getServiciosBanco();
+
+        cor= SecurityUtils.getSubject();
+        System.out.println(cor.hasRole("Administrador"));
+
         try {
+            proponente=serviciosBanco.consultarUsuario(cor.getSession().getAttribute("Correo").toString());
             iniciativas = serviciosBanco.consultarIniciativas();
+            id= iniciativas.size()+1;
         }catch (ExcepcionServiciosBanco ex){
 
         }
@@ -54,11 +68,12 @@ public class IniciativaBean implements Serializable {
         screenEstado = "reinicio";
     }
 
-    public void registrarIniciativa(String id, String descripcion) throws ParseException {
+    public void registrarIniciativa(String descripcion) throws ParseException {
 
         try {
+            List palabrasclaveArr = new ArrayList<String>(Arrays.asList(palabrasClave.split(",")));
             Date utilDate = new Date();
-            nuevoRegistro = new Iniciativa(Integer.parseInt(id), descripcion, new java.sql.Date(utilDate.getTime()),estado,proponente,new ArrayList<String>());
+            nuevoRegistro = new Iniciativa(id, descripcion, new java.sql.Date(utilDate.getTime()),estado,proponente,palabrasclaveArr);
             serviciosBanco.registrarIniciativa(nuevoRegistro);
             iniciativas = serviciosBanco.consultarIniciativas();
             screenEstado = "registro exitoso";
@@ -143,5 +158,21 @@ public class IniciativaBean implements Serializable {
 
     public void setNuevoRegistro(Iniciativa nuevoRegistro) {
         this.nuevoRegistro = nuevoRegistro;
+    }
+
+    public String getPalabrasClave() {
+        return palabrasClave;
+    }
+
+    public void setPalabrasClave(String palabrasClave) {
+        this.palabrasClave = palabrasClave;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

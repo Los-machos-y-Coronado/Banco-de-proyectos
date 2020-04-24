@@ -21,7 +21,7 @@ public interface DaoUsuario {
      * @return Usuario correspondiente 
      * @throws edu.eci.cvds.samples.persistence.PersistenceException 
      */
-    public Usuario consultarUsuario(String correo, String clave) throws PersistenceException;
+    public Usuario consultarUsuario(String correo ) throws PersistenceException;
     
     /**
      * 

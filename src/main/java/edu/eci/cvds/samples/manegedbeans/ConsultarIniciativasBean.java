@@ -30,11 +30,8 @@ public class ConsultarIniciativasBean implements Serializable {
         
     public ConsultarIniciativasBean(){
         serviciosBanco=ServiciosBancoFactory.getInstance().getServiciosBanco();
-        
     }       
-        
-        
-        
+
     public void consultarIniciativas(String palabras){
 
             try{

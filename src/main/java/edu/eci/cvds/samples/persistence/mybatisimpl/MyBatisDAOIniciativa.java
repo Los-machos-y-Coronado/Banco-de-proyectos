@@ -56,6 +56,16 @@ public class MyBatisDAOIniciativa implements DaoIniciativa{
             throw new PersistenceException("error al registrar idea/Iniciativa",e);
         }
     }
+    @Override
+    public void registrarPalabrasClave(int id, ArrayList<String> palabras) throws PersistenceException{
+        try{
+            for (String pala : palabras){
+                iniciativaMapper.registrarPalabraClave(id,pala);
+            }
+        }catch(Exception e){
+            throw new PersistenceException ("al registrar palabra clave",e);
+        }
+    }
 
     @Override
     public void UpdateEstado(int id,String estado) throws PersistenceException {

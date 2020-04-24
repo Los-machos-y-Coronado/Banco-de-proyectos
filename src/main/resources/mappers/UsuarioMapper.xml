@@ -27,7 +27,7 @@
             u.area
             
         FROM USUARIOS AS u
-        WHERE u.correo=#{corr} and u.clave=#{clusu};
+        WHERE u.correo=#{corr};
     </select>
     <select parameterType="map" id="consultarUsuarios" resultMap="UsuarioResult">
         SELECT

@@ -21,7 +21,7 @@ public interface UsuarioMapper {
      * @param clave  String clave del Usuario
      * @return Usuario correspondiente 
      */
-    public Usuario consultarUsuario(@Param("corr")String correo, @Param("clusu")String clave);
+    public Usuario consultarUsuario(@Param("corr")String correo );
     
     /**
      * Consulta todos los usuarios

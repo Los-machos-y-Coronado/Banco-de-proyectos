@@ -9,38 +9,50 @@
         <title></title>
         <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
         <script type="text/javascript" src="js/ControladorPerfil.js"/>
+        <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
     </h:head>
     <h:body>
-        <h:form id="formPer">
-            <p:dataTable value="#{AsignacionPerfilBean.usuarios}" var="u">
-                <p:column headerText="Correo">
-                    <p:outputLabel value="#{u.correo}"/>
-                </p:column>
-                <p:column headerText="Nombre Usuario">
-                    <p:outputLabel value="#{u.nombreUsuario}"/>
-                </p:column>
-                <p:column headerText="Nombre">
-                    <p:outputLabel value="#{u.nombre}"/>
-                </p:column>
-                <p:column headerText="apellido">
-                    <p:outputLabel value="#{u.apellido}"/>
-                </p:column>
-                <p:column headerText="Estado">
-                    <p:outputLabel value="#{u.estado}"/>
-                </p:column>
-                <p:column headerText="Tipo">
-                    <p:outputLabel value="#{u.getClass().getSimpleName()}"/>
-                </p:column>
-                <p:column>
-                    <p:selectOneMenu binding="#{seleccionado}">
-                        <f:selectItems value="#{AsignacionPerfilBean.roles}"/>
-                    </p:selectOneMenu>
-                </p:column>
-                <p:column>
-                    <p:commandButton update="formPer" value="Cambiar" actionListener="#{AsignacionPerfilBean.cambiarRol(u, seleccionado.value)}"/>
-                </p:column>
 
-            </p:dataTable>
+
+        <h:form id="formPer">
+            <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
+            <br/>
+            <center>
+                <h2>Bienvenido A registro De iniciativa </h2>
+            </center>
+
+            <hr />
+            <p:panel id="BasicUsuario" header="Informacion Usuario "  style="margin-bottom:20px">
+                <p:dataTable value="#{AsignacionPerfilBean.usuarios}" var="u">
+                    <p:column headerText="Correo">
+                        <p:outputLabel value="#{u.correo}"/>
+                    </p:column>
+                    <p:column headerText="Nombre Usuario">
+                        <p:outputLabel value="#{u.nombreUsuario}"/>
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        <p:outputLabel value="#{u.nombre}"/>
+                    </p:column>
+                    <p:column headerText="apellido">
+                        <p:outputLabel value="#{u.apellido}"/>
+                    </p:column>
+                    <p:column headerText="Estado">
+                        <p:outputLabel value="#{u.estado}"/>
+                    </p:column>
+                    <p:column headerText="Tipo">
+                        <p:outputLabel value="#{u.getClass().getSimpleName()}"/>
+                    </p:column>
+                    <p:column>
+                        <p:selectOneMenu binding="#{seleccionado}">
+                            <f:selectItems value="#{AsignacionPerfilBean.roles}"/>
+                        </p:selectOneMenu>
+                    </p:column>
+                    <p:column>
+                        <p:commandButton update="formPer" value="Cambiar" actionListener="#{AsignacionPerfilBean.cambiarRol(u, seleccionado.value)}"/>
+                    </p:column>
+
+                </p:dataTable>
+            </p:panel>
         </h:form>
         <center><p:commandButton  value="Volver" action="#{navigationController.paginaPerfil()}"/></center>
 
