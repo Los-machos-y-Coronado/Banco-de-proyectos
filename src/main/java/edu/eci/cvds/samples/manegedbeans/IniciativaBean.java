@@ -50,10 +50,7 @@ public class IniciativaBean implements Serializable {
 
     public IniciativaBean() {
         serviciosBanco = ServiciosBancoFactory.getInstance().getServiciosBanco();
-
         cor= SecurityUtils.getSubject();
-        System.out.println(cor.hasRole("Administrador"));
-
         try {
             proponente=serviciosBanco.consultarUsuario(cor.getSession().getAttribute("Correo").toString());
             iniciativas = serviciosBanco.consultarIniciativas();
@@ -65,7 +62,7 @@ public class IniciativaBean implements Serializable {
 
     public void home() {
 
-        screenEstado = "reinicio";
+        screenEstado = "Ingrese sus Datos";
     }
 
     public void registrarIniciativa(String descripcion) throws ParseException {

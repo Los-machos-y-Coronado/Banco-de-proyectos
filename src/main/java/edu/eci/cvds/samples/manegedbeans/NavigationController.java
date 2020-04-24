@@ -34,4 +34,8 @@ public class NavigationController implements Serializable {
     public String getPageAdmin(){return "Perfiladmin";}
     public String getPageProp(){return "Perfilproponente";}
     public String getPagePublic(){return "PerfilPublico";}
+
+    public String ConsultarIniciativas(){
+        return "frontConsult";
+    }
 }
