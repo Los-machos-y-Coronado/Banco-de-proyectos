@@ -23,7 +23,7 @@ public class shiroBean  implements Serializable{
     private String userPassword;
     private boolean rememberMe;
     private String pagina;
-
+    Subject currentUser;
 
 
     public String getPagina() {
@@ -63,11 +63,11 @@ public class shiroBean  implements Serializable{
      */
     public void loginUser() {
         try {
-            Subject currentUser = SecurityUtils.getSubject();
+            currentUser = SecurityUtils.getSubject();
             UsernamePasswordToken token = new UsernamePasswordToken(userName, userPassword, true);
             currentUser.login(token);
+            currentUser.getSession().setAttribute("Correo",userName);
             navegacion();
-            System.out.println(pagina);
             FacesContext.getCurrentInstance().getExternalContext().redirect(pagina);
 
         } catch (UnknownAccountException e) {
@@ -80,7 +80,7 @@ public class shiroBean  implements Serializable{
 
     }
     public void navegacion(){
-        Subject currentUser = SecurityUtils.getSubject();
+        
         if(currentUser.hasRole("Proponente")){
                 pagina="faces/Perfilproponente.xhtml";
         }else if (currentUser.hasRole("Administrador")){
@@ -90,13 +90,12 @@ public class shiroBean  implements Serializable{
         }
         
     }
-
     /**
      * Metodo que verifica si el usuario está en sesión
      */
     public void isLogged(){
-        Subject subject = SecurityUtils.getSubject();
-        if (subject.getSession().getAttribute("Correo") != null){
+        
+        if (currentUser.getSession().getAttribute("Correo") != null){
             try{
                 navegacion();
                 FacesContext.getCurrentInstance().getExternalContext().redirect(pagina);

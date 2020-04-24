@@ -29,15 +29,16 @@ and open the template in the editor.
             </center>
 
             <hr />
-        <p:menu>
-            <p:submenu label="Administrador">
-                        <p:menuitem value="Asignar perfiles" action="#{navigationController.paginAsignacionPerfiles()}" />
-                        <p:menuitem value="Cambiar estado iniciativas " action="#{navigationController.estadoIniciativa()}"/>
-                        <p:menuitem value="Consultar iniciativas " action="#{navigationController.ConsultarIniciativas()}"/>
-                        <p:menuitem value="Registrar iniciativa" action="#{navigationController.iniciativas()}"/>
-                        <p:menuitem value="Consultar por palabras clave" action="#{navigationController.publico()}" />
-            </p:submenu>
-        </p:menu>
+            
+            
+        <p:menubar>
+                        
+                        <p:menuitem value="Asignar perfiles" onclick="cambiarPagina('AsignacionPerfiles')"/>
+                        <p:menuitem value="Cambiar estado iniciativas " onclick="cambiarPagina('EstadoIniciativa')"/>
+                        <p:menuitem value="Consultar iniciativas " onclick="cambiarPagina('Consult')"/>
+                        <p:menuitem value="Consultar por palabras clave" onclick="cambiarPagina('Publico')" />
+           
+        </p:menubar>
             </h:form>
     </h:body>
 </html>

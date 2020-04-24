@@ -47,16 +47,12 @@ public class IniciativaBean implements Serializable {
     private Subject cor;
 
     public IniciativaBean() {
-        System.out.println("JOHANN ES RE GURRERO");
 
         serviciosBanco = ServiciosBancoFactory.getInstance().getServiciosBanco();
-        System.out.println(serviciosBanco);
         cor= SecurityUtils.getSubject();
-        System.out.println(cor);
 
         try {
             actual=serviciosBanco.consultarUsuario(cor.getSession().getAttribute("Correo").toString());
-            System.out.println(actual);
             iniciativas = serviciosBanco.consultarIniciativas();
             id= iniciativas.size()+1;
         }catch (ExcepcionServiciosBanco ex){

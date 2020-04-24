@@ -30,15 +30,15 @@ and open the template in the editor.
             </center>
 
             <hr />
-            <p:menu>
+            <p:menubar>
 
-                <p:submenu label="Proponente">
-                    <p:menuitem value="Registrar iniciativa" action="#{navigationController.iniciativas()}"/>
-                    <p:menuitem value="Consutlar iniciativas " action="#{navigationController.ConsultarIniciativas()}"/>
-                    <p:menuitem value="Consultar por palabras clave" action="#{navigationController.publico()}" />
-                </p:submenu>
+                
+                    <p:menuitem value="Registrar iniciativa" onclick="cambiarPagina('Riniciativas')"/>
+                    <p:menuitem value="Consutlar iniciativas " onclick="cambiarPagina('Consult')"/>
+                    <p:menuitem value="Consultar por palabras clave" onclick="cambiarPagina('Publico')"/>
+             
 
-            </p:menu>
+            </p:menubar>
         </h:form>
     </h:body>
 </html>
