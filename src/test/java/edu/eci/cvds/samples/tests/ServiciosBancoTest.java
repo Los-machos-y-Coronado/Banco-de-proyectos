@@ -6,6 +6,7 @@
 package edu.eci.cvds.samples.tests;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.samples.entities.Area;
 import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
@@ -124,15 +125,16 @@ public class ServiciosBancoTest {
         }catch(Exception e){
             
         }
+    */
     /**
      * 
      * Existen iniciativas dadas palabras clave
      */
+    
     @Test
     public void consultarIniciativa(){
         try {
             Iniciativa ini = serviciosBanco.consultarIniciativa(2);
-            System.out.println(ini);
         } catch (ExcepcionServiciosBanco excepcionServiciosBanco) {
             excepcionServiciosBanco.printStackTrace();
         }
@@ -182,6 +184,7 @@ public class ServiciosBancoTest {
      * 
      * No existen iniciativas dadas palabras clave
      */
+    /*
     @Test
      public void ConsultarIniciativas2() {
         try {
@@ -201,6 +204,16 @@ public class ServiciosBancoTest {
         }
         
     }
+    */
+     @Test
+     public void ConsultarIniciativasPorArea(){
+         try{
+             List<Area> inici = serviciosBanco.iniciativasPorArea();
+             assertTrue(true);
+         }catch(ExcepcionServiciosBanco ex){
+             assertTrue(false);
+         }
+     }
 
     
 

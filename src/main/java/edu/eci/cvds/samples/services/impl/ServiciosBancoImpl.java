@@ -6,6 +6,7 @@
 package edu.eci.cvds.samples.services.impl;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.samples.entities.Area;
 import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
@@ -108,6 +109,15 @@ public class ServiciosBancoImpl implements ServiciosBanco {
         }catch(PersistenceException ex){
             throw new ExcepcionServiciosBanco("No se pudo cambiar el rol del usuario "+usuario.getCorreo(),ex);
         }    
+    }
+
+    @Override
+    public List<Area> iniciativasPorArea() throws ExcepcionServiciosBanco {
+        try{
+            return daoIniciativa.iniciativasPorArea();
+        }catch(PersistenceException ex){
+            throw new ExcepcionServiciosBanco("No se pudo consultar las iniciativas por area",ex);
+        }
     }
 
 

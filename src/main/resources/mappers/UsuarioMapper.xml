@@ -18,26 +18,26 @@
 
     <select parameterType="map" id="consultarUsuario" resultMap="UsuarioResult">
         SELECT
-            u.correo,
-            u.nombre_usuario,
-            u.nombre,
-            u.apellido,
-            u.rol,
-            u.estado,
-            u.area
+            u.correo as u_correo,
+            u.nombre_usuario as u_nombre_usuario,
+            u.nombre as u_nombre,
+            u.apellido as u_apellido,
+            u.rol as u_rol,
+            u.estado as u_estado,
+            u.area as u_area
             
         FROM USUARIOS AS u
         WHERE u.correo=#{corr};
     </select>
     <select parameterType="map" id="consultarUsuarios" resultMap="UsuarioResult">
         SELECT
-            u.correo,
-            u.nombre_usuario,
-            u.nombre,
-            u.apellido,
-            u.rol,
-            u.estado,
-            u.area
+            u.correo as u_correo,
+            u.nombre_usuario as u_nombre_usuario,
+            u.nombre as u_nombre,
+            u.apellido as u_apellido,
+            u.rol as u_rol,
+            u.estado as u_estado,
+            u.area as u_area
             
         FROM USUARIOS AS u;
     </select>
