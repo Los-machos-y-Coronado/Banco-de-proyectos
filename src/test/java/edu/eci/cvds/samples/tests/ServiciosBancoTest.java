@@ -246,4 +246,16 @@ public class ServiciosBancoTest {
         
     }
 
+
+    */
+     @Test
+     public void ConsultarIniciativasPorArea(){
+         try{
+             List<Area> inici = serviciosBanco.iniciativasPorArea();
+             assertTrue(true);
+         }catch(ExcepcionServiciosBanco ex){
+             assertTrue(false);
+         }
+     }
+
 }

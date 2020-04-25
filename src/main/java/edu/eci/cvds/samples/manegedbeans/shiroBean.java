@@ -11,6 +11,8 @@ import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.apache.shiro.subject.Subject;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @SuppressWarnings("deprecation")
 @ManagedBean(name="shBean")
@@ -21,7 +23,7 @@ public class shiroBean  implements Serializable{
     private String userPassword;
     private boolean rememberMe;
     private String pagina;
-
+    Subject currentUser;
 
 
     public String getPagina() {
@@ -61,18 +63,11 @@ public class shiroBean  implements Serializable{
      */
     public void loginUser() {
         try {
-            Subject currentUser = SecurityUtils.getSubject();
+            currentUser = SecurityUtils.getSubject();
             UsernamePasswordToken token = new UsernamePasswordToken(userName, userPassword, true);
             currentUser.login(token);
             currentUser.getSession().setAttribute("Correo",userName);
-
-            if(currentUser.hasRole("Proponente")){
-                pagina="faces/Perfilproponente.xhtml";
-            }else if (currentUser.hasRole("Administrador")){
-                pagina="faces/Perfiladmin.xhtml";
-            }else{
-                pagina="faces/PerfilPublico.xhtml";
-            }
+            navegacion();
             FacesContext.getCurrentInstance().getExternalContext().redirect(pagina);
 
         } catch (UnknownAccountException e) {
@@ -84,26 +79,39 @@ public class shiroBean  implements Serializable{
         }
 
     }
-
+    public void logOut() {
+        SecurityUtils.getSubject().logout();
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/index.xhtml");
+        } catch (IOException ex) {
+        }
+    }
+    public void navegacion(){
+        
+        if(currentUser.hasRole("Proponente")){
+                pagina="Perfilproponente.xhtml";
+        }else if (currentUser.hasRole("Administrador")){
+                pagina="Perfiladmin.xhtml";
+        }else if (currentUser.hasRole("Publico")){
+                pagina="PerfilPublico.xhtml";
+        }
+        
+    }
     /**
      * Metodo que verifica si el usuario está en sesión
      */
     public void isLogged(){
-        Subject subject = SecurityUtils.getSubject();
-        if (subject.getSession().getAttribute("Correo") != null){
+        
+        if (currentUser.getSession().getAttribute("Correo") != null){
             try{
-                if(subject.hasRole("Proponente")){
-                    pagina="Perfilproponente.xhtml";
-                }else if (subject.hasRole("Administrador")){
-                    pagina="Perfiladmin.xhtml";
-                }else{
-                    pagina="PerfilPublico.xhtml";
-                }
+                navegacion();
                 FacesContext.getCurrentInstance().getExternalContext().redirect(pagina);
             }catch (IOException e){
                 FacesContext.getCurrentInstance().addMessage("shiro", new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error al redireccionar","Ocurrio un error en el servidor"));
             }
         }
+      
+        
 
     }
 

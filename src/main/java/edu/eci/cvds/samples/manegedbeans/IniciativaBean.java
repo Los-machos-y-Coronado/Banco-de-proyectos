@@ -38,9 +38,7 @@ public class IniciativaBean implements Serializable {
     private ServiciosBanco serviciosBanco;
     private String estado = "En espera de revisión";
     private String screenEstado = "";
-    private Usuario proponente ;
-    private Usuario administrador = new Usuario("danipipe1703@gmail.com","DanielG","Daniel","Gomez",Rol.Administrador,true,null);
-
+    private Usuario actual;
     private Iniciativa nuevoRegistro;
     private java.sql.Date fecha;
     private List<Iniciativa> iniciativas;
@@ -49,14 +47,16 @@ public class IniciativaBean implements Serializable {
     private Subject cor;
 
     public IniciativaBean() {
+
         serviciosBanco = ServiciosBancoFactory.getInstance().getServiciosBanco();
         cor= SecurityUtils.getSubject();
+
         try {
-            proponente=serviciosBanco.consultarUsuario(cor.getSession().getAttribute("Correo").toString());
+            actual=serviciosBanco.consultarUsuario(cor.getSession().getAttribute("Correo").toString());
             iniciativas = serviciosBanco.consultarIniciativas();
             id= iniciativas.size()+1;
         }catch (ExcepcionServiciosBanco ex){
-
+            System.out.println("EXCEPTION");
         }
     }
 
@@ -70,7 +70,7 @@ public class IniciativaBean implements Serializable {
         try {
             List palabrasclaveArr = new ArrayList<String>(Arrays.asList(palabrasClave.split(",")));
             Date utilDate = new Date();
-            nuevoRegistro = new Iniciativa(id, descripcion, new java.sql.Date(utilDate.getTime()),estado,proponente,palabrasclaveArr);
+            nuevoRegistro = new Iniciativa(id, descripcion, new java.sql.Date(utilDate.getTime()),estado,actual,palabrasclaveArr);
             serviciosBanco.registrarIniciativa(nuevoRegistro);
             iniciativas = serviciosBanco.consultarIniciativas();
             screenEstado = "registro exitoso";
@@ -89,17 +89,6 @@ public class IniciativaBean implements Serializable {
             screenEstado="Error en actualziar";
 
         }
-    }
-
-
-
-
-    public Usuario getAdministrador() {
-        return administrador;
-    }
-
-    public void setAdministrador(Usuario administrador) {
-        this.administrador = administrador;
     }
 
     public java.sql.Date getFecha() {
@@ -141,13 +130,14 @@ public class IniciativaBean implements Serializable {
         this.screenEstado = screenEstado;
     }
 
-    public Usuario getProponente() {
-        return proponente;
+    public Usuario getActual() {
+        return actual;
     }
 
-    public void setProponente(Usuario proponente) {
-        this.proponente = proponente;
+    public void setActual(Usuario actual) {
+        this.actual = actual;
     }
+
 
     public Iniciativa getNuevoRegistro() {
         return nuevoRegistro;

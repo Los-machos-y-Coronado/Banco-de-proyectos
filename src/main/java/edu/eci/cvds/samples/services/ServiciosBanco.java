@@ -5,6 +5,7 @@
  */
 package edu.eci.cvds.samples.services;
 
+import edu.eci.cvds.samples.entities.Area;
 import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.entities.Iniciativa;
@@ -65,5 +66,12 @@ public interface ServiciosBanco {
      * @throws ExcepcionServiciosBanco 
      */
     public abstract void cambiarRol(Usuario usuario,Rol rol) throws ExcepcionServiciosBanco;
+    
+    /**
+     * Consulta las iniciativas por area
+     * @return Lista de areas
+     * @throws ExcepcionServiciosBanco 
+     */
+    public abstract List<Area> iniciativasPorArea() throws ExcepcionServiciosBanco;
 
 }
