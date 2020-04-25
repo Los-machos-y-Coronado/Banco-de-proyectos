@@ -87,8 +87,7 @@
         
     
     <select parameterType="map"  id="consultarIniciativasPalabra"  resultMap="IniciativaResult">
-        SELECT
-
+        SELECT 
         i.id_iniciativas,
         i.descripcion,
         i.fecha,
@@ -101,16 +100,26 @@
         u.rol as u_rol,
         u.estado as u_estado,
         u.area as u_area,
+		
+	pa.palabra as pa_palabra
 
-        pa.palabra as pa_palabra
+        FROM iniciativas as i JOIN  usuarios as u  ON i.proponentes_usuarios_correo=u.correo
+        JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas
+        WHERE i.id_iniciativas IN (
+                SELECT
 
-        FROM iniciativas as i  JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas
-        JOIN usuarios as u ON i.proponentes_usuarios_correo=u.correo
-        WHERE pa.palabra IN
-        <foreach item="item" index="index" collection="pala"
-            open="(" separator="," close=")">
-            #{item}
-        </foreach>
+                        ii.id_iniciativas AS iniprueba
+        
+        		FROM iniciativas as ii   JOIN palabras_clave  as paa on ii.id_iniciativas=paa.iniciativas_id_iniciativas
+        		 JOIN  usuarios as uu ON ii.proponentes_usuarios_correo=uu.correo
+        		WHERE paa.palabra IN
+                        <foreach item="item" index="index" collection="pala"
+                            open="(" separator="," close=")">
+                            #{item}
+                        </foreach>
+        
+        );
+
     </select>
     <select  parameterType="map" id="iniciativasPorArea" resultMap="AreaResult">
         SELECT
