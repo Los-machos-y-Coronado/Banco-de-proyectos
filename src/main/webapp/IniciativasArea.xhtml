@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title> Editar estado</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
+
+    <style type="text/css">
+    .ui-datatable input {
+        box-sizing: border-box;
+        width: 100%;
+        -webkit-box-shadow: none;
+        box-shadow: none !important;
+    }
+</style>
+
+</h:head>
+<h:body>
+    <h:form id="formConsutlArea" >
+        <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+        <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
+        <br/>
+        <center>
+            <h2> Consulta De iniciativas </h2>
+        </center>
+        <p:chart type="pie" model="#{AreasBean.model}" />
+        <p:panel id="ArConsul" header="Iniciativas"  style="margin-bottom:100px">
+            <p:dataTable id="IniciatArea" value="#{AreasBean.areas}" var="area" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                         rowsPerPageTemplate="5,10,15">
+
+                <p:column headerText="Area" sortBy="#{area.nombre}">
+                    <p:outputLabel value="#{area.nombre}"/>
+                </p:column>
+                <p:column headerText="Iniciativas">
+                    <p:dataTable id="Inidd" value="#{inBean.iniciativas}" var="iniciativa">
+
+                <p:column headerText="Proponente" sortBy="#{iniciativa.proponente.correo}">
+                    <p:outputLabel value="#{iniciativa.proponente.correo}"/>
+                </p:column>
+                <p:column headerText="Descripcion" sortBy="#{iniciativa.descripcion}">
+                    <p:outputLabel value="#{iniciativa.descripcion}"/>
+                </p:column>
+                <p:column headerText="Estado" sortBy="#{iniciativa.estado}">
+                    <p:outputLabel value="#{iniciativa.estado}"/>
+                </p:column>
+
+                </p:dataTable>
+                </p:column>
+
+            </p:dataTable>
+            
+        </p:panel>
+        <h:commandLink>
+            <h:graphicImage url="img/exc.png"/>
+            <p:dataExporter type="xls" target="Inidd" fileName="cars"/>
+        </h:commandLink>
+        
+    </h:form>
+</h:body>
+</html>

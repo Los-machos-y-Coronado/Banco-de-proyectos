@@ -18,6 +18,9 @@ function cambiarPagina(pag) {
     else if(pag === "Autenticar"){
         location.href="/faces/Autenticacion.xhtml";
     }
+    else if(pag === "IniciativaArea"){
+        location.href="/faces/IniciativasArea.xhtml";
+    }
 
 }
 
