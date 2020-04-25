@@ -53,4 +53,14 @@ public class MyBatisDAOUsuario implements DaoUsuario{
         }
     }
     
+    @Override
+    public void agregarComentarioAIniciativa(String correo,int idIniciativa,String comentario)throws PersistenceException{
+        try{
+            usuarioMapper.agregarComentarioAIniDeUsu(idIniciativa,correo,comentario);
+        }catch(org.apache.ibatis.exceptions.PersistenceException ex){
+             throw new PersistenceException("Error al agregar al comentario" ,ex);
+        }}
+    
+    
+    
 }

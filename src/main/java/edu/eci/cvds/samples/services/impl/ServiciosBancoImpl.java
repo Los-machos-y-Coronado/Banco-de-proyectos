@@ -109,7 +109,15 @@ public class ServiciosBancoImpl implements ServiciosBanco {
             throw new ExcepcionServiciosBanco("No se pudo cambiar el rol del usuario "+usuario.getCorreo(),ex);
         }    
     }
-
+    @Override
+    public  void agregarComentariosAIniciativa(int idIniciativas,String correo,String comentario)throws ExcepcionServiciosBanco{
+        try{
+            daoUsuario.agregarComentarioAIniciativa(correo,idIniciativas, comentario);
+            
+        }catch(PersistenceException ex){
+           throw new ExcepcionServiciosBanco("No se pudo registrar comentario ",ex);
+        }
+    }
 
 
         

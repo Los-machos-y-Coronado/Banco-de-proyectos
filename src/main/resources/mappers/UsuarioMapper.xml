@@ -15,7 +15,9 @@
         <result property="area" column="area"/>
     </resultMap>
     
-
+    <insert id="agregarComentarioAIniDeUsu" parameterType="map" >
+        insert into comentarios values(#{idIni},#{corr},#{com});
+    </insert>
     <select parameterType="map" id="consultarUsuario" resultMap="UsuarioResult">
         SELECT
             u.correo,

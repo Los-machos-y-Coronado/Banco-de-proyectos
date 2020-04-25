@@ -245,5 +245,36 @@ public class ServiciosBancoTest {
         }
         
     }
+     /*
+     * 
+     * agregar comentarios a una iniciativa dado el correo del publico
+     
+    @Test
+    public void agregarComentarios(){
+        try{
+            serviciosBanco.agregarComentariosAIniciativa(2,"monica.galindo@outlook.com" , "comentario");
+            assertTrue(true);
+        }catch(ExcepcionServiciosBanco ex){
+            Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
+            assertTrue(false);
+        }
+    }
+    */
+     /*
+     * 
+     * No se puede agregar comentarios a una iniciativa dado el correo del publico
+     
+    
+    @Test
+    public void agregarComentarios2(){
+        try{
+            serviciosBanco.agregarComentariosAIniciativa(1,"leandro.gado@gmail.com" , "Perfecto");
+            assertTrue(false);
+        }catch(ExcepcionServiciosBanco ex){
+            Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
+            assertTrue(true);
+        }
+    }
+    */
 
 }

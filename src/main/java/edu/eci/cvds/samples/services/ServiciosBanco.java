@@ -27,7 +27,6 @@ public interface ServiciosBanco {
     /**
      * Retorna el usuario segun sus credenciales
      * @param correo String  correo del usuario
-     * @param clave String contraseña del usuario
      * @return Usuario usuario 
      * @throws edu.eci.cvds.samples.services.ExcepcionServiciosBanco
      */
@@ -65,5 +64,14 @@ public interface ServiciosBanco {
      * @throws ExcepcionServiciosBanco 
      */
     public abstract void cambiarRol(Usuario usuario,Rol rol) throws ExcepcionServiciosBanco;
+     /**
+     * Agregarle comentarios a iniciativas de un usuario
+     * @param idIniciativas int
+     * @param correo String
+     * @param comentario String
+     * @throws ExcepcionServiciosBanco 
+     */
+    
+    public abstract void agregarComentariosAIniciativa(int idIniciativas,String correo,String comentario)throws ExcepcionServiciosBanco; 
 
 }

@@ -17,7 +17,6 @@ public interface DaoUsuario {
     /**
      * 
      * @param correo String correo del Usuario
-     * @param clave  String clave del Usuario
      * @return Usuario correspondiente 
      * @throws edu.eci.cvds.samples.persistence.PersistenceException 
      */
@@ -37,4 +36,15 @@ public interface DaoUsuario {
      * @throws PersistenceException 
      */
     public void cambiarRol(Usuario usuario,Rol rol) throws PersistenceException;
-}
+    
+    /**
+     * Registrar un comentario a iniciativa
+     * @param correo
+     * @param idIniciativa
+     * @param comentario 
+     * @throws PersistenceException 
+     */
+    
+    
+    public void agregarComentarioAIniciativa(String correo,int idIniciativa,String comentario)throws PersistenceException;
+;}
