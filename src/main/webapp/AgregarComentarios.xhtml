@@ -25,7 +25,7 @@
 
             
             <p:panel id="DatesIniciativa" header="Información de la iniciativas "  style="margin-bottom:20px">
-                <p:dataTable value="#{AgregarComentarioBean.ini}" var="u" rows="5"     selectionMode="single"   selection="#{AgregarComentarioBean.selectedIniciativa}"  rowKey="#{u.correo}"
+                <p:dataTable value="#{AgregarComentarioBean.ini}" var="u" rows="5"     selectionMode="single"   selection="#{AgregarComentarioBean.selectedIniciativa}"  rowKey="#{u.proponente.correo}"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
@@ -47,14 +47,14 @@
                     </p:column>
                     <f:facet name="footer">
                         <p:outputLabel value="#{AgregarComentarioBean.estado}" style="color: grey"/>
-                        <br><p:inputText type="comentario" id="Comentario" binding="#{com}" placeholder="Ingrese su comentario" styleClass="Button"   size="50"></p:inputText></br>
+                        <br><p:inputText type="comentario" id="Comentario" binding="#{com}" placeholder="Ingrese su comentario" styleClass="Button" size="50"></p:inputText></br>
                         <p:commandButton  update="formPer" value="Enviar" actionListener="#{AgregarComentarioBean.AgregarComentario(com.value)}" styleClass="Button"></p:commandButton>
                     </f:facet>
               
                 </p:dataTable>
             </p:panel>
         </h:form>
-        <center><p:commandButton  value="Volver" action="#{navigationController.paginaPerfil()}"/></center>
+        <center><p:commandButton  value="Volver" onclick="back()"/></center>
 
     </h:body>
 </html>

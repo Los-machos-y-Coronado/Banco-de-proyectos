@@ -21,8 +21,13 @@ function cambiarPagina(pag) {
     else if(pag === "IniciativaArea"){
         location.href="/faces/IniciativasArea.xhtml";
     }
+    else if(pag === "Comentar"){
+        location.href="/faces/AgregarComentarios.xhtml";
+    }
 
 }
-
+function back(){
+	    history.back();
+        }
 
 

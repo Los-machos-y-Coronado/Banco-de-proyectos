@@ -14,6 +14,8 @@ and open the template in the editor.
         <title> Editar estado</title>
         <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
+                <script type="text/javascript" src="js/ControladorPerfil.js"/>
+
 
     </h:head>
     <h:body>
@@ -77,6 +79,7 @@ and open the template in the editor.
                 <p:commandButton update="formEdit" value="Actualizar" actionListener="#{inBean.UpdateEstado(inid.value)}" styleClass="Button"></p:commandButton>
             </center>
         </h:form>
+        <center><p:commandButton  value="Volver" onclick="back()"/></center>
         
         </h:body>
 
