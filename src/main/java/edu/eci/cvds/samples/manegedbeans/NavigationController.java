@@ -30,6 +30,10 @@ public class NavigationController implements Serializable {
     }
     public String publico(){
         return "Publico";
+        
+    }
+    public String AgregarComentario(){
+        return "AgregarComentarios";
     }
     public String getPageAdmin(){return "Perfiladmin";}
     public String getPageProp(){return "Perfilproponente";}
