@@ -14,19 +14,11 @@ import edu.eci.cvds.samples.services.Convertidor;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBancoFactory;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
@@ -263,7 +255,7 @@ public class ServiciosBancoTest {
      @Test
      public void ConsultarIniciativasPorArea(){
          try{
-             List<Area> inici = serviciosBanco.iniciativasPorArea();
+             List<Area> inici = (List<Area>) serviciosBanco.iniciativasPorArea();
              assertTrue(true);
          }catch(ExcepcionServiciosBanco ex){
              assertTrue(false);
