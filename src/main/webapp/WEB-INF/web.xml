@@ -29,7 +29,7 @@
 
 
     <welcome-file-list>
-        <welcome-file>faces/Autenticacion.xhtml</welcome-file>
+        <welcome-file>faces/index.xhtml</welcome-file>
 
     </welcome-file-list>
 

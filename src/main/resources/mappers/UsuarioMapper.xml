@@ -20,7 +20,7 @@
     </insert>
     <select parameterType="map" id="consultarUsuario" resultMap="UsuarioResult">
         SELECT
-            u.correo,
+            u.correo ,
             u.nombre_usuario,
             u.nombre,
             u.apellido,

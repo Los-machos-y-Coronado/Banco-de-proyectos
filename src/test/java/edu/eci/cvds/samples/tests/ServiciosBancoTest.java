@@ -6,6 +6,7 @@
 package edu.eci.cvds.samples.tests;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.samples.entities.Area;
 import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
@@ -276,5 +277,17 @@ public class ServiciosBancoTest {
         }
     }
     */
+
+
+    
+     @Test
+     public void ConsultarIniciativasPorArea(){
+         try{
+             List<Area> inici = serviciosBanco.iniciativasPorArea();
+             assertTrue(true);
+         }catch(ExcepcionServiciosBanco ex){
+             assertTrue(false);
+         }
+     }
 
 }

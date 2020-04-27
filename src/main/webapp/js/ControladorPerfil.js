@@ -1,27 +1,28 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-
-function verificar(mensaje) {
-    console.log(mensaje);
-    console.log("JOHAN ES RE GURRERO");
-    if(mensaje!==""){
-        location.href='faces/Perfil.xhtml';
-        
+function cambiarPagina(pag) {
+    
+    if(pag === "AsignacionPerfiles"){
+        location.href="/faces/AsignacionPerfiles.xhtml";
+    }else if(pag === "EstadoIniciativa"){
+        location.href="/faces/EstadoIniciativa.xhtml";
+    }
+    else if(pag === "Publico"){
+        location.href="/faces/Publico.xhtml";
+    }
+    else if(pag === "Riniciativas"){
+        location.href="/faces/Riniciativas.xhtml";
+    }
+    else if(pag === "Consult"){
+        location.href="/faces/frontConsult.xhtml";
+    }
+    else if(pag === "Autenticar"){
+        location.href="/faces/Autenticacion.xhtml";
+    }
+    else if(pag === "IniciativaArea"){
+        location.href="/faces/IniciativasArea.xhtml";
     }
 
 }
 
-function mostrarMenu(mensaje){
-    console.log("2");
-    console.log(mensaje);
-    if(mensaje === "Administrador"){
-        console.log("HOLA");
-        document.getElementById('admin').style.display="none";
-    }
-}
 
 
