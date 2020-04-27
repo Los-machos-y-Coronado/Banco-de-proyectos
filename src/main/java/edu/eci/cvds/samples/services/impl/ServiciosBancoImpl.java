@@ -112,6 +112,16 @@ public class ServiciosBancoImpl implements ServiciosBanco {
     }
 
     @Override
+    public  void agregarComentariosAIniciativa(int idIniciativas,String correo,String comentario)throws ExcepcionServiciosBanco{
+        try{
+            daoUsuario.agregarComentarioAIniciativa(correo,idIniciativas, comentario);
+            
+        }catch(PersistenceException ex){
+           throw new ExcepcionServiciosBanco("No se pudo registrar comentario ",ex);
+        }
+    }
+
+    @Override
     public List<Area> iniciativasPorArea() throws ExcepcionServiciosBanco {
         try{
             return daoIniciativa.iniciativasPorArea();
@@ -119,6 +129,7 @@ public class ServiciosBancoImpl implements ServiciosBanco {
             throw new ExcepcionServiciosBanco("No se pudo consultar las iniciativas por area",ex);
         }
     }
+
 
 
 

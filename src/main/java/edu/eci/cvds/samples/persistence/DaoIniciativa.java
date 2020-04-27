@@ -21,6 +21,7 @@ public interface DaoIniciativa {
      *
      * @param id
      * @return
+     * @throws edu.eci.cvds.samples.persistence.PersistenceException
      */
     public Iniciativa consultarIniciativa(int id) throws PersistenceException;
     public List<Iniciativa> consultarIniciativas() throws PersistenceException;

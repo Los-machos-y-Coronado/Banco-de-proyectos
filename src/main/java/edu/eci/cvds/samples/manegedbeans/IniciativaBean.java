@@ -15,7 +15,6 @@ import org.apache.shiro.subject.Subject;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -68,13 +67,13 @@ public class IniciativaBean implements Serializable {
     public void registrarIniciativa(String descripcion) throws ParseException {
 
         try {
-            List palabrasclaveArr = new ArrayList<String>(Arrays.asList(palabrasClave.split(",")));
+            List palabrasclaveArr = new ArrayList<>(Arrays.asList(palabrasClave.split(",")));
             Date utilDate = new Date();
             nuevoRegistro = new Iniciativa(id, descripcion, new java.sql.Date(utilDate.getTime()),estado,actual,palabrasclaveArr);
             serviciosBanco.registrarIniciativa(nuevoRegistro);
             iniciativas = serviciosBanco.consultarIniciativas();
             screenEstado = "registro exitoso";
-        } catch (Exception e) {
+        } catch (ExcepcionServiciosBanco e) {
             e.printStackTrace();
 
         }
@@ -85,7 +84,7 @@ public class IniciativaBean implements Serializable {
             serviciosBanco.UpdateEstado(Integer.parseInt(id) ,estado);
             screenEstado="actualizado";
             iniciativas = serviciosBanco.consultarIniciativas();
-        }catch (Exception ex){
+        }catch (ExcepcionServiciosBanco | NumberFormatException ex){
             screenEstado="Error en actualziar";
 
         }
