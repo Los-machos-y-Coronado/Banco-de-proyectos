@@ -83,8 +83,11 @@ public class ServiciosBancoTest {
     public void cambiarRol(){
         try {
             Usuario usu = serviciosBanco.consultarUsuario("juan@gmail.com");
+      
+
             serviciosBanco.cambiarRol(usu, Rol.Publico);
             usu = serviciosBanco.consultarUsuario("juan@gmail.com");
+    
             assertEquals(Rol.Publico,usu.getRol());
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
@@ -283,11 +286,14 @@ public class ServiciosBancoTest {
      @Test
      public void ConsultarIniciativasPorArea(){
          try{
-             List<Area> inici = serviciosBanco.iniciativasPorArea();
+             List<Area> inici = (List<Area>) serviciosBanco.iniciativasPorArea();
              assertTrue(true);
          }catch(ExcepcionServiciosBanco ex){
              assertTrue(false);
          }
      }
+
+
+     
 
 }

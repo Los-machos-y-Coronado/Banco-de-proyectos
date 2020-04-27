@@ -94,13 +94,6 @@ public class Iniciativa {
             this.palabrasClave = palabras;
         }
 
-    public Usuario getCorreo() {
-        return proponente;
-    }
-
-    public void setCorreo(Usuario correo) {
-        this.proponente = correo;
-    }
 
 
 

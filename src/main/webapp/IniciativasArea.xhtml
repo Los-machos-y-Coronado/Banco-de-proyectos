@@ -36,11 +36,24 @@ and open the template in the editor.
         </center>
         <p:chart type="pie" model="#{AreasBean.model}" />
         <p:panel id="ArConsul" header="Iniciativas"  style="margin-bottom:100px">
-            <p:dataTable id="IniciatArea" value="#{AreasBean.areas}" var="area" rows="10"
+            <p:dataTable id="IniciatArea" value="#{AreasBean.areas}" var="area"
                          paginator="true"
-                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
                          currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
                          rowsPerPageTemplate="5,10,15">
+                <f:facet name="{Exporters}">
+                    <div style="float:right;padding-top: 5px;">
+                        <h:commandLink actionListener="#{AreasBean.excel()}" >
+                            <h:graphicImage url="img/exc.png" width="24"/>
+                            <p:fileDownload value="#{AreasBean.excel}" />
+                        </h:commandLink>
+                        <h:commandLink actionListener="#{AreasBean.pdf()}" >
+                            <h:graphicImage url="img/pdf.png" width="24"/>
+                            <p:fileDownload value="#{AreasBean.pdf}" />
+                        </h:commandLink>
+
+                    </div>
+                </f:facet>
 
                 <p:column headerText="Area" sortBy="#{area.nombre}">
                     <p:outputLabel value="#{area.nombre}"/>
@@ -64,11 +77,8 @@ and open the template in the editor.
             </p:dataTable>
             
         </p:panel>
-        <h:commandLink>
-            <h:graphicImage url="img/exc.png"/>
-            <p:dataExporter type="xls" target="Inidd" fileName="cars"/>
-        </h:commandLink>
-        
+
+
     </h:form>
 </h:body>
 </html>
