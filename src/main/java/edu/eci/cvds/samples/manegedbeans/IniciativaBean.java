@@ -136,6 +136,7 @@ public class IniciativaBean implements Serializable {
         try{
             List<Like> likes=serviciosBanco.consultarLikesIn(in.getId());
             numLikes=likes.size();
+
         }catch (Exception e){
             screenEstado="Error al saber likes";
         }
