@@ -31,29 +31,21 @@ and open the template in the editor.
            <p:panel id="Basic" header="Informacion Administrador"  style="margin-bottom:20px">
                <p:panelGrid columns="4" layout="grid" >
                    <p:outputLabel for="correo" value="Correo :"/>
-
-                   <p:outputLabel id="correo" value="#{inBean.proponente.getCorreo()}"/>
-
-
+                   <p:outputLabel id="correo" value="#{inBean.proponente.correo}"/>
 
                    <p:outputLabel for="area" value="Area :" />
                    <p:outputLabel id="area" value="General"/>
 
                    <p:outputLabel for="nombre" value="Nombre :" />
 
-                   <p:outputLabel id="nombre" value="#{inBean.proponente.getNombre()}"/>
+                   <p:outputLabel id="nombre" value="#{inBean.proponente.nombre}"/>
 
                    <p:outputLabel for="apellido" value="Apellido :" />
-                   <p:outputLabel id="apellido"  value="#{inBean.proponente.getApellido()}"/>
-
-                   <p:outputLabel id="nombre" value="#{inBean.actual.getNombre()}"/>
-
-                   <p:outputLabel for="apellido" value="Apellido :" />
-                   <p:outputLabel id="apellido"  value="#{inBean.actual.getApellido()}"/>
-
+                   <p:outputLabel id="apellido"  value="#{inBean.proponente.apellido}"/>
                </p:panelGrid>
 
            </p:panel>
+           
             <p:panel  id="Pestado" header="Cambio de Estado" layout="grid" style="margin-center:20px">
                 <p:dataList value="#{inBean.iniciativas}" var ="iniciativa" style="border: none;">
                   <br/>
@@ -82,6 +74,7 @@ and open the template in the editor.
                       </p:selectOneMenu>
                       <p:commandButton update="formEdit" value="Actualizar" actionListener="#{inBean.UpdateEstado(iniciativa,estado.value)}" styleClass="Button"></p:commandButton>
                           <p:commandButton  icon="pi pi-thumbs-up" update="formEdit" value="#{inBean.estadoLike(iniciativa)}" actionListener="#{inBean.registrarLike(iniciativa)}" styleClass="Button"></p:commandButton>
+
                       </center>
                   </p:dataList>
             </p:panel>

@@ -59,7 +59,7 @@ public class IniciativaBean implements Serializable {
         cor= SecurityUtils.getSubject();
 
         try {
-            actual=serviciosBanco.consultarUsuario(cor.getSession().getAttribute("Correo").toString());
+            proponente=serviciosBanco.consultarUsuario(cor.getSession().getAttribute("Correo").toString());
             iniciativas = serviciosBanco.consultarIniciativas();
             id= iniciativas.size()+1;
         }catch (ExcepcionServiciosBanco ex){
@@ -79,7 +79,6 @@ public class IniciativaBean implements Serializable {
         try {
             estado = "En espera de revisión";
             List palabrasclaveArr = new ArrayList<String>(Arrays.asList(palabrasClave.split(",")));
-            List palabrasclaveArr = new ArrayList<>(Arrays.asList(palabrasClave.split(",")));
 
             Date utilDate = new Date();
             nuevoRegistro = new Iniciativa(id, descripcion, new java.sql.Date(utilDate.getTime()),estado,actual,palabrasclaveArr);
@@ -135,6 +134,7 @@ public class IniciativaBean implements Serializable {
         }
     }
 
+     
     public int numeroLikes(Iniciativa in){
         numLikes=0;
         try{
@@ -147,6 +147,15 @@ public class IniciativaBean implements Serializable {
         return numLikes;
     }
 
+    public Usuario getProponente() {
+        return proponente;
+    }
+
+    public void setProponente(Usuario proponente) {
+        this.proponente = proponente;
+    }
+    
+    
     public int getNumLikes() {
         return numLikes;
     }

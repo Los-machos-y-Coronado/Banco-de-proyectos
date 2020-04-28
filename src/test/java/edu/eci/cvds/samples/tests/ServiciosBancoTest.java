@@ -164,11 +164,12 @@ public class ServiciosBancoTest {
             Date d1 = Date.valueOf(fecha);
             Usuario proponente= new Usuario("alex.garci@yahoo.com","alex22","alex","gordillo",Rol.Proponente,true,"civil");
             
-            Iniciativa a= new Iniciativa(2,"Construcción del bloque Z", d1,"En espera",proponente,palabras);
+            Iniciativa b= new Iniciativa(2,"Construcción del bloque Z", d1,"En revision",proponente,palabras);
             Iniciativa ini = serviciosBanco.consultarIniciativa(2);
 
-
-            assertEquals(a.toString(),ini.toString());
+            System.out.println(ini.toString());
+            System.out.println("compare " + b.toString());
+            assertEquals(b.toString(),ini.toString());
             
            
         } catch (ExcepcionServiciosBanco ex) {
@@ -204,24 +205,16 @@ public class ServiciosBancoTest {
             Usuario proponente1= new Usuario("juan@gmail.com","Juanito","Juan","Perez",Rol.Proponente,true,"Sistemas");
             Usuario proponente2= new Usuario("alex.garci@yahoo.com","alex22","alex","gordillo",Rol.Proponente,true,"civil");
             
-            Iniciativa a= new Iniciativa(2,"Construcción del bloque Z", d1,"En espera",proponente2,palabras1);
+            Iniciativa a= new Iniciativa(2,"Construcción del bloque Z", d1,"En revision",proponente2,palabras1);
             Iniciativa b= new Iniciativa(1,"Optimizacion de Osiris", d2,"En espera",proponente1,palabras2);
-            
 
-            
             ArrayList<Iniciativa> ini2 = new ArrayList<>();
-                   
-            
+
             ini2.add(b);
             ini2.add(a);
-         
-            
-            
+
             
             List<Iniciativa> ini = serviciosBanco.consultarIniciativas(palabras);
-           
-            assertTrue(true);
-            
             assertEquals(ini.toString(),ini2.toString());
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
@@ -237,7 +230,7 @@ public class ServiciosBancoTest {
      public void ConsultarIniciativas2() {
         try {
             Convertidor convertidor=new Convertidor();
-            String palabrasini="Sostebinilidad,Humanistica";
+            String palabrasini ="Sostebinilidad,Humanistica";
             ArrayList<String> palabras = new ArrayList<>();
             palabras.add("Sostebinilidad");
             palabras.add("Humanistica");
@@ -254,7 +247,7 @@ public class ServiciosBancoTest {
    @Test
     public void RegistrarLikes() {
         try {
-            serviciosBanco.registrarLike(1,"alex.garci@yahoo.com");
+            serviciosBanco.registrarLike(3,"alex.garci@yahoo.com");
             assertTrue(true);
         } catch (ExcepcionServiciosBanco ex) {
             ex.getStackTrace();
@@ -264,7 +257,7 @@ public class ServiciosBancoTest {
     @Test
     public void ConsultarLikes() {
         try {
-            List<Like> likes=serviciosBanco.consultarLikesIn(1);
+            List<Like> likes =serviciosBanco.consultarLikesIn(1);
             assertTrue(true);
         } catch (ExcepcionServiciosBanco ex) {
             ex.getStackTrace();
@@ -273,8 +266,7 @@ public class ServiciosBancoTest {
     @Test
     public void ConsultarLikesCor() {
         try {
-            Like like=serviciosBanco.consultarLikesInCor(1,"anfegoca@gmail.com");
-            System.out.println(like);
+            Like like=serviciosBanco.consultarLikesInCor(3,"alex.garci@yahoo.com");
             assertTrue(true);
         } catch (ExcepcionServiciosBanco ex) {
             ex.getStackTrace();
@@ -285,7 +277,7 @@ public class ServiciosBancoTest {
     @Test
     public void QuitarLike() {
         try {
-            serviciosBanco.deleteLikes(1,"alex.garci@yahoo.com");
+            serviciosBanco.deleteLikes(3,"alex.garci@yahoo.com");
             assertTrue(true);
         } catch (ExcepcionServiciosBanco ex) {
             ex.getStackTrace();
