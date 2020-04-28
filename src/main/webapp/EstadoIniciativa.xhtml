@@ -29,52 +29,49 @@ and open the template in the editor.
            <p:panel id="Basic" header="Informacion Administrador"  style="margin-bottom:20px">
                <p:panelGrid columns="4" layout="grid" >
                    <p:outputLabel for="correo" value="Correo :"/>
-                   <p:outputLabel id="correo" value="#{inBean.administrador.getCorreo()}"/>
+                   <p:outputLabel id="correo" value="#{inBean.proponente.getCorreo()}"/>
 
                    <p:outputLabel for="area" value="Area :" />
                    <p:outputLabel id="area" value="General"/>
 
                    <p:outputLabel for="nombre" value="Nombre :" />
-                   <p:outputLabel id="nombre" value="#{inBean.administrador.getNombre()}"/>
+                   <p:outputLabel id="nombre" value="#{inBean.proponente.getNombre()}"/>
 
                    <p:outputLabel for="apellido" value="Apellido :" />
-                   <p:outputLabel id="apellido"  value="#{inBean.administrador.getApellido()}"/>
+                   <p:outputLabel id="apellido"  value="#{inBean.proponente.getApellido()}"/>
                </p:panelGrid>
+
            </p:panel>
 
-            <p:panel id="Pestado" header="Cambio de Estado"  style="margin-bottom:20px">
-                <p:dataTable value="#{inBean.iniciativas}" var="iniciativa">
-                    <p:column headerText="Descripcion">
-                        <p:outputLabel value="#{iniciativa.descripcion}"/>
-                    </p:column>
-                    <p:column headerText="Estado">
-                        <p:outputLabel value="#{iniciativa.estado}"/>
-                    </p:column>
-                    <p:column >
-                        <center>
-                        <p:commandButton update="formEdit" value="actualizar" title="View" >
-                            <f:setPropertyActionListener value="#{iniciativa}" target="#{dtSelectionView.selectedIniciativa}" />
-                        </p:commandButton>
-                        </center>
-                    </p:column>
-                </p:dataTable>
-                <p:panelGrid columns="4" layout="grid">
-                    <p:outputLabel for="id" value="Iniciativa Num:"/>
-                    <p:inputText type="text" id="id"  binding="#{inid}">
-                        <f:convertNumber type="number"/>
-                    </p:inputText>
-                    <p:outputLabel for="estado" value="estado :"/>
-                    <p:selectOneMenu id="estado"  value="#{inBean.estado}">
-                        <f:selectItem itemLabel="En espera de revisión" itemValue="En espera" />
-                        <f:selectItem itemLabel="En revisión" itemValue="En revisión" />
-                        <f:selectItem itemLabel="propuesta" itemValue="propuesta" />
-                        <f:selectItem itemLabel="Solucionado" itemValue="Solucionado" />
-                    </p:selectOneMenu>
-                </p:panelGrid>
+            <p:panel id="Pestado" header="Cambio de Estado" layout="grid" style="margin-center:20px">
+                <p:dataList value="#{inBean.iniciativas}" var ="iniciativa" style="border: none;">
+                  <br/>
+                      <p:panelGrid column="2">
+                          <p:panelGrid columns="2"   layout="grid">
+                              <h:outputText value="Proponente :" style="font-weight:bold"/>
+                              <h:outputText value="#{iniciativa.proponente.nombre}  #{iniciativa.proponente.apellido}" />
 
+                              <h:outputText value="Descripcion:" style="font-weight:bold" />
+                              <h:outputText value="#{iniciativa.descripcion}" />
+
+                              <h:outputText value="Area:" style="font-weight:bold" />
+                              <h:outputText value="#{iniciativa.proponente.area}" />
+
+                              <h:outputText value="Estado:" style="font-weight:bold"/>
+                              <h:outputText value="#{iniciativa.estado}" />
+
+                          </p:panelGrid>
+                      </p:panelGrid>
+                      <center>
+                      <p:selectOneMenu id="estado"  value="#{inBean.estado}" >
+                          <f:selectItems value="#{inBean.tipoEstado}"/>
+                      </p:selectOneMenu>
+                      <p:commandButton update="formEdit" value="Actualizar" actionListener="#{inBean.UpdateEstado(iniciativa)}" styleClass="Button"></p:commandButton>
+                      </center>
+                  </p:dataList>
             </p:panel>
+
             <center>
-                <p:commandButton update="formEdit" value="Actualizar" actionListener="#{inBean.UpdateEstado(inid.value)}" styleClass="Button"></p:commandButton>
                 <p:commandButton update="formEdit" value="cancelar"  actionListener="#{inBean.home()}" action="#{navigationController.paginaPerfil()}" styleClass="Button"  ></p:commandButton>
             </center>
         </h:form>
