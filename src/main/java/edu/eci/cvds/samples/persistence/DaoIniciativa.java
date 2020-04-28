@@ -27,4 +27,6 @@ public interface DaoIniciativa {
     public void UpdateEstado(int id,String estado) throws  PersistenceException;
     public List<Iniciativa> consultarIniciativas(ArrayList<String> palabrasclave) throws PersistenceException;
     public void registrarPalabrasClave(int id, ArrayList<String> palabras)throws PersistenceException;
+
+
 }

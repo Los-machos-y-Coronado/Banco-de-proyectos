@@ -5,12 +5,14 @@
  */
 package edu.eci.cvds.samples.manegedbeans;
 import edu.eci.cvds.samples.entities.Iniciativa;
+import edu.eci.cvds.samples.entities.Like;
 import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBancoFactory;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.config.Ini;
 import org.apache.shiro.subject.Subject;
 
 import javax.faces.bean.ManagedBean;
@@ -46,10 +48,12 @@ public class IniciativaBean implements Serializable {
     private List<Iniciativa> iniciativas;
     private String palabrasClave="";
     private int id;
+    private int numLikes;
+    private String buttonLike;
     private Subject cor;
 
+
     public IniciativaBean() {
-        estado = "En espera de revisión";
         serviciosBanco = ServiciosBancoFactory.getInstance().getServiciosBanco();
         cor= SecurityUtils.getSubject();
         try {
@@ -83,10 +87,41 @@ public class IniciativaBean implements Serializable {
 
         }
     }
+    public String estadoLike(Iniciativa in){
 
-    public void UpdateEstado (Iniciativa i){
+        try {
+            Like ver= null;
+            ver = serviciosBanco.consultarLikesInCor(in.getId(),proponente.getCorreo());
+            if(ver == null){
+                buttonLike="Like";
+            }else{
+
+                buttonLike="Dislike";
+            }
+        } catch (ExcepcionServiciosBanco ex) {
+            screenEstado="Error en consultar estado like";
+        }
+
+        return buttonLike;
+    }
+    public void registrarLike(Iniciativa in){
+        try {
+            Like ver=serviciosBanco.consultarLikesInCor(in.getId(),proponente.getCorreo());
+            if(ver == null){
+                serviciosBanco.registrarLike(in.getId(), proponente.getCorreo());
+                buttonLike="Dislike";
+            }else{
+                serviciosBanco.deleteLikes(in.getId(), proponente.getCorreo());
+                buttonLike="Like";
+            }
+        }catch (ExcepcionServiciosBanco ex){
+            screenEstado="Error en Registrar Like";
+        }
+    }
+
+    public void UpdateEstado (Iniciativa i,String xestado){
         try{
-            System.out.println(i.getId() + estado);
+            this.estado=xestado;
             serviciosBanco.UpdateEstado(i.getId(),estado);
             screenEstado="actualizado";
             iniciativas = serviciosBanco.consultarIniciativas();
@@ -96,6 +131,32 @@ public class IniciativaBean implements Serializable {
         }
     }
 
+    public int numeroLikes(Iniciativa in){
+        numLikes=0;
+        try{
+            List<Like> likes=serviciosBanco.consultarLikesIn(in.getId());
+            numLikes=likes.size();
+        }catch (Exception e){
+            screenEstado="Error al saber likes";
+        }
+        return numLikes;
+    }
+
+    public int getNumLikes() {
+        return numLikes;
+    }
+
+    public void setNumLikes(int numLikes) {
+        this.numLikes = numLikes;
+    }
+
+    public String getButtonLike() {
+        return buttonLike;
+    }
+
+    public void setButtonLike(String buttonLike) {
+        this.buttonLike = buttonLike;
+    }
 
     public String[] getTipoEstado() {
         return tipoEstado;

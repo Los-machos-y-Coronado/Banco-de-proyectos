@@ -7,12 +7,11 @@ package edu.eci.cvds.samples.services.impl;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.samples.entities.Iniciativa;
+import edu.eci.cvds.samples.entities.Like;
 import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
+import edu.eci.cvds.samples.persistence.*;
 import edu.eci.cvds.samples.persistence.DaoIniciativa;
-import edu.eci.cvds.samples.persistence.DaoUsuario;
-import edu.eci.cvds.samples.persistence.DaoIniciativa;
-import edu.eci.cvds.samples.persistence.PersistenceException;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
 import java.util.ArrayList;
@@ -28,6 +27,8 @@ public class ServiciosBancoImpl implements ServiciosBanco {
     private DaoUsuario daoUsuario;
     @Inject
     private DaoIniciativa daoIniciativa;
+    @Inject
+    private DaoLike daoLike;
 
     @Override
     public Usuario consultarUsuario(String correo ) throws ExcepcionServiciosBanco {
@@ -110,7 +111,43 @@ public class ServiciosBancoImpl implements ServiciosBanco {
         }    
     }
 
+    @Override
+    public void registrarLike(int id, String correo) throws ExcepcionServiciosBanco {
+        try{
+            daoLike.registrarLikes(id,correo);
+
+        }catch(PersistenceException ex){
+            throw new ExcepcionServiciosBanco("No se pudo registrar like ",ex);
+        }
+
+    }
+
+    @Override
+    public List<Like> consultarLikesIn (int id) throws ExcepcionServiciosBanco{
+        try {
+            return daoLike.consultarLikesIn(id);
+        } catch (PersistenceException e) {
+            throw new ExcepcionServiciosBanco("No se pudo consultar likes " + id,e);
+        }
+    }
+
+    @Override
+    public Like consultarLikesInCor(int id, String corr) throws ExcepcionServiciosBanco {
+        try {
+            return daoLike.consultarLikesInCor(id,corr);
+        } catch (PersistenceException e) {
+            throw new ExcepcionServiciosBanco("No se pudo consultar likes por id y usuario " + id,e);
+        }
+    }
+
+    @Override
+    public void deleteLikes(int id, String correo) throws ExcepcionServiciosBanco {
+        try {
+             daoLike.deleteLikes(id,correo);
+        } catch (PersistenceException e) {
+            throw new ExcepcionServiciosBanco("No se pudo eliminar likes " + id,e);
+        }
+    }
 
 
-        
 }

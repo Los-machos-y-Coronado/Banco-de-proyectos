@@ -7,6 +7,7 @@ package edu.eci.cvds.samples.tests;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.samples.entities.Iniciativa;
+import edu.eci.cvds.samples.entities.Like;
 import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.Convertidor;
@@ -201,7 +202,49 @@ public class ServiciosBancoTest {
         }
         
     }
+   @Test
+    public void RegistrarLikes() {
+        try {
+            serviciosBanco.registrarLike(1,"alex.garci@yahoo.com");
+            assertTrue(true);
+        } catch (ExcepcionServiciosBanco ex) {
+            ex.getStackTrace();
+        }
+    }
 
-    
+    @Test
+    public void ConsultarLikes() {
+        try {
+            List<Like> likes=serviciosBanco.consultarLikesIn(1);
+            assertTrue(true);
+        } catch (ExcepcionServiciosBanco ex) {
+            ex.getStackTrace();
+        }
+    }
+    @Test
+    public void ConsultarLikesCor() {
+        try {
+            Like like=serviciosBanco.consultarLikesInCor(1,"anfegoca@gmail.com");
+            System.out.println(like);
+            assertTrue(true);
+        } catch (ExcepcionServiciosBanco ex) {
+            ex.getStackTrace();
+        }
+    }
+
+
+    @Test
+    public void QuitarLike() {
+        try {
+            serviciosBanco.deleteLikes(1,"alex.garci@yahoo.com");
+            assertTrue(true);
+        } catch (ExcepcionServiciosBanco ex) {
+            ex.getStackTrace();
+        }
+    }
+
+
+
+
 
 }

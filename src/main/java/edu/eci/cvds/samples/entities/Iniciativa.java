@@ -5,6 +5,8 @@
  */
 package edu.eci.cvds.samples.entities;
 
+import edu.eci.cvds.samples.services.ServiciosBanco;
+
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +25,6 @@ public class Iniciativa {
     private Usuario proponente;
     private List<String> palabrasClave;
 
-
     public Iniciativa (int id, String descripcion,Date fecha, String estado,Usuario proponente, List palabrasClave){
         this.id=id;
         this.descripcion=descripcion;
@@ -31,7 +32,6 @@ public class Iniciativa {
         this.proponente=proponente;
         this.estado="en espera de revision";
         this.palabrasClave = palabrasClave;
-
     }
 
     public Iniciativa(){}
