@@ -9,11 +9,17 @@
         <result property='descripcion' column='descripcion'/>
         <result property='fecha' column='fecha'/>
         <result property='estado' column='estado'/>
-        <association property='proponente'  column="u_correo" resultMap ="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.UsuarioMapper.UsuarioResult" javaType="Usuario" columnPrefix='u_'> </association>
+        <association property='proponente'  column="correo" resultMap ="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.UsuarioMapper.UsuarioResult" javaType="Usuario" columnPrefix='u_'> </association>
         <collection property='palabrasClave'   javaType='list' ofType="String" columnPrefix='pa_' >
             <result column="palabra"></result>
         </collection>
     </resultMap>
+    
+    <resultMap type='Area' id='AreaResult'>
+        <id property='nombre' column='area'/>
+        <collection property='iniciativas' ofType='Iniciativa' resultMap='IniciativaResult' columnPrefix="i_"></collection>    
+    </resultMap>
+
 
 
 
@@ -81,8 +87,7 @@
         
     
     <select parameterType="map"  id="consultarIniciativasPalabra"  resultMap="IniciativaResult">
-        SELECT
-
+        SELECT 
         i.id_iniciativas,
         i.descripcion,
         i.fecha,
@@ -95,15 +100,48 @@
         u.rol as u_rol,
         u.estado as u_estado,
         u.area as u_area,
+		
+	pa.palabra as pa_palabra
 
-        pa.palabra as pa_palabra
+        FROM iniciativas as i JOIN  usuarios as u  ON i.proponentes_usuarios_correo=u.correo
+        JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas
+        WHERE i.id_iniciativas IN (
+                SELECT
 
-        FROM iniciativas as i  JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas
-        JOIN usuarios as u ON i.proponentes_usuarios_correo=u.correo
-        WHERE pa.palabra IN
-        <foreach item="item" index="index" collection="pala"
-            open="(" separator="," close=")">
-            #{item}
-        </foreach>
+                        ii.id_iniciativas AS iniprueba
+        
+        		FROM iniciativas as ii   JOIN palabras_clave  as paa on ii.id_iniciativas=paa.iniciativas_id_iniciativas
+        		 JOIN  usuarios as uu ON ii.proponentes_usuarios_correo=uu.correo
+        		WHERE paa.palabra IN
+                        <foreach item="item" index="index" collection="pala"
+                            open="(" separator="," close=")">
+                            #{item}
+                        </foreach>
+        
+        );
+
+    </select>
+    <select  parameterType="map" id="iniciativasPorArea" resultMap="AreaResult">
+        SELECT
+            u.area as area,
+            i.id_iniciativas as i_id_iniciativas,
+            i.descripcion as i_descripcion,
+            i.fecha as i_fecha,
+            i.estado as i_estado,
+
+            u.correo as i_u_correo,
+            u.nombre_usuario as i_u_nombre_usuario,
+            u.nombre as i_u_nombre,
+            u.apellido as i_u_apellido,
+            u.rol as i_u_rol,
+            u.estado as i_u_estado,
+            u.area as i_u_area,
+
+            pa.palabra as i_pa_palabra
+
+
+        FROM iniciativas as i  LEFT JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas
+        LEFT JOIN usuarios as u ON i.proponentes_usuarios_correo=u.correo
+        where u.rol='Proponente'
     </select>
 </mapper>      

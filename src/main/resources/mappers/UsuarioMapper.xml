@@ -15,9 +15,12 @@
         <result property="area" column="area"/>
     </resultMap>
     
-
+    <insert id="agregarComentarioAIniDeUsu" parameterType="map" >
+        insert into comentarios(idf_iniciativa,idf_usuario,comentario,fechare) values(#{idIni},#{corr},#{com},CURRENT_DATE);
+    </insert>
     <select parameterType="map" id="consultarUsuario" resultMap="UsuarioResult">
         SELECT
+
             u.correo,
             u.nombre_usuario,
             u.nombre,

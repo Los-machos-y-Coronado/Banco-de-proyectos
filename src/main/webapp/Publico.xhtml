@@ -14,6 +14,8 @@ and open the template in the editor.
         <title>consulClave</title>
         <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
+                <script type="text/javascript" src="js/ControladorPerfil.js"/>
+
     </h:head>
 
     <h:body>
@@ -30,7 +32,6 @@ and open the template in the editor.
                         <br><p:outputLabel for="palabras_clave" value="Palabras" style="color: white"/></br>
                         <br><p:inputText type="palabrasclave" id="palabras_clave" binding="#{pala}" placeholder="Ingrese sus palabras separadas por coma" styleClass="Button"></p:inputText></br>
                         <p:commandButton  update="formConsultarIni" value="Enviar" actionListener="#{ConsultarIniciativasBean.consultarIniciativas(pala.value)}" styleClass="Button"></p:commandButton>
-                        <p:commandButton update="formConsultarIni" value="Volver" action="#{navigationController.paginaPerfil()}" styleClass="Button"/>
                     </center>
                     <hr />
                 <p:panel id="BasicInPalabras" header="Consulta por palabras"  style="margin-bottom:40px">
@@ -50,5 +51,6 @@ and open the template in the editor.
                     </p:dataTable>
                 </p:panel>
             </h:form>
+        <center><p:commandButton  value="Volver" onclick="back()"/></center>
     </h:body>
 </html>

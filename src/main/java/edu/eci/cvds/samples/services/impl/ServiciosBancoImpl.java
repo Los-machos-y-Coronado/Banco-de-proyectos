@@ -6,6 +6,7 @@
 package edu.eci.cvds.samples.services.impl;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.samples.entities.Area;
 import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.entities.Like;
 import edu.eci.cvds.samples.entities.Rol;
@@ -148,6 +149,27 @@ public class ServiciosBancoImpl implements ServiciosBanco {
             throw new ExcepcionServiciosBanco("No se pudo eliminar likes " + id,e);
         }
     }
+
+    public  void agregarComentariosAIniciativa(int idIniciativas,String correo,String comentario)throws ExcepcionServiciosBanco{
+        try{
+            daoUsuario.agregarComentarioAIniciativa(correo,idIniciativas, comentario);
+            
+        }catch(PersistenceException ex){
+           throw new ExcepcionServiciosBanco("No se pudo registrar comentario ",ex);
+        }
+    }
+
+    @Override
+    public List<Area> iniciativasPorArea() throws ExcepcionServiciosBanco {
+        try{
+            return daoIniciativa.iniciativasPorArea();
+        }catch(PersistenceException ex){
+            throw new ExcepcionServiciosBanco("No se pudo consultar las iniciativas por area",ex);
+        }
+    }
+
+
+
 
 
 }

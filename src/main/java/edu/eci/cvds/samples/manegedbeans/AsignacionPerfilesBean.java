@@ -44,7 +44,6 @@ public class AsignacionPerfilesBean implements Serializable {
         }
     }
     public void cambiarRol(Usuario usu, String rol){
-        
         Rol nuevo= Rol.valueOf(rol);
         try {
             serviciosBanco.cambiarRol(usu,nuevo);

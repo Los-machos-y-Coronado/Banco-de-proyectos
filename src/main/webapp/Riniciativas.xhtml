@@ -14,6 +14,8 @@ and open the template in the editor.
     <title> Registro Iniciativas</title>
     <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
     <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
+            <script type="text/javascript" src="js/ControladorPerfil.js"/>
+
 
 </h:head>
 <h:body>
@@ -29,16 +31,16 @@ and open the template in the editor.
         <p:panel id="Basic" header="Informacion Proponente"  style="margin-bottom:20px">
             <p:panelGrid columns="4" layout="grid" >
                 <p:outputLabel for="correo" value="Correo :"/>
-                <p:outputLabel id="correo" value="#{inBean.proponente.getCorreo()}"/>
+                <p:outputLabel id="correo" value="#{inBean.actual.getCorreo()}"/>
 
                 <p:outputLabel for="area" value="Area :" />
-                <p:outputLabel id="area" value="#{inBean.proponente.getArea()}"/>
+                <p:outputLabel id="area" value="#{inBean.actual.getArea()}"/>
 
                 <p:outputLabel for="nombre" value="Nombre :" />
-                <p:outputLabel id="nombre" value="#{inBean.proponente.getNombre()}"/>
+                <p:outputLabel id="nombre" value="#{inBean.actual.getNombre()}"/>
 
                 <p:outputLabel for="apellido" value="Apellido :" />
-                <p:outputLabel id="apellido"  value="#{inBean.proponente.getApellido()}"/>
+                <p:outputLabel id="apellido"  value="#{inBean.actual.getApellido()}"/>
             </p:panelGrid>
         </p:panel>
 
@@ -61,9 +63,9 @@ and open the template in the editor.
         </p:panel>
         <center>
             <p:commandButton update="formRegistro2" value="Registrar" actionListener="#{inBean.registrarIniciativa(indesc.value)}" styleClass="Button"></p:commandButton>
-            <p:commandButton update="formRegistro2" value="cancelar"  actionListener="#{inBean.home()}" action="#{navigationController.getPageProp()}" styleClass="Button"  ></p:commandButton>
         <br><p:outputLabel value="#{inBean.screenEstado}" style="color: white"/></br>
         </center>
     </h:form>
+    <center><p:commandButton  value="Volver" onclick="back()"/></center>
 </h:body>
 </html>

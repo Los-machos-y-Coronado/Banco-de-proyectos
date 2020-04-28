@@ -17,7 +17,6 @@ and open the template in the editor.
     <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
             <script type="text/javascript" src="js/ControladorPerfil.js"/>
 
-
     <style type="text/css">
     .ui-datatable input {
         box-sizing: border-box;
@@ -29,20 +28,39 @@ and open the template in the editor.
 
 </h:head>
 <h:body>
-    <h:form id="formConsutl" >
+    <h:form id="formConsutlArea" >
         <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
         <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
         <br/>
         <center>
             <h2> Consulta De iniciativas </h2>
         </center>
-        <hr/>
-        <p:panel id="InConsul" header="Iniciativas"  style="margin-bottom:100px">
-            <p:dataTable value="#{inBean.iniciativas}" var="iniciativa" rows="10"
+        <p:chart type="pie" model="#{AreasBean.model}" />
+        <p:panel id="ArConsul" header="Iniciativas"  style="margin-bottom:100px">
+            <p:dataTable id="IniciatArea" value="#{AreasBean.areas}" var="area"
                          paginator="true"
-                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
                          currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
                          rowsPerPageTemplate="5,10,15">
+                <f:facet name="{Exporters}">
+                    <div style="float:right;padding-top: 5px;">
+                        <h:commandLink actionListener="#{AreasBean.excel()}" >
+                            <h:graphicImage url="img/exc.png" width="24"/>
+                            <p:fileDownload value="#{AreasBean.excel}" />
+                        </h:commandLink>
+                        <h:commandLink actionListener="#{AreasBean.pdf()}" >
+                            <h:graphicImage url="img/pdf.png" width="24"/>
+                            <p:fileDownload value="#{AreasBean.pdf}" />
+                        </h:commandLink>
+
+                    </div>
+                </f:facet>
+
+                <p:column headerText="Area" sortBy="#{area.nombre}">
+                    <p:outputLabel value="#{area.nombre}"/>
+                </p:column>
+                <p:column headerText="Iniciativas">
+                    <p:dataTable id="Inidd" value="#{inBean.iniciativas}" var="iniciativa">
 
                 <p:column headerText="Proponente" sortBy="#{iniciativa.proponente.correo}">
                     <p:outputLabel value="#{iniciativa.proponente.correo}"/>
@@ -54,18 +72,15 @@ and open the template in the editor.
                     <p:outputLabel value="#{iniciativa.estado}"/>
                 </p:column>
 
-                <p:column headerText="Likes" sortBy="#{inBean.numeroLikes(iniciativa)}">
-                    <p:outputLabel value="#{inBean.numeroLikes(iniciativa)}"/>
+                </p:dataTable>
                 </p:column>
-
-                <p:column headerText="GIVE A LIKE" >
-                    <p:commandButton  icon="pi pi-thumbs-up" update="formConsutl" value="#{inBean.estadoLike(iniciativa)}" actionListener="#{inBean.registrarLike(iniciativa)}" styleClass="Button"></p:commandButton>
-                </p:column>
-
 
             </p:dataTable>
+            
         </p:panel>
+        <center><p:commandButton  value="Volver" onclick="back()"/></center>
+
+
     </h:form>
-    <center><p:commandButton  value="Volver" onclick="back()"/></center>
 </h:body>
 </html>
