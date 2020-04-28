@@ -5,12 +5,14 @@
  */
 package edu.eci.cvds.samples.manegedbeans;
 import edu.eci.cvds.samples.entities.Iniciativa;
+import edu.eci.cvds.samples.entities.Like;
 import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBancoFactory;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.config.Ini;
 import org.apache.shiro.subject.Subject;
 
 import javax.faces.bean.ManagedBean;
@@ -35,15 +37,21 @@ import java.util.List;
 public class IniciativaBean implements Serializable {
 
     private ServiciosBanco serviciosBanco;
-    private String estado = "En espera de revisión";
+    private String estado;
     private String screenEstado = "";
+    private Usuario proponente ;
+
+    private String[] tipoEstado={"En espera de revision","En revisión","Propuesta","Solucionado"};
     private Usuario actual;
     private Iniciativa nuevoRegistro;
     private java.sql.Date fecha;
     private List<Iniciativa> iniciativas;
     private String palabrasClave="";
     private int id;
+    private int numLikes;
+    private String buttonLike;
     private Subject cor;
+
 
     public IniciativaBean() {
 
@@ -64,10 +72,15 @@ public class IniciativaBean implements Serializable {
         screenEstado = "Ingrese sus Datos";
     }
 
+
+
     public void registrarIniciativa(String descripcion) throws ParseException {
 
         try {
+            estado = "En espera de revisión";
+            List palabrasclaveArr = new ArrayList<String>(Arrays.asList(palabrasClave.split(",")));
             List palabrasclaveArr = new ArrayList<>(Arrays.asList(palabrasClave.split(",")));
+
             Date utilDate = new Date();
             nuevoRegistro = new Iniciativa(id, descripcion, new java.sql.Date(utilDate.getTime()),estado,actual,palabrasclaveArr);
             serviciosBanco.registrarIniciativa(nuevoRegistro);
@@ -78,10 +91,42 @@ public class IniciativaBean implements Serializable {
 
         }
     }
+    public String estadoLike(Iniciativa in){
 
-    public void UpdateEstado (String id){
+        try {
+            Like ver= null;
+            ver = serviciosBanco.consultarLikesInCor(in.getId(),proponente.getCorreo());
+            if(ver == null){
+                buttonLike="Like";
+            }else{
+
+                buttonLike="Dislike";
+            }
+        } catch (ExcepcionServiciosBanco ex) {
+            screenEstado="Error en consultar estado like";
+        }
+
+        return buttonLike;
+    }
+    public void registrarLike(Iniciativa in){
+        try {
+            Like ver=serviciosBanco.consultarLikesInCor(in.getId(),proponente.getCorreo());
+            if(ver == null){
+                serviciosBanco.registrarLike(in.getId(), proponente.getCorreo());
+                buttonLike="Dislike";
+            }else{
+                serviciosBanco.deleteLikes(in.getId(), proponente.getCorreo());
+                buttonLike="Like";
+            }
+        }catch (ExcepcionServiciosBanco ex){
+            screenEstado="Error en Registrar Like";
+        }
+    }
+
+    public void UpdateEstado (Iniciativa i,String xestado){
         try{
-            serviciosBanco.UpdateEstado(Integer.parseInt(id) ,estado);
+            this.estado=xestado;
+            serviciosBanco.UpdateEstado(i.getId(),estado);
             screenEstado="actualizado";
             iniciativas = serviciosBanco.consultarIniciativas();
         }catch (ExcepcionServiciosBanco | NumberFormatException ex){
@@ -89,6 +134,42 @@ public class IniciativaBean implements Serializable {
 
         }
     }
+
+    public int numeroLikes(Iniciativa in){
+        numLikes=0;
+        try{
+            List<Like> likes=serviciosBanco.consultarLikesIn(in.getId());
+            numLikes=likes.size();
+        }catch (Exception e){
+            screenEstado="Error al saber likes";
+        }
+        return numLikes;
+    }
+
+    public int getNumLikes() {
+        return numLikes;
+    }
+
+    public void setNumLikes(int numLikes) {
+        this.numLikes = numLikes;
+    }
+
+    public String getButtonLike() {
+        return buttonLike;
+    }
+
+    public void setButtonLike(String buttonLike) {
+        this.buttonLike = buttonLike;
+    }
+
+    public String[] getTipoEstado() {
+        return tipoEstado;
+    }
+
+    public void setTipoEstado(String[] tipoEstado) {
+        this.tipoEstado = tipoEstado;
+    }
+
 
     public java.sql.Date getFecha() {
         return fecha;

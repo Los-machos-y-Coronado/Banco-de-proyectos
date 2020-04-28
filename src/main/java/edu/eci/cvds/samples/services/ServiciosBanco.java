@@ -5,6 +5,8 @@
  */
 package edu.eci.cvds.samples.services;
 
+import edu.eci.cvds.samples.entities.*;
+
 import edu.eci.cvds.samples.entities.Area;
 import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
@@ -65,6 +67,19 @@ public interface ServiciosBanco {
      * @throws ExcepcionServiciosBanco 
      */
     public abstract void cambiarRol(Usuario usuario,Rol rol) throws ExcepcionServiciosBanco;
+    /**
+     * Registra los likes de cada iniciativa
+     * @Param id identificador de iniciativa
+     * @Param String correo del usuario
+     * @throws ExcepcionServiciosBanco
+     */
+    public void registrarLike(int id, String correo) throws ExcepcionServiciosBanco ;
+
+    public List<Like> consultarLikesIn(int id)  throws ExcepcionServiciosBanco;
+    public Like consultarLikesInCor(int id,String corr)  throws ExcepcionServiciosBanco;
+
+
+    public void deleteLikes(int id,String corr)  throws ExcepcionServiciosBanco;
 
      /**
      * Agregarle comentarios a iniciativas de un usuario
@@ -82,6 +97,7 @@ public interface ServiciosBanco {
      * @throws ExcepcionServiciosBanco 
      */
     public abstract List<Area> iniciativasPorArea() throws ExcepcionServiciosBanco;
+
 
 
 }

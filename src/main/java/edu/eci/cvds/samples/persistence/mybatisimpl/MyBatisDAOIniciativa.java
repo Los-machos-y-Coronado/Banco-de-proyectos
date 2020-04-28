@@ -68,6 +68,8 @@ public class MyBatisDAOIniciativa implements DaoIniciativa{
         }
     }
 
+
+
     @Override
     public void UpdateEstado(int id,String estado) throws PersistenceException {
         try{

@@ -36,7 +36,7 @@ body {
   height: 100px;
   position: absolute;
   top: -50px;
-  
+
 }
 
 .login-box h1 {
@@ -78,9 +78,10 @@ body {
 
 .login-box a:hover {
   color: #fff;
+
 }
 
-.ui-button{
+ui-button {
   border: none;
   outline: none;
   height: 40px;

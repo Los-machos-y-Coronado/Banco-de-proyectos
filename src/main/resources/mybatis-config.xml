@@ -10,7 +10,10 @@
     <typeAliases>
         <typeAlias type="edu.eci.cvds.samples.entities.Usuario" alias="Usuario"/>
         <typeAlias type="edu.eci.cvds.samples.entities.Iniciativa" alias="Iniciativa"/>
+        <typeAlias type="edu.eci.cvds.samples.entities.Like" alias="Like"/>
+
         <typeAlias type="edu.eci.cvds.samples.entities.Area" alias="Area"/>
+
 
 
     </typeAliases>	
@@ -30,6 +33,7 @@
     <mappers>
         <mapper resource="mappers/UsuarioMapper.xml"></mapper>
         <mapper resource="mappers/IniciativaMapper.xml"></mapper>
+        <mapper resource="mappers/LikeMapper.xml"></mapper>
     </mappers>
 
         

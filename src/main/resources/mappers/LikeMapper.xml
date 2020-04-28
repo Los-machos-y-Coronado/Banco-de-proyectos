@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.LikeMapper">
+
+    <resultMap type="Like" id='LikeResult'>
+        <id property='iniciativa' column='idf_iniciativa'/>
+        <id property='correo' column='idf_usuario'/>
+        <result property="flag" column="boollike"/>
+    </resultMap>
+
+    <insert id="registrarLikes" parameterType="map">
+        insert into likes values(#{inid},#{corr},#{boole});
+    </insert>
+
+    <delete id="deleteLikes" parameterType="map">
+        delete from likes where idf_iniciativa = #{inid} and idf_usuario = #{corr};
+    </delete>
+
+    <select id="consultarAlLikes" parameterType="map">
+        select
+
+        lk.idf_iniciativa,
+        lk.idf_usuario,
+        lk.boollike
+
+        from likes as lk;
+    </select>
+
+    <select id="consultarLikesIn" parameterType="map" resultMap="LikeResult">
+        select
+
+        lk.idf_iniciativa,
+        lk.idf_usuario,
+        lk.boollike
+
+        from likes as lk
+        where lk.idf_iniciativa = #{inid};
+    </select>
+
+    <select id="consultarLikesInCor" parameterType="map" resultMap="LikeResult">
+        select
+
+        lk.idf_iniciativa,
+        lk.idf_usuario,
+        lk.boollike
+
+        from likes as lk
+        where lk.idf_iniciativa = #{inid} and lk.idf_usuario = #{corr};
+    </select>
+
+</mapper>
