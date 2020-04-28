@@ -26,7 +26,7 @@ public class Usuario {
         this.rol = rol;
         this.estado = estado;
         this.area = area;
-        System.out.println(this+"JOHANN ES RE GURRERO");
+        
 
 
     }

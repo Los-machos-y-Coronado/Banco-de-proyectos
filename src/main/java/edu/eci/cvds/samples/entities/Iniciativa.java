@@ -30,7 +30,7 @@ public class Iniciativa {
         this.descripcion=descripcion;
         this.fecha=fecha;
         this.proponente=proponente;
-        this.estado="en espera de revision";
+        this.estado="En espera";
         this.palabrasClave = palabrasClave;
     }
 
@@ -94,13 +94,6 @@ public class Iniciativa {
             this.palabrasClave = palabras;
         }
 
-    public Usuario getCorreo() {
-        return proponente;
-    }
-
-    public void setCorreo(Usuario correo) {
-        this.proponente = correo;
-    }
 
 
 

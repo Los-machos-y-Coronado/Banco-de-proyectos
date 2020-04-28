@@ -17,7 +17,6 @@ import org.apache.shiro.subject.Subject;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -43,6 +42,7 @@ public class IniciativaBean implements Serializable {
     private Usuario proponente ;
 
     private String[] tipoEstado={"En espera de revision","En revisión","Propuesta","Solucionado"};
+    private Usuario actual;
     private Iniciativa nuevoRegistro;
     private java.sql.Date fecha;
     private List<Iniciativa> iniciativas;
@@ -54,14 +54,16 @@ public class IniciativaBean implements Serializable {
 
 
     public IniciativaBean() {
+
         serviciosBanco = ServiciosBancoFactory.getInstance().getServiciosBanco();
         cor= SecurityUtils.getSubject();
+
         try {
-            proponente=serviciosBanco.consultarUsuario(cor.getSession().getAttribute("Correo").toString());
+            actual=serviciosBanco.consultarUsuario(cor.getSession().getAttribute("Correo").toString());
             iniciativas = serviciosBanco.consultarIniciativas();
             id= iniciativas.size()+1;
         }catch (ExcepcionServiciosBanco ex){
-
+            System.out.println("EXCEPTION");
         }
     }
 
@@ -77,12 +79,14 @@ public class IniciativaBean implements Serializable {
         try {
             estado = "En espera de revisión";
             List palabrasclaveArr = new ArrayList<String>(Arrays.asList(palabrasClave.split(",")));
+            List palabrasclaveArr = new ArrayList<>(Arrays.asList(palabrasClave.split(",")));
+
             Date utilDate = new Date();
-            nuevoRegistro = new Iniciativa(id, descripcion, new java.sql.Date(utilDate.getTime()),estado,proponente,palabrasclaveArr);
+            nuevoRegistro = new Iniciativa(id, descripcion, new java.sql.Date(utilDate.getTime()),estado,actual,palabrasclaveArr);
             serviciosBanco.registrarIniciativa(nuevoRegistro);
             iniciativas = serviciosBanco.consultarIniciativas();
             screenEstado = "registro exitoso";
-        } catch (Exception e) {
+        } catch (ExcepcionServiciosBanco e) {
             e.printStackTrace();
 
         }
@@ -125,7 +129,7 @@ public class IniciativaBean implements Serializable {
             serviciosBanco.UpdateEstado(i.getId(),estado);
             screenEstado="actualizado";
             iniciativas = serviciosBanco.consultarIniciativas();
-        }catch (Exception ex){
+        }catch (ExcepcionServiciosBanco | NumberFormatException ex){
             screenEstado="Error en actualziar";
 
         }
@@ -167,6 +171,7 @@ public class IniciativaBean implements Serializable {
         this.tipoEstado = tipoEstado;
     }
 
+
     public java.sql.Date getFecha() {
         return fecha;
     }
@@ -206,13 +211,14 @@ public class IniciativaBean implements Serializable {
         this.screenEstado = screenEstado;
     }
 
-    public Usuario getProponente() {
-        return proponente;
+    public Usuario getActual() {
+        return actual;
     }
 
-    public void setProponente(Usuario proponente) {
-        this.proponente = proponente;
+    public void setActual(Usuario actual) {
+        this.actual = actual;
     }
+
 
     public Iniciativa getNuevoRegistro() {
         return nuevoRegistro;

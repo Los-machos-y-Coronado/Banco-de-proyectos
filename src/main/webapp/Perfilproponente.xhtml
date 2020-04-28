@@ -30,14 +30,18 @@ and open the template in the editor.
             </center>
 
             <hr />
-            <p:menu>
 
-                <p:submenu label="Proponente">
-                    <p:menuitem value="Registrar iniciativa" action="#{navigationController.iniciativas()}"/>
-                    <p:menuitem value="Consutlar iniciativas " action="#{navigationController.ConsultarIniciativas()}"/>
-                </p:submenu>
+            <p:menubar>
 
-            </p:menu>
+                
+                    <p:menuitem value="Registrar iniciativa" onclick="cambiarPagina('Riniciativas')"/>
+                    <p:menuitem value="Consutlar iniciativas " onclick="cambiarPagina('Consult')"/>
+                    <p:menuitem value="Consultar por palabras clave" onclick="cambiarPagina('Publico')"/>
+                    
+                    <p:menuitem value="Salir" actionListener="#{shBean.logOut()}"/>
+             
+
+            </p:menubar>
         </h:form>
     </h:body>
 </html>

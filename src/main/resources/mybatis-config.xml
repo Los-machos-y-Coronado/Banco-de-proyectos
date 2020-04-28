@@ -12,6 +12,10 @@
         <typeAlias type="edu.eci.cvds.samples.entities.Iniciativa" alias="Iniciativa"/>
         <typeAlias type="edu.eci.cvds.samples.entities.Like" alias="Like"/>
 
+        <typeAlias type="edu.eci.cvds.samples.entities.Area" alias="Area"/>
+
+
+
     </typeAliases>	
 
     <environments default="development">
