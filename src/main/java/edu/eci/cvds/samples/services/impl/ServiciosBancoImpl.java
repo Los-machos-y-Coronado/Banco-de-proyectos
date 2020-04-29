@@ -44,6 +44,7 @@ public class ServiciosBancoImpl implements ServiciosBanco {
      *
      * @param id
      * @return
+     * @throws edu.eci.cvds.samples.services.ExcepcionServiciosBanco
      */
     @Override
     public Iniciativa consultarIniciativa (int id) throws ExcepcionServiciosBanco{
@@ -205,15 +206,17 @@ public class ServiciosBancoImpl implements ServiciosBanco {
         String areaDeIni1=ini1.getProponente().getArea();
         double TantoPorCiento = (ini2.getPalabras().size())*0.6;
         int contador = 0;
-        
-        if(ini1.toString()!=ini2.toString() && areaDeIni1==areaDeIni2){
+
+        if((ini1.getId()!=ini2.getId()) && (areaDeIni1 == null ? areaDeIni2 == null : areaDeIni1.equals(areaDeIni2))){
+           
            for (String palabra:ini1.getPalabras()){
                if(ini2.getPalabras().contains(palabra)){
                    contador++;
                }
            }
         }
-        if (contador>=TantoPorCiento){
+        
+        if ((double)contador>=TantoPorCiento && contador!=0.0 && TantoPorCiento!=0){
             respuesta=true;
         }
         
