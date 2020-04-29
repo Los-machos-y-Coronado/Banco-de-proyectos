@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="/css/textStyle.css" media="screen"/>
+        <script type="text/javascript" src="js/ControladorPerfil.js"/>
+    </h:head>
+    <h:body>
+        
+        <!-- Navigation Bar -->
+    
+        
+        <h:form id="adminForm">
+            <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
+            <br/>
+            <center>
+                <h2>Bienvenido al Menu Admin </h2>
+            </center>
+
+            <hr />
+
+            
+        <p:menubar>
+                     
+                        <p:menuitem value="Asignar perfiles" onclick="cambiarPagina('AsignacionPerfiles')"/>
+                        <p:menuitem value="Cambiar estado iniciativas " onclick="cambiarPagina('EstadoIniciativa')"/>
+                        <p:menuitem value="Consultar iniciativas " onclick="cambiarPagina('Consult')"/>
+                        <p:menuitem value="Consultar por palabras clave" onclick="cambiarPagina('Publico')" />
+                        <p:menuitem value="Reporte por areas" onclick="cambiarPagina('IniciativaArea')"/>
+                        <p:menuitem value="Agrupar Iniciativas" onclick="cambiarPagina('AgruparIniciativa')"/>
+                        <p:menuitem value="Salir" actionListener="#{shBean.logOut()}"/>
+           
+        </p:menubar>
+            </h:form>
+    </h:body>
+</html>
+

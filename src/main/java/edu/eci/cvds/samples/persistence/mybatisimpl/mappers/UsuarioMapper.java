@@ -18,10 +18,9 @@ public interface UsuarioMapper {
     /**
      * Consulta usuario dado
      * @param correo String correo del Usuario
-     * @param clave  String clave del Usuario
      * @return Usuario correspondiente 
      */
-    public Usuario consultarUsuario(@Param("corr")String correo, @Param("clusu")String clave);
+    public Usuario consultarUsuario(@Param("corr")String correo );
     
     /**
      * Consulta todos los usuarios
@@ -34,4 +33,13 @@ public interface UsuarioMapper {
      * @param rol Nuevo rol
      */
     public void cambiarRol(@Param("usu")Usuario usuario,@Param("rol")Rol rol);
+    
+     /*
+     * Registrar un comentario a iniciativa
+     * @param correo
+     * @param idIniciativa
+     * @param comentario 
+     * 
+     */
+    public void agregarComentarioAIniDeUsu(@Param("idIni") int idIniciaiva,@Param("corr")String correo,@Param("com") String comentario);
 }

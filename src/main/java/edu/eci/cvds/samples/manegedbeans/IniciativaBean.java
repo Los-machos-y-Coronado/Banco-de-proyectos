@@ -4,20 +4,23 @@
  * and open the template in the editor.
  */
 package edu.eci.cvds.samples.manegedbeans;
-import com.google.inject.Inject;
-import edu.eci.cvds.samples.entities.Administrador;
 import edu.eci.cvds.samples.entities.Iniciativa;
-import edu.eci.cvds.samples.entities.Proponente;
+import edu.eci.cvds.samples.entities.Like;
+import edu.eci.cvds.samples.entities.Rol;
+import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBancoFactory;
-import javax.faces.bean.ApplicationScoped;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.config.Ini;
+import org.apache.shiro.subject.Subject;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -34,63 +37,163 @@ import java.util.List;
 public class IniciativaBean implements Serializable {
 
     private ServiciosBanco serviciosBanco;
-    private String estado = "En espera de revisión";
+    private String estado;
     private String screenEstado = "";
-    private Proponente proponente = new Proponente("alex.garci@yahoo.com", "alex22", "alex", "gordillo", true, "civl");
-    private Administrador administrador = new Administrador("danipipe1703@gmail.com","DanielG","Daniel","Gomez",true);
+    private Usuario proponente ;
+
+    private String[] tipoEstado={"En espera de revision","En revisión","Propuesta","Solucionado"};
+    private Usuario actual;
     private Iniciativa nuevoRegistro;
     private java.sql.Date fecha;
+
     private List<Iniciativa> iniciativas;
+    private List<Iniciativa> iniciativasGroup;
+    private String palabrasClave="";
+    private int id;
+    private int numLikes;
+    private String buttonLike;
+    private Subject cor;
+    private Iniciativa selectedIni;
+
+
 
     public IniciativaBean() {
-        serviciosBanco = ServiciosBancoFactory.getInstance().getServiciosBanco();
-   
-        try {
-            iniciativas = serviciosBanco.consultarIniciativas();
-        }catch (ExcepcionServiciosBanco ex){
 
+        serviciosBanco = ServiciosBancoFactory.getInstance().getServiciosBanco();
+        cor= SecurityUtils.getSubject();
+
+        try {
+            proponente=serviciosBanco.consultarUsuario(cor.getSession().getAttribute("Correo").toString());
+            iniciativas = serviciosBanco.consultarIniciativas();
+            id= iniciativas.size()+1;
+        }catch (ExcepcionServiciosBanco ex){
+            System.out.println("EXCEPTION");
         }
     }
 
     public void home() {
-        
-        screenEstado = "reinicio";
+
+        screenEstado = "Ingrese sus Datos";
     }
 
-    public void registrarIniciativa(String id, String descripcion) throws ParseException {
+
+
+    public void registrarIniciativa(String descripcion) throws ParseException {
+
         try {
+            estado = "En espera de revisión";
+            List palabrasclaveArr = new ArrayList<String>(Arrays.asList(palabrasClave.split(",")));
+
             Date utilDate = new Date();
-            nuevoRegistro = new Iniciativa(Integer.parseInt(id), descripcion, new java.sql.Date(utilDate.getTime()), proponente.getCorreo(), estado);
+            nuevoRegistro = new Iniciativa(id, descripcion, new java.sql.Date(utilDate.getTime()),estado,actual,palabrasclaveArr);
             serviciosBanco.registrarIniciativa(nuevoRegistro);
             iniciativas = serviciosBanco.consultarIniciativas();
             screenEstado = "registro exitoso";
-        } catch (Exception e) {
+        } catch (ExcepcionServiciosBanco e) {
             e.printStackTrace();
 
         }
     }
+    public String estadoLike(Iniciativa in){
 
-    public void UpdateEstado (String id){
+        try {
+            Like ver= null;
+            ver = serviciosBanco.consultarLikesInCor(in.getId(),proponente.getCorreo());
+            if(ver == null){
+                buttonLike="Like";
+            }else{
+
+                buttonLike="Dislike";
+            }
+        } catch (ExcepcionServiciosBanco ex) {
+            screenEstado="Error en consultar estado like";
+        }
+
+        return buttonLike;
+    }
+    public void registrarLike(Iniciativa in){
+        try {
+            Like ver=serviciosBanco.consultarLikesInCor(in.getId(),proponente.getCorreo());
+            if(ver == null){
+                serviciosBanco.registrarLike(in.getId(), proponente.getCorreo());
+                buttonLike="Dislike";
+            }else{
+                serviciosBanco.deleteLikes(in.getId(), proponente.getCorreo());
+                buttonLike="Like";
+            }
+        }catch (ExcepcionServiciosBanco ex){
+            screenEstado="Error en Registrar Like";
+        }
+    }
+
+    public void UpdateEstado (Iniciativa i,String xestado){
         try{
-            serviciosBanco.UpdateEstado(Integer.parseInt(id) ,estado);
+            this.estado=xestado;
+            serviciosBanco.UpdateEstado(i.getId(),estado);
             screenEstado="actualizado";
             iniciativas = serviciosBanco.consultarIniciativas();
-        }catch (Exception ex){
+        }catch (ExcepcionServiciosBanco | NumberFormatException ex){
             screenEstado="Error en actualziar";
 
         }
     }
 
+     
+    public int numeroLikes(Iniciativa in){
+        numLikes=0;
+        try{
+            List<Like> likes=serviciosBanco.consultarLikesIn(in.getId());
+            numLikes=likes.size();
 
-
-
-    public Administrador getAdministrador() {
-        return administrador;
+        }catch (Exception e){
+            screenEstado="Error al saber likes";
+        }
+        return numLikes;
     }
 
-    public void setAdministrador(Administrador administrador) {
-        this.administrador = administrador;
+    public void agruparIniciativas(){
+
+        try{
+            iniciativasGroup=serviciosBanco.agruparIniciativas(selectedIni);
+        }catch (ExcepcionServiciosBanco ex){
+            screenEstado="error en agrupacion";
+        }
+
     }
+
+    public Usuario getProponente() {
+        return proponente;
+    }
+
+    public void setProponente(Usuario proponente) {
+        this.proponente = proponente;
+    }
+    
+    
+    public int getNumLikes() {
+        return numLikes;
+    }
+
+    public void setNumLikes(int numLikes) {
+        this.numLikes = numLikes;
+    }
+
+    public String getButtonLike() {
+        return buttonLike;
+    }
+
+    public void setButtonLike(String buttonLike) {
+        this.buttonLike = buttonLike;
+    }
+
+    public String[] getTipoEstado() {
+        return tipoEstado;
+    }
+
+    public void setTipoEstado(String[] tipoEstado) {
+        this.tipoEstado = tipoEstado;
+    }
+
 
     public java.sql.Date getFecha() {
         return fecha;
@@ -131,13 +234,14 @@ public class IniciativaBean implements Serializable {
         this.screenEstado = screenEstado;
     }
 
-    public Proponente getProponente() {
-        return proponente;
+    public Usuario getActual() {
+        return actual;
     }
 
-    public void setProponente(Proponente proponente) {
-        this.proponente = proponente;
+    public void setActual(Usuario actual) {
+        this.actual = actual;
     }
+
 
     public Iniciativa getNuevoRegistro() {
         return nuevoRegistro;
@@ -145,5 +249,37 @@ public class IniciativaBean implements Serializable {
 
     public void setNuevoRegistro(Iniciativa nuevoRegistro) {
         this.nuevoRegistro = nuevoRegistro;
+    }
+
+    public String getPalabrasClave() {
+        return palabrasClave;
+    }
+
+    public void setPalabrasClave(String palabrasClave) {
+        this.palabrasClave = palabrasClave;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<Iniciativa> getIniciativasGroup() {
+        return iniciativasGroup;
+    }
+
+    public void setIniciativasGroup(List<Iniciativa> iniciativasGroup) {
+        this.iniciativasGroup = iniciativasGroup;
+    }
+
+    public Iniciativa getSelectedIni() {
+        return selectedIni;
+    }
+
+    public void setSelectedIni(Iniciativa selectedIni) {
+        this.selectedIni = selectedIni;
     }
 }

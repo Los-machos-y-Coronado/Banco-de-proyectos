@@ -12,10 +12,16 @@ and open the template in the editor.
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title> Editar estado</title>
+
+        <link rel="stylesheet" type="text/css" href="/css/textStyle.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
+                <script type="text/javascript" src="js/ControladorPerfil.js"/>
+
+
     </h:head>
     <h:body>
         <h:form id="formEdit" >
+            <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
            <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
            <br/>
            <center>
@@ -26,51 +32,56 @@ and open the template in the editor.
            <p:panel id="Basic" header="Informacion Administrador"  style="margin-bottom:20px">
                <p:panelGrid columns="4" layout="grid" >
                    <p:outputLabel for="correo" value="Correo :"/>
-                   <p:outputLabel id="correo" value="#{inBean.administrador.getCorreo()}"/>
+                   <p:outputLabel id="correo" value="#{inBean.proponente.correo}"/>
 
                    <p:outputLabel for="area" value="Area :" />
                    <p:outputLabel id="area" value="General"/>
 
                    <p:outputLabel for="nombre" value="Nombre :" />
-                   <p:outputLabel id="nombre" value="#{inBean.administrador.getNombre()}"/>
+
+                   <p:outputLabel id="nombre" value="#{inBean.proponente.nombre}"/>
 
                    <p:outputLabel for="apellido" value="Apellido :" />
-                   <p:outputLabel id="apellido"  value="#{inBean.administrador.getApellido()}"/>
+                   <p:outputLabel id="apellido"  value="#{inBean.proponente.apellido}"/>
                </p:panelGrid>
+
            </p:panel>
+           
+            <p:panel  id="Pestado" header="Cambio de Estado"  style="margin-center:20px">
+                <p:dataList value="#{inBean.iniciativas}" var ="iniciativa" style="border: none;">
+                  <br/>
+                          <p:panelGrid columns="2"   layout="grid">
+                              <h:outputText value="Proponente :" style="font-weight:bold"/>
+                              <h:outputText value="#{iniciativa.proponente.nombre}  #{iniciativa.proponente.apellido}" />
 
-            <p:panel id="Pestado" header="Cambio de Estado"  style="margin-bottom:20px">
-                <p:dataTable value="#{inBean.iniciativas}" var="iniciativa">
-                    <p:column headerText="Id">
-                        <p:outputLabel value="#{iniciativa.id}"/>
-                    </p:column>
-                    <p:column headerText="Descripcion">
-                        <p:outputLabel value="#{iniciativa.descripcion}"/>
-                    </p:column>
-                    <p:column headerText="Estado">
-                        <p:outputLabel value="#{iniciativa.estado}"/>
-                    </p:column>
-                </p:dataTable>
-                <p:panelGrid columns="4" layout="grid">
-                    <p:outputLabel for="id" value="Iniciativa Num:"/>
-                    <p:inputText type="text" id="id"  binding="#{inid}">
-                        <f:convertNumber type="number"/>
-                    </p:inputText>
-                    <p:outputLabel for="estado" value="estado :"/>
-                    <p:selectOneMenu id="estado"  value="#{inBean.estado}">
-                        <f:selectItem itemLabel="En espera de revisión" itemValue="En espera" />
-                        <f:selectItem itemLabel="En revisión" itemValue="En revisión" />
-                        <f:selectItem itemLabel="propuesta" itemValue="propuesta" />
-                        <f:selectItem itemLabel="Solucionado" itemValue="Solucionado" />
-                    </p:selectOneMenu>
-                </p:panelGrid>
-                <center>
-                    <p:commandButton update="formEdit" value="Actualizar" actionListener="#{inBean.UpdateEstado(inid.value)}" styleClass="Button"></p:commandButton>
+                              <h:outputText value="Descripcion:" style="font-weight:bold" />
+                              <h:outputText value="#{iniciativa.descripcion}" />
 
-                    <p:commandButton update="formEdit" value="cancelar"  actionListener="#{inBean.home()}" action="#{navigationController.paginaPerfil()}" styleClass="Button"  ></p:commandButton>
-                </center>
+                              <h:outputText value="Area:" style="font-weight:bold" />
+                              <h:outputText value="#{iniciativa.proponente.area}" />
+
+                              <h:outputText value="Estado:" style="font-weight:bold"/>
+                              <h:outputText value="#{iniciativa.estado}" />
+
+                              <h:outputText value="Likes:" style="font-weight:bold"/>
+                              <h:outputText value="#{inBean.numeroLikes(iniciativa)}" />
+                       </p:panelGrid>
+                      <center>
+                      <p:selectOneMenu id="estado"  binding="#{estado}"  >
+                          <f:selectItem itemLabel="En espera de revsion" itemValue="En espera de revsion" />
+                          <f:selectItem itemLabel="En revision" itemValue="En revision" />
+                          <f:selectItem itemLabel="Proyecto" itemValue="Proyecto" />
+                          <f:selectItem itemLabel="Solucionado" itemValue="Solucionado" />
+                      </p:selectOneMenu>
+                      <p:commandButton update="formEdit" value="Actualizar" actionListener="#{inBean.UpdateEstado(iniciativa,estado.value)}" styleClass="Button"></p:commandButton>
+                          <p:commandButton  icon="pi pi-thumbs-up" update="formEdit" value="#{inBean.estadoLike(iniciativa)}" actionListener="#{inBean.registrarLike(iniciativa)}" styleClass="Button"></p:commandButton>
+
+                      </center>
+                  </p:dataList>
             </p:panel>
+            <center><p:commandButton  value="Volver" onclick="back()"/></center>
         </h:form>
+
         
         </h:body>
 

@@ -6,6 +6,7 @@
 package edu.eci.cvds.samples.persistence.mybatisimpl;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.samples.entities.Area;
 import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.persistence.DaoIniciativa;
 import edu.eci.cvds.samples.persistence.PersistenceException;
@@ -56,6 +57,18 @@ public class MyBatisDAOIniciativa implements DaoIniciativa{
             throw new PersistenceException("error al registrar idea/Iniciativa",e);
         }
     }
+    @Override
+    public void registrarPalabrasClave(int id, ArrayList<String> palabras) throws PersistenceException{
+        try{
+            for (String pala : palabras){
+                iniciativaMapper.registrarPalabraClave(id,pala);
+            }
+        }catch(Exception e){
+            throw new PersistenceException ("al registrar palabra clave",e);
+        }
+    }
+
+
 
     @Override
     public void UpdateEstado(int id,String estado) throws PersistenceException {
@@ -75,6 +88,15 @@ public class MyBatisDAOIniciativa implements DaoIniciativa{
         }
         catch(org.apache.ibatis.exceptions.PersistenceException e){
             throw new PersistenceException("Error al consultar los items con las palabras clave"+palabrasclave,e);
+        }
+    }
+
+    @Override
+    public List<Area> iniciativasPorArea() throws PersistenceException {
+        try{
+            return iniciativaMapper.iniciativasPorArea();
+        }catch (Exception e){
+            throw new PersistenceException ("error al las Iniciativas por area",e);
         }
     }
 

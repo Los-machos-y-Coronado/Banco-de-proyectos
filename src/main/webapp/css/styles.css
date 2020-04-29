@@ -1,18 +1,24 @@
-* {box-sizing: border-box;}
 
 body {
     margin: 0;
     padding: 0;
     background: url(../img/bg.jpg) no-repeat center top;
     background-size: cover;
-    font-size: 16pt;
-}
-
-h2 {
-    background-color: #b80f22;
+    font-size: 12pt;
+    font-color: red;
 }
 
 .Registro{
- margin: 45px; 
-  
+ margin: 45px;
 }
+
+h2 {
+    background-color: red;
+}
+
+#Agruparform {
+    
+    color:white;
+     margin: 45px;
+}
+

@@ -10,27 +10,27 @@
         <result property='nombreUsuario' column='nombre_usuario'/> 
         <result property='nombre' column='nombre'/>
         <result property='apellido' column='apellido'/>
+        <result property="rol" column="rol" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
         <result property='estado' column='estado'/>       
-        <discriminator javaType="String" column="rol">
-            <case value="Administrador" resultMap="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.AdministradorMapper.AdministradorResult"/>
-            <case value="PersonalPMO" resultMap="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.PersonalPMOMapper.PersonalPMOResult"/>
-            <case value="Proponente" resultMap="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.ProponenteMapper.ProponenteResult"/>
-            <case value="Publico" resultMap="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.PublicoMapper.PublicoResult"/>
-        </discriminator>
+        <result property="area" column="area"/>
     </resultMap>
     
-
+    <insert id="agregarComentarioAIniDeUsu" parameterType="map" >
+        insert into comentarios(idf_iniciativa,idf_usuario,comentario,fechare) values(#{idIni},#{corr},#{com},CURRENT_DATE);
+    </insert>
     <select parameterType="map" id="consultarUsuario" resultMap="UsuarioResult">
         SELECT
+
             u.correo,
             u.nombre_usuario,
             u.nombre,
             u.apellido,
+            u.rol,
             u.estado,
-            u.area,
-            u.rol
+            u.area
+            
         FROM USUARIOS AS u
-        WHERE u.correo=#{corr} and u.clave=#{clusu};
+        WHERE u.correo=#{corr};
     </select>
     <select parameterType="map" id="consultarUsuarios" resultMap="UsuarioResult">
         SELECT
@@ -38,9 +38,10 @@
             u.nombre_usuario,
             u.nombre,
             u.apellido,
+            u.rol,
             u.estado,
-            u.area,
-            u.rol
+            u.area
+            
         FROM USUARIOS AS u;
     </select>
     <update id="cambiarRol" parameterType="map">
@@ -49,8 +50,5 @@
         WHERE
 	correo=#{usu.correo};
     </update>
-    
-        
-    
-    
+
 </mapper>

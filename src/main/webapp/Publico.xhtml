@@ -1,55 +1,60 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+
     <h:head>
-        <title></title>
-        <link rel="stylesheet" type="text/css" href="/css/Publico.css" media="screen"/>
+        <title>consulClave</title>
+        <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="/css/textStyle.css" media="screen"/>
+                <script type="text/javascript" src="js/ControladorPerfil.js"/>
+
     </h:head>
-    <style>
-        ::placeholder {  
-            font-size: 0.7em; 
-        }  
-    </style>
-    <h:body>   
-    
-            
-            <img src="img/logo.png" class="avatar" alt="Avatar Image"/>
-            <h1>Consultar iniciativas</h1>
+
+    <h:body>
             <h:form id="formConsultarIni">
-                <br><p:outputLabel value="#{ConsultarIniciativasBean.estado}"/></br>
-                <label for="palabras"> Palabras </label>
-                <br><p:inputText type="palabrasclave" id="palabras_clave" binding="#{pala}" placeholder="Ingrese sus palabras separadas por coma"></p:inputText></br>           
-                <p:commandButton update="formConsultarIni" value="Enviar" actionListener="#{ConsultarIniciativasBean.consultarIniciativas(pala.value)}" styleClass="Button"></p:commandButton>    
-                
-                
-                <p:commandButton  value="Volver" action="#{navigationController.paginaPerfil()}"/>
-                <div align="center">
-                <p:dataTable var="Iniciativa"  value="#{ConsultarIniciativasBean.ini}" >
-                    <p:column headerText="Correo"  >
-                        <h:outputText value= "#{Iniciativa.correo}" />
-                    </p:column>
-                    <p:column headerText="Descripcion"  >
-                        <h:outputText value= "#{Iniciativa.descripcion}" />
-                    </p:column>
-                    <p:column headerText="Fecha"  >
-                        <h:outputText value= "#{Iniciativa.fecha}" />
-                    </p:column>
-                    <p:column headerText="Estado"  >
-                        <h:outputText value= "#{Iniciativa.estado}" />
-                    </p:column>
-                  
-                    
-                
-                </p:dataTable>
-                </div>
+                <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
+                <br/>
+                <center>
+                    <h2>Consulta por palabras clave </h2>
+                </center>
+                <hr />
+
+                    <center>
+                        <p:outputLabel value="#{ConsultarIniciativasBean.estado}" style="color: white"/>
+                        <br><p:outputLabel for="palabras_clave" value="Palabras" style="color: white"/></br>
+                        <br><p:inputText type="palabrasclave" id="palabras_clave" binding="#{pala}" placeholder="Ingrese sus palabras separadas por coma" styleClass="Button"></p:inputText></br>
+                        <br/>
+                        <p:commandButton  update="formConsultarIni" value="Enviar" actionListener="#{ConsultarIniciativasBean.consultarIniciativas(pala.value)}" styleClass="Button"></p:commandButton>
+                    </center>
+                    <hr />
+                <br/>
+                <p:panel id="BasicInPalabras" header="Consulta por palabras"  style="margin-bottom:40px">
+                    <p:dataTable var="Iniciativa"  value="#{ConsultarIniciativasBean.ini}" >
+                        <p:column headerText="Correo"  >
+                            <h:outputText value= "#{Iniciativa.proponente.getCorreo()}" />
+                        </p:column>
+                        <p:column headerText="Descripcion"  >
+                            <h:outputText value= "#{Iniciativa.descripcion}" />
+                        </p:column>
+                        <p:column headerText="Fecha"  >
+                            <h:outputText value= "#{Iniciativa.fecha}" />
+                        </p:column>
+                        <p:column headerText="Estado"  >
+                            <h:outputText value= "#{Iniciativa.estado}" />
+                        </p:column>
+                    </p:dataTable>
+                </p:panel>
+                <center><p:commandButton  value="Volver" onclick="back()"/></center>
             </h:form>
-            
-            
-            
-        
+
     </h:body>
 </html>

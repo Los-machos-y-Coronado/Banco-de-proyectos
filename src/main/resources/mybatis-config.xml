@@ -3,17 +3,18 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
- 
-    
+
+
     <properties resource="config.properties">
     </properties>
     <typeAliases>
         <typeAlias type="edu.eci.cvds.samples.entities.Usuario" alias="Usuario"/>
-        <typeAlias type="edu.eci.cvds.samples.entities.Administrador" alias="Administrador"/>
-        <typeAlias type="edu.eci.cvds.samples.entities.PersonalPMO" alias="PersonalPMO"/>
-        <typeAlias type="edu.eci.cvds.samples.entities.Proponente" alias="Proponente"/>
-        <typeAlias type="edu.eci.cvds.samples.entities.Publico" alias="Publico"/>
         <typeAlias type="edu.eci.cvds.samples.entities.Iniciativa" alias="Iniciativa"/>
+        <typeAlias type="edu.eci.cvds.samples.entities.Like" alias="Like"/>
+
+        <typeAlias type="edu.eci.cvds.samples.entities.Area" alias="Area"/>
+
+
 
     </typeAliases>	
 
@@ -31,12 +32,9 @@
         
     <mappers>
         <mapper resource="mappers/UsuarioMapper.xml"></mapper>
-        <mapper resource="mappers/AdministradorMapper.xml"></mapper>
-        <mapper resource="mappers/PersonalPMOMapper.xml"></mapper>
-        <mapper resource="mappers/ProponenteMapper.xml"></mapper>
-        <mapper resource="mappers/PublicoMapper.xml"></mapper>
         <mapper resource="mappers/IniciativaMapper.xml"></mapper>
-    </mappers> 
-        
+        <mapper resource="mappers/LikeMapper.xml"></mapper>
+    </mappers>
+
         
 </configuration>

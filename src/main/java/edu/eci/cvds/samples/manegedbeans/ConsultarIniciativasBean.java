@@ -10,6 +10,8 @@ import edu.eci.cvds.samples.services.Convertidor;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBancoFactory;
+
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -20,7 +22,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean(name = "ConsultarIniciativasBean")
 @SessionScoped
-public class ConsultarIniciativasBean {
+public class ConsultarIniciativasBean implements Serializable {
         private final ServiciosBanco serviciosBanco;
         private String estado;
         private List<Iniciativa> ini;
@@ -28,11 +30,8 @@ public class ConsultarIniciativasBean {
         
     public ConsultarIniciativasBean(){
         serviciosBanco=ServiciosBancoFactory.getInstance().getServiciosBanco();
-        
     }       
-        
-        
-        
+
     public void consultarIniciativas(String palabras){
 
             try{

@@ -5,6 +5,9 @@
  */
 package edu.eci.cvds.samples.services;
 
+import edu.eci.cvds.samples.entities.*;
+
+import edu.eci.cvds.samples.entities.Area;
 import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.entities.Iniciativa;
@@ -27,15 +30,15 @@ public interface ServiciosBanco {
     /**
      * Retorna el usuario segun sus credenciales
      * @param correo String  correo del usuario
-     * @param clave String contraseña del usuario
      * @return Usuario usuario 
      * @throws edu.eci.cvds.samples.services.ExcepcionServiciosBanco
      */
-    public abstract Usuario consultarUsuario(String correo, String clave) throws ExcepcionServiciosBanco;
+    public abstract Usuario consultarUsuario(String correo) throws ExcepcionServiciosBanco;
     public abstract Iniciativa consultarIniciativa(int id) throws ExcepcionServiciosBanco;
     public abstract List<Iniciativa> consultarIniciativas() throws ExcepcionServiciosBanco;
     public abstract void registrarIniciativa(Iniciativa in)throws ExcepcionServiciosBanco;
     public abstract void UpdateEstado(int id,String estado) throws ExcepcionServiciosBanco;
+
 
 
     
@@ -64,5 +67,54 @@ public interface ServiciosBanco {
      * @throws ExcepcionServiciosBanco 
      */
     public abstract void cambiarRol(Usuario usuario,Rol rol) throws ExcepcionServiciosBanco;
+    /**
+     * Registra los likes de cada iniciativa
+     * @Param id identificador de iniciativa
+     * @Param String correo del usuario
+     * @throws ExcepcionServiciosBanco
+     */
+    public void registrarLike(int id, String correo) throws ExcepcionServiciosBanco ;
+
+    public List<Like> consultarLikesIn(int id)  throws ExcepcionServiciosBanco;
+    public Like consultarLikesInCor(int id,String corr)  throws ExcepcionServiciosBanco;
+
+
+    public void deleteLikes(int id,String corr)  throws ExcepcionServiciosBanco;
+
+     /**
+     * Agregarle comentarios a iniciativas de un usuario
+     * @param idIniciativas int
+     * @param correo String
+     * @param comentario String
+     * @throws ExcepcionServiciosBanco 
+     */
+    
+    public abstract void agregarComentariosAIniciativa(int idIniciativas,String correo,String comentario)throws ExcepcionServiciosBanco; 
+    
+    /**
+     * Consulta las iniciativas por area
+     * @return Lista de areas
+     * @throws ExcepcionServiciosBanco 
+     */
+    public abstract List<Area> iniciativasPorArea() throws ExcepcionServiciosBanco;
+    
+    /**
+     * Consultar iniciativas similares dada una iniciativa
+     * @param ini Iniciativa
+     * @return Lista de iniciativas
+     * @throws ExcepcionServiciosBanco 
+     */
+    public abstract List<Iniciativa> agruparIniciativas(Iniciativa ini)throws ExcepcionServiciosBanco;
+    
+    
+    /**
+     * Permite eliminar una iniciativa
+     * @param ini Iniciativa
+     * @throws ExcepcionServiciosBanco 
+     */
+    public abstract void eliminarIniciativa(Iniciativa ini) throws ExcepcionServiciosBanco;
+    
+
+
 
 }

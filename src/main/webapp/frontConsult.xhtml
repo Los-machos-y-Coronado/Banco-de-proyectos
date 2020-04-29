@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title> Editar estado</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="/css/textStyle.css" media="screen"/>
+            <script type="text/javascript" src="js/ControladorPerfil.js"/>
+
+
+    <style type="text/css">
+    .ui-datatable input {
+        box-sizing: border-box;
+        width: 100%;
+        -webkit-box-shadow: none;
+        box-shadow: none !important;
+    }
+</style>
+
+</h:head>
+<h:body>
+    <h:form id="formConsutl" >
+        <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+        <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
+        <br/>
+        <center>
+            <h2> Consulta De iniciativas </h2>
+        </center>
+        <hr/>
+        <p:panel id="InConsul" header="Iniciativas"  style="margin-bottom:100px">
+            <p:dataTable value="#{inBean.iniciativas}" var="iniciativa" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                         rowsPerPageTemplate="5,10,15">
+
+                <p:column headerText="Proponente" sortBy="#{iniciativa.proponente.correo}">
+                    <p:outputLabel value="#{iniciativa.proponente.correo}"/>
+                </p:column>
+                <p:column headerText="Descripcion" sortBy="#{iniciativa.descripcion}">
+                    <p:outputLabel value="#{iniciativa.descripcion}"/>
+                </p:column>
+                <p:column headerText="Estado" sortBy="#{iniciativa.estado}">
+                    <p:outputLabel value="#{iniciativa.estado}"/>
+                </p:column>
+
+                <p:column headerText="Likes" sortBy="#{inBean.numeroLikes(iniciativa)}">
+                    <p:outputLabel value="#{inBean.numeroLikes(iniciativa)}"/>
+                </p:column>
+
+                <p:column headerText="GIVE A LIKE" >
+                    <p:commandButton  icon="pi pi-thumbs-up" update="formConsutl" value="#{inBean.estadoLike(iniciativa)}" actionListener="#{inBean.registrarLike(iniciativa)}" styleClass="Button"></p:commandButton>
+                </p:column>
+
+
+            </p:dataTable>
+        </p:panel>
+        <center><p:commandButton  value="Volver" onclick="back()"/></center>
+    </h:form>
+
+</h:body>
+</html>

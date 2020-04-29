@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title> Editar estado</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="/css/textStyle.css" media="screen"/>
+    <script type="text/javascript" src="js/ControladorPerfil.js"/>
+
+</h:head>
+    <h:body>
+        <h:form id="Agruparform">
+            <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
+            <br/>
+            <center>
+                <h2> Editar Estado </h2>
+            </center>
+            <hr/>
+            <br/>
+            <h1>En este espacio el Administrador podra agrupar las iniciativas</h1>
+
+            <p align="jusitify">los Adminitradores podran agrupar las ideas o iniciativas de acuerdo a determinados parametros
+            con el fin mejorar o complementar una o varias ideas, esto para prestar un servicio acorde para  todos
+            los usuarios</p>
+            <br/>
+            <p> parametros de agrupación :</p>
+            <ol>
+                <li>Proponentes</li>
+                <li>Palabras claves</li>
+                <li>Area</li>
+            </ol>
+            <hr/>
+            <br/>
+
+                <br/>
+                <h1> AGRUPACION DE INICIATIVAS </h1>
+
+
+            <p:dataTable value="#{inBean.iniciativas}" var="iniciativa" rows="5"     selectionMode="single"   selection="#{inBean.selectedIni}"  rowKey="#{iniciativa.proponente.correo}"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                         rowsPerPageTemplate="5,10,15">
+                <f:facet name="header">
+                    Seleccione alguna iniciativa
+                </f:facet>
+                <p:column headerText="correo">
+                    <p:outputLabel value="#{iniciativa.proponente.getCorreo()}"/>
+                </p:column>
+                <p:column headerText="descripción">
+                    <p:outputLabel value="#{iniciativa.descripcion}"/>
+                </p:column>
+                <p:column headerText="fecha">
+                    <p:outputLabel value="#{iniciativa.fecha}"/>
+                </p:column>
+                <p:column headerText="estado">
+                    <p:outputLabel value="#{iniciativa.estado}"/>
+                </p:column>
+            </p:dataTable>
+            <br/>
+           <center> <p:commandButton  update="Agruparform" value="Agrupar" actionListener="#{inBean.agruparIniciativas}" styleClass="Button"></p:commandButton></center>
+            <br/>
+            <hr/>
+
+            <p:dataList value="#{inBean.iniciativasGroup}" var ="ini" style="border: none;">
+                <br/>
+                <p:panelGrid columns="2"   layout="grid">
+                    <h:outputText value="Proponente :" style="font-weight:bold"/>
+                    <h:outputText value="#{ini.proponente.nombre}  #{ini.proponente.apellido}" />
+
+                    <h:outputText value="Descripcion:" style="font-weight:bold" />
+                    <h:outputText value="#{ini.descripcion}" />
+
+                    <h:outputText value="Area:" style="font-weight:bold" />
+                    <h:outputText value="#{ini.proponente.area}" />
+
+                    <h:outputText value="Estado:" style="font-weight:bold"/>
+                    <h:outputText value="#{ini.estado}" />
+
+                    <h:outputText value="Likes:" style="font-weight:bold"/>
+                    <h:outputText value="#{inBean.numeroLikes(ini)}" />
+                    <center>
+                    <p:commandButton  icon="pi pi-thumbs-up" update="Agruparform" value="#{inBean.estadoLike(ini)}" actionListener="#{inBean.registrarLike(ini)}" styleClass="Button"></p:commandButton>
+                    </center>
+                </p:panelGrid>
+            </p:dataList>
+            <br/>
+            <center><p:commandButton  value="Volver" onclick="back()"/></center>
+        </h:form>
+
+    </h:body>
+</html>
