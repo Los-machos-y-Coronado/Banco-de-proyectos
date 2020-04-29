@@ -44,6 +44,7 @@ public class ServiciosBancoImpl implements ServiciosBanco {
      *
      * @param id
      * @return
+     * @throws edu.eci.cvds.samples.services.ExcepcionServiciosBanco
      */
     @Override
     public Iniciativa consultarIniciativa (int id) throws ExcepcionServiciosBanco{
@@ -149,7 +150,7 @@ public class ServiciosBancoImpl implements ServiciosBanco {
             throw new ExcepcionServiciosBanco("No se pudo eliminar likes " + id,e);
         }
     }
-
+    @Override
     public  void agregarComentariosAIniciativa(int idIniciativas,String correo,String comentario)throws ExcepcionServiciosBanco{
         try{
             daoUsuario.agregarComentarioAIniciativa(correo,idIniciativas, comentario);
@@ -167,9 +168,63 @@ public class ServiciosBancoImpl implements ServiciosBanco {
             throw new ExcepcionServiciosBanco("No se pudo consultar las iniciativas por area",ex);
         }
     }
+    
+    @Override
+    public List<Iniciativa> agruparIniciativas(Iniciativa ini)throws ExcepcionServiciosBanco{
+        
+        List<Area> areas = iniciativasPorArea();
+        List<Iniciativa> relacionadas =  new ArrayList<>();
+        
+        for (Area a :areas){    
+             for (Iniciativa i:a.getIniciativas()){
+                 if (relacionadas(ini,i,a.getNombre())){
+                    relacionadas.add(i);                       
+                 }
+             }
+        }
+         
+        return relacionadas;
 
+    }
+    
+    @Override
+    public void eliminarIniciativa(Iniciativa ini){
+        //En proceso
+        
+    }
+    
+     /**
+     * Verifica si dos inicitivas estan relacionadas
+     * @param ini1 Iniciativa
+     * @param ini2 Iniciativa
+     * @param areaDeIni2 String
+     * @return Boolean *
+     */
+    private boolean relacionadas(Iniciativa ini1, Iniciativa ini2,String areaDeIni2){
+        
+        boolean respuesta = false;
+        String areaDeIni1=ini1.getProponente().getArea();
+        double TantoPorCiento = (ini2.getPalabras().size())*0.6;
+        int contador = 0;
 
-
-
-
+        if((ini1.getId()!=ini2.getId()) && (areaDeIni1 == null ? areaDeIni2 == null : areaDeIni1.equals(areaDeIni2))){
+           
+           for (String palabra:ini1.getPalabras()){
+               if(ini2.getPalabras().contains(palabra)){
+                   contador++;
+               }
+           }
+        }
+        
+        if ((double)contador>=TantoPorCiento && contador!=0.0 && TantoPorCiento!=0){
+            respuesta=true;
+        }
+        
+        return respuesta;
+        
+    }
+    
 }
+
+
+

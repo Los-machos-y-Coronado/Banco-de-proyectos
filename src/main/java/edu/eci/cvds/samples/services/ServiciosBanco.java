@@ -97,6 +97,23 @@ public interface ServiciosBanco {
      * @throws ExcepcionServiciosBanco 
      */
     public abstract List<Area> iniciativasPorArea() throws ExcepcionServiciosBanco;
+    
+    /**
+     * Consultar iniciativas similares dada una iniciativa
+     * @param ini Iniciativa
+     * @return Lista de iniciativas
+     * @throws ExcepcionServiciosBanco 
+     */
+    public abstract List<Iniciativa> agruparIniciativas(Iniciativa ini)throws ExcepcionServiciosBanco;
+    
+    
+    /**
+     * Permite eliminar una iniciativa
+     * @param ini Iniciativa
+     * @throws ExcepcionServiciosBanco 
+     */
+    public abstract void eliminarIniciativa(Iniciativa ini) throws ExcepcionServiciosBanco;
+    
 
 
 

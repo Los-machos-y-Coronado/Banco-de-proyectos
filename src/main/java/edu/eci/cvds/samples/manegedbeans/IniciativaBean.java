@@ -45,12 +45,16 @@ public class IniciativaBean implements Serializable {
     private Usuario actual;
     private Iniciativa nuevoRegistro;
     private java.sql.Date fecha;
+
     private List<Iniciativa> iniciativas;
+    private List<Iniciativa> iniciativasGroup;
     private String palabrasClave="";
     private int id;
     private int numLikes;
     private String buttonLike;
     private Subject cor;
+    private Iniciativa selectedIni;
+
 
 
     public IniciativaBean() {
@@ -145,6 +149,16 @@ public class IniciativaBean implements Serializable {
             screenEstado="Error al saber likes";
         }
         return numLikes;
+    }
+
+    public void agruparIniciativas(){
+
+        try{
+            iniciativasGroup=serviciosBanco.agruparIniciativas(selectedIni);
+        }catch (ExcepcionServiciosBanco ex){
+            screenEstado="error en agrupacion";
+        }
+
     }
 
     public Usuario getProponente() {
@@ -251,5 +265,21 @@ public class IniciativaBean implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public List<Iniciativa> getIniciativasGroup() {
+        return iniciativasGroup;
+    }
+
+    public void setIniciativasGroup(List<Iniciativa> iniciativasGroup) {
+        this.iniciativasGroup = iniciativasGroup;
+    }
+
+    public Iniciativa getSelectedIni() {
+        return selectedIni;
+    }
+
+    public void setSelectedIni(Iniciativa selectedIni) {
+        this.selectedIni = selectedIni;
     }
 }

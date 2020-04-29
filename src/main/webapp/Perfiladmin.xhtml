@@ -14,6 +14,7 @@ and open the template in the editor.
         <title></title>
         <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="/css/textStyle.css" media="screen"/>
         <script type="text/javascript" src="js/ControladorPerfil.js"/>
     </h:head>
     <h:body>
@@ -21,7 +22,7 @@ and open the template in the editor.
         <!-- Navigation Bar -->
     
         
-        <h:form>
+        <h:form id="adminForm">
             <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
             <br/>
             <center>
@@ -38,7 +39,7 @@ and open the template in the editor.
                         <p:menuitem value="Consultar iniciativas " onclick="cambiarPagina('Consult')"/>
                         <p:menuitem value="Consultar por palabras clave" onclick="cambiarPagina('Publico')" />
                         <p:menuitem value="Reporte por areas" onclick="cambiarPagina('IniciativaArea')"/>
-
+                        <p:menuitem value="Agrupar Iniciativas" onclick="cambiarPagina('AgruparIniciativa')"/>
                         <p:menuitem value="Salir" actionListener="#{shBean.logOut()}"/>
            
         </p:menubar>

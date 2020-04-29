@@ -40,7 +40,8 @@
             u.estado as u_estado,
             u.area as u_area,
 
-            pa.palabra as pa_palabra,
+            pa.palabra as pa_palabra
+
 
 
         FROM iniciativas as i  LEFT JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas

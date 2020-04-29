@@ -1,4 +1,3 @@
-* {box-sizing: border-box;}
 
 body {
     margin: 0;
@@ -6,17 +5,20 @@ body {
     background: url(../img/bg.jpg) no-repeat center top;
     background-size: cover;
     font-size: 12pt;
-    font-color: white;
+    font-color: red;
 }
+
 .Registro{
  margin: 45px;
-
-::placeholder {
-            font-size: 0.7em;}
-
 }
+
 h2 {
-    background-color: #b80f22;
+    background-color: red;
 }
 
+#Agruparform {
+    
+    color:white;
+     margin: 45px;
+}
 
