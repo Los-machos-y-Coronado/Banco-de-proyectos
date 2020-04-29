@@ -167,8 +167,8 @@ public class ServiciosBancoTest {
             Iniciativa b= new Iniciativa(2,"Construcción del bloque Z", d1,"En revision",proponente,palabras);
             Iniciativa ini = serviciosBanco.consultarIniciativa(2);
 
-            System.out.println(ini.toString());
-            System.out.println("compare " + b.toString());
+
+            
             assertEquals(b.toString(),ini.toString());
             
            
