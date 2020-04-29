@@ -186,35 +186,20 @@ public class ServiciosBancoTest {
      public void ConsultarIniciativasPorPalabras() {
         try {
             Convertidor convertidor=new Convertidor();
-            String palabrasini="Cemento,Desarrollo";
-            
-            String palabrasini1="Cemento,Echar pala,Micro";
-            String palabrasini2="Complejidad,Implementacion,Desarrollo";
-              
+            String palabrasini="Cemento,Desarrollo";   
             ArrayList<String> palabras = convertidor.convertirPalabras(palabrasini);
-            
-            ArrayList<String> palabras1 = convertidor.convertirPalabras(palabrasini1);
-            ArrayList<String> palabras2 = convertidor.convertirPalabras(palabrasini2);
-            
-            String fecha = "2000-10-20";
-            String fecha2 = "2019-10-20";
-            
-            Date d1 = Date.valueOf(fecha2);
-            Date d2 = Date.valueOf(fecha);
-            
-            Usuario proponente1= new Usuario("juan@gmail.com","Juanito","Juan","Perez",Rol.Proponente,true,"Sistemas");
-            Usuario proponente2= new Usuario("alex.garci@yahoo.com","alex22","alex","gordillo",Rol.Proponente,true,"civil");
-            
-            Iniciativa a= new Iniciativa(2,"Construcción del bloque Z", d1,"En revision",proponente2,palabras1);
-            Iniciativa b= new Iniciativa(1,"Optimizacion de Osiris", d2,"En espera",proponente1,palabras2);
-
             ArrayList<Iniciativa> ini2 = new ArrayList<>();
-
-            ini2.add(b);
-            ini2.add(a);
-
+            ini2.add(serviciosBanco.consultarIniciativa(1));
+            ini2.add(serviciosBanco.consultarIniciativa(2));
+            ini2.add(serviciosBanco.consultarIniciativa(3));
+            ini2.add(serviciosBanco.consultarIniciativa(11));
+            ini2.add(serviciosBanco.consultarIniciativa(12));
+            ini2.add(serviciosBanco.consultarIniciativa(13));
             
             List<Iniciativa> ini = serviciosBanco.consultarIniciativas(palabras);
+            
+
+            
             assertEquals(ini.toString(),ini2.toString());
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
@@ -323,15 +308,34 @@ public class ServiciosBancoTest {
 
     
      @Test
-     public void ConsultarIniciativasPorArea(){
+    public void ConsultarIniciativasPorArea(){
          try{
              List<Area> inici = (List<Area>) serviciosBanco.iniciativasPorArea();
              assertTrue(true);
          }catch(ExcepcionServiciosBanco ex){
              assertTrue(false);
          }
-     }
+    }
+    
+    
+    @Test 
+    public void AgruparIniciativasRelacionadas(){
+        
+        try{
 
+            
+            Iniciativa a = serviciosBanco.consultarIniciativa(2);
+            List<Iniciativa> relacionados2= new ArrayList<>();           
+            relacionados2.add(serviciosBanco.consultarIniciativa(12));
+            relacionados2.add(serviciosBanco.consultarIniciativa(13));          
+            List<Iniciativa> relacionados = serviciosBanco.agruparIniciativas(a);
+            assertEquals(relacionados.toString(),relacionados2.toString());
+            
+        }catch(ExcepcionServiciosBanco ex){
+            assertTrue(false);
+        }
+    
+    }
 
      
 

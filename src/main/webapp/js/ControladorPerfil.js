@@ -23,7 +23,9 @@ function cambiarPagina(pag) {
     }
     else if(pag === "Comentar"){
         location.href="/faces/AgregarComentarios.xhtml";
-    }
+    }else if(pag === "AgruparIniciativa"){
+             location.href="/faces/AgruparIniciativa.xhtml";
+             }
 
 }
 function back(){

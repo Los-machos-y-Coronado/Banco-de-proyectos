@@ -13,7 +13,8 @@ and open the template in the editor.
     <h:head>
         <title> Editar estado</title>
 
-        <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="/css/textStyle.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
                 <script type="text/javascript" src="js/ControladorPerfil.js"/>
 
 
@@ -46,7 +47,7 @@ and open the template in the editor.
 
            </p:panel>
            
-            <p:panel  id="Pestado" header="Cambio de Estado" layout="grid" style="margin-center:20px">
+            <p:panel  id="Pestado" header="Cambio de Estado"  style="margin-center:20px">
                 <p:dataList value="#{inBean.iniciativas}" var ="iniciativa" style="border: none;">
                   <br/>
                           <p:panelGrid columns="2"   layout="grid">
@@ -78,9 +79,9 @@ and open the template in the editor.
                       </center>
                   </p:dataList>
             </p:panel>
-
+            <center><p:commandButton  value="Volver" onclick="back()"/></center>
         </h:form>
-        <center><p:commandButton  value="Volver" onclick="back()"/></center>
+
         
         </h:body>
 

@@ -1,0 +1,130 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 29, 2020, 12:42:48 AM
+    Author     : Jairo Gomez
+*/
+
+body{
+    margin: 45px;
+}
+
+#Agruparform p,h1,il,ol{
+    color:white; 
+    font-family: Arial;
+    font-size:large ;
+}
+
+#Agruparform {
+    margin: 45px;
+}
+
+#Agruparform button {
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #b80f22;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#formEdit button{
+   border: none;
+  outline: none;
+  height: 40px;
+  background: #b80f22;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#formConsultarIni button{
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #b80f22;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#formConsutl button{
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #b80f22;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#formUsuario button{
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #b80f22;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#formPer button{
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #b80f22;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#formRegistro2 button{
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #b80f22;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#formConsutlArea button{
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #b80f22;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#formIndex button{
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #b80f22;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}

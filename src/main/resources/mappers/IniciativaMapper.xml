@@ -45,7 +45,7 @@
 
 
         FROM iniciativas as i  LEFT JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas
-        LEFT JOIN usuarios as u ON i.proponentes_usuarios_correo=u.correo 
+        LEFT JOIN usuarios as u ON i.proponentes_usuarios_correo=u.correo
         WHERE i.id_iniciativas=#{idin};
     </select>
 
