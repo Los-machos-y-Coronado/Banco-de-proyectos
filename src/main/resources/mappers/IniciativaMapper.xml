@@ -13,8 +13,7 @@
         <collection property='palabrasClave'   javaType='list' ofType="String" columnPrefix='pa_' >
             <result column="palabra"></result>
         </collection>
-        <collection property='likes'   javaType='list' ofType="Lke" columnPrefix='lk_' >
-        </collection>
+
     </resultMap>
     
     <resultMap type='Area' id='AreaResult'>
@@ -43,12 +42,9 @@
 
             pa.palabra as pa_palabra,
 
-            lk.idf_iniciativa,
-            lk.idf_usuario,
-            lk.boollike
 
         FROM iniciativas as i  LEFT JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas
-        LEFT JOIN usuarios as u ON i.proponentes_usuarios_correo=u.correo LEFT JOIN likes on i.id_iniciativa=lk.idf_iniciativa
+        LEFT JOIN usuarios as u ON i.proponentes_usuarios_correo=u.correo
         WHERE i.id_iniciativas=#{idin};
     </select>
 

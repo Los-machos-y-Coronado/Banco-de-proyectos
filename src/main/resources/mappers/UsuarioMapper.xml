@@ -50,8 +50,5 @@
         WHERE
 	correo=#{usu.correo};
     </update>
-    
-        
-    
-    
+
 </mapper>
