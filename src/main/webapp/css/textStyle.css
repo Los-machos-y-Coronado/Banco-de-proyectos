@@ -11,7 +11,9 @@ and open the template in the editor.
 body{
     margin: 45px;
 }
-
+h2{
+    background-color: #b80f22;
+}
 #Agruparform p,h1,il,ol{
     color:white; 
     font-family: Arial;
