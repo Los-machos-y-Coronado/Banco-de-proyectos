@@ -9,10 +9,11 @@
         <result property='descripcion' column='descripcion'/>
         <result property='fecha' column='fecha'/>
         <result property='estado' column='estado'/>
-        <association property='proponente'  column="correo" resultMap ="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.UsuarioMapper.UsuarioResult" javaType="Usuario" columnPrefix='u_'> </association>
+        <association property='proponente' resultMap ="edu.eci.cvds.samples.persistence.mybatisimpl.mappers.UsuarioMapper.UsuarioResult" javaType="Usuario" columnPrefix='u_'> </association>
         <collection property='palabrasClave'   javaType='list' ofType="String" columnPrefix='pa_' >
             <result column="palabra"></result>
         </collection>
+        <collection property='comentarios' ofType='Comentario' resultMap='edu.eci.cvds.samples.persistence.mybatisimpl.mappers.ComentarioMapper.ComentarioResult' columnPrefix="c_"></collection>    
 
     </resultMap>
     
@@ -40,12 +41,25 @@
             u.estado as u_estado,
             u.area as u_area,
 
-            pa.palabra as pa_palabra
+            pa.palabra as pa_palabra,
 
+            c.id_comentario as c_id_comentario,
+            c.fechare as c_fechare,
+            c.comentario as c_comentario,
+
+            us.correo as c_u_correo,
+            us.nombre_usuario as c_u_nombre_usuario,
+            us.nombre as c_u_nombre,
+            us.apellido as c_u_apellido,
+            us.rol as c_u_rol,
+            us.estado as c_u_estado,
+            us.area as c_u_area
 
 
         FROM iniciativas as i  LEFT JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas
         LEFT JOIN usuarios as u ON i.proponentes_usuarios_correo=u.correo
+        LEFT JOIN comentarios as c ON c.idf_iniciativa=i.id_iniciativas
+        LEFT JOIN usuarios as us ON c.idf_usuario=us.correo
         WHERE i.id_iniciativas=#{idin};
     </select>
 
@@ -65,11 +79,25 @@
             u.estado as u_estado,
             u.area as u_area,
 
-            pa.palabra as pa_palabra
+            pa.palabra as pa_palabra,
+
+            c.id_comentario,
+            c.fechare,
+            c.comentario,
+
+            us.correo as c_u_correo,
+            us.nombre_usuario as c_u_nombre_usuario,
+            us.nombre as c_u_nombre,
+            us.apellido as c_u_apellido,
+            us.rol as c_u_rol,
+            us.estado as c_u_estado,
+            us.area as c_u_area
 
 
         FROM iniciativas as i  LEFT JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas
         LEFT JOIN usuarios as u ON i.proponentes_usuarios_correo=u.correo
+        LEFT JOIN comentarios as c ON c.idf_iniciativa=i.id_iniciativas
+        LEFT JOIN usuarios as us ON c.idf_usuario=us.correo;
 
     </select>
 
@@ -89,24 +117,39 @@
         
     
     <select parameterType="map"  id="consultarIniciativasPalabra"  resultMap="IniciativaResult">
-        SELECT 
-        i.id_iniciativas,
-        i.descripcion,
-        i.fecha,
-        i.estado,
+        SELECT
+            i.id_iniciativas,
+            i.descripcion,
+            i.fecha,
+            i.estado,
 
-        u.correo as u_correo,
-        u.nombre_usuario as u_nombre_usuario,
-        u.nombre as u_nombre,
-        u.apellido as u_apellido,
-        u.rol as u_rol,
-        u.estado as u_estado,
-        u.area as u_area,
-		
-	pa.palabra as pa_palabra
+            u.correo as u_correo,
+            u.nombre_usuario as u_nombre_usuario,
+            u.nombre as u_nombre,
+            u.apellido as u_apellido,
+            u.rol as u_rol,
+            u.estado as u_estado,
+            u.area as u_area,
 
-        FROM iniciativas as i JOIN  usuarios as u  ON i.proponentes_usuarios_correo=u.correo
-        JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas
+            pa.palabra as pa_palabra,
+
+            c.id_comentario,
+            c.fechare,
+            c.comentario,
+
+            us.correo as c_u_correo,
+            us.nombre_usuario as c_u_nombre_usuario,
+            us.nombre as c_u_nombre,
+            us.apellido as c_u_apellido,
+            us.rol as c_u_rol,
+            us.estado as c_u_estado,
+            us.area as c_u_area
+
+
+        FROM iniciativas as i  LEFT JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas
+        LEFT JOIN usuarios as u ON i.proponentes_usuarios_correo=u.correo
+        LEFT JOIN comentarios as c ON c.idf_iniciativa=i.id_iniciativas
+        LEFT JOIN usuarios as us ON c.idf_usuario=us.correo
         WHERE i.id_iniciativas IN (
                 SELECT
 
