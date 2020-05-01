@@ -12,10 +12,9 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-    <title> Editar estado</title>
-    <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
+    <title> HOME </title>
     <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="/css/textStyle.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="/css/index.css" media="screen"/>
 
     <script type="text/javascript" src="js/ControladorPerfil.js"/>
 
@@ -32,6 +31,27 @@ and open the template in the editor.
 </h:head>
 <h:body>
     <h:form id="formIndex" >
+        <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
+        <br/>
+        <center>
+            <h2> Home </h2>
+        </center>
+        <hr/>
+        <br/>
+        <img src="img/logoHome.png" width="300" height="150" align="center"/>
+        <br/>
+        <p:menubar>
+            <f:facet name="options">
+                <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
+                <p:commandButton type="button" value="Login" icon="pi pi-home" />
+                <p:commandButton type="button" value="Signin" icon="pi pi-home" />
+            </f:facet>
+        </p:menubar>
+
+        <h1> Este proyecto es una uniciativa de los estudaintes de la escuela de ingenieros Julio garavito
+            con el fin de proveer una plataforma agradable y amigable con aquellos interesados en proyectos o
+            iniciativas de algun area en especifica.</h1>
+        <p> </p>
         <p:commandButton value="Ingresar" onclick="cambiarPagina('Autenticar')" styleClass="Button"></p:commandButton>
 
     </h:form>

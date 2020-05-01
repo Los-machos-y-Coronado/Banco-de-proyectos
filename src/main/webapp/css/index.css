@@ -1,0 +1,65 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 30, 2020, 5:51:26 PM
+    Author     : Daniel Gomez
+*/
+
+body{
+    margin: 60px;
+}
+
+h1,p{
+        color:white; 
+        font-family: Arial;
+        font-size:large ;
+}
+
+h2 {
+    background-color: #b80f22;
+}
+
+ul {
+  list-style-type: none;
+  overflow: hidden;
+  background-color: #333;
+  margin:0 0 0 0;
+  padding:0 0 0 0;
+}
+
+li {
+  float: left;
+  margin:0 0 0 0;
+  padding:0 0 0 0;
+  background-color: #333;
+}
+
+li a {
+  display: block;
+  color: green;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  margin:0 0 0 0;
+  padding:0 0 0 0;
+}
+
+li a:hover {
+  background-color: #111;
+  margin:0 0 0 0;
+  padding:0 0 0 0;
+}
+#formIndex button{
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #b80f22;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
