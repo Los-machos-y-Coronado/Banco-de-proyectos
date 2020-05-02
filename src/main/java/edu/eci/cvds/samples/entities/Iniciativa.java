@@ -24,14 +24,16 @@ public class Iniciativa {
     private String estado;
     private Usuario proponente;
     private List<String> palabrasClave;
+    private List<Comentario> comentarios;
 
-    public Iniciativa (int id, String descripcion,Date fecha, String estado,Usuario proponente, List palabrasClave){
+    public Iniciativa (int id, String descripcion,Date fecha, String estado,Usuario proponente, List palabrasClave, List comentarios){
         this.id=id;
         this.descripcion=descripcion;
         this.fecha=fecha;
         this.proponente=proponente;
         this.estado="En espera";
         this.palabrasClave = palabrasClave;
+        this.comentarios=comentarios;
     }
 
     public Iniciativa(){}
@@ -94,7 +96,24 @@ public class Iniciativa {
             this.palabrasClave = palabras;
         }
 
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
 
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    public List<String> getComentarios2(){
+        
+        ArrayList<String> comentarios2 = new ArrayList<>();
+        
+        comentarios.forEach((c) -> {
+            comentarios2.add(c.getComentario());
+        });
+        
+        return comentarios2;
+    }
 
 
 

@@ -164,7 +164,7 @@ public class ServiciosBancoTest {
             Date d1 = Date.valueOf(fecha);
             Usuario proponente= new Usuario("alex.garci@yahoo.com","alex22","alex","gordillo",Rol.Proponente,true,"civil");
             
-            Iniciativa b= new Iniciativa(2,"Construcción del bloque Z", d1,"En revision",proponente,palabras);
+            Iniciativa b= new Iniciativa(2,"Construcción del bloque Z", d1,"En revision",proponente,palabras,null);
             Iniciativa ini = serviciosBanco.consultarIniciativa(2);
 
 
@@ -335,6 +335,16 @@ public class ServiciosBancoTest {
             assertTrue(false);
         }
     
+    }
+    @Test
+    public void consultarComentarios(){
+        try{
+            Iniciativa a = serviciosBanco.consultarIniciativa(2);
+            assertTrue(true);
+        }catch(ExcepcionServiciosBanco ex){
+            assertTrue(false);
+        }
+        
     }
 
      
