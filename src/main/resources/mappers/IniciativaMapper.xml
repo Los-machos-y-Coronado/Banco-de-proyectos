@@ -81,9 +81,9 @@
 
             pa.palabra as pa_palabra,
 
-            c.id_comentario,
-            c.fechare,
-            c.comentario,
+            c.id_comentario as c_id_comentario,
+            c.fechare as c_fechare,
+            c.comentario as c_comentario,
 
             us.correo as c_u_correo,
             us.nombre_usuario as c_u_nombre_usuario,
@@ -97,7 +97,7 @@
         FROM iniciativas as i  LEFT JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas
         LEFT JOIN usuarios as u ON i.proponentes_usuarios_correo=u.correo
         LEFT JOIN comentarios as c ON c.idf_iniciativa=i.id_iniciativas
-        LEFT JOIN usuarios as us ON c.idf_usuario=us.correo;
+        LEFT JOIN usuarios as us ON c.idf_usuario=us.correo
 
     </select>
 
@@ -133,9 +133,9 @@
 
             pa.palabra as pa_palabra,
 
-            c.id_comentario,
-            c.fechare,
-            c.comentario,
+            c.id_comentario as c_id_comentario,
+            c.fechare as c_fechare,
+            c.comentario as c_comentario,
 
             us.correo as c_u_correo,
             us.nombre_usuario as c_u_nombre_usuario,

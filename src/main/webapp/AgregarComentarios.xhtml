@@ -34,6 +34,7 @@
                     <f:facet name="header">
                        Seleccione alguna iniciativa
                     </f:facet>
+   
                     <p:column headerText="correo">
                         <p:outputLabel value="#{u.proponente.getCorreo()}"/>
                     </p:column>
@@ -46,6 +47,28 @@
                     <p:column headerText="estado">
                         <p:outputLabel value="#{u.estado}"/>
                     </p:column>
+                    <p:column   style="width:16px" >                        
+                        <p:rowToggler />
+                    </p:column>
+
+                    <p:rowExpansion>
+                        <p:carousel value="#{u.comentarios}"   var="comen"  headerText="Comentarios"   effect="backOut" numVisible="1"  >
+                        <p:tab title="Godfather Part I">   
+                            
+                            <h:outputText value="#{comen.usuario.getNombre()}  #{comen.usuario.getApellido()}:" style="font-weight:bold" />
+                            <br/>
+                            <h:outputText value="#{comen.comentario}" />
+                        </p:tab>
+                                
+                            
+                            
+                            
+                             
+                            </p:carousel>
+                        
+                            
+ 
+                    </p:rowExpansion>
                     <f:facet name="footer">
                         <p:outputLabel value="#{AgregarComentarioBean.estado}" style="color: grey"/>
                         <br><p:inputText type="comentario" id="Comentario" binding="#{com}" placeholder="Ingrese su comentario" styleClass="Button" size="50"></p:inputText></br>
