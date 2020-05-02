@@ -22,6 +22,7 @@ and open the template in the editor.
 
 </h:head>
 <h:body>
+    <f:event type="preRenderView" listener="#{shBean.isLogged}"/>
     <h:form id="formIndex" >
         <center>
             <h2> Home </h2>

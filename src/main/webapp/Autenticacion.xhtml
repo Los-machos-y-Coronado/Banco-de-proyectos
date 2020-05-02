@@ -12,7 +12,7 @@
         <link rel="stylesheet" type="text/css" href="/css/textStyle.css" media="screen"/>
     </h:head>
     <h:body>
-        
+        <f:event type="preRenderView" listener="#{shBean.isLogged}"/>
         <div class="login-box">
             <img src="img/logo.png" class="avatar" alt="Avatar Image"/>
             <h:form id="formUsuario" >

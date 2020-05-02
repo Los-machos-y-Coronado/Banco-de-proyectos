@@ -87,7 +87,7 @@ public class shiroBean  implements Serializable{
         }
     }
     public void navegacion(){
-        
+        currentUser=SecurityUtils.getSubject();
         if(currentUser.hasRole("Proponente")){
                 pagina="Perfilproponente.xhtml";
         }else if (currentUser.hasRole("Administrador")){    
@@ -101,8 +101,7 @@ public class shiroBean  implements Serializable{
      * Metodo que verifica si el usuario está en sesión
      */
     public void isLogged(){
-        
-        if (currentUser.getSession().getAttribute("Correo") != null){
+        if (SecurityUtils.getSubject().getSession().getAttribute("Correo") != null){
             try{
                 navegacion();
                 FacesContext.getCurrentInstance().getExternalContext().redirect(pagina);
@@ -111,9 +110,8 @@ public class shiroBean  implements Serializable{
             }
         }
       
-        
-
     }
+
 
 
     /**
