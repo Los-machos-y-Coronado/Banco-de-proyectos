@@ -85,7 +85,7 @@ public class IniciativaBean implements Serializable {
             List palabrasclaveArr = new ArrayList<String>(Arrays.asList(palabrasClave.split(",")));
 
             Date utilDate = new Date();
-            nuevoRegistro = new Iniciativa(id, descripcion, new java.sql.Date(utilDate.getTime()),estado,actual,palabrasclaveArr,null);
+            nuevoRegistro = new Iniciativa(id, descripcion, new java.sql.Date(utilDate.getTime()),estado,proponente,palabrasclaveArr,null);
             serviciosBanco.registrarIniciativa(nuevoRegistro);
             iniciativas = serviciosBanco.consultarIniciativas();
             screenEstado = "registro exitoso";
