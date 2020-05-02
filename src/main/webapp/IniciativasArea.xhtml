@@ -29,6 +29,7 @@ and open the template in the editor.
 
 </h:head>
 <h:body>
+    
     <h:form id="formConsutlArea" >
         <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
         <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
@@ -57,24 +58,25 @@ and open the template in the editor.
                     </div>
                 </f:facet>
 
-                <p:column headerText="Area" sortBy="#{area.nombre}">
-                    <p:outputLabel value="#{area.nombre}"/>
-                </p:column>
-                <p:column headerText="Iniciativas">
-                    <p:dataTable id="Inidd" value="#{inBean.iniciativas}" var="iniciativa">
-
-                <p:column headerText="Proponente" sortBy="#{iniciativa.proponente.correo}">
-                    <p:outputLabel value="#{iniciativa.proponente.correo}"/>
-                </p:column>
-                <p:column headerText="Descripcion" sortBy="#{iniciativa.descripcion}">
-                    <p:outputLabel value="#{iniciativa.descripcion}"/>
-                </p:column>
-                <p:column headerText="Estado" sortBy="#{iniciativa.estado}">
-                    <p:outputLabel value="#{iniciativa.estado}"/>
-                </p:column>
-
-                </p:dataTable>
-                </p:column>
+                <f:facet name="header">
+                        <h:outputText value="#{area.nombre}" />
+                </f:facet>
+                
+                <p:subTable var="ini" value="#{area.iniciativas}">
+                    <f:facet name="header">
+                        <h:outputText value="#{area.nombre}" />
+                    </f:facet>
+                    <p:column>
+                        <h:outputText value="#{ini.proponente.correo}" />
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{ini.descripcion}" />
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{ini.estado}" />
+                    </p:column>
+                </p:subTable>
+                
 
             </p:dataTable>
             <center><p:commandButton  value="Volver" onclick="back()"/></center>
