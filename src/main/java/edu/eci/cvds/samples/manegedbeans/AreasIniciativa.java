@@ -76,7 +76,6 @@ public class AreasIniciativa {
             Workbook workbook = new HSSFWorkbook();
 
 
-            
             for(int i=0;i<areas.size();i++){
                 Sheet sheet = workbook.createSheet(areas.get(i).getNombre());
                 List<Iniciativa> iniciativas = areas.get(i).getIniciativas();
@@ -95,7 +94,7 @@ public class AreasIniciativa {
                 Cell c3 = row1.createCell(4);
                 c3.setCellValue("Proponente");
                 for(int j=0;j<iniciativas.size();j++){
-                    Iniciativa ini= iniciativas.get(i);
+                    Iniciativa ini= iniciativas.get(j);
                     Row r = sheet.createRow(j+2);
                     Cell co = r.createCell(0);
                     co.setCellValue(ini.getId());
@@ -114,6 +113,7 @@ public class AreasIniciativa {
                 sheet.autoSizeColumn(1);
                 sheet.autoSizeColumn(2);
                 sheet.autoSizeColumn(3);
+                sheet.autoSizeColumn(4);
                 
             }
 
@@ -125,7 +125,7 @@ public class AreasIniciativa {
             excel = new DefaultStreamedContent(new FileInputStream(fil), new MimetypesFileTypeMap().getContentType(fil), "areas.xls");
 
         }catch(Exception ex){
-            System.out.println(ex);
+            ex.printStackTrace();
         }
     }
     public void pdf(){
