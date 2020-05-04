@@ -104,7 +104,16 @@ public class Iniciativa {
         this.comentarios = comentarios;
     }
 
-
+    public List<String> getComentarios2(){
+        
+        ArrayList<String> comentarios2 = new ArrayList<>();
+        
+        comentarios.forEach((c) -> {
+            comentarios2.add(c.getComentario());
+        });
+        
+        return comentarios2;
+    }
 
 
 
