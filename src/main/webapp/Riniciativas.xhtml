@@ -32,16 +32,16 @@ and open the template in the editor.
         <p:panel id="Basic" header="Informacion Proponente"  style="margin-bottom:20px">
             <p:panelGrid columns="4" layout="grid" >
                 <p:outputLabel for="correo" value="Correo :"/>
-                <p:outputLabel id="correo" value="#{inBean.actual.getCorreo()}"/>
+                <p:outputLabel id="correo" value="#{inBean.proponente.getCorreo()}"/>
 
                 <p:outputLabel for="area" value="Area :" />
-                <p:outputLabel id="area" value="#{inBean.actual.getArea()}"/>
+                <p:outputLabel id="area" value="#{inBean.proponente.getArea()}"/>
 
                 <p:outputLabel for="nombre" value="Nombre :" />
-                <p:outputLabel id="nombre" value="#{inBean.actual.getNombre()}"/>
+                <p:outputLabel id="nombre" value="#{inBean.proponente.getNombre()}"/>
 
                 <p:outputLabel for="apellido" value="Apellido :" />
-                <p:outputLabel id="apellido"  value="#{inBean.actual.getApellido()}"/>
+                <p:outputLabel id="apellido"  value="#{inBean.proponente.getApellido()}"/>
             </p:panelGrid>
         </p:panel>
 
@@ -63,7 +63,9 @@ and open the template in the editor.
             </p:panelGrid>
         </p:panel>
         <center>
-            <p:commandButton update="formRegistro2" value="Registrar" actionListener="#{inBean.registrarIniciativa(indesc.value)}" styleClass="Button"></p:commandButton>
+            <p:commandButton update="Consulta" value="Registrar" actionListener="#{inBean.registrarIniciativa(indesc.value)}" styleClass="Button" resetValues="true">
+            </p:commandButton>
+
         <br><p:outputLabel value="#{inBean.screenEstado}" style="color: white"/></br>
         </center>
         <center><p:commandButton  value="Volver" onclick="back()"/></center>
