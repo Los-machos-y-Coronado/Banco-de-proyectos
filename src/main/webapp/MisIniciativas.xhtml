@@ -30,6 +30,7 @@ and open the template in the editor.
         </center>
         <hr/>
         <p:panel id="Basic" header="Informacion Proponente"  style="margin-bottom:20px">
+
             <p:panelGrid columns="4" layout="grid" >
                 <p:outputLabel for="correo" value="Correo :" style="color:red"/>
                 <p:outputLabel id="correo" value="#{inBean.proponente.getCorreo()}"/>
@@ -51,7 +52,7 @@ and open the template in the editor.
             <h:outputText value="#{inBean.proponente.nombre}  #{inBean.proponente.apellido}" />
 
             <hr/>
-
+            <p>NOTA : para actualizar de click sobre su descripcion</p>
             <p:dataList value="#{inBean.consultarMisniciativas()}" var ="iniciativa" style="border: none;">
                 <br/>
                 <p:panelGrid columns="2"   layout="grid">
