@@ -269,6 +269,31 @@ public class ServiciosBancoTest {
         }
     }
 
+    @Test
+    public void consultarIniciativasCor() {
+        try {
+            List<Iniciativa> inis = serviciosBanco.consultarIniciativaCor("alex.garci@yahoo.com");
+            assertTrue(true);
+        } catch (ExcepcionServiciosBanco ex) {
+            ex.getStackTrace();
+        }
+    }
+
+    @Test
+    public void updateDescripcion() {
+        try {
+            java.util.Date utilDate = new java.util.Date();
+            serviciosBanco.updateDescripcion("nuevo detalle para esta descripcion 2", new java.sql.Date(utilDate.getTime()), 16);
+            Iniciativa ini = serviciosBanco.consultarIniciativa(16);
+            System.out.println(ini);
+            assertTrue(true);
+        } catch (ExcepcionServiciosBanco ex) {
+            ex.getStackTrace();
+            assertTrue(false);
+        }
+    }
+
+
 
 
 
@@ -304,10 +329,7 @@ public class ServiciosBancoTest {
         }
     }
     */
-
-
-    
-     @Test
+        @Test
     public void ConsultarIniciativasPorArea(){
          try{
              List<Area> inici = (List<Area>) serviciosBanco.iniciativasPorArea();

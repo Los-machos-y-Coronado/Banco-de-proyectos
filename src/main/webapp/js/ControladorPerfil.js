@@ -25,7 +25,10 @@ function cambiarPagina(pag) {
         location.href="/faces/AgregarComentarios.xhtml";
     }else if(pag === "AgruparIniciativa"){
              location.href="/faces/AgruparIniciativa.xhtml";
-             }
+
+    }else if(pag === "misIniciativas"){
+                 location.href="/faces/MisIniciativas.xhtml";
+     }
 
 }
 function back(){

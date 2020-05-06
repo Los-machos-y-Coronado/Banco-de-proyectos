@@ -7,6 +7,8 @@ package edu.eci.cvds.samples.persistence.mybatisimpl.mappers;
 
 import edu.eci.cvds.samples.entities.Area;
 import edu.eci.cvds.samples.entities.Iniciativa;
+
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
@@ -30,4 +32,7 @@ public interface IniciativaMapper {
 
    public List<Area> iniciativasPorArea();
 
+    public List<Iniciativa> consultarIniciativaCor(@Param("corr") String cor);
+
+    public void updateDescripcion(@Param("desc")String des, @Param("fecha")Date fecha, @Param("inid")int id);
 }

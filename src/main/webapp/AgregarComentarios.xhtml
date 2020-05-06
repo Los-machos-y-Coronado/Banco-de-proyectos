@@ -52,8 +52,7 @@
                     </p:column>
                     <p:rowExpansion>
                       <p:scrollPanel style="width:auto;height:150px">
-                         <p:repeat value="#{u.comentarios}" var="comen" >
-
+                         <p:repeat value="#{u.comentarios}" var="comen">
                              <p:outputLabel value="#{comen.usuario.getNombre()}  #{comen.usuario.getApellido()} (#{comen.fecha}) :" style="color:red;" > </p:outputLabel>
                                <p:outputLabel value=" #{comen.comentario}"> </p:outputLabel>
                                 <hr/>
