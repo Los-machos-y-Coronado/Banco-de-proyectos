@@ -322,8 +322,7 @@ public class ServiciosBancoTest {
     public void AgruparIniciativasRelacionadas(){
         
         try{
-
-            
+   
             Iniciativa a = serviciosBanco.consultarIniciativa(2);
             List<Iniciativa> relacionados2= new ArrayList<>();           
             relacionados2.add(serviciosBanco.consultarIniciativa(12));
@@ -349,9 +348,9 @@ public class ServiciosBancoTest {
     @Test
     public void consultarIniciativasPorEstado(){
         try{
-            String estado="En espera";
+            String estado="Proyecto";
             List<Iniciativa> iniciativas = serviciosBanco.consultarIniciativasPorEstado(estado);
-            assertEquals(8,iniciativas.size());
+            assertEquals(2,iniciativas.size());
         }catch(ExcepcionServiciosBanco ex){
             assertTrue(false);
             

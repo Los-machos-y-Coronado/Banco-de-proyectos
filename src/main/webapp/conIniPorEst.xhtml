@@ -24,27 +24,35 @@ and open the template in the editor.
                 <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
                 <br/>
                 <center>
-                    <h2>Consulta por palabras clave </h2>
+                    <h2>Consulta iniciativas por estado </h2>
                 </center>
                 <hr />
 
                     <center>
-                        <p:outputLabel value="#{ConsultarIniciativasBean.estado}" style="color: white"/>
-                        <br><p:outputLabel for="palabras_clave" value="Palabras" style="color: white"/></br>
-                        <br><p:inputText type="palabrasclave" id="palabras_clave" binding="#{pala}" placeholder="Ingrese sus palabras separadas por coma" styleClass="Button" style="width: 1000px" ></p:inputText></br>
-                        <br/>
-                        <p:commandButton  update="formConsultarIni" value="Enviar" actionListener="#{ConsultarIniciativasBean.consultarIniciativas(pala.value)}" styleClass="Button"></p:commandButton>
+                        <br><p:outputLabel  value="Seleccione un estado" style="color: white"/></br>
+                        
+                        <br><p:selectOneMenu binding="#{seleccionado}">
+                            <f:selectItems value="#{ConsultarIniciativasBean.estados}"/>
+                        </p:selectOneMenu></br>
+                        
+                        <br><p:commandButton  update="formConsultarIni" value="Consultar" actionListener="#{ConsultarIniciativasBean.consultarIniciativasPorEstado(seleccionado.value)}" styleClass="Button"></p:commandButton></br>
+                        <br><p:outputLabel value="#{ConsultarIniciativasBean.estado}" style="color: white"/></br>
                     </center>
                     <hr />
                 <br/>
-                <p:panel id="BasicInPalabras" header="Consulta por palabras"  style="margin-bottom:40px">
+                <p:panel id="BasicInPalabras" header="Iniciativas por estado"  style="margin-bottom:40px">
                     <p:dataTable var="Iniciativa"  value="#{ConsultarIniciativasBean.ini}" >
-                        <p:column headerText="Correo"  >
+                        <p:column headerText="Nombre de Usuario"  >
+                            <center>
+                            <h:outputText value= "#{Iniciativa.proponente.nombreUsuario}" />
+                            </center>
+                        </p:column>
+                        <p:column headerText="Correo Electrónico"  >
                             <center>
                             <h:outputText value= "#{Iniciativa.proponente.getCorreo()}" />
                             </center>
                         </p:column>
-                        <p:column headerText="Descripcion"  >
+                        <p:column headerText="Descripción"  >
                             <center>
                             <h:outputText value= "#{Iniciativa.descripcion}" />
                             </center>
@@ -54,11 +62,7 @@ and open the template in the editor.
                             <h:outputText value= "#{Iniciativa.fecha}" />
                             </center>
                         </p:column>
-                        <p:column headerText="Estado"  >
-                            <center>
-                            <h:outputText value= "#{Iniciativa.estado}" />
-                            </center>
-                        </p:column>
+
                     </p:dataTable>
                 </p:panel>
                 <center><p:commandButton  value="Volver" onclick="back()" actionListener="#{ConsultarIniciativasBean.limpiar()}"/></center>
