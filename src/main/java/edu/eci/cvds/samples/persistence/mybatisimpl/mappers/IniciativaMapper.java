@@ -28,6 +28,10 @@ public interface IniciativaMapper {
 
     public void   registrarPalabraClave(@Param("inid") int id,@Param("pala") String palabra);
 
-   public List<Area> iniciativasPorArea();
+    public List<Area> iniciativasPorArea();
+    
+    public List<Iniciativa> iniciativasPorEstado(@Param("est") String estado);
+   
+   
 
 }

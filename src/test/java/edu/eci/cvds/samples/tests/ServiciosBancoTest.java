@@ -346,7 +346,18 @@ public class ServiciosBancoTest {
         }
         
     }
-
+    @Test
+    public void consultarIniciativasPorEstado(){
+        try{
+            String estado="En espera";
+            List<Iniciativa> iniciativas = serviciosBanco.consultarIniciativasPorEstado(estado);
+            assertEquals(8,iniciativas.size());
+        }catch(ExcepcionServiciosBanco ex){
+            assertTrue(false);
+            
+        }
+    
+    }
      
 
 }
