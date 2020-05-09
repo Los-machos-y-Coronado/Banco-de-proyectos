@@ -61,11 +61,14 @@ and open the template in the editor.
                 <p:inputTextarea id ="palabrasC" rows="5" cols="40"  value="#{inBean.palabrasClave}" placeholder="Ingrese sus palabras separadas por coma" />
 
             </p:panelGrid>
+            <center>
+                <p:commandButton update="Consulta" value="Registrar" actionListener="#{inBean.registrarIniciativa(indesc.value)}" styleClass="Button" resetValues="true">
+                </p:commandButton>
+
+                <br><p:outputLabel value="#{inBean.screenEstado}" style="color: white"/></br>
+            </center>
         </p:panel>
-        <center>
-            <p:commandButton update="formRegistro2" value="Registrar" actionListener="#{inBean.registrarIniciativa(indesc.value)}" styleClass="Button"></p:commandButton>
-        <br><p:outputLabel value="#{inBean.screenEstado}" style="color: white"/></br>
-        </center>
+
         <center><p:commandButton  value="Volver" onclick="back()"/></center>
     </h:form>
 

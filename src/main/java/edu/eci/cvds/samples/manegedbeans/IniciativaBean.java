@@ -79,17 +79,20 @@ public class IniciativaBean implements Serializable {
 
 
     public void registrarIniciativa(String descripcion) throws ParseException {
-
+        screenEstado = "Favor diligenciar todos los campos";
         try {
             estado = "En espera de revisión";
+
             List palabrasclaveArr = new ArrayList<>(Arrays.asList(palabrasClave.split(",")));
+
 
             Date utilDate = new Date();
             nuevoRegistro = new Iniciativa(id, descripcion, new java.sql.Date(utilDate.getTime()),estado,proponente,palabrasclaveArr,null);
             serviciosBanco.registrarIniciativa(nuevoRegistro);
             iniciativas = serviciosBanco.consultarIniciativas();
+            id= iniciativas.size()+1;
             screenEstado = "registro exitoso";
-        } catch (ExcepcionServiciosBanco e) {
+        } catch (Exception e) {
             e.printStackTrace();
 
         }
@@ -138,6 +141,18 @@ public class IniciativaBean implements Serializable {
         }
     }
 
+    public void updateDescripcion (Iniciativa i,String desc){
+        try{
+            Date utilDate = new Date();
+            serviciosBanco.updateDescripcion(desc,new java.sql.Date(utilDate.getTime()),i.getId());
+            screenEstado="actualizado";
+            iniciativas = serviciosBanco.consultarIniciativas();
+        }catch (ExcepcionServiciosBanco | NumberFormatException ex){
+            screenEstado="Error en actualziar";
+
+        }
+    }
+
      
     public int numeroLikes(Iniciativa in){
         numLikes=0;
@@ -152,13 +167,22 @@ public class IniciativaBean implements Serializable {
     }
 
     public void agruparIniciativas(){
-
         try{
             iniciativasGroup=serviciosBanco.agruparIniciativas(selectedIni);
         }catch (ExcepcionServiciosBanco ex){
             screenEstado="error en agrupacion";
         }
+    }
 
+    public List<Iniciativa> consultarMisniciativas () {
+        List<Iniciativa> misIni = new ArrayList<Iniciativa>();
+        for (Iniciativa i : iniciativas) {
+            if (i.getProponente().getCorreo().equals(proponente.getCorreo()))
+            {
+                misIni.add(i);
+            }
+        }
+        return misIni;
     }
 
     public Usuario getProponente() {

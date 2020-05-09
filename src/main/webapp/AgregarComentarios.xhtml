@@ -24,13 +24,13 @@
             <hr />
 
 
-            
+
             <p:panel id="DatesIniciativa" header="Información de la iniciativas "  style="margin-bottom:20px">
                 <p:dataTable value="#{AgregarComentarioBean.ini}" var="u" rows="5"     selectionMode="single"   selection="#{AgregarComentarioBean.selectedIniciativa}"  rowKey="#{u.proponente.correo}"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
-                         rowsPerPageTemplate="5,10,15">
+                         rowsPerPageTemplate="5,10,15" class="table table-striped">
                     <f:facet name="header">
                        Seleccione alguna iniciativa
                     </f:facet>
@@ -50,34 +50,26 @@
                     <p:column   style="width:16px" >                        
                         <p:rowToggler />
                     </p:column>
-
                     <p:rowExpansion>
-                        <p:carousel value="#{u.comentarios}"   var="comen"  headerText="Comentarios"   effect="backOut" numVisible="1"  >
-                        <p:tab title="Godfather Part I">   
-                            
-                            <h:outputText value="#{comen.usuario.getNombre()}  #{comen.usuario.getApellido()}:" style="font-weight:bold" />
-                            <br/>
-                            <h:outputText value="#{comen.comentario}" />
-                        </p:tab>
-                                
-                            
-                            
-                            
-                             
-                            </p:carousel>
-                        
-                            
- 
+                      <p:scrollPanel style="width:auto;height:150px">
+                         <p:repeat value="#{u.comentarios}" var="comen">
+                             <p:outputLabel value="#{comen.usuario.getNombre()}  #{comen.usuario.getApellido()} (#{comen.fecha}) :" style="color:red;" > </p:outputLabel>
+                               <p:outputLabel value=" #{comen.comentario}"> </p:outputLabel>
+                                <hr/>
+                             </p:repeat>
+                         </p:scrollPanel>
                     </p:rowExpansion>
-                    <f:facet name="footer">
-                        <p:outputLabel value="#{AgregarComentarioBean.estado}" style="color: grey"/>
-                        <br><p:inputText type="comentario" id="Comentario" binding="#{com}" placeholder="Ingrese su comentario" styleClass="Button" size="50"></p:inputText></br>
-                        <p:commandButton  update="formPer" value="Enviar" actionListener="#{AgregarComentarioBean.AgregarComentario(com.value)}" styleClass="Button"></p:commandButton>
-                    </f:facet>
-              
                 </p:dataTable>
+                <center>
+                    <p:outputLabel value="#{AgregarComentarioBean.estado}" style="color: grey"/>
+                    <br><p:inputText type="comentario" id="Comentario" binding="#{com}" placeholder="Ingrese su comentario" styleClass="Button" size="50"></p:inputText></br>
+                    <p:commandButton  update="DatesIniciativa" value="Enviar" actionListener="#{AgregarComentarioBean.AgregarComentario(com.value)}" styleClass="Button"></p:commandButton>
+                </center>
+                <hr/>
+
             </p:panel>
-            <center><p:commandButton  value="Volver" onclick="back()"/></center>
+
+            <center><p:commandButton  update="DatesIniciativa" value="Volver" onclick="back()"/></center>
         </h:form>
         
 
