@@ -28,6 +28,8 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import edu.eci.cvds.samples.entities.Iniciativa;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -58,7 +60,7 @@ public class AreasIniciativa {
         public AreasIniciativa() {
             serviciosBanco=ServiciosBancoFactory.getInstance().getServiciosBanco();
             try{
-                areas =serviciosBanco.iniciativasPorArea();
+                actualizar();
                 model = new PieChartModel();
                 for(Area a: areas){
                     model.set(a.getNombre(), a.getIniciativas().size());
@@ -70,7 +72,10 @@ public class AreasIniciativa {
             }
             
         }
-
+    public void actualizar() throws ExcepcionServiciosBanco{
+        areas =serviciosBanco.iniciativasPorArea();
+           
+    }
     public  void excel(){
         try{
             Workbook workbook = new HSSFWorkbook();

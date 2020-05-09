@@ -60,8 +60,16 @@ public class EstadosBean {
         public EstadosBean() {
             serviciosBanco=ServiciosBancoFactory.getInstance().getServiciosBanco();
             try{
-                iniEstados = new ArrayList<List<Iniciativa>>();
                 estados = Estado.values();
+                actualizar();
+                
+            }catch(ExcepcionServiciosBanco ex){
+                
+            }
+            
+        }
+    public void actualizar() throws ExcepcionServiciosBanco{
+                iniEstados = new ArrayList<List<Iniciativa>>();
                 model = new PieChartModel();
                 for(Estado e: estados){
                     List<Iniciativa> iniciativas = serviciosBanco.consultarIniciativasPorEstado(e.getName());
@@ -72,12 +80,7 @@ public class EstadosBean {
                 }
                 model.setTitle("Iniciativas por Estado");
                 model.setLegendPosition("w");
-                
-            }catch(ExcepcionServiciosBanco ex){
-                
-            }
-            
-        }
+    }
 
     public  void excel(){
         try{

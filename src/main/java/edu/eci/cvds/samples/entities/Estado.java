@@ -5,6 +5,9 @@
  */
 package edu.eci.cvds.samples.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Andres Gonzalez
@@ -25,5 +28,6 @@ public enum Estado {
     public String getName() {
         return this.name;
     }
+
 
 }
