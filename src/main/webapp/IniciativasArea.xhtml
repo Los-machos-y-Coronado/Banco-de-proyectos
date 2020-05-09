@@ -35,7 +35,7 @@ and open the template in the editor.
         <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
         <h:commandLink actionListener="#{shBean.isLogged()}" >
                 <h:graphicImage url="img/logo.png" width="150" height="100" alt="descripción"/>         
-            </h:commandLink>
+        </h:commandLink>
         <br/>
         <center>
             <h2> Consulta De iniciativas </h2>
@@ -49,6 +49,7 @@ and open the template in the editor.
                          rowsPerPageTemplate="5,10,15">
                 <f:facet name="{Exporters}">
                     <div style="float:right;padding-top: 5px;">
+                        
                         <h:commandLink actionListener="#{AreasBean.excel()}" >
                             <h:graphicImage url="img/exc.png" width="24"/>
                             <p:fileDownload value="#{AreasBean.excel}" />

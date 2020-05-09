@@ -55,7 +55,7 @@ public class AreasIniciativa {
         private PieChartModel model;
         private StreamedContent excel;
         private StreamedContent pdf;
-
+        
 
         public AreasIniciativa() {
             serviciosBanco=ServiciosBancoFactory.getInstance().getServiciosBanco();

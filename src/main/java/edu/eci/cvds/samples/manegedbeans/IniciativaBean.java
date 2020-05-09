@@ -53,6 +53,7 @@ public class IniciativaBean implements Serializable {
     private int id;
     private int numLikes;
     private String buttonLike;
+    private String icon;
     private Subject cor;
     private Iniciativa selectedIni;
 
@@ -106,9 +107,10 @@ public class IniciativaBean implements Serializable {
             Like ver= null;
             ver = serviciosBanco.consultarLikesInCor(in.getId(),proponente.getCorreo());
             if(ver == null){
+                icon="pi pi-thumbs-up";
                 buttonLike="Like";
             }else{
-
+                icon="pi pi-thumbs-down";
                 buttonLike="Dislike";
             }
         } catch (ExcepcionServiciosBanco ex) {
@@ -123,9 +125,11 @@ public class IniciativaBean implements Serializable {
             if(ver == null){
                 serviciosBanco.registrarLike(in.getId(), proponente.getCorreo());
                 buttonLike="Dislike";
+                icon="pi pi-thumbs-down";
             }else{
                 serviciosBanco.deleteLikes(in.getId(), proponente.getCorreo());
                 buttonLike="Like";
+                icon="pi pi-thumbs-up";
             }
         }catch (ExcepcionServiciosBanco ex){
             screenEstado="Error en Registrar Like";
@@ -311,4 +315,13 @@ public class IniciativaBean implements Serializable {
     public void setSelectedIni(Iniciativa selectedIni) {
         this.selectedIni = selectedIni;
     }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+    
 }
