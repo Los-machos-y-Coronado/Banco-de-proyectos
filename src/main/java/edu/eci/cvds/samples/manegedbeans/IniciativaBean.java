@@ -137,7 +137,6 @@ public class IniciativaBean implements Serializable {
 
         }
     }
-
     public void updateDescripcion (Iniciativa i,String desc){
         try{
             Date utilDate = new Date();
