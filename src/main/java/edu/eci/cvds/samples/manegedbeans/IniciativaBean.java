@@ -82,7 +82,7 @@ public class IniciativaBean implements Serializable {
 
         try {
             estado = "En espera de revisión";
-            List palabrasclaveArr = new ArrayList<String>(Arrays.asList(palabrasClave.split(",")));
+            List palabrasclaveArr = new ArrayList<>(Arrays.asList(palabrasClave.split(",")));
 
             Date utilDate = new Date();
             nuevoRegistro = new Iniciativa(id, descripcion, new java.sql.Date(utilDate.getTime()),estado,proponente,palabrasclaveArr,null);

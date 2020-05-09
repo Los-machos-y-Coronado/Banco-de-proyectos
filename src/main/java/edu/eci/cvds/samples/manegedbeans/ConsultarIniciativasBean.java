@@ -26,10 +26,12 @@ public class ConsultarIniciativasBean implements Serializable {
         private final ServiciosBanco serviciosBanco;
         private String estado;
         private List<Iniciativa> ini;
+        private String estados[]={"En espera","Rechazado","Propuesta","Solucionado","Proyecto"};
         
         
     public ConsultarIniciativasBean(){
         serviciosBanco=ServiciosBancoFactory.getInstance().getServiciosBanco();
+        
     }       
 
     public void consultarIniciativas(String palabras){
@@ -49,7 +51,26 @@ public class ConsultarIniciativasBean implements Serializable {
                 estado=null;
             }
 
-        }
+    }
+    
+    public void consultarIniciativasPorEstado(String estado){
+        try{
+            ini=serviciosBanco.consultarIniciativasPorEstado(estado);
+        }catch(ExcepcionServiciosBanco ex){
+                this.estado="Error al consultar las iniciativas";
+            } 
+        if (ini.isEmpty()){
+                this.estado="No se encontro ningun registro";
+            }
+            else{
+
+                this.estado=null;
+            }
+    }
+    public void limpiar(){
+        ini.clear();
+    }
+    
     public List<Iniciativa> getIni() {
             return ini;
     }
@@ -65,6 +86,15 @@ public class ConsultarIniciativasBean implements Serializable {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    public String[] getEstados() {
+        return estados;
+    }
+
+    public void setEstados(String[] estados) {
+        this.estados = estados;
+    }
+    
 
 
 }
