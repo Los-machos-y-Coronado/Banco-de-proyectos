@@ -160,16 +160,13 @@ public class IniciativaBean implements Serializable {
         }
 
     }
-
     public Usuario getProponente() {
         return proponente;
     }
-
     public void setProponente(Usuario proponente) {
         this.proponente = proponente;
     }
-    
-    
+
     public int getNumLikes() {
         return numLikes;
     }
