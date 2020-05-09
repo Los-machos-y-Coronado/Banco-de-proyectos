@@ -7,6 +7,7 @@ package edu.eci.cvds.samples.tests;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.samples.entities.Area;
+import edu.eci.cvds.samples.entities.Estado;
 import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.entities.Like;
 import edu.eci.cvds.samples.entities.Rol;
@@ -23,6 +24,7 @@ import java.util.logging.Logger;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
+import org.primefaces.model.chart.PieChartModel;
 
 /**
  *
@@ -378,6 +380,23 @@ public class ServiciosBancoTest {
             
         }
     
+    }
+    @Test
+    public void estadosIniciativas(){
+        try{
+            List<List<Iniciativa>> iniEstados = new ArrayList<List<Iniciativa>>();
+            Estado[] estados = Estado.values();
+                
+            for(Estado e: estados){
+                List<Iniciativa> iniciativas = serviciosBanco.consultarIniciativasPorEstado(e.getName());
+                
+                iniEstados.add(iniciativas);
+            }
+            
+            assertTrue(true);
+        }catch(Exception ex){
+            assertTrue(false);
+        }
     }
      
 

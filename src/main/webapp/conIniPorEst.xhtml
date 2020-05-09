@@ -32,7 +32,10 @@ and open the template in the editor.
                         <br><p:outputLabel  value="Seleccione un estado" style="color: white"/></br>
                         
                         <br><p:selectOneMenu binding="#{seleccionado}">
-                            <f:selectItems value="#{ConsultarIniciativasBean.estados}"/>
+                            <f:selectItem itemLabel="En espera de revisión" itemValue="En espera de revisión" />
+                            <f:selectItem itemLabel="En revisión" itemValue="En revisión" />
+                            <f:selectItem itemLabel="Proyecto" itemValue="Proyecto" />
+                            <f:selectItem itemLabel="Solucionado" itemValue="Solucionado" />
                         </p:selectOneMenu></br>
                         
                         <br><p:commandButton  update="formConsultarIni" value="Consultar" actionListener="#{ConsultarIniciativasBean.consultarIniciativasPorEstado(seleccionado.value)}" styleClass="Button"></p:commandButton></br>

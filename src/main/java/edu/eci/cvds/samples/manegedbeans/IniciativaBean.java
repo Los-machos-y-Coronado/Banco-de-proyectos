@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package edu.eci.cvds.samples.manegedbeans;
+import edu.eci.cvds.samples.entities.Estado;
 import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.entities.Like;
 import edu.eci.cvds.samples.entities.Rol;
@@ -41,7 +42,7 @@ public class IniciativaBean implements Serializable {
     private String screenEstado = "";
     private Usuario proponente ;
 
-    private String[] tipoEstado={"En espera de revision","En revisión","Propuesta","Solucionado"};
+    private Estado[] tipoEstado;
     private Usuario actual;
     private Iniciativa nuevoRegistro;
     private java.sql.Date fecha;
@@ -61,6 +62,7 @@ public class IniciativaBean implements Serializable {
 
         serviciosBanco = ServiciosBancoFactory.getInstance().getServiciosBanco();
         cor= SecurityUtils.getSubject();
+        tipoEstado=Estado.values();
 
         try {
             proponente=serviciosBanco.consultarUsuario(cor.getSession().getAttribute("Correo").toString());
@@ -210,13 +212,15 @@ public class IniciativaBean implements Serializable {
         this.buttonLike = buttonLike;
     }
 
-    public String[] getTipoEstado() {
+    public Estado[] getTipoEstado() {
         return tipoEstado;
     }
 
-    public void setTipoEstado(String[] tipoEstado) {
+    public void setTipoEstado(Estado[] tipoEstado) {
         this.tipoEstado = tipoEstado;
     }
+
+
 
 
     public java.sql.Date getFecha() {
