@@ -13,7 +13,7 @@ body{
 }
 
 h1,p{
-        color:white; 
+       
         font-family: Arial;
         font-size:large ;
 }
@@ -32,7 +32,7 @@ ul {
 
 
 #conetent #tipus{
-    color: white;
+    
     background-color: transparent;
     font-size:20px;
     font-family:Courier;
@@ -40,7 +40,7 @@ ul {
 
 }
 
-#Descripcion  {color:whitesmoke; 
+#Descripcion  { 
    font-size:20px;
 
    border:4px;
@@ -51,7 +51,7 @@ ul {
    height:200px;
   }
 #conetent h2{
-   color:white; 
+   
    font-family: Arial;
    background-color: transparent ;
    text-shadow: 2px 4px #b80f22 ;
@@ -59,7 +59,7 @@ ul {
 }
 
 #conetent h1{
-   color:white; 
+   
    font-family: Arial;
    background-color: transparent ;
    margin: 40px 40px 40px 40px;

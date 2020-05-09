@@ -59,11 +59,15 @@ and open the template in the editor.
                 </p:column>
 
                 <p:column headerText="Likes" sortBy="#{inBean.numeroLikes(iniciativa)}">
+                    <center>
                     <p:outputLabel value="#{inBean.numeroLikes(iniciativa)}"/>
+                    </center>
                 </p:column>
 
                 <p:column headerText="GIVE A LIKE" >
+                    <center>
                     <p:commandButton  icon="#{inBean.icon}" update="formConsutl" value="#{inBean.estadoLike(iniciativa)}" actionListener="#{inBean.registrarLike(iniciativa)}" styleClass="Button"></p:commandButton>
+                    </center>
                 </p:column>
 
 

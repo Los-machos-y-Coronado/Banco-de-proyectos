@@ -10,6 +10,7 @@
         <script type="text/javascript" src="js/ControladorPerfil.js"/>
         <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="/css/textStyle.css" media="screen"/>
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
     </h:head>
     <h:body>
 
@@ -20,7 +21,7 @@
             </h:commandLink>
             <br/>
             <center>
-                <h2>Bienvenido A registro De iniciativa </h2>
+                <h2> Cambiar el rol de un usuario </h2>
             </center>
 
             <hr />
@@ -50,11 +51,14 @@
                         </p:selectOneMenu>
                     </p:column>
                     <p:column>
-                        <p:commandButton update="formPer" value="Cambiar" actionListener="#{AsignacionPerfilBean.cambiarRol(u, seleccionado.value)}"/>
+                        <center>
+                            <p:commandButton update="formPer" icon="pi pi-user-edit"  value="Cambiar" actionListener="#{AsignacionPerfilBean.cambiarRol(u, seleccionado.value)}"> </p:commandButton>
+                        </center>
                     </p:column>
 
                 </p:dataTable>
             </p:panel>
+            
             <center><p:commandButton  value="Volver" onclick="back()"/></center>
         </h:form>
 
