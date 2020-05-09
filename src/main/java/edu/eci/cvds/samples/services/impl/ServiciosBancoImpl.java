@@ -15,6 +15,8 @@ import edu.eci.cvds.samples.persistence.*;
 import edu.eci.cvds.samples.persistence.DaoIniciativa;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
+
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -192,8 +194,32 @@ public class ServiciosBancoImpl implements ServiciosBanco {
         //En proceso
         
     }
-    
-     /**
+
+    /**
+     * Consultar Iniciativa por correo electronico
+     *
+     * @param cor Correo proponente
+     * @throws ExcepcionServiciosBanco
+     */
+    @Override
+    public List<Iniciativa> consultarIniciativaCor(String cor) throws ExcepcionServiciosBanco {
+        try{
+            return daoIniciativa.consultarIniciativaCor(cor);
+        }catch(PersistenceException ex){
+            throw new ExcepcionServiciosBanco("No se pudo consultar las iniciativas de "+cor,ex);
+        }
+    }
+
+    @Override
+    public void updateDescripcion(String des, Date fecha, int id) throws ExcepcionServiciosBanco {
+        try{
+            daoIniciativa.updateDescripcion(des,fecha,id);
+        }catch (PersistenceException ex){
+            throw new ExcepcionServiciosBanco("No se pudo consultar las actualizar la iniciativa numero "+id,ex);
+        }
+    }
+
+    /**
      * Verifica si dos inicitivas estan relacionadas
      * @param ini1 Iniciativa
      * @param ini2 Iniciativa

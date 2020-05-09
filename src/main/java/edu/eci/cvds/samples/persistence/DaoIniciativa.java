@@ -8,6 +8,7 @@ package edu.eci.cvds.samples.persistence;
 import edu.eci.cvds.samples.entities.Area;
 import edu.eci.cvds.samples.entities.Iniciativa;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,4 +35,7 @@ public interface DaoIniciativa {
 
     public List<Area> iniciativasPorArea() throws PersistenceException;
 
+    public List<Iniciativa>  consultarIniciativaCor(String cor) throws PersistenceException;
+
+    public void updateDescripcion(String des, Date fecha, int id) throws PersistenceException;
 }

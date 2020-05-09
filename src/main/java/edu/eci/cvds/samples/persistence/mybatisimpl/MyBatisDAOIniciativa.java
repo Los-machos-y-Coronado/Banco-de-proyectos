@@ -14,6 +14,7 @@ import edu.eci.cvds.samples.persistence.mybatisimpl.mappers.IniciativaMapper;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,6 +98,24 @@ public class MyBatisDAOIniciativa implements DaoIniciativa{
             return iniciativaMapper.iniciativasPorArea();
         }catch (Exception e){
             throw new PersistenceException ("error al las Iniciativas por area",e);
+        }
+    }
+
+    @Override
+    public List<Iniciativa> consultarIniciativaCor(String cor) throws PersistenceException {
+        try{
+            return iniciativaMapper.consultarIniciativaCor(cor);
+        }catch (Exception e){
+            throw new PersistenceException ("error al las Iniciativas de "+cor,e);
+        }
+    }
+
+    @Override
+    public void updateDescripcion(String des, Date fecha, int id) throws PersistenceException {
+        try {
+             iniciativaMapper.updateDescripcion(des,fecha,id);
+        }catch (Exception e){
+            throw new PersistenceException ("error al actualizar BT Iniciativa "+id,e);
         }
     }
 
