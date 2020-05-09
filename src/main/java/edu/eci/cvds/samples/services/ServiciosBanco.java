@@ -12,6 +12,7 @@ import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.entities.Iniciativa;
 
+import java.sql.Date;
 import java.util.List;
 
 import edu.eci.cvds.samples.entities.Iniciativa;
@@ -114,6 +115,7 @@ public interface ServiciosBanco {
      * @throws ExcepcionServiciosBanco 
      */
     public abstract void eliminarIniciativa(Iniciativa ini) throws ExcepcionServiciosBanco;
+
     
     /**
      * Consultar iniciativas por estado
@@ -123,6 +125,16 @@ public interface ServiciosBanco {
      */
     
     public abstract  List<Iniciativa> consultarIniciativasPorEstado(String estado)throws ExcepcionServiciosBanco;
+
+
+    /**
+     * Consultar Iniciativa por correo electronico
+     * @param cor Correo proponente
+     * @throws ExcepcionServiciosBanco
+     */
+    public abstract List<Iniciativa> consultarIniciativaCor(String cor) throws ExcepcionServiciosBanco;
+    public void  updateDescripcion (String desc, Date fecha, int id) throws ExcepcionServiciosBanco;
+
 
 
 }

@@ -5,6 +5,7 @@
  */
 package edu.eci.cvds.samples.manegedbeans;
 
+import edu.eci.cvds.samples.entities.Estado;
 import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.services.Convertidor;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
@@ -12,6 +13,7 @@ import edu.eci.cvds.samples.services.ServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBancoFactory;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -26,19 +28,24 @@ public class ConsultarIniciativasBean implements Serializable {
         private final ServiciosBanco serviciosBanco;
         private String estado;
         private List<Iniciativa> ini;
-        private String estados[]={"En espera","Rechazado","Propuesta","Solucionado","Proyecto"};
+        private Estado[] estados;
         
         
     public ConsultarIniciativasBean(){
         serviciosBanco=ServiciosBancoFactory.getInstance().getServiciosBanco();
+        ini = new ArrayList<Iniciativa>();
         
     }       
 
     public void consultarIniciativas(String palabras){
-
+            if("".equals(palabras)){
+                estado="No ingreso ninguna palabra";
+            }else{
             try{
+                
                 Convertidor convertidor = new Convertidor();
                 ini=serviciosBanco.consultarIniciativas(convertidor.convertirPalabras(palabras));
+                estados=Estado.values();
 
             }catch(ExcepcionServiciosBanco ex){
                 estado="Error al consultar las iniciativas";
@@ -49,6 +56,7 @@ public class ConsultarIniciativasBean implements Serializable {
             else{
 
                 estado=null;
+            }
             }
 
     }
@@ -68,7 +76,8 @@ public class ConsultarIniciativasBean implements Serializable {
             }
     }
     public void limpiar(){
-        ini.clear();
+        estado=null;
+        ini=new ArrayList<Iniciativa>();
     }
     
     public List<Iniciativa> getIni() {
@@ -87,13 +96,15 @@ public class ConsultarIniciativasBean implements Serializable {
         this.estado = estado;
     }
 
-    public String[] getEstados() {
+    public Estado[] getEstados() {
         return estados;
     }
 
-    public void setEstados(String[] estados) {
+    public void setEstados(Estado[] estados) {
         this.estados = estados;
     }
+
+
     
 
 

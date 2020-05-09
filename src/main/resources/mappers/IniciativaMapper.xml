@@ -55,12 +55,49 @@
             us.estado as c_u_estado,
             us.area as c_u_area
 
-
         FROM iniciativas as i  LEFT JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas
         LEFT JOIN usuarios as u ON i.proponentes_usuarios_correo=u.correo
         LEFT JOIN comentarios as c ON c.idf_iniciativa=i.id_iniciativas
         LEFT JOIN usuarios as us ON c.idf_usuario=us.correo
         WHERE i.id_iniciativas=#{idin};
+
+    </select>
+
+    <select  parameterType="map" id="consultarIniciativaCor" resultMap="IniciativaResult">
+        SELECT
+        i.id_iniciativas,
+        i.descripcion,
+        i.fecha,
+        i.estado,
+
+        u.correo as u_correo,
+        u.nombre_usuario as u_nombre_usuario,
+        u.nombre as u_nombre,
+        u.apellido as u_apellido,
+        u.rol as u_rol,
+        u.estado as u_estado,
+        u.area as u_area,
+
+        pa.palabra as pa_palabra,
+
+        c.id_comentario as c_id_comentario,
+        c.fechare as c_fechare,
+        c.comentario as c_comentario,
+
+        us.correo as c_u_correo,
+        us.nombre_usuario as c_u_nombre_usuario,
+        us.nombre as c_u_nombre,
+        us.apellido as c_u_apellido,
+        us.rol as c_u_rol,
+        us.estado as c_u_estado,
+        us.area as c_u_area
+
+        FROM iniciativas as i  LEFT JOIN palabras_clave  as pa on i.id_iniciativas=pa.iniciativas_id_iniciativas
+        LEFT JOIN usuarios as u ON i.proponentes_usuarios_correo=u.correo
+        LEFT JOIN comentarios as c ON c.idf_iniciativa=i.id_iniciativas
+        LEFT JOIN usuarios as us ON c.idf_usuario=us.correo
+        WHERE u.correo=#{corr};
+
     </select>
 
 
@@ -112,10 +149,17 @@
     <update id="updateEstado" parameterType="map">
         update INICIATIVAS set
         estado = #{inest}
-        where id_iniciativas= #{inid}
+        where id_iniciativas= #{inid};
     </update>
-        
-    
+
+    <update id="updateDescripcion" parameterType="map">
+        update INICIATIVAS set
+        descripcion = #{desc},
+        fecha =  #{fecha}
+        where id_iniciativas= #{inid};
+    </update>
+
+
     <select parameterType="map"  id="consultarIniciativasPalabra"  resultMap="IniciativaResult">
         SELECT
             i.id_iniciativas,

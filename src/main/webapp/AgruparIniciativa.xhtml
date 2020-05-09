@@ -19,7 +19,9 @@ and open the template in the editor.
 
 </h:head>
     <h:body>
-        <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
+        <h:commandLink actionListener="#{shBean.isLogged()}" >
+                <h:graphicImage url="img/logo.png" width="150" height="100" alt="descripción"/>         
+        </h:commandLink>
         <br/>
         <center>
             <h2> Editar Estado </h2>

@@ -20,10 +20,12 @@ and open the template in the editor.
     <h:body>
         
         <!-- Navigation Bar -->
-    
         
         <h:form id="adminForm">
-            <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
+             <f:event type="preRenderView" listener="#{ConsultarIniciativasBean.limpiar()}"/>
+            <h:commandLink actionListener="#{shBean.isLogged()}" >
+                <h:graphicImage url="img/logo.png" width="150" height="100" alt="descripción"/>         
+            </h:commandLink>
             <br/>
             <center>
                 <h2>Bienvenido al Menu Admin </h2>
@@ -33,15 +35,23 @@ and open the template in the editor.
 
             
         <p:menubar>
-                     
-                        <p:menuitem value="Asignar perfiles" onclick="cambiarPagina('AsignacionPerfiles')"/>
-                        <p:menuitem value="Cambiar estado iniciativas " onclick="cambiarPagina('EstadoIniciativa')"/>
-                        <p:menuitem value="Consultar iniciativas " onclick="cambiarPagina('Consult')"/>
-                        <p:menuitem value="Consultar por palabras clave" onclick="cambiarPagina('Publico')" />
-                        <p:menuitem value="Reporte por areas" onclick="cambiarPagina('IniciativaArea')"/>
-                        <p:menuitem value="Agrupar Iniciativas" onclick="cambiarPagina('AgruparIniciativa')"/>
-                        <p:menuitem value="Consultar por estado" onclick="cambiarPagina('ConsultarConEstado')"/>
-                        <p:menuitem value="Salir" actionListener="#{shBean.logOut()}"/>
+            <p:submenu label="Usuarios">
+                <p:menuitem value="Asignar perfiles" onclick="cambiarPagina('AsignacionPerfiles')"/>
+            </p:submenu>
+            <p:submenu label="Iniciativas">
+                <p:menuitem value="Cambiar estado iniciativas " onclick="cambiarPagina('EstadoIniciativa')"/>
+                <p:menuitem value="Agrupar Iniciativas" onclick="cambiarPagina('AgruparIniciativa')"/>
+            </p:submenu>
+            <p:submenu label="Consultas">
+                <p:menuitem value="Consultar iniciativas " onclick="cambiarPagina('Consult')"/>
+                <p:menuitem value="Consultar por palabras clave" onclick="cambiarPagina('Publico')" />
+                <p:menuitem value="Consultar por estado" onclick="cambiarPagina('ConsultarConEstado')"/>
+            </p:submenu>
+            <p:submenu label="Reportes">
+                <p:menuitem value="Reporte por areas" onclick="cambiarPagina('IniciativaArea')"/>
+                <p:menuitem value="Reporte por estados" onclick="cambiarPagina('IniciativaEstado')"/>
+            </p:submenu>
+            <p:menuitem value="Salir" actionListener="#{shBean.logOut()}"/>
            
         </p:menubar>
             </h:form>
