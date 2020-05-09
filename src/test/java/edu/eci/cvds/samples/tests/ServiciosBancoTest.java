@@ -367,11 +367,10 @@ public class ServiciosBancoTest {
                 
             for(Estado e: estados){
                 List<Iniciativa> iniciativas = serviciosBanco.consultarIniciativasPorEstado(e.getName());
-                System.out.println(e.getName());
-                System.out.println(iniciativas);
+                
                 iniEstados.add(iniciativas);
             }
-            System.out.println(iniEstados);
+            
             assertTrue(true);
         }catch(Exception ex){
             assertTrue(false);
