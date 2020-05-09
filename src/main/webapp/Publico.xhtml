@@ -16,6 +16,7 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="/css/textStyle.css" media="screen"/>
                 <script type="text/javascript" src="js/ControladorPerfil.js"/>
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
 
     </h:head>
 
@@ -32,8 +33,8 @@ and open the template in the editor.
                 <hr />
 
                     <center>
-                        <p:outputLabel value="#{ConsultarIniciativasBean.estado}" style="color: white"/>
-                        <br><p:outputLabel for="palabras_clave" value="Palabras" style="color: white"/></br>
+                        <p:outputLabel value="#{ConsultarIniciativasBean.estado}" style="color: gray"/>
+                        <br><p:outputLabel for="palabras_clave" value="Palabras" style="color: gray"/></br>
                         <br><p:inputText type="palabrasclave" id="palabras_clave" binding="#{pala}" placeholder="Ingrese sus palabras separadas por coma" styleClass="Button" style="width: 1000px" ></p:inputText></br>
                         <br/>
                         <p:commandButton  update="formConsultarIni" value="Enviar" actionListener="#{ConsultarIniciativasBean.consultarIniciativas(pala.value)}" styleClass="Button"></p:commandButton>
@@ -64,7 +65,7 @@ and open the template in the editor.
                         </p:column>
                     </p:dataTable>
                 </p:panel>
-                <center><p:commandButton  value="Volver" onclick="back()"/></center>
+                <center><p:commandButton  icon="pi pi-arrow-left" value="Volver" onclick="back()"/></center>
             </h:form>
 
     </h:body>

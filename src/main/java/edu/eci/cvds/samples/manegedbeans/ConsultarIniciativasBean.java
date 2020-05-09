@@ -76,8 +76,8 @@ public class ConsultarIniciativasBean implements Serializable {
             }
     }
     public void limpiar(){
-        estado=null;
-        ini=new ArrayList<Iniciativa>();
+        this.estado=null;
+        this.ini=new ArrayList<Iniciativa>();
     }
     
     public List<Iniciativa> getIni() {

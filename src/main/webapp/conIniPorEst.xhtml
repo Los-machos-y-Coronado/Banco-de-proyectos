@@ -16,6 +16,7 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="/css/textStyle.css" media="screen"/>
                 <script type="text/javascript" src="js/ControladorPerfil.js"/>
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />     
 
     </h:head>
 
@@ -32,7 +33,7 @@ and open the template in the editor.
                 <hr />
 
                     <center>
-                        <br><p:outputLabel  value="Seleccione un estado" style="color: white"/></br>
+                        <br><p:outputLabel  value="Seleccione un estado" style="color: gray"/></br>
                         
                         <br><p:selectOneMenu binding="#{seleccionado}">
                             <f:selectItem itemLabel="En espera de revisión" itemValue="En espera de revisión" />
@@ -42,7 +43,7 @@ and open the template in the editor.
                         </p:selectOneMenu></br>
                         
                         <br><p:commandButton  update="formConsultarIni" value="Consultar" actionListener="#{ConsultarIniciativasBean.consultarIniciativasPorEstado(seleccionado.value)}" styleClass="Button"></p:commandButton></br>
-                        <br><p:outputLabel value="#{ConsultarIniciativasBean.estado}" style="color: white"/></br>
+                        <br><p:outputLabel value="#{ConsultarIniciativasBean.estado}" style="color: gray" /></br>
                     </center>
                     <hr />
                 <br/>
@@ -71,7 +72,7 @@ and open the template in the editor.
 
                     </p:dataTable>
                 </p:panel>
-                <center><p:commandButton  value="Volver" onclick="back()"/></center>
+                <center><p:commandButton  icon="pi pi-arrow-left" value="Volver" onclick="back()"/></center>
             </h:form>
 
     </h:body>

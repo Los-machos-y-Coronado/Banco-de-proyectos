@@ -10,6 +10,7 @@
         <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
         <script type="text/javascript" src="js/ControladorPerfil.js"/>
         <link rel="stylesheet" type="text/css" href="/css/textStyle.css" media="screen"/>
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
     </h:head>
     <h:body>
         <f:event type="preRenderView" listener="#{shBean.isLogged}"/>
@@ -24,8 +25,9 @@
                 <br><p:inputText type="text" id="correo_usuario" required="true" value="#{shBean.userName}" binding="#{corr}"></p:inputText></br>
                 <label for="password"> Contraseña </label>
                 <br><p:inputText type="password" id="clave_usuario" required="true" value="#{shBean.userPassword}" binding="#{clus}"></p:inputText></br>
+                <center>
                 <p:commandButton type="submit" update="formUsuario" value="Ingresar" action="#{shBean.loginUser()}"   styleClass="Button"/>
-
+                </center>
  
             </h:form>
         </div>
