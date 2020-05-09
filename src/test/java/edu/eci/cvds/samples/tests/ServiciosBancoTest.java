@@ -153,7 +153,7 @@ public class ServiciosBancoTest {
     /*
      * 
      * Consultar iniciativa
-     */
+     
     @Test
     public void consultarIniciativa(){
         try {
@@ -169,10 +169,11 @@ public class ServiciosBancoTest {
             Iniciativa a= new Iniciativa(2,"Construcción del bloque Z", d1,"En revisión",proponente,palabras,null);
             Iniciativa ini = serviciosBanco.consultarIniciativa(2);
 
-
+            Iniciativa C= new Iniciativa(2,"Construcción del bloque Z", d1,"En ESPERA",proponente,palabras,null);
+            
 
             
-            assertEquals(a.toString(),ini.toString());
+            assertEquals(C.toString(),ini.toString());
             
            
         } catch (ExcepcionServiciosBanco ex) {

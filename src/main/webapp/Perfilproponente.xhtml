@@ -16,6 +16,7 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
         <script type="text/javascript" src="js/ControladorPerfil.js"/>
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
     </h:head>
     <h:body>
         
@@ -36,16 +37,16 @@ and open the template in the editor.
 
             <p:menubar>
 
-                <p:submenu label="Iniciativas">
+                <p:submenu label="Iniciativas" icon="pi pi-sitemap">
                      <p:menuitem value="Registrar iniciativa" onclick="cambiarPagina('Riniciativas')"/>
                      <p:menuitem value="Mis Iniciativas" onclick="cambiarPagina('misIniciativas')"/>
                 </p:submenu>
-                <p:submenu label="Consultas">
+                <p:submenu label="Consultas" icon="pi pi-search">
                     <p:menuitem value="Consutlar iniciativas " onclick="cambiarPagina('Consult')"/>
                     <p:menuitem value="Consultar por palabras clave" onclick="cambiarPagina('Publico')"/>
                     <p:menuitem value="Consultar por estado" onclick="cambiarPagina('ConsultarConEstado')" />
                 </p:submenu>
-                <p:menuitem value="Salir" actionListener="#{shBean.logOut()}"/>
+                <p:menuitem value="Salir" icon="pi pi-sign-out" actionListener="#{shBean.logOut()}"/>
              
 
             </p:menubar>
