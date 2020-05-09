@@ -31,6 +31,9 @@ function cambiarPagina(pag) {
              location.href="/faces/conIniPorEst.xhtml";
         
             }
+    else if(pag === "IniciativaEstado"){
+        location.href="/faces/IniciativasEstados.xhtml";
+    }
 
 
     else if(pag === "misIniciativas"){

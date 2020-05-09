@@ -13,6 +13,7 @@ import edu.eci.cvds.samples.services.ServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBancoFactory;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -32,12 +33,16 @@ public class ConsultarIniciativasBean implements Serializable {
         
     public ConsultarIniciativasBean(){
         serviciosBanco=ServiciosBancoFactory.getInstance().getServiciosBanco();
+        ini = new ArrayList<Iniciativa>();
         
     }       
 
     public void consultarIniciativas(String palabras){
-
+            if("".equals(palabras)){
+                estado="No ingreso ninguna palabra";
+            }else{
             try{
+                
                 Convertidor convertidor = new Convertidor();
                 ini=serviciosBanco.consultarIniciativas(convertidor.convertirPalabras(palabras));
                 estados=Estado.values();
@@ -51,6 +56,7 @@ public class ConsultarIniciativasBean implements Serializable {
             else{
 
                 estado=null;
+            }
             }
 
     }
@@ -70,7 +76,8 @@ public class ConsultarIniciativasBean implements Serializable {
             }
     }
     public void limpiar(){
-        ini.clear();
+        estado=null;
+        ini=new ArrayList<Iniciativa>();
     }
     
     public List<Iniciativa> getIni() {

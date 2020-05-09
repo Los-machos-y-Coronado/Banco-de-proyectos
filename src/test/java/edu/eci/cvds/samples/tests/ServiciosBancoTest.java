@@ -166,12 +166,13 @@ public class ServiciosBancoTest {
             Date d1 = Date.valueOf(fecha);
             Usuario proponente= new Usuario("alex.garci@yahoo.com","alex22","alex","gordillo",Rol.Proponente,true,"civil");
             
-            Iniciativa b= new Iniciativa(2,"Construcción del bloque Z", d1,"En revision",proponente,palabras,null);
+            Iniciativa a= new Iniciativa(2,"Construcción del bloque Z", d1,"En revisión",proponente,palabras,null);
             Iniciativa ini = serviciosBanco.consultarIniciativa(2);
 
 
+
             
-            assertEquals(b.toString(),ini.toString());
+            assertEquals(a.toString(),ini.toString());
             
            
         } catch (ExcepcionServiciosBanco ex) {
@@ -287,7 +288,7 @@ public class ServiciosBancoTest {
             java.util.Date utilDate = new java.util.Date();
             serviciosBanco.updateDescripcion("nuevo detalle para esta descripcion 2", new java.sql.Date(utilDate.getTime()), 16);
             Iniciativa ini = serviciosBanco.consultarIniciativa(16);
-            System.out.println(ini);
+            
             assertTrue(true);
         } catch (ExcepcionServiciosBanco ex) {
             ex.getStackTrace();
@@ -374,7 +375,7 @@ public class ServiciosBancoTest {
         try{
             String estado="Proyecto";
             List<Iniciativa> iniciativas = serviciosBanco.consultarIniciativasPorEstado(estado);
-            assertEquals(2,iniciativas.size());
+            assertEquals(7,iniciativas.size());
         }catch(ExcepcionServiciosBanco ex){
             assertTrue(false);
             
@@ -386,13 +387,10 @@ public class ServiciosBancoTest {
         try{
             List<List<Iniciativa>> iniEstados = new ArrayList<List<Iniciativa>>();
             Estado[] estados = Estado.values();
-                
             for(Estado e: estados){
-                List<Iniciativa> iniciativas = serviciosBanco.consultarIniciativasPorEstado(e.getName());
-                
+                List<Iniciativa> iniciativas = serviciosBanco.consultarIniciativasPorEstado(e.getName());   
                 iniEstados.add(iniciativas);
             }
-            
             assertTrue(true);
         }catch(Exception ex){
             assertTrue(false);

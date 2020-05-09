@@ -93,6 +93,7 @@ public class IniciativaBean implements Serializable {
             serviciosBanco.registrarIniciativa(nuevoRegistro);
             iniciativas = serviciosBanco.consultarIniciativas();
             id= iniciativas.size()+1;
+            palabrasClave="";
             screenEstado = "registro exitoso";
         } catch (Exception e) {
             e.printStackTrace();
