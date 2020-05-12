@@ -378,7 +378,19 @@ public class ServiciosBancoTest {
                 iniEstados.add(iniciativas);
             }
             assertTrue(true);
-        }catch(Exception ex){
+        }catch(ExcepcionServiciosBanco ex){
+            assertTrue(false);
+        }
+    }
+    @Test
+    public void consultarIniciativasRelacionadas(){
+        
+        try{
+           
+           List<Iniciativa> iniciativas=serviciosBanco.consultarRelacionados(serviciosBanco.consultarIniciativa(2));
+           
+           assertTrue(true);
+        }catch(ExcepcionServiciosBanco ex){
             assertTrue(false);
         }
     }

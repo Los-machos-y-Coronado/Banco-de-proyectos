@@ -275,7 +275,7 @@
     <insert id="agruparIniciativa">
         insert into relacionados values(#{ini.id},#{id});
     </insert>
-    <select  parameterType="map" id="consultarRelacionados" resultMap="AreaResult">
+    <select  parameterType="map" id="consultarRelacionados" resultMap="IniciativaResult">
         SELECT
             i.id_iniciativas,
             i.descripcion,

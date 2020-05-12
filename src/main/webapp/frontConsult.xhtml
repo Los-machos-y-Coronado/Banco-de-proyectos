@@ -48,23 +48,25 @@ and open the template in the editor.
                          currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
                          rowsPerPageTemplate="5,10,15">
 
-                <p:column headerText="Proponente" sortBy="#{iniciativa.proponente.correo}">
+                <p:column headerText="Proponente" width="300" sortBy="#{iniciativa.proponente.correo}">
                     <p:outputLabel value="#{iniciativa.proponente.correo}"/>
                 </p:column>
                 <p:column headerText="Descripcion" sortBy="#{iniciativa.descripcion}">
+                    <center> 
                     <p:outputLabel value="#{iniciativa.descripcion}"/>
+                    </center>
                 </p:column>
-                <p:column headerText="Estado" sortBy="#{iniciativa.estado}">
-                    <p:outputLabel value="#{iniciativa.estado}"/>
+                <p:column headerText="Estado" width="100" sortBy="#{iniciativa.estado}">
+                    <center><p:outputLabel value="#{iniciativa.estado}"/></center>
                 </p:column>
 
-                <p:column headerText="Likes" sortBy="#{inBean.numeroLikes(iniciativa)}">
+                <p:column headerText="Likes" width="80" sortBy="#{inBean.numeroLikes(iniciativa)}">
                     <center>
                     <p:outputLabel value="#{inBean.numeroLikes(iniciativa)}"/>
                     </center>
                 </p:column>
 
-                <p:column headerText="GIVE A LIKE" >
+                <p:column headerText="GIVE A LIKE"  width="110">
                     <center>
                     <p:commandButton  icon="#{inBean.icon}" update="formConsutl" value="#{inBean.estadoLike(iniciativa)}" actionListener="#{inBean.registrarLike(iniciativa)}" styleClass="Button"></p:commandButton>
                     </center>

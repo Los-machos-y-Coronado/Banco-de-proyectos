@@ -42,6 +42,7 @@ public class IniciativaBean implements Serializable {
     private ServiciosBanco serviciosBanco;
     private String estado;
     private String screenEstado = "";
+    
     private Usuario proponente ;
 
     private Estado[] tipoEstado;
@@ -176,20 +177,45 @@ public class IniciativaBean implements Serializable {
     }
 
     public void agruparIniciativas(){
-        try{
-            
-            serviciosBanco.agruparIniciativas(selectedIni);
-   
-        }catch (ExcepcionServiciosBanco ex){
-            screenEstado="error en agrupacion";
+        if(selectedIni.isEmpty()){
+        
+            screenEstado="Seleccione algunas iniciativas";
+        }
+        else if(selectedIni.size()==1){
+            screenEstado="No se puede agrupar solo una iniciativa";
+        }
+        else{
+            try{
+
+                serviciosBanco.agruparIniciativas(selectedIni);
+                screenEstado="Se agrupo exitosamente";
+
+            }catch (ExcepcionServiciosBanco ex){
+                screenEstado="error en agrupacion";
+            }
         }
     }
-    public void consultarRelacionados(Iniciativa ini){
-        try {
-            iniciativasGroup=serviciosBanco.consultarRelacionados(ini);
-        } catch (ExcepcionServiciosBanco ex) {
-            Logger.getLogger(IniciativaBean.class.getName()).log(Level.SEVERE, null, ex);
+    public void consultarRelacionados(){
+        if(selectedIni.size()>=2){
+            screenEstado="Seleccione solo una iniciativa";
         }
+        else if(selectedIni.isEmpty()){
+            screenEstado="Seleccione una iniciativa";
+        }
+        else{
+            try {
+                screenEstado=null;
+                iniciativasGroup=serviciosBanco.consultarRelacionados(selectedIni.get(0));
+                if (iniciativasGroup.isEmpty()){
+                    screenEstado="No se encontraron registros";
+                }
+            } catch (ExcepcionServiciosBanco ex) {
+                Logger.getLogger(IniciativaBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        }
+
     }
 
     public List<Iniciativa> consultarMisniciativas () {
@@ -277,7 +303,7 @@ public class IniciativaBean implements Serializable {
     public void setScreenEstado(String screenEstado) {
         this.screenEstado = screenEstado;
     }
-
+    
     public Usuario getActual() {
         return actual;
     }
