@@ -46,6 +46,20 @@
         <dispatcher>INCLUDE</dispatcher>
         <dispatcher>ERROR</dispatcher>
     </filter-mapping>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location> /faces/AccesDenied.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>401</error-code>
+        <location> /faces/AccesDenied.xhtml</location>
+    </error-page>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/faces/AccesDenied.xhtml</location>
+    </error-page>
     <context-param>
         <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
         <param-value>client</param-value>
