@@ -269,4 +269,5 @@
         LEFT JOIN usuarios as us ON c.idf_usuario=us.correo
         WHERE i.estado=#{est};    
     </select>
+
 </mapper>      

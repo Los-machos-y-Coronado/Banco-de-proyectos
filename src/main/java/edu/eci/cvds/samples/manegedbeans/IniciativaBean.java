@@ -96,6 +96,7 @@ public class IniciativaBean implements Serializable {
             id= iniciativas.size()+1;
             palabrasClave="";
             screenEstado = "registro exitoso";
+
         } catch (Exception e) {
             e.printStackTrace();
 
