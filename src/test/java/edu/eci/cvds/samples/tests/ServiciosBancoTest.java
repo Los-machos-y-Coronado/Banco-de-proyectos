@@ -345,23 +345,7 @@ public class ServiciosBancoTest {
     }
     
     
-    @Test 
-    public void AgruparIniciativasRelacionadas(){
-        
-        try{
-   
-            Iniciativa a = serviciosBanco.consultarIniciativa(2);
-            List<Iniciativa> relacionados2= new ArrayList<>();           
-            relacionados2.add(serviciosBanco.consultarIniciativa(12));
-            relacionados2.add(serviciosBanco.consultarIniciativa(13));          
-            List<Iniciativa> relacionados = serviciosBanco.agruparIniciativas(a);
-            assertEquals(relacionados.toString(),relacionados2.toString());
-            
-        }catch(ExcepcionServiciosBanco ex){
-            assertTrue(false);
-        }
-    
-    }
+
     @Test
     public void consultarComentarios(){
         try{
@@ -398,6 +382,8 @@ public class ServiciosBancoTest {
             assertTrue(false);
         }
     }
+    
+
      
 
 }

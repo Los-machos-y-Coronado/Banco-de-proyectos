@@ -127,4 +127,31 @@ public class MyBatisDAOIniciativa implements DaoIniciativa{
         }
     }
 
+    @Override
+    public void agruparIniciativa(Iniciativa iniciativa,int idGrupo) throws PersistenceException {
+        try{
+            iniciativaMapper.agruparIniciativa(iniciativa,idGrupo);
+        }catch(Exception e){
+            throw new PersistenceException("error al agrupar las iniciativas");
+        }
+    }
+
+    @Override
+    public int selectid() throws PersistenceException {
+        try{
+            return iniciativaMapper.selectid();
+        }catch(Exception ex){
+            throw new PersistenceException("error al consultar el id");
+        }
+    }
+
+    @Override
+    public List<Iniciativa> consultarRelacionados(Iniciativa iniciativa) throws PersistenceException {
+        try{
+            return iniciativaMapper.consultarRelacionados(iniciativa);
+        }catch(Exception ex){
+            throw new PersistenceException("error al consultar los relacionados");
+        }
+    }
+
 }

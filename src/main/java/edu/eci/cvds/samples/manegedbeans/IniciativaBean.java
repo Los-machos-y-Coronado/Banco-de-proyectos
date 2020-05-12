@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -55,7 +57,7 @@ public class IniciativaBean implements Serializable {
     private String buttonLike;
     private String icon;
     private Subject cor;
-    private Iniciativa selectedIni;
+    private List<Iniciativa> selectedIni;
 
 
 
@@ -175,9 +177,18 @@ public class IniciativaBean implements Serializable {
 
     public void agruparIniciativas(){
         try{
-            iniciativasGroup=serviciosBanco.agruparIniciativas(selectedIni);
+            
+            serviciosBanco.agruparIniciativas(selectedIni);
+   
         }catch (ExcepcionServiciosBanco ex){
             screenEstado="error en agrupacion";
+        }
+    }
+    public void consultarRelacionados(Iniciativa ini){
+        try {
+            iniciativasGroup=serviciosBanco.consultarRelacionados(ini);
+        } catch (ExcepcionServiciosBanco ex) {
+            Logger.getLogger(IniciativaBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -308,13 +319,15 @@ public class IniciativaBean implements Serializable {
         this.iniciativasGroup = iniciativasGroup;
     }
 
-    public Iniciativa getSelectedIni() {
+    public List<Iniciativa> getSelectedIni() {
         return selectedIni;
     }
 
-    public void setSelectedIni(Iniciativa selectedIni) {
+    public void setSelectedIni(List<Iniciativa> selectedIni) {
         this.selectedIni = selectedIni;
     }
+
+
 
     public String getIcon() {
         return icon;

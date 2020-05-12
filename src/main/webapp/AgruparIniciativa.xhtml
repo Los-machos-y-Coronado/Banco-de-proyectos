@@ -50,7 +50,7 @@ and open the template in the editor.
                 <h1> AGRUPACION DE INICIATIVAS </h1>
 
 
-            <p:dataTable value="#{inBean.iniciativas}" var="iniciativa" rows="5"     selectionMode="single"   selection="#{inBean.selectedIni}"  rowKey="#{iniciativa.proponente.correo}"
+            <p:dataTable value="#{inBean.iniciativas}" var="iniciativa" rows="5"   selection="#{inBean.selectedIni}"  rowKey="#{iniciativa.id}"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
@@ -58,6 +58,7 @@ and open the template in the editor.
                 <f:facet name="header">
                     Seleccione alguna iniciativa
                 </f:facet>
+                <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
                 <p:column headerText="correo">
                     <p:outputLabel value="#{iniciativa.proponente.getCorreo()}"/>
                 </p:column>
@@ -72,7 +73,7 @@ and open the template in the editor.
                 </p:column>
             </p:dataTable>
             <br/>
-           <center> <p:commandButton  update="Agruparform" value="Agrupar" actionListener="#{inBean.agruparIniciativas}" styleClass="Button"></p:commandButton></center>
+           <center> <p:commandButton  update="Agruparform" value="Agrupar" actionListener="#{inBean.agruparIniciativas()}" styleClass="Button"></p:commandButton></center>
             <br/>
             <hr/>
 

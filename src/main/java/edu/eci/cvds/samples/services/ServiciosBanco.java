@@ -101,13 +101,11 @@ public interface ServiciosBanco {
     public abstract List<Area> iniciativasPorArea() throws ExcepcionServiciosBanco;
     
     /**
-     * Consultar iniciativas similares dada una iniciativa
-     * @param ini Iniciativa
-     * @return Lista de iniciativas
+     * Agrupa las iniciativas dadas
+     * @param iniciativas List<Iniciativa> 
      * @throws ExcepcionServiciosBanco 
      */
-    public abstract List<Iniciativa> agruparIniciativas(Iniciativa ini)throws ExcepcionServiciosBanco;
-    
+    public abstract void agruparIniciativas(List<Iniciativa> iniciativas) throws ExcepcionServiciosBanco;
     
     /**
      * Permite eliminar una iniciativa
@@ -135,6 +133,6 @@ public interface ServiciosBanco {
     public abstract List<Iniciativa> consultarIniciativaCor(String cor) throws ExcepcionServiciosBanco;
     public void  updateDescripcion (String desc, Date fecha, int id) throws ExcepcionServiciosBanco;
 
-
+    public abstract List<Iniciativa> consultarRelacionados(Iniciativa iniciativa) throws ExcepcionServiciosBanco;
 
 }
