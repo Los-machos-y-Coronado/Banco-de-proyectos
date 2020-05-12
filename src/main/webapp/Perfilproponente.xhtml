@@ -16,6 +16,7 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
         <script type="text/javascript" src="js/ControladorPerfil.js"/>
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
     </h:head>
     <h:body>
         
@@ -23,7 +24,10 @@ and open the template in the editor.
     
         
         <h:form>
-            <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
+             <f:event type="preRenderView" listener="#{ConsultarIniciativasBean.limpiar()}"/>
+            <h:commandLink actionListener="#{shBean.isLogged()}" >
+                <h:graphicImage url="img/logo.png" width="150" height="100" alt="descripción"/>         
+            </h:commandLink>
             <br/>
             <center>
                 <h2>Bienvenido Al menu Proponente </h2>
@@ -33,13 +37,16 @@ and open the template in the editor.
 
             <p:menubar>
 
-                
-                    <p:menuitem value="Registrar iniciativa" onclick="cambiarPagina('Riniciativas')"/>
+                <p:submenu label="Iniciativas" icon="pi pi-sitemap">
+                     <p:menuitem value="Registrar iniciativa" onclick="cambiarPagina('Riniciativas')"/>
+                     <p:menuitem value="Mis Iniciativas" onclick="cambiarPagina('misIniciativas')"/>
+                </p:submenu>
+                <p:submenu label="Consultas" icon="pi pi-search">
                     <p:menuitem value="Consutlar iniciativas " onclick="cambiarPagina('Consult')"/>
                     <p:menuitem value="Consultar por palabras clave" onclick="cambiarPagina('Publico')"/>
-                    <p:menuitem value="Mis Iniciativas" onclick="cambiarPagina('misIniciativas')"/>
-                    
-                    <p:menuitem value="Salir" actionListener="#{shBean.logOut()}"/>
+                    <p:menuitem value="Consultar por estado" onclick="cambiarPagina('ConsultarConEstado')" />
+                </p:submenu>
+                <p:menuitem value="Salir" icon="pi pi-sign-out" actionListener="#{shBean.logOut()}"/>
              
 
             </p:menubar>

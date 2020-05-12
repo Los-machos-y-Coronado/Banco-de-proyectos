@@ -31,51 +31,47 @@ and open the template in the editor.
 <h:body>
     
     <h:form id="formConsutlArea" >
-        <f:event type="preRenderView" listener="#{AreasBean.actualizar()}"/>
+        <f:event type="preRenderView" listener="#{EstadosBean.actualizar()}"/>
         <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
         <h:commandLink actionListener="#{shBean.isLogged()}" >
                 <h:graphicImage url="img/logo.png" width="150" height="100" alt="descripción"/>         
-        </h:commandLink>
+            </h:commandLink>
         <br/>
         <center>
             <h2> Consulta De iniciativas </h2>
         </center>
-        <p:chart type="pie" model="#{AreasBean.model}" />
+        <p:chart type="pie" model="#{EstadosBean.model}" />
         <p:panel id="ArConsul" header="Iniciativas"  style="margin-bottom:100px">
-            <p:dataTable id="IniciatArea" value="#{AreasBean.areas}" var="area"
+            <p:dataTable id="IniciatArea" value="#{EstadosBean.iniEstados}" var="estados"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
                          currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
                          rowsPerPageTemplate="5,10,15">
                 <f:facet name="{Exporters}">
                     <div style="float:right;padding-top: 5px;">
-                        
-                        <h:commandLink actionListener="#{AreasBean.excel()}" >
+                        <h:commandLink actionListener="#{EstadosBean.excel()}" >
                             <h:graphicImage url="img/exc.png" width="24"/>
-                            <p:fileDownload value="#{AreasBean.excel}" />
+                            <p:fileDownload value="#{EstadosBean.excel}" />
                         </h:commandLink>
-                        <h:commandLink actionListener="#{AreasBean.pdf()}" >
+                        <h:commandLink actionListener="#{EstadosBean.pdf()}" >
                             <h:graphicImage url="img/pdf.png" width="24"/>
-                            <p:fileDownload value="#{AreasBean.pdf}" />
+                            <p:fileDownload value="#{EstadosBean.pdf}" />
                         </h:commandLink>
 
                     </div>
                 </f:facet>
 
-               
+             
                 
-                <p:subTable var="ini" value="#{area.iniciativas}">
+                <p:subTable var="ini" value="#{estados}">
                     <f:facet name="header">
-                        <h:outputText value="#{area.nombre}" />
+                        <h:outputText value="#{estados.get(0).estado}" />
                     </f:facet>
                     <p:column>
                         <h:outputText value="#{ini.proponente.correo}" />
                     </p:column>
                     <p:column>
                         <h:outputText value="#{ini.descripcion}" />
-                    </p:column>
-                    <p:column>
-                        <h:outputText value="#{ini.estado}" />
                     </p:column>
                 </p:subTable>
                 

@@ -39,6 +39,7 @@ public interface ServiciosBanco {
     public abstract List<Iniciativa> consultarIniciativas() throws ExcepcionServiciosBanco;
     public abstract void registrarIniciativa(Iniciativa in)throws ExcepcionServiciosBanco;
     public abstract void UpdateEstado(int id,String estado) throws ExcepcionServiciosBanco;
+    
 
 
 
@@ -115,6 +116,17 @@ public interface ServiciosBanco {
      */
     public abstract void eliminarIniciativa(Iniciativa ini) throws ExcepcionServiciosBanco;
 
+    
+    /**
+     * Consultar iniciativas por estado
+     * @param estado String
+     * @return Lista de iniciativas
+     * @throws ExcepcionServiciosBanco 
+     */
+    
+    public abstract  List<Iniciativa> consultarIniciativasPorEstado(String estado)throws ExcepcionServiciosBanco;
+
+
     /**
      * Consultar Iniciativa por correo electronico
      * @param cor Correo proponente
@@ -122,6 +134,7 @@ public interface ServiciosBanco {
      */
     public abstract List<Iniciativa> consultarIniciativaCor(String cor) throws ExcepcionServiciosBanco;
     public void  updateDescripcion (String desc, Date fecha, int id) throws ExcepcionServiciosBanco;
+
 
 
 }

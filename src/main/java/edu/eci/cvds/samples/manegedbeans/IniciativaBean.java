@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package edu.eci.cvds.samples.manegedbeans;
+import edu.eci.cvds.samples.entities.Estado;
 import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.entities.Like;
 import edu.eci.cvds.samples.entities.Rol;
@@ -41,7 +42,7 @@ public class IniciativaBean implements Serializable {
     private String screenEstado = "";
     private Usuario proponente ;
 
-    private String[] tipoEstado={"En espera de revision","En revisión","Propuesta","Solucionado"};
+    private Estado[] tipoEstado;
     private Usuario actual;
     private Iniciativa nuevoRegistro;
     private java.sql.Date fecha;
@@ -52,6 +53,7 @@ public class IniciativaBean implements Serializable {
     private int id;
     private int numLikes;
     private String buttonLike;
+    private String icon;
     private Subject cor;
     private Iniciativa selectedIni;
 
@@ -61,6 +63,7 @@ public class IniciativaBean implements Serializable {
 
         serviciosBanco = ServiciosBancoFactory.getInstance().getServiciosBanco();
         cor= SecurityUtils.getSubject();
+        tipoEstado=Estado.values();
 
         try {
             proponente=serviciosBanco.consultarUsuario(cor.getSession().getAttribute("Correo").toString());
@@ -82,12 +85,16 @@ public class IniciativaBean implements Serializable {
         screenEstado = "Favor diligenciar todos los campos";
         try {
             estado = "En espera de revisión";
-            List palabrasclaveArr = new ArrayList<String>(Arrays.asList(palabrasClave.split(",")));
+
+            List palabrasclaveArr = new ArrayList<>(Arrays.asList(palabrasClave.split(",")));
+
+
             Date utilDate = new Date();
             nuevoRegistro = new Iniciativa(id, descripcion, new java.sql.Date(utilDate.getTime()),estado,proponente,palabrasclaveArr,null);
             serviciosBanco.registrarIniciativa(nuevoRegistro);
             iniciativas = serviciosBanco.consultarIniciativas();
             id= iniciativas.size()+1;
+            palabrasClave="";
             screenEstado = "registro exitoso";
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,9 +107,10 @@ public class IniciativaBean implements Serializable {
             Like ver= null;
             ver = serviciosBanco.consultarLikesInCor(in.getId(),proponente.getCorreo());
             if(ver == null){
+                icon="pi pi-thumbs-up";
                 buttonLike="Like";
             }else{
-
+                icon="pi pi-thumbs-down";
                 buttonLike="Dislike";
             }
         } catch (ExcepcionServiciosBanco ex) {
@@ -117,9 +125,11 @@ public class IniciativaBean implements Serializable {
             if(ver == null){
                 serviciosBanco.registrarLike(in.getId(), proponente.getCorreo());
                 buttonLike="Dislike";
+                icon="pi pi-thumbs-down";
             }else{
                 serviciosBanco.deleteLikes(in.getId(), proponente.getCorreo());
                 buttonLike="Like";
+                icon="pi pi-thumbs-up";
             }
         }catch (ExcepcionServiciosBanco ex){
             screenEstado="Error en Registrar Like";
@@ -180,16 +190,13 @@ public class IniciativaBean implements Serializable {
         }
         return misIni;
     }
-
     public Usuario getProponente() {
         return proponente;
     }
-
     public void setProponente(Usuario proponente) {
         this.proponente = proponente;
     }
-    
-    
+
     public int getNumLikes() {
         return numLikes;
     }
@@ -206,13 +213,15 @@ public class IniciativaBean implements Serializable {
         this.buttonLike = buttonLike;
     }
 
-    public String[] getTipoEstado() {
+    public Estado[] getTipoEstado() {
         return tipoEstado;
     }
 
-    public void setTipoEstado(String[] tipoEstado) {
+    public void setTipoEstado(Estado[] tipoEstado) {
         this.tipoEstado = tipoEstado;
     }
+
+
 
 
     public java.sql.Date getFecha() {
@@ -302,4 +311,13 @@ public class IniciativaBean implements Serializable {
     public void setSelectedIni(Iniciativa selectedIni) {
         this.selectedIni = selectedIni;
     }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+    
 }

@@ -27,9 +27,9 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import edu.eci.cvds.samples.entities.Estado;
 import edu.eci.cvds.samples.entities.Iniciativa;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -46,44 +46,50 @@ import org.primefaces.model.chart.PieChartModel;
  * @author Andres Gonzalez
  */
 
-@ManagedBean (name = "AreasBean")
+@ManagedBean (name = "EstadosBean")
 @SessionScoped
-public class AreasIniciativa {
+public class EstadosBean {
     
         private ServiciosBanco serviciosBanco;
-        private List<Area> areas;
         private PieChartModel model;
         private StreamedContent excel;
         private StreamedContent pdf;
-        
+        private Estado[] estados;
+        private List<List<Iniciativa>> iniEstados; 
 
-        public AreasIniciativa() {
+        public EstadosBean() {
             serviciosBanco=ServiciosBancoFactory.getInstance().getServiciosBanco();
             try{
+                estados = Estado.values();
                 actualizar();
-                model = new PieChartModel();
-                for(Area a: areas){
-                    model.set(a.getNombre(), a.getIniciativas().size());
-                }
-                model.setTitle("Iniciativas por área");
-                model.setLegendPosition("w");
+                
             }catch(ExcepcionServiciosBanco ex){
                 
             }
             
         }
     public void actualizar() throws ExcepcionServiciosBanco{
-        areas =serviciosBanco.iniciativasPorArea();
-           
+                iniEstados = new ArrayList<List<Iniciativa>>();
+                model = new PieChartModel();
+                for(Estado e: estados){
+                    List<Iniciativa> iniciativas = serviciosBanco.consultarIniciativasPorEstado(e.getName());
+                    if (!iniciativas.isEmpty()){
+                    iniEstados.add(iniciativas);
+                    }
+                    model.set(e.getName(), iniciativas.size());
+                }
+                model.setTitle("Iniciativas por Estado");
+                model.setLegendPosition("w");
     }
+
     public  void excel(){
         try{
             Workbook workbook = new HSSFWorkbook();
 
 
-            for(int i=0;i<areas.size();i++){
-                Sheet sheet = workbook.createSheet(areas.get(i).getNombre());
-                List<Iniciativa> iniciativas = areas.get(i).getIniciativas();
+            for(int i=0;i<iniEstados.size();i++){
+                Sheet sheet = workbook.createSheet(iniEstados.get(i).get(0).getEstado());
+                List<Iniciativa> iniciativas = iniEstados.get(i);
                 Row row0 = sheet.createRow(0);
                 Cell cell0 = row0.createCell(0);
                 cell0.setCellValue("Iniciativas");
@@ -123,11 +129,11 @@ public class AreasIniciativa {
             }
 
             //lets write the excel data to file now
-            FileOutputStream fos = new FileOutputStream("areas.xls");
+            FileOutputStream fos = new FileOutputStream("estados.xls");
             workbook.write(fos);
             fos.close();
-            File fil = new File("areas.xls");
-            excel = new DefaultStreamedContent(new FileInputStream(fil), new MimetypesFileTypeMap().getContentType(fil), "areas.xls");
+            File fil = new File("estados.xls");
+            excel = new DefaultStreamedContent(new FileInputStream(fil), new MimetypesFileTypeMap().getContentType(fil), "estados.xls");
 
         }catch(Exception ex){
             ex.printStackTrace();
@@ -135,13 +141,13 @@ public class AreasIniciativa {
     }
     public void pdf(){
         try{
-            FileOutputStream fos = new FileOutputStream("areas.pdf");
+            FileOutputStream fos = new FileOutputStream("estados.pdf");
             Document doc = new Document();
             PdfWriter.getInstance(doc, fos);
             doc.open();
-            doc.add(new Paragraph("Iniciativas por área"));
-            for(Area a: areas){
-                doc.add(new Paragraph("Area: "+a.getNombre()));
+            doc.add(new Paragraph("Iniciativas por Estado"));
+            for(List<Iniciativa> l: iniEstados){
+                doc.add(new Paragraph("Estado: "+l.get(0).getEstado()));
                 
                 PdfPTable table = new PdfPTable(5);
 
@@ -166,7 +172,7 @@ public class AreasIniciativa {
                 table.addCell(c1);
                 table.setHeaderRows(1);
                 
-                for(Iniciativa i: a.getIniciativas()){
+                for(Iniciativa i: l){
 
                     table.addCell(Integer.toString(i.getId()));
                     table.addCell(i.getFecha().toString());
@@ -181,8 +187,8 @@ public class AreasIniciativa {
             
             doc.close();
             fos.close();
-            File fil = new File("areas.pdf");
-            pdf = new DefaultStreamedContent(new FileInputStream(fil), new MimetypesFileTypeMap().getContentType(fil), "areas.pdf");
+            File fil = new File("estados.pdf");
+            pdf = new DefaultStreamedContent(new FileInputStream(fil), new MimetypesFileTypeMap().getContentType(fil), "estados.pdf");
             
         }catch(Exception ex){
             System.out.println(ex);
@@ -193,13 +199,15 @@ public class AreasIniciativa {
         return model;
     }
 
-    public List<Area> getAreas() {
-        return areas;
+    public List<List<Iniciativa>> getIniEstados() {
+        return iniEstados;
     }
 
-    public void setAreas(List<Area> areas) {
-        this.areas = areas;
+    public void setIniEstados(List<List<Iniciativa>> iniEstados) {
+        this.iniEstados = iniEstados;
     }
+
+
 
     public StreamedContent getExcel() {
         return excel;

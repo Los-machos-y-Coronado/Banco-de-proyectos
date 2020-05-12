@@ -191,8 +191,18 @@ public class ServiciosBancoImpl implements ServiciosBanco {
     
     @Override
     public void eliminarIniciativa(Iniciativa ini){
-        //En proceso
-        
+        //En proceso 
+    }
+    
+    @Override
+    public List<Iniciativa> consultarIniciativasPorEstado(String estado)throws ExcepcionServiciosBanco{
+        try{
+            return daoIniciativa.iniciativasPorEstado(estado);
+        }
+        catch(PersistenceException ex){
+            throw new ExcepcionServiciosBanco("No se pudo consultar las iniciativas",ex);
+        }
+    
     }
 
     /**
@@ -249,6 +259,8 @@ public class ServiciosBancoImpl implements ServiciosBanco {
         return respuesta;
         
     }
+    
+    
     
 }
 

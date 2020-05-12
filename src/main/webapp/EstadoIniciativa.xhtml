@@ -23,7 +23,9 @@ and open the template in the editor.
         <h:form id="formEdit" >
             <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
             
-           <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
+           <h:commandLink actionListener="#{shBean.isLogged()}" >
+                <h:graphicImage url="img/logo.png" width="150" height="100" alt="descripción"/>         
+            </h:commandLink>
            <br/>
            <center>
                <h2> Editar Estado </h2>
@@ -69,8 +71,9 @@ and open the template in the editor.
                        </p:panelGrid>
                       <center>
                       <p:selectOneMenu id="estado"  binding="#{estado}"  >
-                          <f:selectItem itemLabel="En espera de revsion" itemValue="En espera de revsion" />
-                          <f:selectItem itemLabel="En revision" itemValue="En revision" />
+
+                          <f:selectItem itemLabel="En espera de revisión" itemValue="En espera de revisión" />
+                          <f:selectItem itemLabel="En revisión" itemValue="En revisión" />
                           <f:selectItem itemLabel="Proyecto" itemValue="Proyecto" />
                           <f:selectItem itemLabel="Solucionado" itemValue="Solucionado" />
                       </p:selectOneMenu>

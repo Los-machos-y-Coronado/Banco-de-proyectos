@@ -100,6 +100,14 @@ public class MyBatisDAOIniciativa implements DaoIniciativa{
             throw new PersistenceException ("error al las Iniciativas por area",e);
         }
     }
+    @Override
+    public List<Iniciativa> iniciativasPorEstado(String estado) throws PersistenceException{
+        try{
+            return iniciativaMapper.iniciativasPorEstado(estado);
+        } catch(org.apache.ibatis.exceptions.PersistenceException e){
+            throw new PersistenceException("Error al consultar las iniciativas",e);
+        }
+    }
 
     @Override
     public List<Iniciativa> consultarIniciativaCor(String cor) throws PersistenceException {
