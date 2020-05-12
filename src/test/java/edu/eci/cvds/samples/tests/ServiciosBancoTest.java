@@ -7,6 +7,7 @@ package edu.eci.cvds.samples.tests;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.samples.entities.Area;
+import edu.eci.cvds.samples.entities.Estado;
 import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.entities.Like;
 import edu.eci.cvds.samples.entities.Rol;
@@ -23,6 +24,7 @@ import java.util.logging.Logger;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
+import org.primefaces.model.chart.PieChartModel;
 
 /**
  *
@@ -151,7 +153,7 @@ public class ServiciosBancoTest {
     /*
      * 
      * Consultar iniciativa
-     */
+     
     @Test
     public void consultarIniciativa(){
         try {
@@ -164,18 +166,21 @@ public class ServiciosBancoTest {
             Date d1 = Date.valueOf(fecha);
             Usuario proponente= new Usuario("alex.garci@yahoo.com","alex22","alex","gordillo",Rol.Proponente,true,"civil");
             
-            Iniciativa b= new Iniciativa(2,"Construcción del bloque Z", d1,"En revision",proponente,palabras);
+            Iniciativa a= new Iniciativa(2,"Construcción del bloque Z", d1,"En revisión",proponente,palabras,null);
             Iniciativa ini = serviciosBanco.consultarIniciativa(2);
 
+            Iniciativa C= new Iniciativa(2,"Construcción del bloque Z", d1,"En ESPERA",proponente,palabras,null);
+            
 
             
-            assertEquals(b.toString(),ini.toString());
+            assertEquals(C.toString(),ini.toString());
             
            
         } catch (ExcepcionServiciosBanco ex) {
             Logger.getLogger(ServiciosBancoTest.class.getName()).log(Level.SEVERE, null, ex);
             assertTrue(false);
         }
+    
 
     }
     /**
@@ -269,6 +274,31 @@ public class ServiciosBancoTest {
         }
     }
 
+    @Test
+    public void consultarIniciativasCor() {
+        try {
+            List<Iniciativa> inis = serviciosBanco.consultarIniciativaCor("alex.garci@yahoo.com");
+            assertTrue(true);
+        } catch (ExcepcionServiciosBanco ex) {
+            ex.getStackTrace();
+        }
+    }
+
+    @Test
+    public void updateDescripcion() {
+        try {
+            java.util.Date utilDate = new java.util.Date();
+            serviciosBanco.updateDescripcion("nuevo detalle para esta descripcion 2", new java.sql.Date(utilDate.getTime()), 16);
+            Iniciativa ini = serviciosBanco.consultarIniciativa(16);
+            
+            assertTrue(true);
+        } catch (ExcepcionServiciosBanco ex) {
+            ex.getStackTrace();
+            assertTrue(false);
+        }
+    }
+
+
 
 
 
@@ -304,10 +334,7 @@ public class ServiciosBancoTest {
         }
     }
     */
-
-
-    
-     @Test
+        @Test
     public void ConsultarIniciativasPorArea(){
          try{
              List<Area> inici = (List<Area>) serviciosBanco.iniciativasPorArea();
@@ -318,24 +345,56 @@ public class ServiciosBancoTest {
     }
     
     
-    @Test 
-    public void AgruparIniciativasRelacionadas(){
-        
-        try{
 
-            
+    @Test
+    public void consultarComentarios(){
+        try{
             Iniciativa a = serviciosBanco.consultarIniciativa(2);
-            List<Iniciativa> relacionados2= new ArrayList<>();           
-            relacionados2.add(serviciosBanco.consultarIniciativa(12));
-            relacionados2.add(serviciosBanco.consultarIniciativa(13));          
-            List<Iniciativa> relacionados = serviciosBanco.agruparIniciativas(a);
-            assertEquals(relacionados.toString(),relacionados2.toString());
-            
+            assertTrue(true);
         }catch(ExcepcionServiciosBanco ex){
             assertTrue(false);
         }
+        
+    }
+    @Test
+    public void consultarIniciativasPorEstado(){
+        try{
+            String estado="Proyecto";
+            List<Iniciativa> iniciativas = serviciosBanco.consultarIniciativasPorEstado(estado);
+            assertEquals(7,iniciativas.size());
+        }catch(ExcepcionServiciosBanco ex){
+            assertTrue(false);
+            
+        }
     
     }
+    @Test
+    public void estadosIniciativas(){
+        try{
+            List<List<Iniciativa>> iniEstados = new ArrayList<List<Iniciativa>>();
+            Estado[] estados = Estado.values();
+            for(Estado e: estados){
+                List<Iniciativa> iniciativas = serviciosBanco.consultarIniciativasPorEstado(e.getName());   
+                iniEstados.add(iniciativas);
+            }
+            assertTrue(true);
+        }catch(ExcepcionServiciosBanco ex){
+            assertTrue(false);
+        }
+    }
+    @Test
+    public void consultarIniciativasRelacionadas(){
+        
+        try{
+           
+           List<Iniciativa> iniciativas=serviciosBanco.consultarRelacionados(serviciosBanco.consultarIniciativa(2));
+           
+           assertTrue(true);
+        }catch(ExcepcionServiciosBanco ex){
+            assertTrue(false);
+        }
+    }
+    
 
      
 

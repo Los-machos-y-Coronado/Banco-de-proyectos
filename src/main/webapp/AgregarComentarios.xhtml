@@ -11,12 +11,16 @@
         <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="/css/textStyle.css" media="screen"/>
         <script type="text/javascript" src="js/ControladorPerfil.js"/>
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
     </h:head>
     <h:body>
 
 
         <h:form id="formPer">
-            <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
+            <h:commandLink actionListener="#{shBean.isLogged()}" >
+                <h:graphicImage url="img/logo.png" width="150" height="100" alt="descripción"/>         
+            </h:commandLink>
+            
             <br/>
             <center>
                 <h2>Agregue su comentario a alguna iniciativa que le interese</h2>
@@ -24,16 +28,17 @@
             <hr />
 
 
-            
+
             <p:panel id="DatesIniciativa" header="Información de la iniciativas "  style="margin-bottom:20px">
                 <p:dataTable value="#{AgregarComentarioBean.ini}" var="u" rows="5"     selectionMode="single"   selection="#{AgregarComentarioBean.selectedIniciativa}"  rowKey="#{u.proponente.correo}"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
-                         rowsPerPageTemplate="5,10,15">
+                         rowsPerPageTemplate="5,10,15" class="table table-striped">
                     <f:facet name="header">
                        Seleccione alguna iniciativa
                     </f:facet>
+   
                     <p:column headerText="correo">
                         <p:outputLabel value="#{u.proponente.getCorreo()}"/>
                     </p:column>
@@ -46,16 +51,31 @@
                     <p:column headerText="estado">
                         <p:outputLabel value="#{u.estado}"/>
                     </p:column>
-                    <f:facet name="footer">
-                        <p:outputLabel value="#{AgregarComentarioBean.estado}" style="color: grey"/>
-                        <br><p:inputText type="comentario" id="Comentario" binding="#{com}" placeholder="Ingrese su comentario" styleClass="Button" size="50"></p:inputText></br>
-                        <p:commandButton  update="formPer" value="Enviar" actionListener="#{AgregarComentarioBean.AgregarComentario(com.value)}" styleClass="Button"></p:commandButton>
-                    </f:facet>
-              
+                    <p:column   style="width:16px" >                        
+                        <p:rowToggler />
+                    </p:column>
+                    <p:rowExpansion>
+                      <p:scrollPanel style="width:auto;height:150px">
+                         <p:repeat value="#{u.comentarios}" var="comen">
+                             <p:outputLabel value="#{comen.usuario.getNombre()}  #{comen.usuario.getApellido()} (#{comen.fecha}) :" style="color:red;" > </p:outputLabel>
+                               <p:outputLabel value=" #{comen.comentario}"> </p:outputLabel>
+                                <hr/>
+                             </p:repeat>
+                         </p:scrollPanel>
+                    </p:rowExpansion>
                 </p:dataTable>
+                <center>
+                    <p:outputLabel value="#{AgregarComentarioBean.estado}" style="color: grey"/>
+                    <br><p:inputText type="comentario" id="Comentario" binding="#{com}" placeholder="Ingrese su comentario" styleClass="Button" size="50"></p:inputText></br>
+                    <p:commandButton  update="DatesIniciativa" value="Enviar" actionListener="#{AgregarComentarioBean.AgregarComentario(com.value)}" styleClass="Button"></p:commandButton>
+                </center>
+                <hr/>
+
             </p:panel>
+
+            <center><p:commandButton  icon="pi pi-arrow-left" update="DatesIniciativa" value="Volver" onclick="back()"/></center>
         </h:form>
-        <center><p:commandButton  value="Volver" onclick="back()"/></center>
+        
 
     </h:body>
 </html>

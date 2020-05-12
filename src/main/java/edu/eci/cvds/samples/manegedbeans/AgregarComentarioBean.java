@@ -43,6 +43,7 @@ public class AgregarComentarioBean implements Serializable{
         estado=null;
         try{
             ini = serviciosBanco.consultarIniciativas();
+
             publico=serviciosBanco.consultarUsuario(cor.getSession().getAttribute("Correo").toString());
             
             
@@ -61,6 +62,7 @@ public class AgregarComentarioBean implements Serializable{
                 serviciosBanco.agregarComentariosAIniciativa(selectedIniciativa.getId(),publico.getCorreo(),comentario);
                 estado="Su comentario se agrego exitosamente";
                 selectedIniciativa=null;
+                ini=serviciosBanco.consultarIniciativas();
             }catch(ExcepcionServiciosBanco ex){
                 estado="Error al agregar un comentario";
                 Logger.getLogger(AsignacionPerfilesBean.class.getName()).log(Level.SEVERE, null, ex);

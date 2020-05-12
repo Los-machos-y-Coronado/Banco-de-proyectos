@@ -12,27 +12,73 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-    <title> Editar estado</title>
-    <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
+    <title> HOME </title>
     <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="/css/textStyle.css" media="screen"/>
-
+    <link rel="stylesheet" type="text/css" href="/css/index.css" media="screen"/>
     <script type="text/javascript" src="js/ControladorPerfil.js"/>
+    <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
 
 
-    <style type="text/css">
-    .ui-datatable input {
-        box-sizing: border-box;
-        width: 100%;
-        -webkit-box-shadow: none;
-        box-shadow: none !important;
-    }
-</style>
+
+
 
 </h:head>
 <h:body>
+    <f:event type="preRenderView" listener="#{shBean.isLogged}"/>
     <h:form id="formIndex" >
-        <p:commandButton value="Ingresar" onclick="cambiarPagina('Autenticar')" styleClass="Button"></p:commandButton>
+        <center>
+            <h2> Home </h2>
+        </center>
+        <hr/>
+        <br/>
+        <center>
+        <img src="img/LogoHome1.png" width="700" height="150" alt="LOGOpagina" align="center"/>
+        </center>
+        <br/>
+        <br/>
+
+
+        <p:menubar>
+            <f:facet name="options">
+                <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
+                <p:commandButton type="button" onclick="cambiarPagina('Autenticar')"  value="Login" icon="pi pi-sign-in" />
+            </f:facet>
+        </p:menubar>
+
+        <div id="conetent">
+            <h2 align="center"> Banco de proyectos </h2>
+            <p id ="Descripcion" align="justify"> La Plataforma banco de iniciativas de proyectos, es una herramienta donde la comunidad universitaria
+                de la Escuela Colombiana de Ingeniería Julio Garavito pueden registrar sus iniciativas e ideas de proyectos
+                para ser desarrollados o gestionados por la PMO de la Escuela. El sistema, más allá de facilitar el registro
+                de las iniciativas e ideas de proyectos, es una valiosa base de conocimiento donde los diferentes actores
+                pueden revisar si hay iniciativas, ideas o intereses similares y aunar esfuerzos para la materialización.
+
+                Adicional a lo anterior, el personal académico puede integrar a los estudiantes de diferentes asignaturas o
+                proyectos de grado para su realización, materializando las iniciativas para el beneficio de toda la
+                comunidad universitaria. La PMO puede priorizar las iniciativas viables, asignar responsables, gestionar
+                la asignación de recursos, llevar métricas e identificar grupos de interés -a través del tiempo- que se van
+                presentando para cada iniciativa. Con esto se espera lograr no solo la realización de los proyectos sino
+                una aplicación práctica de los conocimientos adquiridos por los estudiantes dentro de las asignaturas
+                de la Escuela generando un ambiente de aprendizaje colaborativo.
+
+
+            </p>
+
+            <h1>En este espacio podra encontrar las iniciativas e ideas de los estudiantes
+                de la escuela colombiana Julio Garavito, con el fin de ampliar la informacion al publico y asi
+                motivar a la creacion de nuevos proyectos para la universidad como instituion o para el pais
+            </h1>
+            <h2> Tipo de ususarios: </h2>
+            <ol id="tipus">
+                <li> PUBLICO </li>
+                <li> PERSONAL PMO-ODI</li>
+                <li> PROPONENTE</li>
+            </ol>
+        </div>
+        <center>
+        <p:commandButton icon="pi pi-sign-in" value="Ingresar" onclick="cambiarPagina('Autenticar')" styleClass="Button"></p:commandButton>
+        </center>
+
 
     </h:form>
 </h:body>

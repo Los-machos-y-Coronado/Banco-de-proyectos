@@ -17,6 +17,7 @@ and open the template in the editor.
     <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
     <link rel="stylesheet" type="text/css" href="/css/textStyle.css" media="screen"/>
             <script type="text/javascript" src="js/ControladorPerfil.js"/>
+    <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
 
 
     <style type="text/css">
@@ -32,7 +33,9 @@ and open the template in the editor.
 <h:body>
     <h:form id="formConsutl" >
         <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
-        <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
+        <h:commandLink actionListener="#{shBean.isLogged()}" >
+                <h:graphicImage url="img/logo.png" width="150" height="100" alt="descripción"/>         
+            </h:commandLink>
         <br/>
         <center>
             <h2> Consulta De iniciativas </h2>
@@ -45,28 +48,34 @@ and open the template in the editor.
                          currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
                          rowsPerPageTemplate="5,10,15">
 
-                <p:column headerText="Proponente" sortBy="#{iniciativa.proponente.correo}">
+                <p:column headerText="Proponente" width="300" sortBy="#{iniciativa.proponente.correo}">
                     <p:outputLabel value="#{iniciativa.proponente.correo}"/>
                 </p:column>
                 <p:column headerText="Descripcion" sortBy="#{iniciativa.descripcion}">
+                    <center> 
                     <p:outputLabel value="#{iniciativa.descripcion}"/>
+                    </center>
                 </p:column>
-                <p:column headerText="Estado" sortBy="#{iniciativa.estado}">
-                    <p:outputLabel value="#{iniciativa.estado}"/>
+                <p:column headerText="Estado" width="100" sortBy="#{iniciativa.estado}">
+                    <center><p:outputLabel value="#{iniciativa.estado}"/></center>
                 </p:column>
 
-                <p:column headerText="Likes" sortBy="#{inBean.numeroLikes(iniciativa)}">
+                <p:column headerText="Likes" width="80" sortBy="#{inBean.numeroLikes(iniciativa)}">
+                    <center>
                     <p:outputLabel value="#{inBean.numeroLikes(iniciativa)}"/>
+                    </center>
                 </p:column>
 
-                <p:column headerText="GIVE A LIKE" >
-                    <p:commandButton  icon="pi pi-thumbs-up" update="formConsutl" value="#{inBean.estadoLike(iniciativa)}" actionListener="#{inBean.registrarLike(iniciativa)}" styleClass="Button"></p:commandButton>
+                <p:column headerText="GIVE A LIKE"  width="110">
+                    <center>
+                    <p:commandButton  icon="#{inBean.icon}" update="formConsutl" value="#{inBean.estadoLike(iniciativa)}" actionListener="#{inBean.registrarLike(iniciativa)}" styleClass="Button"></p:commandButton>
+                    </center>
                 </p:column>
 
 
             </p:dataTable>
         </p:panel>
-        <center><p:commandButton  value="Volver" onclick="back()"/></center>
+        <center><p:commandButton  icon="pi pi-arrow-left" value="Volver" onclick="back()"/></center>
     </h:form>
 
 </h:body>

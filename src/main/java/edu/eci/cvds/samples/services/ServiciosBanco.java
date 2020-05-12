@@ -12,6 +12,7 @@ import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.entities.Iniciativa;
 
+import java.sql.Date;
 import java.util.List;
 
 import edu.eci.cvds.samples.entities.Iniciativa;
@@ -38,6 +39,7 @@ public interface ServiciosBanco {
     public abstract List<Iniciativa> consultarIniciativas() throws ExcepcionServiciosBanco;
     public abstract void registrarIniciativa(Iniciativa in)throws ExcepcionServiciosBanco;
     public abstract void UpdateEstado(int id,String estado) throws ExcepcionServiciosBanco;
+    
 
 
 
@@ -99,13 +101,11 @@ public interface ServiciosBanco {
     public abstract List<Area> iniciativasPorArea() throws ExcepcionServiciosBanco;
     
     /**
-     * Consultar iniciativas similares dada una iniciativa
-     * @param ini Iniciativa
-     * @return Lista de iniciativas
+     * Agrupa las iniciativas dadas
+     * @param iniciativas List<Iniciativa> 
      * @throws ExcepcionServiciosBanco 
      */
-    public abstract List<Iniciativa> agruparIniciativas(Iniciativa ini)throws ExcepcionServiciosBanco;
-    
+    public abstract void agruparIniciativas(List<Iniciativa> iniciativas) throws ExcepcionServiciosBanco;
     
     /**
      * Permite eliminar una iniciativa
@@ -113,8 +113,26 @@ public interface ServiciosBanco {
      * @throws ExcepcionServiciosBanco 
      */
     public abstract void eliminarIniciativa(Iniciativa ini) throws ExcepcionServiciosBanco;
+
     
+    /**
+     * Consultar iniciativas por estado
+     * @param estado String
+     * @return Lista de iniciativas
+     * @throws ExcepcionServiciosBanco 
+     */
+    
+    public abstract  List<Iniciativa> consultarIniciativasPorEstado(String estado)throws ExcepcionServiciosBanco;
 
 
+    /**
+     * Consultar Iniciativa por correo electronico
+     * @param cor Correo proponente
+     * @throws ExcepcionServiciosBanco
+     */
+    public abstract List<Iniciativa> consultarIniciativaCor(String cor) throws ExcepcionServiciosBanco;
+    public void  updateDescripcion (String desc, Date fecha, int id) throws ExcepcionServiciosBanco;
+
+    public abstract List<Iniciativa> consultarRelacionados(Iniciativa iniciativa) throws ExcepcionServiciosBanco;
 
 }

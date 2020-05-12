@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package edu.eci.cvds.samples.manegedbeans;
+import edu.eci.cvds.samples.entities.Estado;
 import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.entities.Like;
 import edu.eci.cvds.samples.entities.Rol;
@@ -23,6 +24,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -39,9 +42,10 @@ public class IniciativaBean implements Serializable {
     private ServiciosBanco serviciosBanco;
     private String estado;
     private String screenEstado = "";
+    
     private Usuario proponente ;
 
-    private String[] tipoEstado={"En espera de revision","En revisión","Propuesta","Solucionado"};
+    private Estado[] tipoEstado;
     private Usuario actual;
     private Iniciativa nuevoRegistro;
     private java.sql.Date fecha;
@@ -52,8 +56,9 @@ public class IniciativaBean implements Serializable {
     private int id;
     private int numLikes;
     private String buttonLike;
+    private String icon;
     private Subject cor;
-    private Iniciativa selectedIni;
+    private List<Iniciativa> selectedIni;
 
 
 
@@ -61,6 +66,7 @@ public class IniciativaBean implements Serializable {
 
         serviciosBanco = ServiciosBancoFactory.getInstance().getServiciosBanco();
         cor= SecurityUtils.getSubject();
+        tipoEstado=Estado.values();
 
         try {
             proponente=serviciosBanco.consultarUsuario(cor.getSession().getAttribute("Correo").toString());
@@ -79,17 +85,21 @@ public class IniciativaBean implements Serializable {
 
 
     public void registrarIniciativa(String descripcion) throws ParseException {
-
+        screenEstado = "Favor diligenciar todos los campos";
         try {
             estado = "En espera de revisión";
-            List palabrasclaveArr = new ArrayList<String>(Arrays.asList(palabrasClave.split(",")));
+
+            List palabrasclaveArr = new ArrayList<>(Arrays.asList(palabrasClave.split(",")));
+
 
             Date utilDate = new Date();
-            nuevoRegistro = new Iniciativa(id, descripcion, new java.sql.Date(utilDate.getTime()),estado,actual,palabrasclaveArr);
+            nuevoRegistro = new Iniciativa(id, descripcion, new java.sql.Date(utilDate.getTime()),estado,proponente,palabrasclaveArr,null);
             serviciosBanco.registrarIniciativa(nuevoRegistro);
             iniciativas = serviciosBanco.consultarIniciativas();
+            id= iniciativas.size()+1;
+            palabrasClave="";
             screenEstado = "registro exitoso";
-        } catch (ExcepcionServiciosBanco e) {
+        } catch (Exception e) {
             e.printStackTrace();
 
         }
@@ -100,9 +110,10 @@ public class IniciativaBean implements Serializable {
             Like ver= null;
             ver = serviciosBanco.consultarLikesInCor(in.getId(),proponente.getCorreo());
             if(ver == null){
+                icon="pi pi-thumbs-up";
                 buttonLike="Like";
             }else{
-
+                icon="pi pi-thumbs-down";
                 buttonLike="Dislike";
             }
         } catch (ExcepcionServiciosBanco ex) {
@@ -117,9 +128,11 @@ public class IniciativaBean implements Serializable {
             if(ver == null){
                 serviciosBanco.registrarLike(in.getId(), proponente.getCorreo());
                 buttonLike="Dislike";
+                icon="pi pi-thumbs-down";
             }else{
                 serviciosBanco.deleteLikes(in.getId(), proponente.getCorreo());
                 buttonLike="Like";
+                icon="pi pi-thumbs-up";
             }
         }catch (ExcepcionServiciosBanco ex){
             screenEstado="Error en Registrar Like";
@@ -130,6 +143,18 @@ public class IniciativaBean implements Serializable {
         try{
             this.estado=xestado;
             serviciosBanco.UpdateEstado(i.getId(),estado);
+            screenEstado="actualizado";
+            iniciativas = serviciosBanco.consultarIniciativas();
+        }catch (ExcepcionServiciosBanco | NumberFormatException ex){
+            screenEstado="Error en actualziar";
+
+        }
+    }
+
+    public void updateDescripcion (Iniciativa i,String desc){
+        try{
+            Date utilDate = new Date();
+            serviciosBanco.updateDescripcion(desc,new java.sql.Date(utilDate.getTime()),i.getId());
             screenEstado="actualizado";
             iniciativas = serviciosBanco.consultarIniciativas();
         }catch (ExcepcionServiciosBanco | NumberFormatException ex){
@@ -152,13 +177,56 @@ public class IniciativaBean implements Serializable {
     }
 
     public void agruparIniciativas(){
+        if(selectedIni.isEmpty()){
+        
+            screenEstado="Seleccione algunas iniciativas";
+        }
+        else if(selectedIni.size()==1){
+            screenEstado="No se puede agrupar solo una iniciativa";
+        }
+        else{
+            try{
 
-        try{
-            iniciativasGroup=serviciosBanco.agruparIniciativas(selectedIni);
-        }catch (ExcepcionServiciosBanco ex){
-            screenEstado="error en agrupacion";
+                serviciosBanco.agruparIniciativas(selectedIni);
+                screenEstado="Se agrupo exitosamente";
+
+            }catch (ExcepcionServiciosBanco ex){
+                screenEstado="error en agrupacion";
+            }
+        }
+    }
+    public void consultarRelacionados(){
+        if(selectedIni.size()>=2){
+            screenEstado="Seleccione solo una iniciativa";
+        }
+        else if(selectedIni.isEmpty()){
+            screenEstado="Seleccione una iniciativa";
+        }
+        else{
+            try {
+                screenEstado=null;
+                iniciativasGroup=serviciosBanco.consultarRelacionados(selectedIni.get(0));
+                if (iniciativasGroup.isEmpty()){
+                    screenEstado="No se encontraron registros";
+                }
+            } catch (ExcepcionServiciosBanco ex) {
+                Logger.getLogger(IniciativaBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
         }
 
+    }
+
+    public List<Iniciativa> consultarMisniciativas () {
+        List<Iniciativa> misIni = new ArrayList<Iniciativa>();
+        for (Iniciativa i : iniciativas) {
+            if (i.getProponente().getCorreo().equals(proponente.getCorreo()))
+            {
+                misIni.add(i);
+            }
+        }
+        return misIni;
     }
 
     public Usuario getProponente() {
@@ -186,13 +254,15 @@ public class IniciativaBean implements Serializable {
         this.buttonLike = buttonLike;
     }
 
-    public String[] getTipoEstado() {
+    public Estado[] getTipoEstado() {
         return tipoEstado;
     }
 
-    public void setTipoEstado(String[] tipoEstado) {
+    public void setTipoEstado(Estado[] tipoEstado) {
         this.tipoEstado = tipoEstado;
     }
+
+
 
 
     public java.sql.Date getFecha() {
@@ -233,7 +303,7 @@ public class IniciativaBean implements Serializable {
     public void setScreenEstado(String screenEstado) {
         this.screenEstado = screenEstado;
     }
-
+    
     public Usuario getActual() {
         return actual;
     }
@@ -275,11 +345,22 @@ public class IniciativaBean implements Serializable {
         this.iniciativasGroup = iniciativasGroup;
     }
 
-    public Iniciativa getSelectedIni() {
+    public List<Iniciativa> getSelectedIni() {
         return selectedIni;
     }
 
-    public void setSelectedIni(Iniciativa selectedIni) {
+    public void setSelectedIni(List<Iniciativa> selectedIni) {
         this.selectedIni = selectedIni;
     }
+
+
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+    
 }
