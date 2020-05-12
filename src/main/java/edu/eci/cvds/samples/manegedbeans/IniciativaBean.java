@@ -16,8 +16,10 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.config.Ini;
 import org.apache.shiro.subject.Subject;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -52,7 +54,7 @@ public class IniciativaBean implements Serializable {
 
     private List<Iniciativa> iniciativas;
     private List<Iniciativa> iniciativasGroup;
-    private String palabrasClave="";
+    private List<String> palabrasClave;
     private int id;
     private int numLikes;
     private String buttonLike;
@@ -67,6 +69,7 @@ public class IniciativaBean implements Serializable {
         serviciosBanco = ServiciosBancoFactory.getInstance().getServiciosBanco();
         cor= SecurityUtils.getSubject();
         tipoEstado=Estado.values();
+        palabrasClave=new ArrayList<String>();
 
         try {
             proponente=serviciosBanco.consultarUsuario(cor.getSession().getAttribute("Correo").toString());
@@ -89,17 +92,18 @@ public class IniciativaBean implements Serializable {
         try {
             estado = "En espera de revisión";
 
-            List palabrasclaveArr = new ArrayList<>(Arrays.asList(palabrasClave.split(",")));
-
-
             Date utilDate = new Date();
-            nuevoRegistro = new Iniciativa(id, descripcion, new java.sql.Date(utilDate.getTime()),estado,proponente,palabrasclaveArr,null);
+            nuevoRegistro = new Iniciativa(id, descripcion, new java.sql.Date(utilDate.getTime()),estado,proponente,palabrasClave,null);
             serviciosBanco.registrarIniciativa(nuevoRegistro);
             iniciativas = serviciosBanco.consultarIniciativas();
             id= iniciativas.size()+1;
-            palabrasClave="";
-            screenEstado = "registro exitoso";
+            palabrasClave=new ArrayList<String>();
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Successful",  "Your message: " + "registro exitoso") );
+
         } catch (Exception e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Fatal!", "No Es posible Registrar su Iniciativa"));
             e.printStackTrace();
 
         }
@@ -321,11 +325,11 @@ public class IniciativaBean implements Serializable {
         this.nuevoRegistro = nuevoRegistro;
     }
 
-    public String getPalabrasClave() {
+    public List<String> getPalabrasClave() {
         return palabrasClave;
     }
 
-    public void setPalabrasClave(String palabrasClave) {
+    public void setPalabrasClave(List<String> palabrasClave) {
         this.palabrasClave = palabrasClave;
     }
 
