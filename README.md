@@ -1,5 +1,8 @@
 
 # Banco De Proyectos E Iniciativas 
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3b8265a413f1449eb33529f5e999ab23)](https://app.codacy.com/gh/Los-machos-y-Coronado/Banco-de-proyectos?utm_source=github.com&utm_medium=referral&utm_content=Los-machos-y-Coronado/Banco-de-proyectos&utm_campaign=Badge_Grade_Settings)
+
 **Curso:** Ciclos de Vida del Desarrollo de Software \
 **Periodo académico:** 2019-1
 ## Integrantes
