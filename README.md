@@ -12,6 +12,8 @@
 |David Coronado |Developer   |
 ## Estado del proyecto
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/6b328119ae07441aae6ed0de147c4ea5)](https://www.codacy.com/gh/Los-machos-y-Coronado/Banco-de-proyectos?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Los-machos-y-Coronado/Banco-de-proyectos&amp;utm_campaign=Badge_Grade)
+
+[![CircleCI](https://app.circleci.com/pipelines/github/Los-machos-y-Coronado/Banco-de-proyectos.svg?style=svg)](https://app.circleci.com/pipelines/github/Los-machos-y-Coronado/Banco-de-proyectos)
 ##  Descripción del producto.
  ### Descripcion General
  El propósito de este proyecto es facilitar el manejo de nuevas  ** ideas o iniciativas ** con el fin de realizar un estudio profundo de cada una de ellas, llegando a relacionarlas con otras buenas ideas para ampliar la calidad de los proyectos y así mismo incentivar a las personas a que depositen sus comentarios y su gusto por los proyectos que se presentaran en la aplicación.
