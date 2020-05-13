@@ -8,9 +8,7 @@ and open the template in the editor.
     Author     : Daniel Gomez
 */
 
-body{
-    margin: 60px;
-}
+
 
 h1,p{
        
@@ -53,8 +51,6 @@ ul {
 #conetent h2{
    
    font-family: Arial;
-   background-color: transparent ;
-   text-shadow: 2px 4px #b80f22 ;
    margin: 20px 40px 20px 40px;
 }
 

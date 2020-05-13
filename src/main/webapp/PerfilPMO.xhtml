@@ -41,11 +41,21 @@ and open the template in the editor.
                 <f:facet name="options">
                   <p:outputLabel value="#{iniciativa.proponente.correo}"/>
                   <p:commandButton value="Salir" icon="pi pi-sign-out" actionListener="#{shBean.logOut()}"/>
-                </f:facet>
+              </f:facet>
                 <p:menuitem value="Agregar comentario" icon="pi pi-comments" onclick="cambiarPagina('Comentar')"/>
+                <p:submenu label="Iniciativas"  icon="pi pi-sitemap">
+                    <p:menuitem value="Cambiar estado iniciativas " onclick="cambiarPagina('EstadoIniciativa')"/>
+                    <p:menuitem value="Agrupar Iniciativas" onclick="cambiarPagina('AgruparIniciativa')"/>
+                    <p:menuitem value="Agregar comentario" icon="pi pi-comments" onclick="cambiarPagina('Comentar')"/>
+                </p:submenu>
+                <p:submenu label="Reportes" icon="pi pi-file">
+                    <p:menuitem value="Reporte por áreas" onclick="cambiarPagina('IniciativaArea')"/>
+                    <p:menuitem value="Reporte por estados" onclick="cambiarPagina('IniciativaEstado')"/>
+                </p:submenu>
                 <p:submenu label="Consultas" icon="pi pi-search">
                     <p:menuitem value="Consultar por palabras clave" onclick="cambiarPagina('Publico')" />
                     <p:menuitem value="Consultar iniciativas "  onclick="cambiarPagina('Consult')" />
+                    <p:menuitem value="Consultar por estado" onclick="cambiarPagina('ConsultarConEstado')" />
                 </p:submenu>
                     
                
