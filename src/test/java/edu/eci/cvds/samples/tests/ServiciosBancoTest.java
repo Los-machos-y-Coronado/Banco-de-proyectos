@@ -153,7 +153,6 @@ public class ServiciosBancoTest {
     /*
      * 
      * Consultar iniciativa
-     
     @Test
     public void consultarIniciativa(){
         try {
@@ -169,11 +168,7 @@ public class ServiciosBancoTest {
             Iniciativa a= new Iniciativa(2,"Construcción del bloque Z", d1,"En revisión",proponente,palabras,null);
             Iniciativa ini = serviciosBanco.consultarIniciativa(2);
 
-            Iniciativa C= new Iniciativa(2,"Construcción del bloque Z", d1,"En ESPERA",proponente,palabras,null);
-            
-
-            
-            assertEquals(C.toString(),ini.toString());
+            assertEquals(a.toString(),ini.toString());
             
            
         } catch (ExcepcionServiciosBanco ex) {
@@ -298,11 +293,6 @@ public class ServiciosBancoTest {
         }
     }
 
-
-
-
-
-
      /*
      * 
      * agregar comentarios a una iniciativa dado el correo del publico
@@ -334,7 +324,7 @@ public class ServiciosBancoTest {
         }
     }
     */
-        @Test
+     @Test
     public void ConsultarIniciativasPorArea(){
          try{
              List<Area> inici = (List<Area>) serviciosBanco.iniciativasPorArea();
@@ -343,8 +333,6 @@ public class ServiciosBancoTest {
              assertTrue(false);
          }
     }
-    
-    
 
     @Test
     public void consultarComentarios(){
@@ -394,8 +382,5 @@ public class ServiciosBancoTest {
             assertTrue(false);
         }
     }
-    
-
-     
 
 }
