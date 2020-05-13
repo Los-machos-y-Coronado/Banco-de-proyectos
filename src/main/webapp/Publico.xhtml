@@ -16,6 +16,7 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="/css/textStyle.css" media="screen"/>
                 <script type="text/javascript" src="js/ControladorPerfil.js"/>
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
 
     </h:head>
 
@@ -32,9 +33,11 @@ and open the template in the editor.
                 <hr />
 
                     <center>
+
                         <h3 style="margin-top: 0">Listado de Plabras Clave</h3>
                         <p:pickList id="pickList" value="#{ConsultarIniciativasBean.palabras}" var="palabra" itemLabel="#{palabra}" itemValue="#{palabra}" />
                         <p:outputLabel value="#{ConsultarIniciativasBean.estado}" style="color: white"/>
+
                         <br/>
                         <p:commandButton  update="formConsultarIni" value="Enviar" actionListener="#{ConsultarIniciativasBean.consultarIniciativas()}" styleClass="Button"></p:commandButton>
                     </center>
@@ -64,7 +67,7 @@ and open the template in the editor.
                         </p:column>
                     </p:dataTable>
                 </p:panel>
-                <center><p:commandButton  value="Volver" onclick="back()"/></center>
+                <center><p:commandButton  icon="pi pi-arrow-left" value="Volver" onclick="back()"/></center>
             </h:form>
 
     </h:body>
