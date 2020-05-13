@@ -1,13 +1,13 @@
 ## Detalles por sprint
 ### Sprint 1
 **Sprint-burndown chart**\
-![](https://github.com/Los-machos-y-Coronado/Banco-de-proyectos/tree/master/Persistencia/grSprint1.JPG)
+![Modelo](https://github.com/Los-machos-y-Coronado/Banco-de-proyectos/tree/master/Persistencia/grSpritn1.JPG)
 
 ##### Resumen del sprint1
 Durante el inicio del proyecto, hubi difcultades en cuanto a comunicacion y coordinacion de los detalles de como iba a ser la metodologia de trabajo dado a las condiciones de ultima instancia. esto nos retraso un poco en cuanto a la entrega se logro el objetivo en  cuanto al sprint 1.
 
 **Sprint-burndown chart 1**\
-![](https://github.com/Los-machos-y-Coronado/Banco-de-proyectos/tree/master/Persistencia/Sprint1.JPG)
+![](https://github.com/Los-machos-y-Coronado/Banco-de-proyectos/blob/master/Persistencia/grSrpritn1.JPG)
 ### Sprint 2
 **Sprint-burndown chart**\
 ![](https://github.com/Los-machos-y-Coronado/Banco-de-proyectos/tree/master/Persistencia.grSprint2.JPG)
