@@ -30,6 +30,7 @@ Stack de Tecnologías:
    * [Guice (Inyección de Dependencias)](https://github.com/google/guice)
    * [Bootstrap (Web Toolkit)](https://getbootstrap.com/)
    * PostgreSQL (DataBase Management)
+   * [MyBatis (Framework)](https://mybatis.org/mybatis-3/es/)
 #### Enlaces
 + [Despliegue  Heroku](https://.herokuapp.com/)
 + [Integración Continua  (CircleCI)](https://app.circleci.com/pipelines/github/Los-machos-y-Coronado/Banco-de-proyectos)
