@@ -31,7 +31,7 @@
 
 
             <p:panel id="DatesIniciativa" header="Información de la iniciativas "  style="margin-bottom:20px">
-                <p:dataTable value="#{AgregarComentarioBean.ini}" var="u" rows="5"     selectionMode="single"   selection="#{AgregarComentarioBean.selectedIniciativa}"  rowKey="#{u.proponente.correo}"
+                <p:dataTable value="#{AgregarComentarioBean.ini}" var="u" rows="5"     selectionMode="single"   selection="#{AgregarComentarioBean.selectedIniciativa}"  rowKey="#{u.id}"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
