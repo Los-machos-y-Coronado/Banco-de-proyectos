@@ -13,13 +13,10 @@ and open the template in the editor.
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
     <title> HOME </title>
-    <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="/css/index.css" media="screen"/>
-    <script type="text/javascript" src="js/ControladorPerfil.js"/>
+    <h:outputScript name="ControladorPerfil.js" library="js" />
+    <h:outputStylesheet name="master.css" library="css" />
+    <h:outputStylesheet name="index.css" library="css" />
     <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
-
-
-
 
 
 </h:head>
@@ -32,7 +29,7 @@ and open the template in the editor.
         <hr/>
         <br/>
         <center>
-        <img src="img/LogoHome1.png" width="700" height="150" alt="LOGOpagina" align="center"/>
+        <img src="resources/img/LogoHome1.png" width="700" height="150" alt="LOGOpagina" align="center"/>
         </center>
         <br/>
         <br/>

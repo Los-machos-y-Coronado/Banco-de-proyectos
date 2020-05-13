@@ -8,9 +8,7 @@ and open the template in the editor.
     Author     : Daniel Gomez
 */
 
-body{
-    margin: 60px;
-}
+
 
 h1,p{
        
@@ -53,8 +51,6 @@ ul {
 #conetent h2{
    
    font-family: Arial;
-   background-color: transparent ;
-   text-shadow: 2px 2px #b80f22 ;
    margin: 20px 40px 20px 40px;
 }
 
@@ -64,7 +60,7 @@ ul {
    background-color: transparent ;
    margin: 40px 40px 40px 40px;
 }
-.button{
+#formIndex button{
   border: none;
   outline: none;
   height: 40px;

@@ -7,15 +7,16 @@
       >
     <h:head>
         <title></title>
-        <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
-        <script type="text/javascript" src="js/ControladorPerfil.js"/>
-        <link rel="stylesheet" type="text/css" href="/css/textStyle.css" media="screen"/>
+
+        <h:outputScript name="ControladorPerfil.js" library="js" />
+        <h:outputStylesheet name="textStyle.css" library="css" />
+        <h:outputStylesheet name="master.css" library="css" />
         <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
     </h:head>
     <h:body>
         <f:event type="preRenderView" listener="#{shBean.isLogged}"/>
         <div class="login-box">
-            <img src="img/logo.png" class="avatar" alt="Avatar Image"/>
+            <img src="resources/img/logo.png" class="avatar" alt="Avatar Image"/>
             <h:form id="formUsuario" >
                 <p:messages id="messages" showDetail="true" closable="true">
                     <p:autoUpdate />

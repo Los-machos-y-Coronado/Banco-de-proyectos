@@ -7,10 +7,11 @@
       >
     <h:head>
         <title></title>
-        <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
-        <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
-        <link rel="stylesheet" type="text/css" href="/css/textStyle.css" media="screen"/>
-        <script type="text/javascript" src="js/ControladorPerfil.js"/>
+
+        <h:outputScript name="ControladorPerfil.js" library="js" />
+        <h:outputStylesheet name="textStyle.css" library="css" />
+        <h:outputStylesheet name="master.css" library="css" />
+        <h:outputStylesheet name="styles.css" library="css" />
         <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
     </h:head>
     <h:body>
@@ -18,7 +19,7 @@
 
         <h:form id="formPer">
             <h:commandLink actionListener="#{shBean.isLogged()}" >
-                <h:graphicImage url="img/logo.png" width="150" height="100" alt="descripción"/>         
+               <center><h:graphicImage url="resources/img/bannerEI.jpg"/></center>           
             </h:commandLink>
             
             <br/>

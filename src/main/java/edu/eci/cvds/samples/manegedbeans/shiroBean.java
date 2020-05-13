@@ -94,7 +94,10 @@ public class shiroBean  implements Serializable{
                 pagina="Perfiladmin.xhtml";
         }else if (currentUser.hasRole("Publico")){
                 pagina="PerfilPublico.xhtml";
+        }else if(currentUser.hasRole("PersonalPMO")){
+            pagina="PerfilPMO.xhtml";
         }
+        
         
     }
     /**
