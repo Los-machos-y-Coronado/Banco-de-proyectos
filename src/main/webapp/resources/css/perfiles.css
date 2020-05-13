@@ -1,0 +1,28 @@
+#contenedor h2{
+
+   font-family: Arial;
+   background-color: transparent ;
+   text-shadow: 2px 2px #b80f22 ;
+   margin: 20px 40px 20px 40px;
+}
+
+.button{
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #b80f22;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body{
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}

@@ -12,9 +12,13 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title></title>
-        <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
-        <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
-        <script type="text/javascript" src="js/ControladorPerfil.js"/>
+        
+        <h:outputScript name="ControladorPerfil.js" library="js" />
+        
+        <h:outputStylesheet name="master.css" library="css" />
+        
+        <h:outputStylesheet name="styles.css" library="css" />
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
     </h:head>
     <h:body>
         
@@ -22,7 +26,10 @@ and open the template in the editor.
     
         
         <h:form>
-            <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
+             <f:event type="preRenderView" listener="#{ConsultarIniciativasBean.limpiar()}"/>
+            <h:commandLink actionListener="#{shBean.isLogged()}" >
+               <center><h:graphicImage url="resources/img/bannerEI.jpg"/></center>                
+            </h:commandLink>
             <br/>
             <center>
                 <h2>Bienvenido A nuestra vista general</h2>
@@ -31,11 +38,16 @@ and open the template in the editor.
             <hr />
 
 	    <p:menubar>
-                
-                    <p:menuitem value="Consultar por palabras clave" onclick="cambiarPagina('Publico')"/>
-                    <p:menuitem value="Consutlar iniciativas " onclick="cambiarPagina('Consult')"/>
-                    <p:menuitem value="Agregar comentario" onclick="cambiarPagina('Comentar')"/>
-                    <p:menuitem value="Salir" actionListener="#{shBean.logOut()}"/>
+                <f:facet name="options">
+                  <p:outputLabel value="#{iniciativa.proponente.correo}"/>
+                  <p:commandButton value="Salir" icon="pi pi-sign-out" actionListener="#{shBean.logOut()}"/>
+                </f:facet>
+                <p:menuitem value="Agregar comentario" icon="pi pi-comments" onclick="cambiarPagina('Comentar')"/>
+                <p:submenu label="Consultas" icon="pi pi-search">
+                    <p:menuitem value="Consultar por palabras clave" onclick="cambiarPagina('Publico')" />
+                    <p:menuitem value="Consultar iniciativas "  onclick="cambiarPagina('Consult')" />
+                </p:submenu>
+                    
                
             </p:menubar>
 

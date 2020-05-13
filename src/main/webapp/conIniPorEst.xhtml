@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>consulClave</title>
+        <h:outputScript name="ControladorPerfil.js" library="js" />
+        <h:outputStylesheet name="textStyle.css" library="css" />
+        <h:outputStylesheet name="master.css" library="css" />
+        <h:outputStylesheet name="index.css" library="css" />
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />     
+
+    </h:head>
+
+    <h:body>
+            <h:form id="formConsultarIni">
+            
+                <h:commandLink actionListener="#{shBean.isLogged()}" >
+                <center><h:graphicImage url="resources/img/bannerEI.jpg"/></center>                 
+            </h:commandLink>
+                <br/>
+                <center>
+                    <h2>Consulta iniciativas por estado </h2>
+                </center>
+                <hr />
+
+                    <center>
+                        <br><p:outputLabel  value="Seleccione un estado" style="color: gray"/></br>
+                        
+                        <br><p:selectOneMenu binding="#{seleccionado}">
+                            <f:selectItem itemLabel="En espera de revisión" itemValue="En espera de revisión" />
+                            <f:selectItem itemLabel="En revisión" itemValue="En revisión" />
+                            <f:selectItem itemLabel="Proyecto" itemValue="Proyecto" />
+                            <f:selectItem itemLabel="Solucionado" itemValue="Solucionado" />
+                        </p:selectOneMenu></br>
+                        
+                        <br><p:commandButton  update="formConsultarIni" value="Consultar" actionListener="#{ConsultarIniciativasBean.consultarIniciativasPorEstado(seleccionado.value)}" styleClass="Button"></p:commandButton></br>
+                        <br><p:outputLabel value="#{ConsultarIniciativasBean.estado}" style="color: gray" /></br>
+                    </center>
+                    <hr />
+                <br/>
+                <p:panel id="BasicInPalabras" header="Iniciativas por estado"  style="margin-bottom:40px">
+                    <p:dataTable var="Iniciativa"  value="#{ConsultarIniciativasBean.ini}" >
+                        <p:column headerText="Nombre de Usuario" width="100"  >
+                            <center>
+                            <h:outputText value= "#{Iniciativa.proponente.nombreUsuario}" />
+                            </center>
+                        </p:column>
+                        <p:column headerText="Correo Electrónico" width="300"  >
+                            <center>
+                            <h:outputText value= "#{Iniciativa.proponente.getCorreo()}" />
+                            </center>
+                        </p:column>
+                        <p:column headerText="Descripción"  >
+                            <center>
+                            <h:outputText value= "#{Iniciativa.descripcion}" />
+                            </center>
+                        </p:column>
+                        <p:column headerText="Fecha" width="100" >
+                            <center>
+                            <h:outputText value= "#{Iniciativa.fecha}" />
+                            </center>
+                        </p:column>
+
+                    </p:dataTable>
+                </p:panel>
+                <center><p:commandButton  icon="pi pi-arrow-left" value="Volver" onclick="back()"/></center>
+            </h:form>
+
+    </h:body>
+</html>

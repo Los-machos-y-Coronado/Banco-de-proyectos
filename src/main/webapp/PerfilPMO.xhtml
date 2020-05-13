@@ -12,63 +12,56 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title></title>
+        
         <h:outputScript name="ControladorPerfil.js" library="js" />
-        <h:outputStylesheet name="textStyle.css" library="css" />
+        
         <h:outputStylesheet name="master.css" library="css" />
-        <h:outputStylesheet name="perfiles.css" library="css" />
+        
+        <h:outputStylesheet name="styles.css" library="css" />
         <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
     </h:head>
     <h:body>
         
         <!-- Navigation Bar -->
-        <div id="conetenedor">
-        <h:form id="adminForm">
+    
+        
+        <h:form>
              <f:event type="preRenderView" listener="#{ConsultarIniciativasBean.limpiar()}"/>
             <h:commandLink actionListener="#{shBean.isLogged()}" >
-               <center><h:graphicImage url="resources/img/bannerEI.jpg"/></center>                 
+               <center><h:graphicImage url="resources/img/bannerEI.jpg"/></center>                
             </h:commandLink>
             <br/>
             <center>
-                <h2>Bienvenido al Menu Admin </h2>
+                <h2>Bienvenido A nuestra vista general</h2>
             </center>
 
             <hr />
-        
-          <p:menubar>
-              <f:facet name="options">
+
+	    <p:menubar>
+                <f:facet name="options">
                   <p:outputLabel value="#{iniciativa.proponente.correo}"/>
                   <p:commandButton value="Salir" icon="pi pi-sign-out" actionListener="#{shBean.logOut()}"/>
               </f:facet>
-                <p:submenu label="Usuarios" icon="pi pi-user-edit">
-                    <p:menuitem value="Asignar perfiles" onclick="cambiarPagina('AsignacionPerfiles')"/>
-                </p:submenu>
+                <p:menuitem value="Agregar comentario" icon="pi pi-comments" onclick="cambiarPagina('Comentar')"/>
                 <p:submenu label="Iniciativas"  icon="pi pi-sitemap">
                     <p:menuitem value="Cambiar estado iniciativas " onclick="cambiarPagina('EstadoIniciativa')"/>
+                    <p:menuitem value="Agrupar Iniciativas" onclick="cambiarPagina('AgruparIniciativa')"/>
                     <p:menuitem value="Agregar comentario" icon="pi pi-comments" onclick="cambiarPagina('Comentar')"/>
                 </p:submenu>
-                <p:submenu label="Consultas" icon="pi pi-search">
-                    <p:menuitem value="Consultar iniciativas " onclick="cambiarPagina('Consult')"/>
-                    <p:menuitem value="Consultar por palabras clave" onclick="cambiarPagina('Publico')" />
+                <p:submenu label="Reportes" icon="pi pi-file">
+                    <p:menuitem value="Reporte por áreas" onclick="cambiarPagina('IniciativaArea')"/>
+                    <p:menuitem value="Reporte por estados" onclick="cambiarPagina('IniciativaEstado')"/>
                 </p:submenu>
-                
-                
+                <p:submenu label="Consultas" icon="pi pi-search">
+                    <p:menuitem value="Consultar por palabras clave" onclick="cambiarPagina('Publico')" />
+                    <p:menuitem value="Consultar iniciativas "  onclick="cambiarPagina('Consult')" />
+                    <p:menuitem value="Consultar por estado" onclick="cambiarPagina('ConsultarConEstado')" />
+                </p:submenu>
+                    
+               
+            </p:menubar>
 
-          </p:menubar>
-             <h2 align="center"> Perfil Administrador </h2>
-
-                <p id ="Descripcion" align="justify">
-                    Como Usuario administrador tendra el control de los perfiles  y de las iniciativas de cada uno
-                    los dueños de esta aplicacion podran actualizar los estados de las iniciativas de acuerdo a como
-                    lo consideren, teniendo en cuenta los parametros de una buena idea o propusta.
-                </p>
-
-                <h4>En este espacio podra encontrar las iniciativas e ideas de los estudiantes
-                    de la escuela colombiana Julio Garavito, con el fin de ampliar la informacion al publico y asi
-                    motivar a la creacion de nuevos proyectos para la universidad como instituion o para el pais
-                </h4>
-            
         </h:form>
-            </div>
     </h:body>
 </html>
 

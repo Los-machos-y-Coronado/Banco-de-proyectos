@@ -13,48 +13,49 @@ and open the template in the editor.
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
     <title> Editar estado</title>
-    <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="/css/textStyle.css" media="screen"/>
-    <script type="text/javascript" src="js/ControladorPerfil.js"/>
+
+    
+    <h:outputScript name="ControladorPerfil.js" library="js" />
+    <h:outputStylesheet name="textStyle.css" library="css" />
+    <h:outputStylesheet name="master.css" library="css" />
+    <h:outputStylesheet name="perfiles.css" library="css" />
+    <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
 
 </h:head>
     <h:body>
-        <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
+        <h:form id="Agruparform">
+        <h:commandLink actionListener="#{shBean.isLogged()}" >
+               <center><h:graphicImage url="resources/img/bannerEI.jpg"/></center>               
+        </h:commandLink>
         <br/>
         <center>
             <h2> Editar Estado </h2>
         </center>
-        <h:form id="Agruparform">
+        
 
             <hr/>
             <br/>
-            <h1>En este espacio el Administrador podra agrupar las iniciativas</h1>
+            <h1  style="color: black">En este espacio el Administrador podra agrupar las iniciativas</h1>
 
-            <p align="jusitify">los Adminitradores podran agrupar las ideas o iniciativas de acuerdo a determinados parametros
+            <p align="jusitify"  style="color: black">los Adminitradores podran agrupar las ideas o iniciativas de acuerdo a determinados parametros
             con el fin mejorar o complementar una o varias ideas, esto para prestar un servicio acorde para  todos
-            los usuarios</p>
+            los usuarios.  Para consultar iniciativas relacionadas seleccione una iniciativa, para agrupar seleccione dos o mas iniciativas </p>
             <br/>
-            <p> parametros de agrupación :</p>
-            <ol>
-                <li>Proponentes</li>
-                <li>Palabras claves</li>
-                <li>Area</li>
-            </ol>
+
             <hr/>
             <br/>
 
                 <br/>
-                <h1> AGRUPACION DE INICIATIVAS </h1>
+                <h1 style="color: black"> AGRUPACION DE INICIATIVAS </h1>
 
 
-            <p:dataTable value="#{inBean.iniciativas}" var="iniciativa" rows="5"     selectionMode="single"   selection="#{inBean.selectedIni}"  rowKey="#{iniciativa.proponente.correo}"
+            <p:dataTable value="#{inBean.iniciativas}" var="iniciativa" rows="5"   selection="#{inBean.selectedIni}"  rowKey="#{iniciativa.id}"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
                          rowsPerPageTemplate="5,10,15">
-                <f:facet name="header">
-                    Seleccione alguna iniciativa
-                </f:facet>
+
+                <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
                 <p:column headerText="correo">
                     <p:outputLabel value="#{iniciativa.proponente.getCorreo()}"/>
                 </p:column>
@@ -68,8 +69,14 @@ and open the template in the editor.
                     <p:outputLabel value="#{iniciativa.estado}"/>
                 </p:column>
             </p:dataTable>
+             <center>
+            <p:outputLabel value="#{inBean.screenEstado}" style="color: gray"/>
+            </center>
             <br/>
-           <center> <p:commandButton  update="Agruparform" value="Agrupar" actionListener="#{inBean.agruparIniciativas}" styleClass="Button"></p:commandButton></center>
+           <center> <p:commandButton  update="Agruparform" value="Agrupar" actionListener="#{inBean.agruparIniciativas()}" styleClass="Button"></p:commandButton></center>
+            <br/>
+            <br/>
+            <center> <p:commandButton  update="Agruparform" value="Consultar" actionListener="#{inBean.consultarRelacionados()}" styleClass="Button"></p:commandButton></center>
             <br/>
             <hr/>
 
@@ -93,10 +100,12 @@ and open the template in the editor.
                     <center>
                     <p:commandButton  icon="pi pi-thumbs-up" update="Agruparform" value="#{inBean.estadoLike(ini)}" actionListener="#{inBean.registrarLike(ini)}" styleClass="Button"></p:commandButton>
                     </center>
+                    
                 </p:panelGrid>
             </p:dataList>
             <br/>
-            <center><p:commandButton  value="Volver" onclick="back()"/></center>
+            
+            <center><p:commandButton  icon="pi pi-arrow-left" value="Volver" onclick="back()"/></center>
         </h:form>
 
     </h:body>

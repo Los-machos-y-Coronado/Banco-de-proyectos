@@ -26,9 +26,20 @@ function cambiarPagina(pag) {
     }else if(pag === "AgruparIniciativa"){
              location.href="/faces/AgruparIniciativa.xhtml";
 
-    }else if(pag === "misIniciativas"){
+    }
+    else if(pag=== "ConsultarConEstado"){
+             location.href="/faces/conIniPorEst.xhtml";
+        
+            }
+    else if(pag === "IniciativaEstado"){
+        location.href="/faces/IniciativasEstados.xhtml";
+    }
+
+
+    else if(pag === "misIniciativas"){
                  location.href="/faces/MisIniciativas.xhtml";
-     }
+    }
+
 
 }
 function back(){

@@ -100,6 +100,14 @@ public class MyBatisDAOIniciativa implements DaoIniciativa{
             throw new PersistenceException ("error al las Iniciativas por area",e);
         }
     }
+    @Override
+    public List<Iniciativa> iniciativasPorEstado(String estado) throws PersistenceException{
+        try{
+            return iniciativaMapper.iniciativasPorEstado(estado);
+        } catch(org.apache.ibatis.exceptions.PersistenceException e){
+            throw new PersistenceException("Error al consultar las iniciativas",e);
+        }
+    }
 
     @Override
     public List<Iniciativa> consultarIniciativaCor(String cor) throws PersistenceException {
@@ -116,6 +124,33 @@ public class MyBatisDAOIniciativa implements DaoIniciativa{
              iniciativaMapper.updateDescripcion(des,fecha,id);
         }catch (Exception e){
             throw new PersistenceException ("error al actualizar BT Iniciativa "+id,e);
+        }
+    }
+
+    @Override
+    public void agruparIniciativa(Iniciativa iniciativa,int idGrupo) throws PersistenceException {
+        try{
+            iniciativaMapper.agruparIniciativa(iniciativa,idGrupo);
+        }catch(Exception e){
+            throw new PersistenceException("error al agrupar las iniciativas");
+        }
+    }
+
+    @Override
+    public int selectid() throws PersistenceException {
+        try{
+            return iniciativaMapper.selectid();
+        }catch(Exception ex){
+            throw new PersistenceException("error al consultar el id");
+        }
+    }
+
+    @Override
+    public List<Iniciativa> consultarRelacionados(Iniciativa iniciativa) throws PersistenceException {
+        try{
+            return iniciativaMapper.consultarRelacionados(iniciativa);
+        }catch(Exception ex){
+            throw new PersistenceException("error al consultar los relacionados");
         }
     }
 

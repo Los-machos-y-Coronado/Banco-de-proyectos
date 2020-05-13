@@ -7,16 +7,21 @@
       >
     <h:head>
         <title></title>
-        <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
-        <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
-        <link rel="stylesheet" type="text/css" href="/css/textStyle.css" media="screen"/>
-        <script type="text/javascript" src="js/ControladorPerfil.js"/>
+
+        <h:outputScript name="ControladorPerfil.js" library="js" />
+        <h:outputStylesheet name="textStyle.css" library="css" />
+        <h:outputStylesheet name="master.css" library="css" />
+        <h:outputStylesheet name="styles.css" library="css" />
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
     </h:head>
     <h:body>
 
 
         <h:form id="formPer">
-            <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
+            <h:commandLink actionListener="#{shBean.isLogged()}" >
+               <center><h:graphicImage url="resources/img/bannerEI.jpg"/></center>           
+            </h:commandLink>
+            
             <br/>
             <center>
                 <h2>Agregue su comentario a alguna iniciativa que le interese</h2>
@@ -26,7 +31,7 @@
 
 
             <p:panel id="DatesIniciativa" header="Información de la iniciativas "  style="margin-bottom:20px">
-                <p:dataTable value="#{AgregarComentarioBean.ini}" var="u" rows="5"     selectionMode="single"   selection="#{AgregarComentarioBean.selectedIniciativa}"  rowKey="#{u.proponente.correo}"
+                <p:dataTable value="#{AgregarComentarioBean.ini}" var="u" rows="5"     selectionMode="single"   selection="#{AgregarComentarioBean.selectedIniciativa}"  rowKey="#{u.id}"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
@@ -69,7 +74,7 @@
 
             </p:panel>
 
-            <center><p:commandButton  update="DatesIniciativa" value="Volver" onclick="back()"/></center>
+            <center><p:commandButton  icon="pi pi-arrow-left" update="DatesIniciativa" value="Volver" onclick="back()"/></center>
         </h:form>
         
 

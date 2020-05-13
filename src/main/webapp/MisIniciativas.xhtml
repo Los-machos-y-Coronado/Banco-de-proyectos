@@ -13,17 +13,23 @@ and open the template in the editor.
 <h:head>
     <title> Editar estado</title>
 
-    <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="/css/master.css" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="/css/textStyle.css" media="screen"/>
-    <script type="text/javascript" src="js/ControladorPerfil.js"/>
+
+    
+    <h:outputScript name="ControladorPerfil.js" library="js" />
+        <h:outputStylesheet name="textStyle.css" library="css" />
+        <h:outputStylesheet name="master.css" library="css" />
+        
+        <h:outputStylesheet name="styles.css" library="css" />
+    <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
 
 </h:head>
 <h:body>
     <h:form id="formEdit" >
         <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
 
-        <img src="img/logo.png" width="150" height="100" alt="descripción"  align="left"/>
+        <h:commandLink actionListener="#{shBean.isLogged()}" >
+               <center><h:graphicImage url="resources/img/bannerEI.jpg"/></center>               
+            </h:commandLink>
         <br/>
         <center>
             <h2> Mis Iniciativas </h2>
@@ -60,7 +66,7 @@ and open the template in the editor.
                     <h:outputText value="Fecha de publicacion:" style="font-weight:bold" />
                     <h:outputText value="#{iniciativa.fecha}" />
 
-                    <h:outputText for = "Descripcion" value="Descripcion:" style="font-weight:bold" />
+                    <h:outputText  for = "Descripcion" value="Descripción:" style="font-weight:bold" ></h:outputText>
                     <p:inplace id="Descripcion" editor="#{iniciativa.descripcion}">
                         <p:inputTextarea rows="6" cols="33"  value="#{iniciativa.descripcion}" binding="#{desc}" required="true" label="text"/>
                     </p:inplace>
@@ -77,7 +83,7 @@ and open the template in the editor.
                 <center><p:commandButton  value="Actualizar" onclick="{inBean.updateDescripcion(iniciativa,desc.value)"/></center>
             </p:dataList>
         </p:panel>
-        <center><p:commandButton  value="Volver" onclick="back()"/></center>
+        <center><p:commandButton  icon="pi pi-arrow-left" value="Volver" onclick="back()"/></center>
     </h:form>
 </h:body>
 </html>

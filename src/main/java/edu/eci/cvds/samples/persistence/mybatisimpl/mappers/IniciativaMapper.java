@@ -30,9 +30,18 @@ public interface IniciativaMapper {
 
     public void   registrarPalabraClave(@Param("inid") int id,@Param("pala") String palabra);
 
-   public List<Area> iniciativasPorArea();
+    public List<Area> iniciativasPorArea();
+    
+    public List<Iniciativa> iniciativasPorEstado(@Param("est") String estado);
+   
 
     public List<Iniciativa> consultarIniciativaCor(@Param("corr") String cor);
 
     public void updateDescripcion(@Param("desc")String des, @Param("fecha")Date fecha, @Param("inid")int id);
+    
+    public void agruparIniciativa(@Param("ini")Iniciativa iniciativa,@Param("id")int idGrupo);
+    
+    public int selectid();
+    
+    public List<Iniciativa> consultarRelacionados(@Param("ini")Iniciativa iniciativa);
 }

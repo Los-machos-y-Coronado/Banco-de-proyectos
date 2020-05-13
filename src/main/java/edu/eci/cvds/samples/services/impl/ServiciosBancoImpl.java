@@ -172,27 +172,32 @@ public class ServiciosBancoImpl implements ServiciosBanco {
     }
     
     @Override
-    public List<Iniciativa> agruparIniciativas(Iniciativa ini)throws ExcepcionServiciosBanco{
+    public List<Iniciativa> consultarRelacionados(Iniciativa iniciativa)throws ExcepcionServiciosBanco{
         
-        List<Area> areas = iniciativasPorArea();
-        List<Iniciativa> relacionadas =  new ArrayList<>();
-        
-        for (Area a :areas){    
-             for (Iniciativa i:a.getIniciativas()){
-                 if (relacionadas(ini,i,a.getNombre())){
-                    relacionadas.add(i);                       
-                 }
-             }
+        try{
+            return daoIniciativa.consultarRelacionados(iniciativa);
+        }catch(PersistenceException ex){
+            throw new ExcepcionServiciosBanco("No se pudo consultar las iniciativas relacionadas");
         }
          
-        return relacionadas;
+        
 
     }
     
     @Override
     public void eliminarIniciativa(Iniciativa ini){
-        //En proceso
-        
+        //En proceso 
+    }
+    
+    @Override
+    public List<Iniciativa> consultarIniciativasPorEstado(String estado)throws ExcepcionServiciosBanco{
+        try{
+            return daoIniciativa.iniciativasPorEstado(estado);
+        }
+        catch(PersistenceException ex){
+            throw new ExcepcionServiciosBanco("No se pudo consultar las iniciativas",ex);
+        }
+    
     }
 
     /**
@@ -219,36 +224,22 @@ public class ServiciosBancoImpl implements ServiciosBanco {
         }
     }
 
-    /**
-     * Verifica si dos inicitivas estan relacionadas
-     * @param ini1 Iniciativa
-     * @param ini2 Iniciativa
-     * @param areaDeIni2 String
-     * @return Boolean *
-     */
-    private boolean relacionadas(Iniciativa ini1, Iniciativa ini2,String areaDeIni2){
-        
-        boolean respuesta = false;
-        String areaDeIni1=ini1.getProponente().getArea();
-        double TantoPorCiento = (ini2.getPalabras().size())*0.6;
-        int contador = 0;
+ 
 
-        if((ini1.getId()!=ini2.getId()) && (areaDeIni1 == null ? areaDeIni2 == null : areaDeIni1.equals(areaDeIni2))){
-           
-           for (String palabra:ini1.getPalabras()){
-               if(ini2.getPalabras().contains(palabra)){
-                   contador++;
-               }
-           }
+    @Override
+    public void agruparIniciativas(List<Iniciativa> iniciativas) throws ExcepcionServiciosBanco {
+        try{
+            
+            int idGrupo=daoIniciativa.selectid()+1;
+            for(Iniciativa i: iniciativas){
+                daoIniciativa.agruparIniciativa(i,idGrupo);
+            }
+        }catch(PersistenceException ex){
+            throw new ExcepcionServiciosBanco("No se pudo agrupar las iniciativas",ex);
         }
-        
-        if ((double)contador>=TantoPorCiento && contador!=0.0 && TantoPorCiento!=0){
-            respuesta=true;
-        }
-        
-        return respuesta;
-        
     }
+    
+    
     
 }
 
