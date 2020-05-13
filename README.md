@@ -45,3 +45,7 @@ Se utilizó la metodología **Scrum**,  el grupo de trabajo se reunió para plan
 después de la revisión del cliente se procede a hacer la restrospectiva del sprint entregado y la planeación del siguiente hasta la entrega final.
 #### Taiga
 [Taiga backlog](https://tree.taiga.io/project/anfegoca-plataforma-banco-de-iniciativas-de-proyectos/backlog)
+
+### Sprint
+El detalle de los sprints se encuntra en el siguiente link
+[sprints](https://github.com/Los-machos-y-Coronado/Banco-de-proyectos/blob/master/src/Scrum.md)
