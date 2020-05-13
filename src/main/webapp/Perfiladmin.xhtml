@@ -16,6 +16,7 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="/css/styles.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="/css/textStyle.css" media="screen"/>
         <script type="text/javascript" src="js/ControladorPerfil.js"/>
+        <link rel="stylesheet" type="text/css" href="/css/perfiles.css" media="screen"/>
         <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
     </h:head>
     <h:body>
@@ -33,29 +34,46 @@ and open the template in the editor.
             </center>
 
             <hr />
+        <div id="conetent">
+          <p:menubar>
+              <f:facet name="options">
+                  <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
+                  <p:outputLabel value="#{iniciativa.proponente.correo}"/>
+                  <p:commandButton value="Salir" icon="pi pi-sign-out" actionListener="#{shBean.logOut()}"/>
+              </f:facet>
+                <p:submenu label="Usuarios" icon="pi pi-user-edit">
+                    <p:menuitem value="Asignar perfiles" onclick="cambiarPagina('AsignacionPerfiles')"/>
+                </p:submenu>
+                <p:submenu label="Iniciativas"  icon="pi pi-sitemap">
+                    <p:menuitem value="Cambiar estado iniciativas " onclick="cambiarPagina('EstadoIniciativa')"/>
+                    <p:menuitem value="Agrupar Iniciativas" onclick="cambiarPagina('AgruparIniciativa')"/>
+                </p:submenu>
+                <p:submenu label="Consultas" icon="pi pi-search">
+                    <p:menuitem value="Consultar iniciativas " onclick="cambiarPagina('Consult')"/>
+                    <p:menuitem value="Consultar por palabras clave" onclick="cambiarPagina('Publico')" />
+                    <p:menuitem value="Consultar por estado" onclick="cambiarPagina('ConsultarConEstado')"/>
+                </p:submenu>
+                <p:submenu label="Reportes" icon="pi pi-file">
+                    <p:menuitem value="Reporte por areas" onclick="cambiarPagina('IniciativaArea')"/>
+                    <p:menuitem value="Reporte por estados" onclick="cambiarPagina('IniciativaEstado')"/>
+                </p:submenu>
+                <p:menuitem value="Salir" icon="pi pi-sign-out" actionListener="#{shBean.logOut()}"/>
 
-            
-        <p:menubar>
-            <p:submenu label="Usuarios" icon="pi pi-user-edit">
-                <p:menuitem value="Asignar perfiles" onclick="cambiarPagina('AsignacionPerfiles')"/>
-            </p:submenu>
-            <p:submenu label="Iniciativas"  icon="pi pi-sitemap">
-                <p:menuitem value="Cambiar estado iniciativas " onclick="cambiarPagina('EstadoIniciativa')"/>
-                <p:menuitem value="Agrupar Iniciativas" onclick="cambiarPagina('AgruparIniciativa')"/>
-            </p:submenu>
-            <p:submenu label="Consultas" icon="pi pi-search">
-                <p:menuitem value="Consultar iniciativas " onclick="cambiarPagina('Consult')"/>
-                <p:menuitem value="Consultar por palabras clave" onclick="cambiarPagina('Publico')" />
-                <p:menuitem value="Consultar por estado" onclick="cambiarPagina('ConsultarConEstado')"/>
-            </p:submenu>
-            <p:submenu label="Reportes" icon="pi pi-file">
-                <p:menuitem value="Reporte por areas" onclick="cambiarPagina('IniciativaArea')"/>
-                <p:menuitem value="Reporte por estados" onclick="cambiarPagina('IniciativaEstado')"/>
-            </p:submenu>
-            <p:menuitem value="Salir" icon="pi pi-sign-out" actionListener="#{shBean.logOut()}"/>
-           
-        </p:menubar>
-            </h:form>
+          </p:menubar>
+             <h2 align="center"> Perfil Administrador </h2>
+
+                <p id ="Descripcion" align="justify">
+                    Como Usuario administrador tendra el control de los perfiles  y de las iniciativas de cada uno
+                    los dueños de esta aplicacion podran actualizar los estados de las iniciativas de acuerdo a como
+                    lo consideren, teniendo en cuenta los parametros de una buena idea o propusta.
+                </p>
+
+                <h1>En este espacio podra encontrar las iniciativas e ideas de los estudiantes
+                    de la escuela colombiana Julio Garavito, con el fin de ampliar la informacion al publico y asi
+                    motivar a la creacion de nuevos proyectos para la universidad como instituion o para el pais
+                </h1>
+            </div>
+        </h:form>
     </h:body>
 </html>
 

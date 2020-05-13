@@ -269,6 +269,7 @@
         LEFT JOIN usuarios as us ON c.idf_usuario=us.correo
         WHERE i.estado=#{est};    
     </select>
+
     <select id="selectid" resultType="int">
         select count(distinct(grupo)) from relacionados;
     </select>
@@ -317,6 +318,5 @@
             LEFT JOIN relacionados as r ON i.id_iniciativas=r.iniciativa
             WHERE r.iniciativa=#{ini.id})
     </select>
-    
     
 </mapper>      

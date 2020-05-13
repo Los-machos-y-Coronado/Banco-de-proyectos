@@ -33,11 +33,13 @@ and open the template in the editor.
                 <hr />
 
                     <center>
-                        <p:outputLabel value="#{ConsultarIniciativasBean.estado}" style="color: gray"/>
-                        <br><p:outputLabel for="palabras_clave" value="Palabras" style="color: gray"/></br>
-                        <br><p:inputText type="palabrasclave" id="palabras_clave" binding="#{pala}" placeholder="Ingrese sus palabras separadas por coma" styleClass="Button" style="width: 1000px" ></p:inputText></br>
+
+                        <h3 style="margin-top: 0">Listado de Plabras Clave</h3>
+                        <p:pickList id="pickList" value="#{ConsultarIniciativasBean.palabras}" var="palabra" itemLabel="#{palabra}" itemValue="#{palabra}" />
+                        <p:outputLabel value="#{ConsultarIniciativasBean.estado}" style="color: white"/>
+
                         <br/>
-                        <p:commandButton  update="formConsultarIni" value="Enviar" actionListener="#{ConsultarIniciativasBean.consultarIniciativas(pala.value)}" styleClass="Button"></p:commandButton>
+                        <p:commandButton  update="formConsultarIni" value="Enviar" actionListener="#{ConsultarIniciativasBean.consultarIniciativas()}" styleClass="Button"></p:commandButton>
                     </center>
                     <hr />
                 <br/>

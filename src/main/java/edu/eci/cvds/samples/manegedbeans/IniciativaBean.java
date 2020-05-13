@@ -97,9 +97,11 @@ public class IniciativaBean implements Serializable {
             serviciosBanco.registrarIniciativa(nuevoRegistro);
             iniciativas = serviciosBanco.consultarIniciativas();
             id= iniciativas.size()+1;
+
             palabrasClave=new ArrayList<String>();
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Successful",  "Your message: " + "registro exitoso") );
+
 
         } catch (Exception e) {
             FacesContext context = FacesContext.getCurrentInstance();
@@ -154,7 +156,6 @@ public class IniciativaBean implements Serializable {
 
         }
     }
-
     public void updateDescripcion (Iniciativa i,String desc){
         try{
             Date utilDate = new Date();
@@ -232,16 +233,13 @@ public class IniciativaBean implements Serializable {
         }
         return misIni;
     }
-
     public Usuario getProponente() {
         return proponente;
     }
-
     public void setProponente(Usuario proponente) {
         this.proponente = proponente;
     }
-    
-    
+
     public int getNumLikes() {
         return numLikes;
     }
