@@ -30,7 +30,6 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class AsignacionPerfilesBean implements Serializable {
     private ServiciosBanco serviciosBanco;
-    private Usuario admin;
     private List<Usuario> usuarios;
     private Rol[] roles;
     

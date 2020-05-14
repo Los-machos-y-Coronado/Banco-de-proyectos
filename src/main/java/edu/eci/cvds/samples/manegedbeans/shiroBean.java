@@ -6,11 +6,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.*;
+
 
 import org.apache.shiro.subject.Subject;
 import java.io.IOException;
 import java.io.Serializable;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
 
 
 @SuppressWarnings("deprecation")

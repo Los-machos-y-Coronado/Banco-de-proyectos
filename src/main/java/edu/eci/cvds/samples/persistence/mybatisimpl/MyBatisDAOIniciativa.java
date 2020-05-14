@@ -24,7 +24,7 @@ import java.util.List;
 public class MyBatisDAOIniciativa implements DaoIniciativa{
 
     @Inject
-    IniciativaMapper iniciativaMapper;
+    private IniciativaMapper iniciativaMapper;
     
     @Override
     public Iniciativa consultarIniciativa(int id) throws PersistenceException  {
