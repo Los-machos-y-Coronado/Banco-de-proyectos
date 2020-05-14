@@ -59,7 +59,7 @@ public class IniciativaBean implements Serializable {
     private int numLikes;
     private String buttonLike;
     private String icon;
-    private Subject cor;
+   
     private List<Iniciativa> selectedIni;
 
 
@@ -67,7 +67,7 @@ public class IniciativaBean implements Serializable {
     public IniciativaBean() {
 
         serviciosBanco = ServiciosBancoFactory.getInstance().getServiciosBanco();
-        cor= SecurityUtils.getSubject();
+        Subject cor= SecurityUtils.getSubject();
         tipoEstado=Estado.values();
         palabrasClave=new ArrayList<String>();
 
