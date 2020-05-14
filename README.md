@@ -1,7 +1,7 @@
 
 # Banco De Proyectos E Iniciativas 
 **Curso:** Ciclos de Vida del Desarrollo de Software \
-**Periodo académico:** 2019-1
+**Periodo académico:** 2020-1
 ## Integrantes
 |     Nombre    |     Rol         |
 |--------------|------------- |
