@@ -24,6 +24,8 @@ Para el uso de la aplicación se hará la validación de acuerdo al usuario corr
 ## **Arquitectura y Diseño detallado:**
 ### Modelo E-R
 ![Modelo](https://github.com/Los-machos-y-Coronado/Banco-de-proyectos/blob/develop/Persistencia/modelo_entidad_r.png)
+## **Diagrama de clases:**
+![Modelo](https://github.com/Los-machos-y-Coronado/Banco-de-proyectos/blob/master/Persistencia/Diagrama_de_Clases.png)
 Stack de Tecnologías:
    * [PrimeFaces (Framework)](https://www.primefaces.org/)
    * [QuickTheories (Property Based Testing)](https://github.com/quicktheories/QuickTheories)
