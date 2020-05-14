@@ -5,8 +5,7 @@
  */
 package edu.eci.cvds.samples.entities;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  *

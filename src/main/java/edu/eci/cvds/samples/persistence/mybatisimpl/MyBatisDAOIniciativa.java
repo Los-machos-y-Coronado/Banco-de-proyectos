@@ -11,7 +11,6 @@ import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.persistence.DaoIniciativa;
 import edu.eci.cvds.samples.persistence.PersistenceException;
 import edu.eci.cvds.samples.persistence.mybatisimpl.mappers.IniciativaMapper;
-import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 
 
 import java.sql.Date;

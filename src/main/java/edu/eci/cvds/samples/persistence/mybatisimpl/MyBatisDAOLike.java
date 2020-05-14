@@ -10,7 +10,7 @@ import java.util.List;
 
 public class MyBatisDAOLike implements DaoLike {
     @Inject
-    LikeMapper likeMapper;
+    private LikeMapper likeMapper;
 
     @Override
     public List<Like> consultarLikesIn(int inid) throws PersistenceException {
