@@ -59,7 +59,10 @@ and open the template in the editor.
 
             <hr/>
             <p>NOTA : para actualizar de click sobre su descripcion</p>
-            <p:dataList value="#{inBean.misIniciativas}" var ="iniciativa" style="border: none;">
+            <p:dataGrid value="#{inBean.misIniciativas}" var ="iniciativa" style="border: none;" columns="1" layout="grid"
+            rows="5" paginator="true"
+            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+            rowsPerPageTemplate="5,10,15">
                 <br/>
                 <p:panelGrid columns="2"   layout="grid">
 
@@ -82,7 +85,7 @@ and open the template in the editor.
                     <center><p:commandButton  update="formEdit" value="Actualizar" actionListener="#{inBean.updateDescripcion(iniciativa,desc.value)}" /></center>
                 </p:panelGrid>
 
-            </p:dataList>
+            </p:dataGrid>
         </p:panel>
         <center><p:commandButton  icon="pi pi-arrow-left" value="Volver" onclick="back()"/></center>
     </h:form>
