@@ -52,6 +52,7 @@ public class IniciativaBean implements Serializable {
     private Iniciativa nuevoRegistro;
     private java.sql.Date fecha;
 
+    private List<Iniciativa> misIniciativas;
     private List<Iniciativa> iniciativas;
     private List<Iniciativa> iniciativasGroup;
     private List<String> palabrasClave;
@@ -158,11 +159,12 @@ public class IniciativaBean implements Serializable {
     }
     public void updateDescripcion (Iniciativa i,String desc){
         try{
-            Date utilDate = new Date();
-            serviciosBanco.updateDescripcion(desc,new java.sql.Date(utilDate.getTime()),i.getId());
+
+            serviciosBanco.updateDescripcion(desc,i.getId());
             screenEstado="actualizado";
             iniciativas = serviciosBanco.consultarIniciativas();
         }catch (ExcepcionServiciosBanco | NumberFormatException ex){
+            ex.printStackTrace();
             screenEstado="Error en actualziar";
 
         }
@@ -223,15 +225,14 @@ public class IniciativaBean implements Serializable {
 
     }
 
-    public List<Iniciativa> consultarMisniciativas () {
-        List<Iniciativa> misIni = new ArrayList<Iniciativa>();
+    public void consultarMisniciativas () {
+        misIniciativas = new ArrayList<Iniciativa>();
         for (Iniciativa i : iniciativas) {
             if (i.getProponente().getCorreo().equals(proponente.getCorreo()))
             {
-                misIni.add(i);
+                misIniciativas.add(i);
             }
         }
-        return misIni;
     }
     public Usuario getProponente() {
         return proponente;
@@ -364,5 +365,12 @@ public class IniciativaBean implements Serializable {
     public void setIcon(String icon) {
         this.icon = icon;
     }
-    
+
+    public List<Iniciativa> getMisIniciativas() {
+        return misIniciativas;
+    }
+
+    public void setMisIniciativas(List<Iniciativa> misIniciativas) {
+        this.misIniciativas = misIniciativas;
+    }
 }

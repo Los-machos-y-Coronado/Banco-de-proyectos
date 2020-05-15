@@ -119,9 +119,9 @@ public class MyBatisDAOIniciativa implements DaoIniciativa{
     }
 
     @Override
-    public void updateDescripcion(String des, Date fecha, int id) throws PersistenceException {
+    public void updateDescripcion(String des, int id) throws PersistenceException {
         try {
-             iniciativaMapper.updateDescripcion(des,fecha,id);
+             iniciativaMapper.updateDescripcion(des,id);
         }catch (Exception e){
             throw new PersistenceException ("error al actualizar BT Iniciativa "+id,e);
         }

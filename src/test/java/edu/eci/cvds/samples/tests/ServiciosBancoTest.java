@@ -283,7 +283,7 @@ public class ServiciosBancoTest {
     public void updateDescripcion() {
         try {
             java.util.Date utilDate = new java.util.Date();
-            serviciosBanco.updateDescripcion("nuevo detalle para esta descripcion 2", new java.sql.Date(utilDate.getTime()), 16);
+            serviciosBanco.updateDescripcion("nuevo detalle para esta descripcion 2", 16);
             Iniciativa ini = serviciosBanco.consultarIniciativa(16);
             
             assertTrue(true);

@@ -131,7 +131,7 @@ public interface ServiciosBanco {
      * @throws ExcepcionServiciosBanco
      */
     public abstract List<Iniciativa> consultarIniciativaCor(String cor) throws ExcepcionServiciosBanco;
-    public void  updateDescripcion (String desc, Date fecha, int id) throws ExcepcionServiciosBanco;
+    public void  updateDescripcion (String desc, int id) throws ExcepcionServiciosBanco;
 
     public abstract List<Iniciativa> consultarRelacionados(Iniciativa iniciativa) throws ExcepcionServiciosBanco;
 

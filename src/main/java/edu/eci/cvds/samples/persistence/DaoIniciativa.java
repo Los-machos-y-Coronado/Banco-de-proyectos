@@ -39,7 +39,7 @@ public interface DaoIniciativa {
 
     public List<Iniciativa>  consultarIniciativaCor(String cor) throws PersistenceException;
 
-    public void updateDescripcion(String des, Date fecha, int id) throws PersistenceException;
+    public void updateDescripcion(String des, int id) throws PersistenceException;
     
     public void agruparIniciativa(Iniciativa iniciativa,int idGrupo) throws PersistenceException;
     

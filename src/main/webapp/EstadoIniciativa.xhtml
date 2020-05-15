@@ -16,8 +16,7 @@ and open the template in the editor.
                 
         <h:outputScript name="ControladorPerfil.js" library="js" />
         <h:outputStylesheet name="textStyle.css" library="css" />
-
-        <h:outputStylesheet name="styles.css" library="css" />
+        <h:outputStylesheet name="master.css" library="css" />
         <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
 
 
@@ -54,7 +53,10 @@ and open the template in the editor.
            </p:panel>
            
             <p:panel  id="Pestado" header="Cambio de Estado"  style="margin-center:20px">
-                <p:dataList value="#{inBean.iniciativas}" var ="iniciativa" style="border: none;">
+                <p:dataGrid value="#{inBean.iniciativas}" var ="iniciativa" style="border: none;" columns="2" rows="5" paginator="true"
+                            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                            currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                            rowsPerPageTemplate="5,10,15"> >
                   <br/>
                           <p:panelGrid columns="2"   layout="grid">
                               <h:outputText value="Proponente :" style="font-weight:bold"/>
@@ -81,10 +83,10 @@ and open the template in the editor.
                           <f:selectItem itemLabel="Solucionado" itemValue="Solucionado" />
                       </p:selectOneMenu>
                       <p:commandButton update="formEdit" value="Actualizar" actionListener="#{inBean.UpdateEstado(iniciativa,estado.value)}" styleClass="Button"></p:commandButton>
-                          <p:commandButton  icon="pi pi-thumbs-up" update="formEdit" value="#{inBean.estadoLike(iniciativa)}" actionListener="#{inBean.registrarLike(iniciativa)}" styleClass="Button"></p:commandButton>
+                      <p:commandButton  icon="#{inBean.icon}" update="formEdit" value="#{inBean.estadoLike(iniciativa)}" actionListener="#{inBean.registrarLike(iniciativa)}" styleClass="Button"></p:commandButton>
 
                       </center>
-                  </p:dataList>
+                  </p:dataGrid>
             </p:panel>
             <center><p:commandButton  icon="pi pi-arrow-left" value="Volver" onclick="back()"/></center>
         </h:form>

@@ -18,13 +18,13 @@ and open the template in the editor.
     <h:outputScript name="ControladorPerfil.js" library="js" />
         <h:outputStylesheet name="textStyle.css" library="css" />
         <h:outputStylesheet name="master.css" library="css" />
-        
-        <h:outputStylesheet name="styles.css" library="css" />
     <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
 
 </h:head>
 <h:body>
     <h:form id="formEdit" >
+        <f:event type="preRenderView" listener="#{inBean.consultarMisniciativas()}"/>
+
         <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
 
         <h:commandLink actionListener="#{shBean.isLogged()}" >
@@ -59,7 +59,7 @@ and open the template in the editor.
 
             <hr/>
             <p>NOTA : para actualizar de click sobre su descripcion</p>
-            <p:dataList value="#{inBean.consultarMisniciativas()}" var ="iniciativa" style="border: none;">
+            <p:dataList value="#{inBean.misIniciativas}" var ="iniciativa" style="border: none;">
                 <br/>
                 <p:panelGrid columns="2"   layout="grid">
 
@@ -68,7 +68,7 @@ and open the template in the editor.
 
                     <h:outputText  for = "Descripcion" value="Descripción:" style="font-weight:bold" ></h:outputText>
                     <p:inplace id="Descripcion" editor="#{iniciativa.descripcion}">
-                        <p:inputTextarea rows="6" cols="33"  value="#{iniciativa.descripcion}" binding="#{desc}" required="true" label="text"/>
+                        <p:inputTextarea rows="6" cols="33"  value="#{iniciativa.descripcion}" binding="#{desc}"  required="true" label="text"/>
                     </p:inplace>
 
                     <h:outputText value="Area:" style="font-weight:bold" />
@@ -79,8 +79,9 @@ and open the template in the editor.
 
                     <h:outputText value="Likes:" style="font-weight:bold"/>
                     <h:outputText value="#{inBean.numeroLikes(iniciativa)}" />
+                    <center><p:commandButton  update="formEdit" value="Actualizar" actionListener="#{inBean.updateDescripcion(iniciativa,desc.value)}" /></center>
                 </p:panelGrid>
-                <center><p:commandButton  value="Actualizar" onclick="{inBean.updateDescripcion(iniciativa,desc.value)"/></center>
+
             </p:dataList>
         </p:panel>
         <center><p:commandButton  icon="pi pi-arrow-left" value="Volver" onclick="back()"/></center>

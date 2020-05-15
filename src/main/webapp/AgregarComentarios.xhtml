@@ -11,7 +11,6 @@
         <h:outputScript name="ControladorPerfil.js" library="js" />
         <h:outputStylesheet name="textStyle.css" library="css" />
         <h:outputStylesheet name="master.css" library="css" />
-        <h:outputStylesheet name="styles.css" library="css" />
         <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
     </h:head>
     <h:body>
@@ -31,15 +30,12 @@
 
 
             <p:panel id="DatesIniciativa" header="Información de la iniciativas "  style="margin-bottom:20px">
+                <p>Seleccione la iniciativa que desea Comentar</p>
                 <p:dataTable value="#{AgregarComentarioBean.ini}" var="u" rows="5"     selectionMode="single"   selection="#{AgregarComentarioBean.selectedIniciativa}"  rowKey="#{u.id}"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
                          rowsPerPageTemplate="5,10,15" class="table table-striped">
-                    <f:facet name="header">
-                       Seleccione alguna iniciativa
-                    </f:facet>
-   
                     <p:column headerText="correo">
                         <p:outputLabel value="#{u.proponente.getCorreo()}"/>
                     </p:column>
@@ -68,7 +64,8 @@
                 <center>
                     <p:outputLabel value="#{AgregarComentarioBean.estado}" style="color: grey"/>
                     <br><p:inputText type="comentario" id="Comentario" binding="#{com}" placeholder="Ingrese su comentario" styleClass="Button" size="50"></p:inputText></br>
-                    <p:commandButton  update="DatesIniciativa" value="Enviar" actionListener="#{AgregarComentarioBean.AgregarComentario(com.value)}" styleClass="Button"></p:commandButton>
+                    <p:commandButton  update="DatesIniciativa"  value="Enviar" actionListener="#{AgregarComentarioBean.AgregarComentario(com.value)}" styleClass="Button" resetValues="true">
+                    </p:commandButton>
                 </center>
                 <hr/>
 

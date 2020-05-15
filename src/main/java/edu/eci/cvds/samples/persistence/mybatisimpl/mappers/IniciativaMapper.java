@@ -37,7 +37,7 @@ public interface IniciativaMapper {
 
     public List<Iniciativa> consultarIniciativaCor(@Param("corr") String cor);
 
-    public void updateDescripcion(@Param("desc")String des, @Param("fecha")Date fecha, @Param("inid")int id);
+    public void updateDescripcion(@Param("desc")String des, @Param("inid")int id);
     
     public void agruparIniciativa(@Param("ini")Iniciativa iniciativa,@Param("id")int idGrupo);
     

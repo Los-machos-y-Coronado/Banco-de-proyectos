@@ -154,8 +154,7 @@
 
     <update id="updateDescripcion" parameterType="map">
         update INICIATIVAS set
-        descripcion = #{desc},
-        fecha =  #{fecha}
+        descripcion = #{desc}
         where id_iniciativas= #{inid};
     </update>
 

@@ -216,9 +216,9 @@ public class ServiciosBancoImpl implements ServiciosBanco {
     }
 
     @Override
-    public void updateDescripcion(String des, Date fecha, int id) throws ExcepcionServiciosBanco {
+    public void updateDescripcion(String des, int id) throws ExcepcionServiciosBanco {
         try{
-            daoIniciativa.updateDescripcion(des,fecha,id);
+            daoIniciativa.updateDescripcion(des,id);
         }catch (PersistenceException ex){
             throw new ExcepcionServiciosBanco("No se pudo consultar las actualizar la iniciativa numero "+id,ex);
         }
