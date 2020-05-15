@@ -56,6 +56,9 @@ public class AgregarComentarioBean implements Serializable{
         if (selectedIniciativa==null){
             estado="Seleccione alguna iniciativa";    
         }
+        if("".equals(comentario)){
+            estado="No ingresó ningun comentario";
+        }
         else{
             try{
                 ini=serviciosBanco.consultarIniciativas();
