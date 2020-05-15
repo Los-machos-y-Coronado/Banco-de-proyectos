@@ -7,13 +7,13 @@ package edu.eci.cvds.samples.manegedbeans;
 import edu.eci.cvds.samples.entities.Estado;
 import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.entities.Like;
-import edu.eci.cvds.samples.entities.Rol;
+
 import edu.eci.cvds.samples.entities.Usuario;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBancoFactory;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.config.Ini;
+
 import org.apache.shiro.subject.Subject;
 
 import javax.faces.application.FacesMessage;
@@ -23,7 +23,7 @@ import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -60,7 +60,7 @@ public class IniciativaBean implements Serializable {
     private int numLikes;
     private String buttonLike;
     private String icon;
-    private Subject cor;
+   
     private List<Iniciativa> selectedIni;
 
 
@@ -68,7 +68,7 @@ public class IniciativaBean implements Serializable {
     public IniciativaBean() {
 
         serviciosBanco = ServiciosBancoFactory.getInstance().getServiciosBanco();
-        cor= SecurityUtils.getSubject();
+        Subject cor= SecurityUtils.getSubject();
         tipoEstado=Estado.values();
         palabrasClave=new ArrayList<String>();
 

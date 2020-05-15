@@ -5,17 +5,14 @@
  */
 package edu.eci.cvds.samples.services;
 
-import edu.eci.cvds.samples.entities.*;
 
 import edu.eci.cvds.samples.entities.Area;
 import edu.eci.cvds.samples.entities.Rol;
 import edu.eci.cvds.samples.entities.Usuario;
-import edu.eci.cvds.samples.entities.Iniciativa;
-
 import java.sql.Date;
-import java.util.List;
 
 import edu.eci.cvds.samples.entities.Iniciativa;
+import edu.eci.cvds.samples.entities.Like;
 import java.util.ArrayList;
 import java.util.List;
 

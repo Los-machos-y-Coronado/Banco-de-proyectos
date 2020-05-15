@@ -7,18 +7,14 @@ package edu.eci.cvds.samples.manegedbeans;
 
 import edu.eci.cvds.samples.entities.Estado;
 import edu.eci.cvds.samples.entities.Iniciativa;
-import edu.eci.cvds.samples.services.Convertidor;
 import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBanco;
 import edu.eci.cvds.samples.services.ServiciosBancoFactory;
-import org.apache.shiro.config.Ini;
 import org.primefaces.model.DualListModel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 

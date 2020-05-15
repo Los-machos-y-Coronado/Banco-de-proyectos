@@ -34,12 +34,12 @@ public class AgregarComentarioBean implements Serializable{
     private String estado;
     private List<Iniciativa> ini;
     private Usuario publico;
-    private Subject cor;
+    
     private Iniciativa  selectedIniciativa;
     
     public AgregarComentarioBean(){
         serviciosBanco=ServiciosBancoFactory.getInstance().getServiciosBanco();
-        cor= SecurityUtils.getSubject();
+        Subject cor= SecurityUtils.getSubject();
         estado=null;
         try{
             ini = serviciosBanco.consultarIniciativas();

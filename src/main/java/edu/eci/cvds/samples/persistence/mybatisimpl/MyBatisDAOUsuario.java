@@ -20,7 +20,7 @@ import java.util.List;
 public class MyBatisDAOUsuario implements DaoUsuario{
     
     @Inject
-    UsuarioMapper usuarioMapper;
+    private UsuarioMapper usuarioMapper;
 
     @Override
     public Usuario consultarUsuario(String correo ) throws PersistenceException {

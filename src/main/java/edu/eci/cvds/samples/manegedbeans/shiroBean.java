@@ -2,17 +2,19 @@ package edu.eci.cvds.samples.manegedbeans;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.ExternalContext;
+
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.*;
-import org.apache.shiro.crypto.hash.Sha256Hash;
+
+
 import org.apache.shiro.subject.Subject;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+
 
 @SuppressWarnings("deprecation")
 @ManagedBean(name="shBean")
@@ -23,7 +25,7 @@ public class shiroBean  implements Serializable{
     private String userPassword;
     private boolean rememberMe;
     private String pagina;
-    Subject currentUser;
+    private Subject currentUser;
 
 
     public String getPagina() {

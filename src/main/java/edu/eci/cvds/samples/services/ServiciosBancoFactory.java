@@ -22,7 +22,7 @@ import org.mybatis.guice.datasource.helper.JdbcHelper;
  * @author Andres Gonzalez
  */
 public class ServiciosBancoFactory {
-    private static ServiciosBancoFactory instance = new ServiciosBancoFactory();
+    private static final ServiciosBancoFactory instance = new ServiciosBancoFactory();
     
     private static Injector injector;
     

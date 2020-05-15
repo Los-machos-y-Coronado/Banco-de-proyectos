@@ -5,7 +5,6 @@
  */
 package edu.eci.cvds.samples.entities;
 
-import edu.eci.cvds.samples.services.ServiciosBanco;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -31,7 +30,7 @@ public class Iniciativa {
         this.descripcion=descripcion;
         this.fecha=fecha;
         this.proponente=proponente;
-        this.estado="En espera";
+        this.estado=Estado.EN_ESPERA.getName();
         this.palabrasClave = palabrasClave;
         this.comentarios=comentarios;
     }

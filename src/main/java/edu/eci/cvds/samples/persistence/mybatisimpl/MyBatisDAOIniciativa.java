@@ -11,7 +11,6 @@ import edu.eci.cvds.samples.entities.Iniciativa;
 import edu.eci.cvds.samples.persistence.DaoIniciativa;
 import edu.eci.cvds.samples.persistence.PersistenceException;
 import edu.eci.cvds.samples.persistence.mybatisimpl.mappers.IniciativaMapper;
-import edu.eci.cvds.samples.services.ExcepcionServiciosBanco;
 
 
 import java.sql.Date;
@@ -25,7 +24,7 @@ import java.util.List;
 public class MyBatisDAOIniciativa implements DaoIniciativa{
 
     @Inject
-    IniciativaMapper iniciativaMapper;
+    private IniciativaMapper iniciativaMapper;
     
     @Override
     public Iniciativa consultarIniciativa(int id) throws PersistenceException  {
