@@ -53,10 +53,10 @@ and open the template in the editor.
            </p:panel>
            
             <p:panel  id="Pestado" header="Cambio de Estado"  style="margin-center:20px">
-                <p:dataGrid value="#{inBean.iniciativas}" var ="iniciativa" style="border: none;" columns="2" rows="5" paginator="true"
+                <p:dataGrid value="#{inBean.iniciativas}" var ="iniciativa" style="border: none;" columns="2" rows="6" paginator="true"
                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                             currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
-                            rowsPerPageTemplate="5,10,15"> >
+                            rowsPerPageTemplate="6,12,18"> >
                   <br/>
                           <p:panelGrid columns="2"   layout="grid">
                               <h:outputText value="Proponente :" style="font-weight:bold"/>

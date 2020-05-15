@@ -98,7 +98,7 @@ and open the template in the editor.
                     <h:outputText value="Likes:" style="font-weight:bold"/>
                     <h:outputText value="#{inBean.numeroLikes(ini)}" />
                     <center>
-                    <p:commandButton  icon="pi pi-thumbs-up" update="Agruparform" value="#{inBean.estadoLike(ini)}" actionListener="#{inBean.registrarLike(ini)}" styleClass="Button"></p:commandButton>
+                        <p:commandButton  icon="#{inBean.icon}" update="Agruparform" value="#{inBean.estadoLike(ini)}" actionListener="#{inBean.registrarLike(ini)}" styleClass="Button"></p:commandButton>
                     </center>
                     
                 </p:panelGrid>
