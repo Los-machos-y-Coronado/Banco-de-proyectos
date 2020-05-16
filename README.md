@@ -13,6 +13,14 @@
 ## Estado del proyecto
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/6b328119ae07441aae6ed0de147c4ea5)](https://www.codacy.com/gh/Los-machos-y-Coronado/Banco-de-proyectos?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Los-machos-y-Coronado/Banco-de-proyectos&amp;utm_campaign=Badge_Grade)
 
+ ### Cobertura De Las Pruebas
+ ***clase***
+ 
+ ![jacococo](https://github.com/Los-machos-y-Coronado/Banco-de-proyectos/blob/develop/Persistencia/jacoco.jpg)
+ ***listado de metodos***
+ ![listajc](https://github.com/Los-machos-y-Coronado/Banco-de-proyectos/blob/develop/Persistencia/jclist.jpg)
+ 	
+
 [![CircleCI](https://circleci.com/gh/Los-machos-y-Coronado/Banco-de-proyectos.svg?style=svg)](https://circleci.com/gh/Los-machos-y-Coronado/Banco-de-proyectos)
 ##  Descripción del producto.
  ### Descripcion General
