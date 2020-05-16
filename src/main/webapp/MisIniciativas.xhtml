@@ -69,7 +69,7 @@ and open the template in the editor.
                     <h:outputText value="Fecha de publicacion:" style="font-weight:bold" />
                     <h:outputText value="#{iniciativa.fecha}" />
 
-                    <h:outputText  for = "Descripcion" value="Descripción:" style="font-weight:bold" ></h:outputText>
+                    <h:outputText  id = "Descripcion2" value="Descripción:" style="font-weight:bold" ></h:outputText>
                     <p:inplace id="Descripcion" editor="#{iniciativa.descripcion}">
                         <p:inputTextarea rows="6" cols="33"  value="#{iniciativa.descripcion}" binding="#{desc}"  required="true" label="text"/>
                     </p:inplace>

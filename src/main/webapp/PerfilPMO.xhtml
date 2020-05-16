@@ -41,7 +41,6 @@ and open the template in the editor.
                   <p:outputLabel value="#{iniciativa.proponente.correo}"/>
                   <p:commandButton value="Salir" icon="pi pi-sign-out" actionListener="#{shBean.logOut()}"/>
               </f:facet>
-                <p:menuitem value="Agregar comentario" icon="pi pi-comments" onclick="cambiarPagina('Comentar')"/>
                 <p:submenu label="Iniciativas"  icon="pi pi-sitemap">
                     <p:menuitem value="Cambiar estado iniciativas " onclick="cambiarPagina('EstadoIniciativa')"/>
                     <p:menuitem value="Agrupar Iniciativas" onclick="cambiarPagina('AgruparIniciativa')"/>

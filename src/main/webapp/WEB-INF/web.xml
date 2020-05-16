@@ -49,16 +49,16 @@
 
     <error-page>
         <error-code>500</error-code>
-        <location> /faces/AccesDenied.xhtml</location>
+        <location>/500.html</location>
     </error-page>
     <error-page>
         <error-code>401</error-code>
-        <location> /faces/AccesDenied.xhtml</location>
+        <location>/401.html</location>
     </error-page>
 
     <error-page>
         <error-code>404</error-code>
-        <location>/faces/AccesDenied.xhtml</location>
+        <location>/404.html</location>
     </error-page>
     <context-param>
         <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
