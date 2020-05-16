@@ -58,3 +58,5 @@ después de la revisión del cliente se procede a hacer la restrospectiva del sp
 ### Sprint
 El detalle de los sprints se encuntra en el siguiente link
 [sprints](https://github.com/Los-machos-y-Coronado/Banco-de-proyectos/blob/master/src/Scrum.md)
+###
+* [Manual De Usuario](https://github.com/Los-machos-y-Coronado/Banco-de-proyectos/blob/master/manual/ManualBProyectos.pdf)
